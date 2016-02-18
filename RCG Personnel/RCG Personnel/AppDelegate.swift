@@ -16,6 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //MARK: Setting application colors and fonts
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);
+        
+        let navBarFont = UIFont(name: "Roboto-Regular", size: 17.0) ?? UIFont.systemFontOfSize(17.0);
+        
+        let navBar = UINavigationBar.appearance();
+        let tabBar = UITabBar.appearance();
+        navBar.barStyle = UIBarStyle.BlackOpaque;
+        navBar.barTintColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0);
+        tabBar.barTintColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0);
+        tabBar.tintColor = UIColor.whiteColor();
+        //Стиль заголовка
+        navBar.titleTextAttributes = [NSFontAttributeName: navBarFont, NSForegroundColorAttributeName: UIColor.whiteColor()];
+        
         return true
     }
 

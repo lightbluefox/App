@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F2B1C763612002CEB6B /* AppDelegate.swift */; };
-		84D05F2E1C763612002CEB6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F2D1C763612002CEB6B /* ViewController.swift */; };
 		84D05F311C763612002CEB6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F2F1C763612002CEB6B /* Main.storyboard */; };
 		84D05F331C763612002CEB6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F321C763612002CEB6B /* Assets.xcassets */; };
 		84D05F361C763612002CEB6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F341C763612002CEB6B /* LaunchScreen.storyboard */; };
 		84D05F411C763613002CEB6B /* RCG_PersonnelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F401C763613002CEB6B /* RCG_PersonnelTests.swift */; };
 		84D05F4C1C763613002CEB6B /* RCG_PersonnelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F4B1C763613002CEB6B /* RCG_PersonnelUITests.swift */; };
+		84D05F5D1C763BC4002CEB6B /* roboto-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F5B1C763BC4002CEB6B /* roboto-light.ttf */; };
+		84D05F5E1C763BC4002CEB6B /* roboto-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F5B1C763BC4002CEB6B /* roboto-light.ttf */; };
+		84D05F5F1C763BC4002CEB6B /* roboto-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F5B1C763BC4002CEB6B /* roboto-light.ttf */; };
+		84D05F601C763BC4002CEB6B /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */; };
+		84D05F611C763BC4002CEB6B /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */; };
+		84D05F621C763BC4002CEB6B /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */; };
+		84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
+		84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
+		84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +44,6 @@
 /* Begin PBXFileReference section */
 		84D05F281C763612002CEB6B /* RCG Personnel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RCG Personnel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D05F2B1C763612002CEB6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84D05F2D1C763612002CEB6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84D05F301C763612002CEB6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84D05F321C763612002CEB6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84D05F351C763612002CEB6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +54,9 @@
 		84D05F471C763613002CEB6B /* RCG PersonnelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RCG PersonnelUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D05F4B1C763613002CEB6B /* RCG_PersonnelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCG_PersonnelUITests.swift; sourceTree = "<group>"; };
 		84D05F4D1C763613002CEB6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D05F5B1C763BC4002CEB6B /* roboto-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-light.ttf"; sourceTree = "<group>"; };
+		84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
+		84D05F671C763FFF002CEB6B /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +87,7 @@
 		84D05F1F1C763612002CEB6B = {
 			isa = PBXGroup;
 			children = (
+				84D05F671C763FFF002CEB6B /* NewsViewController.swift */,
 				84D05F2A1C763612002CEB6B /* RCG Personnel */,
 				84D05F3F1C763613002CEB6B /* RCG PersonnelTests */,
 				84D05F4A1C763613002CEB6B /* RCG PersonnelUITests */,
@@ -98,11 +109,11 @@
 			isa = PBXGroup;
 			children = (
 				84D05F2B1C763612002CEB6B /* AppDelegate.swift */,
-				84D05F2D1C763612002CEB6B /* ViewController.swift */,
 				84D05F2F1C763612002CEB6B /* Main.storyboard */,
 				84D05F321C763612002CEB6B /* Assets.xcassets */,
 				84D05F341C763612002CEB6B /* LaunchScreen.storyboard */,
 				84D05F371C763612002CEB6B /* Info.plist */,
+				84D05F591C763AE4002CEB6B /* Supporting Files */,
 			);
 			path = "RCG Personnel";
 			sourceTree = "<group>";
@@ -123,6 +134,23 @@
 				84D05F4D1C763613002CEB6B /* Info.plist */,
 			);
 			path = "RCG PersonnelUITests";
+			sourceTree = "<group>";
+		};
+		84D05F591C763AE4002CEB6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84D05F5A1C763B9C002CEB6B /* Resources */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84D05F5A1C763B9C002CEB6B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84D05F5B1C763BC4002CEB6B /* roboto-light.ttf */,
+				84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +259,8 @@
 			files = (
 				84D05F361C763612002CEB6B /* LaunchScreen.storyboard in Resources */,
 				84D05F331C763612002CEB6B /* Assets.xcassets in Resources */,
+				84D05F601C763BC4002CEB6B /* roboto-regular.ttf in Resources */,
+				84D05F5D1C763BC4002CEB6B /* roboto-light.ttf in Resources */,
 				84D05F311C763612002CEB6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +269,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D05F611C763BC4002CEB6B /* roboto-regular.ttf in Resources */,
+				84D05F5E1C763BC4002CEB6B /* roboto-light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +278,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D05F621C763BC4002CEB6B /* roboto-regular.ttf in Resources */,
+				84D05F5F1C763BC4002CEB6B /* roboto-light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +290,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84D05F2E1C763612002CEB6B /* ViewController.swift in Sources */,
 				84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */,
+				84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D05F411C763613002CEB6B /* RCG_PersonnelTests.swift in Sources */,
+				84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D05F4C1C763613002CEB6B /* RCG_PersonnelUITests.swift in Sources */,
+				84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +434,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "RCG Personnel/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.lightbluefox.RCG-Personnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -409,6 +446,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "RCG Personnel/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.lightbluefox.RCG-Personnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
