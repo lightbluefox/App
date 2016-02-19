@@ -22,6 +22,24 @@
 		84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
 		84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
 		84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
+		84D05F6C1C766F38002CEB6B /* NewsCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */; };
+		84D05F6D1C766F38002CEB6B /* NewsCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */; };
+		84D05F6E1C766F38002CEB6B /* NewsCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */; };
+		84D05F711C779298002CEB6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F701C779298002CEB6B /* Constants.swift */; };
+		84D05F721C779298002CEB6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F701C779298002CEB6B /* Constants.swift */; };
+		84D05F731C779298002CEB6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F701C779298002CEB6B /* Constants.swift */; };
+		84D05F751C779388002CEB6B /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F741C779388002CEB6B /* News.swift */; };
+		84D05F761C779388002CEB6B /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F741C779388002CEB6B /* News.swift */; };
+		84D05F771C779388002CEB6B /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F741C779388002CEB6B /* News.swift */; };
+		84D05F791C779646002CEB6B /* NewsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F781C779646002CEB6B /* NewsReceiver.swift */; };
+		84D05F7A1C779646002CEB6B /* NewsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F781C779646002CEB6B /* NewsReceiver.swift */; };
+		84D05F7B1C779646002CEB6B /* NewsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F781C779646002CEB6B /* NewsReceiver.swift */; };
+		84D05F7D1C77977E002CEB6B /* Vacancies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F7C1C77977E002CEB6B /* Vacancies.swift */; };
+		84D05F7E1C77977E002CEB6B /* Vacancies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F7C1C77977E002CEB6B /* Vacancies.swift */; };
+		84D05F7F1C77977E002CEB6B /* Vacancies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F7C1C77977E002CEB6B /* Vacancies.swift */; };
+		84D05F811C779881002CEB6B /* VacanciesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F801C779881002CEB6B /* VacanciesReceiver.swift */; };
+		84D05F821C779881002CEB6B /* VacanciesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F801C779881002CEB6B /* VacanciesReceiver.swift */; };
+		84D05F831C779881002CEB6B /* VacanciesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F801C779881002CEB6B /* VacanciesReceiver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +75,12 @@
 		84D05F5B1C763BC4002CEB6B /* roboto-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-light.ttf"; sourceTree = "<group>"; };
 		84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
 		84D05F671C763FFF002CEB6B /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCellViewController.swift; sourceTree = "<group>"; };
+		84D05F701C779298002CEB6B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		84D05F741C779388002CEB6B /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		84D05F781C779646002CEB6B /* NewsReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsReceiver.swift; sourceTree = "<group>"; };
+		84D05F7C1C77977E002CEB6B /* Vacancies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vacancies.swift; sourceTree = "<group>"; };
+		84D05F801C779881002CEB6B /* VacanciesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacanciesReceiver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +111,8 @@
 		84D05F1F1C763612002CEB6B = {
 			isa = PBXGroup;
 			children = (
+				84D05F6F1C7791DF002CEB6B /* Classes */,
+				84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */,
 				84D05F671C763FFF002CEB6B /* NewsViewController.swift */,
 				84D05F2A1C763612002CEB6B /* RCG Personnel */,
 				84D05F3F1C763613002CEB6B /* RCG PersonnelTests */,
@@ -151,6 +177,18 @@
 				84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		84D05F6F1C7791DF002CEB6B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				84D05F701C779298002CEB6B /* Constants.swift */,
+				84D05F741C779388002CEB6B /* News.swift */,
+				84D05F781C779646002CEB6B /* NewsReceiver.swift */,
+				84D05F7C1C77977E002CEB6B /* Vacancies.swift */,
+				84D05F801C779881002CEB6B /* VacanciesReceiver.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +330,12 @@
 			files = (
 				84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */,
 				84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */,
+				84D05F6C1C766F38002CEB6B /* NewsCellViewController.swift in Sources */,
+				84D05F751C779388002CEB6B /* News.swift in Sources */,
+				84D05F811C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
+				84D05F711C779298002CEB6B /* Constants.swift in Sources */,
+				84D05F7D1C77977E002CEB6B /* Vacancies.swift in Sources */,
+				84D05F791C779646002CEB6B /* NewsReceiver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +345,12 @@
 			files = (
 				84D05F411C763613002CEB6B /* RCG_PersonnelTests.swift in Sources */,
 				84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */,
+				84D05F6D1C766F38002CEB6B /* NewsCellViewController.swift in Sources */,
+				84D05F761C779388002CEB6B /* News.swift in Sources */,
+				84D05F821C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
+				84D05F721C779298002CEB6B /* Constants.swift in Sources */,
+				84D05F7E1C77977E002CEB6B /* Vacancies.swift in Sources */,
+				84D05F7A1C779646002CEB6B /* NewsReceiver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +360,12 @@
 			files = (
 				84D05F4C1C763613002CEB6B /* RCG_PersonnelUITests.swift in Sources */,
 				84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */,
+				84D05F6E1C766F38002CEB6B /* NewsCellViewController.swift in Sources */,
+				84D05F771C779388002CEB6B /* News.swift in Sources */,
+				84D05F831C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
+				84D05F731C779298002CEB6B /* Constants.swift in Sources */,
+				84D05F7F1C77977E002CEB6B /* Vacancies.swift in Sources */,
+				84D05F7B1C779646002CEB6B /* NewsReceiver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +480,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -448,6 +505,7 @@
 				INFOPLIST_FILE = "RCG Personnel/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DRELEASE_VERSION";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.lightbluefox.RCG-Personnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

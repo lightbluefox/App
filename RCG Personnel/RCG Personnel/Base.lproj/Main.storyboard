@@ -3,7 +3,20 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="roboto-regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Tab Bar Controller-->
         <scene sceneID="qy6-tC-9UU">
@@ -28,29 +41,191 @@
         <scene sceneID="LGG-mq-LRP">
             <objects>
                 <tableViewController id="FV9-bA-2Aw" customClass="NewsViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2WB-F7-lSk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="440" sectionHeaderHeight="28" sectionFooterHeight="28" id="2WB-F7-lSk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="POp-fo-gCF">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="210" id="POp-fo-gCF" customClass="NewsCellView" customModule="RCG_Personnel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="210"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="POp-fo-gCF" id="OSk-Mr-cnC">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="209"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newsAnnounceImage" translatesAutoresizingMaskIntoConstraints="NO" id="GWQ-Uw-laP">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="140"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sq-QE-rxs">
+                                            <rect key="frame" x="8" y="153" width="46" height="32"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
+                                            <color key="textColor" red="0.83529411764705885" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kS4-Xi-Rc7">
+                                            <rect key="frame" x="11" y="185" width="44" height="10"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="10" id="DLK-fL-kh5"/>
+                                                <constraint firstAttribute="width" constant="44" id="NN4-MY-fZu"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                            <color key="textColor" red="0.43137254901960786" green="0.43137254901960786" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ШОКИРУЮЩИЕ НОВОСТИ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhX-5c-TSK">
+                                            <rect key="frame" x="63" y="144" width="520" height="20"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOK-Vc-rhd">
+                                            <rect key="frame" x="63" y="161" width="528" height="46"/>
+                                            <string key="text">Равным образом постоянное информационно - пропогандистское обеспечение пропогандистское пропогандистское пропогандистское пропогандистскоепропогандистское пропогандистское пропогандистское</string>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                            <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.058823529411764705" green="0.058823529411764705" blue="0.058823529411764705" alpha="1" colorSpace="deviceRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kS4-Xi-Rc7" secondAttribute="bottom" constant="6" id="1hr-qh-lEu"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="iOK-Vc-rhd" secondAttribute="bottom" constant="-6" id="2h6-fd-Kyu"/>
+                                        <constraint firstItem="kS4-Xi-Rc7" firstAttribute="leading" secondItem="OSk-Mr-cnC" secondAttribute="leadingMargin" constant="3" id="6jx-4M-aAe"/>
+                                        <constraint firstItem="GWQ-Uw-laP" firstAttribute="leading" secondItem="OSk-Mr-cnC" secondAttribute="leading" id="6x1-T7-Klz"/>
+                                        <constraint firstItem="iOK-Vc-rhd" firstAttribute="top" secondItem="GWQ-Uw-laP" secondAttribute="bottom" constant="21" id="DW5-YU-b0p"/>
+                                        <constraint firstAttribute="trailing" secondItem="GWQ-Uw-laP" secondAttribute="trailing" id="Gfs-zm-TfE"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="iOK-Vc-rhd" secondAttribute="trailing" constant="1" id="KdI-gu-FOV"/>
+                                        <constraint firstItem="kS4-Xi-Rc7" firstAttribute="top" secondItem="2Sq-QE-rxs" secondAttribute="bottom" id="Oj3-2L-UIw"/>
+                                        <constraint firstItem="2Sq-QE-rxs" firstAttribute="leading" secondItem="OSk-Mr-cnC" secondAttribute="leadingMargin" id="U87-T8-Uc2"/>
+                                        <constraint firstItem="2Sq-QE-rxs" firstAttribute="leading" secondItem="OSk-Mr-cnC" secondAttribute="leadingMargin" constant="-2" id="Udc-vM-s9F"/>
+                                        <constraint firstItem="2Sq-QE-rxs" firstAttribute="leading" secondItem="OSk-Mr-cnC" secondAttribute="leadingMargin" constant="-2" id="X8Y-8W-KVv"/>
+                                        <constraint firstItem="2Sq-QE-rxs" firstAttribute="top" secondItem="GWQ-Uw-laP" secondAttribute="bottom" constant="9" id="ZL0-LQ-8Ct"/>
+                                        <constraint firstItem="kS4-Xi-Rc7" firstAttribute="top" secondItem="2Sq-QE-rxs" secondAttribute="bottom" constant="-1" id="fOs-i7-8Lh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2Sq-QE-rxs" secondAttribute="bottom" constant="20" id="hyh-kd-pYS"/>
+                                        <constraint firstItem="kS4-Xi-Rc7" firstAttribute="top" secondItem="2Sq-QE-rxs" secondAttribute="bottom" constant="-1" id="m16-dh-NGk"/>
+                                        <constraint firstItem="2Sq-QE-rxs" firstAttribute="top" secondItem="GWQ-Uw-laP" secondAttribute="bottom" constant="9" id="mOd-H3-Yda"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="NhX-5c-TSK" secondAttribute="trailing" constant="9" id="o5C-Wh-ogR"/>
+                                        <constraint firstItem="iOK-Vc-rhd" firstAttribute="leading" secondItem="kS4-Xi-Rc7" secondAttribute="trailing" constant="8" symbolic="YES" id="oaw-cB-yLR"/>
+                                        <constraint firstItem="NhX-5c-TSK" firstAttribute="leading" secondItem="iOK-Vc-rhd" secondAttribute="leading" id="pXm-Um-7im"/>
+                                        <constraint firstItem="GWQ-Uw-laP" firstAttribute="top" secondItem="OSk-Mr-cnC" secondAttribute="top" id="sbB-9e-iij"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="NhX-5c-TSK" secondAttribute="bottom" constant="37" id="um3-4Y-8lu"/>
+                                        <constraint firstItem="NhX-5c-TSK" firstAttribute="top" secondItem="GWQ-Uw-laP" secondAttribute="bottom" constant="4" id="vlH-LC-pQz"/>
+                                        <constraint firstItem="2Sq-QE-rxs" firstAttribute="top" secondItem="GWQ-Uw-laP" secondAttribute="bottom" constant="13" id="wsn-ju-4RY"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Udc-vM-s9F"/>
+                                            <exclude reference="X8Y-8W-KVv"/>
+                                            <exclude reference="ZL0-LQ-8Ct"/>
+                                            <exclude reference="hyh-kd-pYS"/>
+                                            <exclude reference="mOd-H3-Yda"/>
+                                            <exclude reference="fOs-i7-8Lh"/>
+                                            <exclude reference="m16-dh-NGk"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="dateDay" destination="2Sq-QE-rxs" id="Sa1-RW-Ync"/>
+                                    <outlet property="dateMonthYear" destination="kS4-Xi-Rc7" id="aP4-A5-u0a"/>
+                                    <outlet property="newsCellImageView" destination="GWQ-Uw-laP" id="b9K-QN-6mh"/>
                                     <segue destination="rjP-bU-3Jr" kind="showDetail" id="9Sd-Cq-U6C"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="210" id="U2P-2X-lHz" customClass="NewsCellView" customModule="RCG_Personnel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="302" width="600" height="210"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U2P-2X-lHz" id="ec0-7q-qzW">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="209"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newsAnnounceImage" translatesAutoresizingMaskIntoConstraints="NO" id="EOE-JQ-Bsn">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="140"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDU-8t-bry">
+                                            <rect key="frame" x="8" y="153" width="46" height="32"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
+                                            <color key="textColor" red="0.83529411760000005" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoJ-5v-M7a">
+                                            <rect key="frame" x="11" y="185" width="44" height="10"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="10" id="2X2-Ta-XMP"/>
+                                                <constraint firstAttribute="width" constant="44" id="e4M-vl-zf4"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                            <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ШОКИРУЮЩИЕ НОВОСТИ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7b-h7-4kF">
+                                            <rect key="frame" x="63" y="144" width="520" height="20"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prn-nh-SMD">
+                                            <rect key="frame" x="63" y="161" width="528" height="46"/>
+                                            <string key="text">Равным образом постоянное информационно - пропогандистское обеспечение пропогандистское пропогандистское пропогандистское пропогандистскоепропогандистское пропогандистское пропогандистское</string>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                            <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="EOE-JQ-Bsn" firstAttribute="top" secondItem="ec0-7q-qzW" secondAttribute="top" id="2yZ-TF-ox0"/>
+                                        <constraint firstItem="xDU-8t-bry" firstAttribute="leading" secondItem="ec0-7q-qzW" secondAttribute="leadingMargin" constant="-2" id="3qv-1j-fUg"/>
+                                        <constraint firstItem="Prn-nh-SMD" firstAttribute="top" secondItem="EOE-JQ-Bsn" secondAttribute="bottom" constant="21" id="6Fv-hH-88Q"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="T7b-h7-4kF" secondAttribute="bottom" constant="37" id="EBT-R7-ceX"/>
+                                        <constraint firstItem="DoJ-5v-M7a" firstAttribute="top" secondItem="xDU-8t-bry" secondAttribute="bottom" id="Jrs-M1-uGh"/>
+                                        <constraint firstItem="DoJ-5v-M7a" firstAttribute="leading" secondItem="ec0-7q-qzW" secondAttribute="leadingMargin" constant="3" id="NLH-mN-gzh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="T7b-h7-4kF" secondAttribute="trailing" constant="9" id="Ti4-f4-zRd"/>
+                                        <constraint firstItem="xDU-8t-bry" firstAttribute="top" secondItem="EOE-JQ-Bsn" secondAttribute="bottom" constant="9" id="YOm-P4-nMz"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="DoJ-5v-M7a" secondAttribute="bottom" constant="6" id="b9N-cN-fxA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Prn-nh-SMD" secondAttribute="trailing" constant="1" id="bNI-zq-6RA"/>
+                                        <constraint firstItem="DoJ-5v-M7a" firstAttribute="top" secondItem="xDU-8t-bry" secondAttribute="bottom" constant="-1" id="cJg-fq-z6x"/>
+                                        <constraint firstItem="xDU-8t-bry" firstAttribute="leading" secondItem="ec0-7q-qzW" secondAttribute="leadingMargin" id="ffH-et-l3E"/>
+                                        <constraint firstAttribute="trailing" secondItem="EOE-JQ-Bsn" secondAttribute="trailing" id="gEl-2u-uPE"/>
+                                        <constraint firstItem="T7b-h7-4kF" firstAttribute="top" secondItem="EOE-JQ-Bsn" secondAttribute="bottom" constant="4" id="i5y-f3-V4D"/>
+                                        <constraint firstItem="xDU-8t-bry" firstAttribute="top" secondItem="EOE-JQ-Bsn" secondAttribute="bottom" constant="13" id="oMG-AN-cYp"/>
+                                        <constraint firstItem="DoJ-5v-M7a" firstAttribute="top" secondItem="xDU-8t-bry" secondAttribute="bottom" constant="-1" id="odK-VO-15K"/>
+                                        <constraint firstItem="xDU-8t-bry" firstAttribute="top" secondItem="EOE-JQ-Bsn" secondAttribute="bottom" constant="9" id="p3k-er-BsG"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="xDU-8t-bry" secondAttribute="bottom" constant="20" id="pCK-cX-7JI"/>
+                                        <constraint firstItem="EOE-JQ-Bsn" firstAttribute="leading" secondItem="ec0-7q-qzW" secondAttribute="leading" id="tab-8y-ouc"/>
+                                        <constraint firstItem="Prn-nh-SMD" firstAttribute="leading" secondItem="DoJ-5v-M7a" secondAttribute="trailing" constant="8" symbolic="YES" id="w67-f2-ufJ"/>
+                                        <constraint firstItem="T7b-h7-4kF" firstAttribute="leading" secondItem="Prn-nh-SMD" secondAttribute="leading" id="xN4-pR-pCe"/>
+                                        <constraint firstItem="xDU-8t-bry" firstAttribute="leading" secondItem="ec0-7q-qzW" secondAttribute="leadingMargin" constant="-2" id="xjO-Mz-BaP"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Prn-nh-SMD" secondAttribute="bottom" constant="-6" id="yNL-zl-Z0m"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="3qv-1j-fUg"/>
+                                            <exclude reference="xjO-Mz-BaP"/>
+                                            <exclude reference="p3k-er-BsG"/>
+                                            <exclude reference="pCK-cX-7JI"/>
+                                            <exclude reference="YOm-P4-nMz"/>
+                                            <exclude reference="odK-VO-15K"/>
+                                            <exclude reference="cJg-fq-z6x"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateDay" destination="xDU-8t-bry" id="8pS-B1-E35"/>
+                                    <outlet property="dateMonthYear" destination="DoJ-5v-M7a" id="AQp-3o-e1Q"/>
+                                    <outlet property="newsCellImageView" destination="EOE-JQ-Bsn" id="fRn-KM-UkC"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="FV9-bA-2Aw" id="vfe-D5-s0P"/>
                             <outlet property="delegate" destination="FV9-bA-2Aw" id="AZU-lW-0gI"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="vb1-ij-D0U"/>
+                    <connections>
+                        <outlet property="newsTableViewController" destination="2WB-F7-lSk" id="1Hi-WV-ACu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeR-kp-ybn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,11 +367,13 @@
             </objects>
             <point key="canvasLocation" x="1906" y="1138"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="HXd-LS-lf9">
             <objects>
                 <navigationController id="lFm-2E-Tz7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="htD-Yg-N7b"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="more" id="htD-Yg-N7b">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTu-0k-hJZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -209,11 +386,13 @@
             </objects>
             <point key="canvasLocation" x="1086" y="1138"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="8k1-Sq-Egn">
             <objects>
                 <navigationController id="psM-tG-TsX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="v1N-M0-e6l"/>
+                    <tabBarItem key="tabBarItem" title="" image="vacancy" selectedImage="vacancySelected" id="v1N-M0-e6l">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="26K-WR-sNn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -226,11 +405,13 @@
             </objects>
             <point key="canvasLocation" x="1082" y="438"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="RJP-0W-gfD">
             <objects>
                 <navigationController id="lAo-cE-KfV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="oJy-vc-BoS"/>
+                    <tabBarItem key="tabBarItem" title="" image="news" selectedImage="newsSelected" id="oJy-vc-BoS">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LL2-qj-wpZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -244,4 +425,11 @@
             <point key="canvasLocation" x="1078" y="-254"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="news" width="37" height="37"/>
+        <image name="newsAnnounceImage" width="640" height="458"/>
+        <image name="newsSelected" width="75" height="75"/>
+        <image name="vacancy" width="37" height="37"/>
+        <image name="vacancySelected" width="75" height="75"/>
+    </resources>
 </document>
