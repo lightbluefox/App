@@ -8,10 +8,9 @@
 
 import UIKit
 
-class NewsCellView: UITableViewCell {
+class NewsCellViewController: UITableViewCell {
     
-    @IBOutlet weak var newsCellImageView: UIImageView!
-    
+    @IBOutlet weak var newsCellImageView: UIImageView!    
     @IBOutlet weak var dateDay: UILabel!
     @IBOutlet weak var dateMonthYear: UILabel!
     @IBOutlet weak var newsTitle: UILabel!
