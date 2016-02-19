@@ -38,10 +38,11 @@ class NewsViewController: UITableViewController {
         //MARK: задаем стиль ячеек
         self.newsTableViewController.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 1)
         self.newsTableViewController.rowHeight = 210
+        self.newsTableViewController.separatorStyle = .None
         
         //MARK: Описываем пул-ту-рефреш
         self.refreshControl = UIRefreshControl();
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "Потяните вниз, чтобы обновить");
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Потяните вниз, чтобы обновить", attributes: [NSFontAttributeName:UIFont(name: "Roboto", size: 12)!, NSForegroundColorAttributeName:UIColor.whiteColor()])
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
         //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружаются новости
@@ -79,7 +80,7 @@ class NewsViewController: UITableViewController {
         //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружаются новости
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
-        loadingNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3);
+        loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
         loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
         loadingNotification.labelText = "Загрузка"
         self.newsReceiver.getAllNews({(success: Bool, result: String) in
@@ -93,7 +94,7 @@ class NewsViewController: UITableViewController {
                 
                 let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
                 failureNotification.mode = MBProgressHUDMode.Text
-                failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+                failureNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
                 failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
                 failureNotification.labelText = "Ошибка"
                 failureNotification.detailsLabelText = result
