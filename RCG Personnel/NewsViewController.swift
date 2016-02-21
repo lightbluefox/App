@@ -76,6 +76,18 @@ class NewsViewController: UITableViewController {
         return cell
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        let newsViewController =  segue.destinationViewController as! SingleNewsViewController
+        //sender is a tapped NewsCellViewController
+        let cell = sender as! NewsCellViewController
+        
+        let indexPath = self.newsTableViewController.indexPathForCell(cell);
+        
+        let currentNews = self.newsReceiver.newsStack[indexPath!.row];
+        newsViewController.newsGuid = currentNews.guid
+    }
+    
     func refresh(sender:AnyObject) {
         //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружаются новости
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
@@ -105,5 +117,6 @@ class NewsViewController: UITableViewController {
         newsTableViewController.reloadData();
         self.refreshControl?.endRefreshing();
     }
+    
 
 }

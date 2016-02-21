@@ -19,6 +19,20 @@ class News {
     var validTillDate = ""
     var previewImageGuid = ""
     var images = [String]()
+    
+    init () {
+        self.guid = ""
+        self.status = ""
+        self.topic = ""
+        self.shortText = ""
+        self.fullText = ""
+        self.addedDate = ""
+        self.postponedPublishingDate = ""
+        self.validTillDate = ""
+        self.previewImageGuid = ""
+        self.images = [String]()
+    }
+    
     init (guid: String, status: String, topic: String, shortText: String, fullText: String, previewImageGuid: String, addedDate: String, postponedPublishingDate: String, validTillDate: String, images: [String]) {
         self.guid = guid;
         self.status = status;

@@ -130,6 +130,9 @@
 		84D060161C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FE81C77D890002CEB6B /* UIView+WebCacheOperation.m */; };
 		84D060171C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FE81C77D890002CEB6B /* UIView+WebCacheOperation.m */; };
 		84D060181C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FE81C77D890002CEB6B /* UIView+WebCacheOperation.m */; };
+		84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */; };
+		84D0601B1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */; };
+		84D0601C1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +224,7 @@
 		84D05FE61C77D890002CEB6B /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		84D05FE71C77D890002CEB6B /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		84D05FE81C77D890002CEB6B /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,8 +257,9 @@
 			children = (
 				84D05FBC1C77C8F8002CEB6B /* RCGPersonnel-Bridging-Header.h */,
 				84D05F6F1C7791DF002CEB6B /* Classes */,
-				84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */,
 				84D05F671C763FFF002CEB6B /* NewsViewController.swift */,
+				84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */,
+				84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */,
 				84D05F2A1C763612002CEB6B /* RCG Personnel */,
 				84D05F3F1C763613002CEB6B /* RCG PersonnelTests */,
 				84D05F4A1C763613002CEB6B /* RCG PersonnelUITests */,
@@ -570,6 +575,7 @@
 				84D05FC41C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060011C77D890002CEB6B /* SDWebImagePrefetcher.m in Sources */,
 				84D060161C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */,
+				84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
 				84D05FB81C77C823002CEB6B /* HTTPUpload.swift in Sources */,
 				84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */,
 				84D0600A1C77D890002CEB6B /* UIImage+MultiFormat.m in Sources */,
@@ -610,6 +616,7 @@
 				84D05FC51C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060021C77D890002CEB6B /* SDWebImagePrefetcher.m in Sources */,
 				84D060171C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */,
+				84D0601B1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
 				84D05FB91C77C823002CEB6B /* HTTPUpload.swift in Sources */,
 				84D05F411C763613002CEB6B /* RCG_PersonnelTests.swift in Sources */,
 				84D0600B1C77D890002CEB6B /* UIImage+MultiFormat.m in Sources */,
@@ -650,6 +657,7 @@
 				84D05FC61C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060031C77D890002CEB6B /* SDWebImagePrefetcher.m in Sources */,
 				84D060181C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */,
+				84D0601C1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
 				84D05FBA1C77C823002CEB6B /* HTTPUpload.swift in Sources */,
 				84D05F4C1C763613002CEB6B /* RCG_PersonnelUITests.swift in Sources */,
 				84D0600C1C77D890002CEB6B /* UIImage+MultiFormat.m in Sources */,

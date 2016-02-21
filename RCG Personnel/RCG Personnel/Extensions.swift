@@ -22,13 +22,13 @@ extension UIImage {
 
 extension String {
     var formatedDate: String {
-        let dateFull = self
+        let timeinterval : NSTimeInterval = Double(self)!/1000
+        let dateObject = NSDate(timeIntervalSince1970: timeinterval)
+        
         let dateformatter = NSDateFormatter();
         dateformatter.timeZone = .localTimeZone();
-        dateformatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSSZ"
-        let dateObject : NSDate! = dateformatter.dateFromString(dateFull)
         dateformatter.dateFormat = "dd.MM.YYYY"
-        let dateShort = dateformatter.stringFromDate(dateObject!);
+        let dateShort = dateformatter.stringFromDate(dateObject);
         return dateShort
     }
     var dayFromDdMmYyyy: String {

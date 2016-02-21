@@ -10,6 +10,7 @@ import Foundation
 
 class NewsReceiver {
     var newsStack = [News]()
+    var singleNews = News()
     
     func getAllNews(completionHandlerNews: (success: Bool, result: String) -> Void) {
         newsStack.removeAll(keepCapacity: false);
@@ -53,5 +54,41 @@ class NewsReceiver {
         })
     }
     
-    func getSingleNews(guid: String){}
+    func getSingleNews(guid: String, completionHandlerNews: (success: Bool, result: String) -> Void){
+        let requestUrl = Constants.apiUrl + "api/news/" + guid
+        let request = HTTPTask()
+        request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
+            if let err = response.error {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completionHandlerNews(success: false, result: err.localizedDescription)
+                }
+                return
+            }
+            else if let data = response.responseObject as? NSData {
+                let requestedData = NSString(data: data, encoding: NSUTF8StringEncoding)
+                let requestedDataUnwrapped = requestedData!;
+                let jsonString = requestedDataUnwrapped;
+                let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+                let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
+    
+                let json = JSON(jsonObject);
+
+                    let guid = json["guid"] != nil ? json["guid"].string! : ""
+                    let topic =  json["topic"] != nil ? json["topic"].string! : "";
+                    let shortText = json["shortText"] != nil ? json["shortText"].string! : "";
+                    let fullText = json["fullText"] != nil ? json["fullText"].string! : "";
+                    let previewImageGuid = json["previewImageGuid"] != nil ? json["previewImageGuid"].string! : "";
+                    let addedDate = json["addedDate"] != nil ? json["addedDate"].string!.formatedDate : "";
+                    let validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string!.formatedDate : "";
+                    let images = json["images"] != nil ? json["images"].arrayObject as! [String] : [String]();
+                    
+                    self.singleNews = News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, previewImageGuid: previewImageGuid, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, images: images)
+    
+                dispatch_async(dispatch_get_main_queue()) {
+                    completionHandlerNews(success: true, result: "Новости загружены")
+                }
+    
+            }
+        })
+    }
 }
