@@ -19,17 +19,31 @@ extension UIImage {
         return result
     }
 }
-
+extension NSDate {
+    var gmc0: NSDate {
+        let dateformatter = NSDateFormatter()
+        dateformatter.timeZone = .localTimeZone()
+        let seconds = -dateformatter.timeZone.secondsFromGMT
+        return NSDate(timeInterval: Double(seconds), sinceDate: self)
+    }
+}
 extension String {
     var formatedDate: String {
         let timeinterval : NSTimeInterval = Double(self)!/1000
         let dateObject = NSDate(timeIntervalSince1970: timeinterval)
         
+        let dateformatter = NSDateFormatter()
+        dateformatter.timeZone = .localTimeZone()
+        dateformatter.dateFormat = "dd.MM.YYYY"
+        return dateformatter.stringFromDate(dateObject);
+    }
+    var formatedDateDDMMYY: String {
+        let timeinterval : NSTimeInterval = Double(self)!/1000
+        let dateObject = NSDate(timeIntervalSince1970: timeinterval)
         let dateformatter = NSDateFormatter();
         dateformatter.timeZone = .localTimeZone();
-        dateformatter.dateFormat = "dd.MM.YYYY"
-        let dateShort = dateformatter.stringFromDate(dateObject);
-        return dateShort
+        dateformatter.dateFormat = "dd.MM.YY"
+        return dateformatter.stringFromDate(dateObject);
     }
     var dayFromDdMmYyyy: String {
         return self.substringWithRange(self.startIndex..<(self.rangeOfString(".")?.startIndex)!)

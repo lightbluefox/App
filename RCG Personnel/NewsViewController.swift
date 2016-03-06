@@ -17,7 +17,7 @@ class NewsViewController: UITableViewController {
         super.viewDidLoad()
         
         //MARK: Убираем прозрачность таббара и навбара
-        self.navigationItem.title = "НОВОСТИ";
+        self.navigationItem.title = "ЛЕНТА НОВОСТЕЙ";
         self.navigationController?.navigationBar.translucent = false;
         self.tabBarController?.tabBar.translucent = false;
 
@@ -34,6 +34,10 @@ class NewsViewController: UITableViewController {
         let tabItem1 = tabItems![1] ;
         tabItem1.image = UIImage(named:"vacancy")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
         tabItem1.selectedImage = UIImage(named:"vacancySelected")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+        
+        let tabItem2 = tabItems![2] ;
+        tabItem2.image = UIImage(named:"menu")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+        tabItem2.selectedImage = UIImage(named:"menuSelected")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
         
         //MARK: задаем стиль ячеек
         self.newsTableViewController.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 1)
@@ -79,13 +83,16 @@ class NewsViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         let newsViewController =  segue.destinationViewController as! SingleNewsViewController
+        
         //sender is a tapped NewsCellViewController
         let cell = sender as! NewsCellViewController
-        
         let indexPath = self.newsTableViewController.indexPathForCell(cell);
-        
         let currentNews = self.newsReceiver.newsStack[indexPath!.row];
         newsViewController.newsGuid = currentNews.guid
+        
+        let backButtonItem = UIBarButtonItem()
+        backButtonItem.title = ""
+        navigationItem.backBarButtonItem = backButtonItem
     }
     
     func refresh(sender:AnyObject) {

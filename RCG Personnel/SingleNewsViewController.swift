@@ -24,6 +24,8 @@ class SingleNewsViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "ЛЕНТА НОВОСТЕЙ";
+
         //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружается новость
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
@@ -54,12 +56,15 @@ class SingleNewsViewController : UIViewController {
                 failureNotification.detailsLabelText = result
                 failureNotification.hide(true, afterDelay: 3)
                 
-                //self.newsTableViewController.reloadData()
             }
         })
     }
-    
-    func refresh(sender:AnyObject) {
-        
+    func leftNavButtonClick(sender: UIButton!)
+    {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

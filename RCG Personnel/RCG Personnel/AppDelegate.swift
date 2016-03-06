@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navBar.barTintColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0);
         tabBar.barTintColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0);
         tabBar.tintColor = UIColor.whiteColor();
+        
+        navBar.tintColor = UIColor.whiteColor() //цвет 
+        
         //Стиль заголовка
         navBar.titleTextAttributes = [NSFontAttributeName: navBarFont, NSForegroundColorAttributeName: UIColor.whiteColor()];
         

@@ -22,6 +22,22 @@ class Vacancies {
     var sex = "" //сделать enum?
     var timeTable = ""
     var images = [String]()
+    
+    init () {
+        self.guid = "";
+        self.status = "";
+        self.topic = "";
+        self.shortText = "";
+        self.fullText = "";
+        self.previewImageGuid = "";
+        self.addedDate = "";
+        self.postponedPublishingDate = ""
+        self.validTillDate = "";
+        self.sex = ""
+        self.money = ""
+        self.timeTable = ""
+        self.images = [String]()
+    }
     init (guid: String, status: String, topic: String, shortText: String, fullText: String, previewImageGuid: String, addedDate: String, postponedPublishingDate: String, validTillDate: String, sex: String, money: String, timeTable: String, images: [String]) {
         self.guid = guid;
         self.status = status;

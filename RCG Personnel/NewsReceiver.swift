@@ -15,7 +15,7 @@ class NewsReceiver {
     func getAllNews(completionHandlerNews: (success: Bool, result: String) -> Void) {
         newsStack.removeAll(keepCapacity: false);
         
-        let requestUrl = Constants.apiUrl + "api/news?count=1000"
+        let requestUrl = Constants.apiUrl + "api/news?count=" + Constants.newsCount
         let request = HTTPTask()
         request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
@@ -32,8 +32,6 @@ class NewsReceiver {
                 let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
                 
                 let json = JSON(jsonObject);
-                //print(json)
-                //print(json["data"].count)
                 for var i = 0; i < json["data"].count; i++
                 {
                     let guid = json["data"][i]["guid"] != nil ? json["data"][i]["guid"].string! : ""
