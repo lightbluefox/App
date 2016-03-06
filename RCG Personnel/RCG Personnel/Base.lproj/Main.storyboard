@@ -38,7 +38,6 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -194,12 +193,6 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHd-g5-S5n">
-                                        <rect key="frame" x="62" y="162" width="528" height="16"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEV-MS-fCK">
                                         <rect key="frame" x="8" y="153" width="46" height="32"/>
                                         <constraints>
@@ -234,17 +227,14 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="OS4-5D-OxX" firstAttribute="leading" secondItem="0fq-wp-a3h" secondAttribute="leading" id="3dv-so-YQf"/>
-                                    <constraint firstItem="MHd-g5-S5n" firstAttribute="top" secondItem="x1C-WX-Ncj" secondAttribute="bottom" constant="-2" id="4B4-ab-vDG"/>
-                                    <constraint firstAttribute="trailing" secondItem="MHd-g5-S5n" secondAttribute="trailing" constant="10" id="81L-ej-FJj"/>
+                                    <constraint firstItem="ae5-ox-db5" firstAttribute="top" secondItem="x1C-WX-Ncj" secondAttribute="bottom" constant="-2" id="7Tf-Kx-TRl"/>
                                     <constraint firstItem="x1C-WX-Ncj" firstAttribute="leading" secondItem="AEV-MS-fCK" secondAttribute="trailing" constant="8" id="8ei-pB-Etp"/>
                                     <constraint firstItem="x1C-WX-Ncj" firstAttribute="top" secondItem="OS4-5D-OxX" secondAttribute="bottom" constant="4" id="AKy-NE-T7o"/>
                                     <constraint firstItem="OS4-5D-OxX" firstAttribute="top" secondItem="0fq-wp-a3h" secondAttribute="top" id="CbH-9H-uJ4"/>
                                     <constraint firstItem="AEV-MS-fCK" firstAttribute="leading" secondItem="0fq-wp-a3h" secondAttribute="leading" constant="8" id="DJr-JF-7kf"/>
                                     <constraint firstItem="ae5-ox-db5" firstAttribute="leading" secondItem="AEV-MS-fCK" secondAttribute="trailing" constant="8" id="Enx-gL-rk3"/>
                                     <constraint firstAttribute="trailing" secondItem="ae5-ox-db5" secondAttribute="trailing" constant="10" id="Ew8-YA-xMD"/>
-                                    <constraint firstItem="ae5-ox-db5" firstAttribute="top" secondItem="MHd-g5-S5n" secondAttribute="bottom" constant="-2" id="F68-qe-WzS"/>
                                     <constraint firstAttribute="trailing" secondItem="OS4-5D-OxX" secondAttribute="trailing" id="MHh-8o-LjO"/>
-                                    <constraint firstItem="MHd-g5-S5n" firstAttribute="leading" secondItem="x1C-WX-Ncj" secondAttribute="trailing" constant="-520" id="O6N-KA-vwU"/>
                                     <constraint firstItem="HHq-ge-Nq4" firstAttribute="top" secondItem="AEV-MS-fCK" secondAttribute="bottom" id="Pq8-Ym-vke"/>
                                     <constraint firstItem="ae5-ox-db5" firstAttribute="top" secondItem="OS4-5D-OxX" secondAttribute="bottom" constant="73" id="YjL-AP-G0J"/>
                                     <constraint firstAttribute="bottom" secondItem="OS4-5D-OxX" secondAttribute="bottom" constant="398" id="bdN-DX-CnV"/>
@@ -253,14 +243,12 @@
                                     <constraint firstAttribute="bottom" secondItem="ae5-ox-db5" secondAttribute="bottom" constant="40" id="fFj-fk-GxB"/>
                                     <constraint firstAttribute="trailing" secondItem="x1C-WX-Ncj" secondAttribute="trailing" constant="18" id="lWO-PS-ihl"/>
                                     <constraint firstItem="HHq-ge-Nq4" firstAttribute="leading" secondItem="0fq-wp-a3h" secondAttribute="leading" constant="8" id="mYW-zg-bwn"/>
-                                    <constraint firstItem="MHd-g5-S5n" firstAttribute="leading" secondItem="AEV-MS-fCK" secondAttribute="trailing" constant="8" id="pAl-HB-DsH"/>
                                     <constraint firstItem="HHq-ge-Nq4" firstAttribute="leading" secondItem="0fq-wp-a3h" secondAttribute="leading" constant="9" id="pam-hz-Y3f"/>
                                     <constraint firstItem="HHq-ge-Nq4" firstAttribute="top" secondItem="AEV-MS-fCK" secondAttribute="bottom" constant="-1" id="tEw-7o-8pp"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="bdN-DX-CnV"/>
-                                        <exclude reference="O6N-KA-vwU"/>
                                         <exclude reference="Pq8-Ym-vke"/>
                                         <exclude reference="pam-hz-Y3f"/>
                                         <exclude reference="YjL-AP-G0J"/>
@@ -281,7 +269,6 @@
                         <outlet property="newsDateMonthYear" destination="HHq-ge-Nq4" id="rvS-5T-Aj8"/>
                         <outlet property="newsFullText" destination="ae5-ox-db5" id="fjn-9X-8R3"/>
                         <outlet property="newsImageView" destination="OS4-5D-OxX" id="5Ly-Rr-szh"/>
-                        <outlet property="newsShortText" destination="MHd-g5-S5n" id="tYg-pG-fGs"/>
                         <outlet property="newsTitle" destination="x1C-WX-Ncj" id="FGu-vM-55v"/>
                     </connections>
                 </viewController>

@@ -75,7 +75,7 @@ class NewsViewController: UITableViewController {
         cell.dateDay?.text = currentNews.addedDate.dayFromDdMmYyyy
         cell.dateMonthYear?.text = currentNews.addedDate.monthYearFromDdMmYyyy
         cell.newsTitle?.text = currentNews.topic
-        cell.newsAnnounce?.text = currentNews.shortText
+        cell.newsAnnounce?.text = currentNews.fullText
         cell.newsCellImageView?.sd_setImageWithURL(NSURL(string: currentNews.previewImageGuid))
         return cell
     }

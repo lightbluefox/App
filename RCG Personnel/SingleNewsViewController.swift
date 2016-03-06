@@ -17,7 +17,6 @@ class SingleNewsViewController : UIViewController {
     @IBOutlet weak var newsDateDay: UILabel!
     @IBOutlet weak var newsDateMonthYear: UILabel!
     @IBOutlet weak var newsTitle: UILabel!
-    @IBOutlet weak var newsShortText: UILabel!
     @IBOutlet weak var newsFullText: UILabel!
     
     
@@ -39,7 +38,6 @@ class SingleNewsViewController : UIViewController {
                 self.newsDateDay.text = self.newsReceiver.singleNews.addedDate.dayFromDdMmYyyy
                 self.newsDateMonthYear.text = self.newsReceiver.singleNews.addedDate.monthYearFromDdMmYyyy
                 self.newsTitle.text = self.newsReceiver.singleNews.topic
-                self.newsShortText.text = self.newsReceiver.singleNews.shortText
                 self.newsFullText.text = self.newsReceiver.singleNews.fullText
                 loadingNotification.hide(true)
                 
