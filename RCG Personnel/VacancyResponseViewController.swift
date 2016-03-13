@@ -79,7 +79,7 @@ class VacancyResponseViewController : UIViewController {
             let requestUrl = Constants.apiUrl + "api/vacancies/\(vacancyId!)/replies"
             let params: Dictionary<String,AnyObject> = ["name":name.text!, "phone": phone.text!, "vkid": vkId.text!];
             
-            request.PUT(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
+            request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
                 if let err = response.error {
                     
                     dispatch_async(dispatch_get_main_queue()) {

@@ -167,7 +167,7 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
             let requestUrl = Constants.apiUrl + "api/feedback"
             let params: Dictionary<String,AnyObject> = ["topic":nameTextField.text!, "email":emailTextField.text!, "text":messageTextView.text];
             
-            request.PUT(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
+            request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
                 if let err = response.error {
                     
                     dispatch_async(dispatch_get_main_queue()) {
