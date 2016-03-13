@@ -12,9 +12,9 @@
             <string>Roboto-Light</string>
             <string>Roboto-Light</string>
             <string>Roboto-Light</string>
-            <string>Roboto-Light</string>
         </mutableArray>
         <mutableArray key="roboto-regular.ttf">
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -227,7 +227,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="OS4-5D-OxX" firstAttribute="leading" secondItem="0fq-wp-a3h" secondAttribute="leading" id="3dv-so-YQf"/>
-                                    <constraint firstItem="ae5-ox-db5" firstAttribute="top" secondItem="x1C-WX-Ncj" secondAttribute="bottom" constant="-2" id="7Tf-Kx-TRl"/>
+                                    <constraint firstItem="ae5-ox-db5" firstAttribute="top" secondItem="x1C-WX-Ncj" secondAttribute="bottom" constant="5" id="7Tf-Kx-TRl"/>
                                     <constraint firstItem="x1C-WX-Ncj" firstAttribute="leading" secondItem="AEV-MS-fCK" secondAttribute="trailing" constant="8" id="8ei-pB-Etp"/>
                                     <constraint firstItem="x1C-WX-Ncj" firstAttribute="top" secondItem="OS4-5D-OxX" secondAttribute="bottom" constant="4" id="AKy-NE-T7o"/>
                                     <constraint firstItem="OS4-5D-OxX" firstAttribute="top" secondItem="0fq-wp-a3h" secondAttribute="top" id="CbH-9H-uJ4"/>
@@ -347,7 +347,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxI-o3-bTc">
                                         <rect key="frame" x="11" y="287" width="578" height="19"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
