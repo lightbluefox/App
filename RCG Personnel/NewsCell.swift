@@ -1,5 +1,5 @@
 //
-//  NewsCellViewController.swift
+//  NewsCell.swift
 //  RCG Personnel
 //
 //  Created by iFoxxy on 19.02.16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsCellViewController: UITableViewCell {
+class NewsCell: UITableViewCell {
     
     @IBOutlet weak var newsCellImageView: UIImageView!    
     @IBOutlet weak var dateDay: UILabel!

@@ -22,9 +22,9 @@
 		84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
 		84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
 		84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
-		84D05F6C1C766F38002CEB6B /* NewsCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */; };
-		84D05F6D1C766F38002CEB6B /* NewsCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */; };
-		84D05F6E1C766F38002CEB6B /* NewsCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */; };
+		84D05F6C1C766F38002CEB6B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCell.swift */; };
+		84D05F6D1C766F38002CEB6B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCell.swift */; };
+		84D05F6E1C766F38002CEB6B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCell.swift */; };
 		84D05F711C779298002CEB6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F701C779298002CEB6B /* Constants.swift */; };
 		84D05F721C779298002CEB6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F701C779298002CEB6B /* Constants.swift */; };
 		84D05F731C779298002CEB6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F701C779298002CEB6B /* Constants.swift */; };
@@ -136,9 +136,9 @@
 		84D0601E1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */; };
 		84D0601F1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */; };
 		84D060201C7B5999002CEB6B /* VacanciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */; };
-		84D060221C7BAD3C002CEB6B /* VacancyCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060211C7BAD3C002CEB6B /* VacancyCellViewController.swift */; };
-		84D060231C7BAD3C002CEB6B /* VacancyCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060211C7BAD3C002CEB6B /* VacancyCellViewController.swift */; };
-		84D060241C7BAD3C002CEB6B /* VacancyCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060211C7BAD3C002CEB6B /* VacancyCellViewController.swift */; };
+		84D060221C7BAD3C002CEB6B /* VacancyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060211C7BAD3C002CEB6B /* VacancyCell.swift */; };
+		84D060231C7BAD3C002CEB6B /* VacancyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060211C7BAD3C002CEB6B /* VacancyCell.swift */; };
+		84D060241C7BAD3C002CEB6B /* VacancyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060211C7BAD3C002CEB6B /* VacancyCell.swift */; };
 		84D060261C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */; };
 		84D060271C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */; };
 		84D060281C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */; };
@@ -192,7 +192,7 @@
 		84D05F5B1C763BC4002CEB6B /* roboto-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-light.ttf"; sourceTree = "<group>"; };
 		84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
 		84D05F671C763FFF002CEB6B /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCellViewController.swift; sourceTree = "<group>"; };
+		84D05F6B1C766F38002CEB6B /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		84D05F701C779298002CEB6B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		84D05F741C779388002CEB6B /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		84D05F781C779646002CEB6B /* NewsReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsReceiver.swift; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 		84D05FE81C77D890002CEB6B /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsViewController.swift; sourceTree = "<group>"; };
 		84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacanciesViewController.swift; sourceTree = "<group>"; };
-		84D060211C7BAD3C002CEB6B /* VacancyCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacancyCellViewController.swift; sourceTree = "<group>"; };
+		84D060211C7BAD3C002CEB6B /* VacancyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacancyCell.swift; sourceTree = "<group>"; };
 		84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleVacancyViewController.swift; sourceTree = "<group>"; };
 		84D0602B1C7D0263002CEB6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "RCG Personnel/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		84D0602F1C8018C9002CEB6B /* RCGButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGButton.swift; sourceTree = "<group>"; };
@@ -292,10 +292,10 @@
 				84D060331C809A8A002CEB6B /* MenuViewController.swift */,
 				84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */,
 				84D05F671C763FFF002CEB6B /* NewsViewController.swift */,
-				84D05F6B1C766F38002CEB6B /* NewsCellViewController.swift */,
+				84D05F6B1C766F38002CEB6B /* NewsCell.swift */,
 				84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */,
 				84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */,
-				84D060211C7BAD3C002CEB6B /* VacancyCellViewController.swift */,
+				84D060211C7BAD3C002CEB6B /* VacancyCell.swift */,
 				84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */,
 				84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */,
 				84D05F2A1C763612002CEB6B /* RCG Personnel */,
@@ -628,7 +628,7 @@
 				84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84D060301C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				84D060131C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
-				84D05F6C1C766F38002CEB6B /* NewsCellViewController.swift in Sources */,
+				84D05F6C1C766F38002CEB6B /* NewsCell.swift in Sources */,
 				84A7D9341C80D2D500E2602A /* VacancyResponseViewController.swift in Sources */,
 				84D05F751C779388002CEB6B /* News.swift in Sources */,
 				84D05F901C779976002CEB6B /* MBProgressHUD.m in Sources */,
@@ -645,7 +645,7 @@
 				84D060381C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */,
 				84D05FF51C77D890002CEB6B /* SDWebImageDecoder.m in Sources */,
 				84D05FFB1C77D890002CEB6B /* SDWebImageDownloaderOperation.m in Sources */,
-				84D060221C7BAD3C002CEB6B /* VacancyCellViewController.swift in Sources */,
+				84D060221C7BAD3C002CEB6B /* VacancyCell.swift in Sources */,
 				84D05F7D1C77977E002CEB6B /* Vacancies.swift in Sources */,
 				84D0601E1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */,
 				84D05F791C779646002CEB6B /* NewsReceiver.swift in Sources */,
@@ -677,7 +677,7 @@
 				84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84D060311C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				84D060141C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
-				84D05F6D1C766F38002CEB6B /* NewsCellViewController.swift in Sources */,
+				84D05F6D1C766F38002CEB6B /* NewsCell.swift in Sources */,
 				84D05F761C779388002CEB6B /* News.swift in Sources */,
 				84D05F911C779976002CEB6B /* MBProgressHUD.m in Sources */,
 				84D05FB31C77C823002CEB6B /* HTTPStatusCode.swift in Sources */,
@@ -693,7 +693,7 @@
 				84D060391C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */,
 				84D05FF61C77D890002CEB6B /* SDWebImageDecoder.m in Sources */,
 				84D05FFC1C77D890002CEB6B /* SDWebImageDownloaderOperation.m in Sources */,
-				84D060231C7BAD3C002CEB6B /* VacancyCellViewController.swift in Sources */,
+				84D060231C7BAD3C002CEB6B /* VacancyCell.swift in Sources */,
 				84D05F7E1C77977E002CEB6B /* Vacancies.swift in Sources */,
 				84D0601F1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */,
 				84D05F7A1C779646002CEB6B /* NewsReceiver.swift in Sources */,
@@ -725,7 +725,7 @@
 				84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84D060321C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				84D060151C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
-				84D05F6E1C766F38002CEB6B /* NewsCellViewController.swift in Sources */,
+				84D05F6E1C766F38002CEB6B /* NewsCell.swift in Sources */,
 				84D05F771C779388002CEB6B /* News.swift in Sources */,
 				84D05F921C779976002CEB6B /* MBProgressHUD.m in Sources */,
 				84D05FB41C77C823002CEB6B /* HTTPStatusCode.swift in Sources */,
@@ -741,7 +741,7 @@
 				84D0603A1C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */,
 				84D05FF71C77D890002CEB6B /* SDWebImageDecoder.m in Sources */,
 				84D05FFD1C77D890002CEB6B /* SDWebImageDownloaderOperation.m in Sources */,
-				84D060241C7BAD3C002CEB6B /* VacancyCellViewController.swift in Sources */,
+				84D060241C7BAD3C002CEB6B /* VacancyCell.swift in Sources */,
 				84D05F7F1C77977E002CEB6B /* Vacancies.swift in Sources */,
 				84D060201C7B5999002CEB6B /* VacanciesViewController.swift in Sources */,
 				84D05F7B1C779646002CEB6B /* NewsReceiver.swift in Sources */,

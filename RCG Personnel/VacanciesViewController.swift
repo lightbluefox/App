@@ -45,7 +45,7 @@ class VacanciesViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.vacanciesTableViewController.dequeueReusableCellWithIdentifier("VacancyCell") as! VacancyCellViewController
+        let cell = self.vacanciesTableViewController.dequeueReusableCellWithIdentifier("VacancyCell") as! VacancyCell
         // Configure the cell...
         let currentVac = vacanciesReceiver.vacsStack[indexPath.row];
         
@@ -80,7 +80,7 @@ class VacanciesViewController : UITableViewController {
         // Get the new view controller using [segue destinationViewController].
         let vacancyViewController = segue.destinationViewController as! SingleVacancyViewController
         // Pass the selected object to the new view controller.
-        let cell = sender as! VacancyCellViewController
+        let cell = sender as! VacancyCell
         
         let indexPath = self.vacanciesTableViewController.indexPathForCell(cell)
         let currentVac = self.vacanciesReceiver.vacsStack[indexPath!.row]
@@ -98,12 +98,14 @@ class VacanciesViewController : UITableViewController {
         loadingNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
         loadingNotification.labelText = "Загрузка"
-        self.vacanciesReceiver.getAllVacs({(success: Bool, result: String) in
-            if success {
+
+        self.vacanciesReceiver.getAllVacs { (success: Bool, result: String) in
+
+            if success
+            {
                 loadingNotification.hide(true)
-                self.vacanciesTableViewController.reloadData()
             }
-            else if !success
+            else
             {
                 loadingNotification.hide(true)
                 
@@ -114,10 +116,10 @@ class VacanciesViewController : UITableViewController {
                 failureNotification.labelText = "Ошибка"
                 failureNotification.detailsLabelText = result
                 failureNotification.hide(true, afterDelay: 3)
-                self.vacanciesTableViewController.reloadData()
             }
-        })
-        vacanciesTableViewController.reloadData();
-        self.refreshControl?.endRefreshing();
+
+            self.vacanciesTableViewController.reloadData();
+            self.refreshControl?.endRefreshing();
+        }
     }
 }

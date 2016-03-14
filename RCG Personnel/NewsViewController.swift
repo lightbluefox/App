@@ -68,7 +68,7 @@ class NewsViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = self.newsTableViewController.dequeueReusableCellWithIdentifier("NewsCell") as! NewsCellViewController
+        let cell = self.newsTableViewController.dequeueReusableCellWithIdentifier("NewsCell") as! NewsCell
         // Configure the cell...
         let currentNews = newsReceiver.newsStack[indexPath.row];
         
@@ -85,7 +85,7 @@ class NewsViewController: UITableViewController {
         let newsViewController =  segue.destinationViewController as! SingleNewsViewController
         
         //sender is a tapped NewsCellViewController
-        let cell = sender as! NewsCellViewController
+        let cell = sender as! NewsCell
         let indexPath = self.newsTableViewController.indexPathForCell(cell);
         let currentNews = self.newsReceiver.newsStack[indexPath!.row];
         newsViewController.newsGuid = currentNews.guid

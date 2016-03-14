@@ -1,5 +1,5 @@
 //
-//  VacancyCellViewController.swift
+//  VacancyCell.swift
 //  RCG Personnel
 //
 //  Created by iFoxxy on 22.02.16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VacancyCellViewController: UITableViewCell {
+class VacancyCell: UITableViewCell {
  
     @IBOutlet weak var vacancyCellAnnounceImage: UIImageView!
     @IBOutlet weak var vacancyMaleImage: UIImageView!
