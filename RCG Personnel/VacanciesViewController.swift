@@ -25,7 +25,7 @@ class VacanciesViewController : UITableViewController {
         self.vacanciesTableViewController.rowHeight = 80
         
         addPullToRefresh()
-        refresh(self)
+        refreshWithProgressHUD(self)
         
     }
     
@@ -92,15 +92,31 @@ class VacanciesViewController : UITableViewController {
     }
     
     func refresh(sender:AnyObject) {
+        self.vacanciesReceiver.getAllVacs { (success: Bool, result: String) in
+            if !success
+            {
+                let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+                failureNotification.mode = MBProgressHUDMode.Text
+                failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+                failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
+                failureNotification.labelText = "Ошибка"
+                failureNotification.detailsLabelText = result
+                failureNotification.hide(true, afterDelay: 3)
+            }
+            
+            self.refreshControl?.endRefreshing();
+        }
+    }
+    func refreshWithProgressHUD(sender: AnyObject) {
         //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружаются вакансии
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
         loadingNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
         loadingNotification.labelText = "Загрузка"
-
+        
         self.vacanciesReceiver.getAllVacs { (success: Bool, result: String) in
-
+            
             if success
             {
                 loadingNotification.hide(true)
@@ -117,7 +133,6 @@ class VacanciesViewController : UITableViewController {
                 failureNotification.detailsLabelText = result
                 failureNotification.hide(true, afterDelay: 3)
             }
-
             self.vacanciesTableViewController.reloadData();
             self.refreshControl?.endRefreshing();
         }

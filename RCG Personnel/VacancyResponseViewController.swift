@@ -32,6 +32,9 @@ class VacancyResponseViewController : UIViewController {
         tapGesture.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(tapGesture)
         
+        phone.keyboardType = UIKeyboardType.NamePhonePad
+        vkId.keyboardType = UIKeyboardType.NamePhonePad
+        
         //Mark: Сжимать размер скрол вью при появлении клавы
         self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)

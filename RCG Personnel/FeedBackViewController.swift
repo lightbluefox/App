@@ -27,7 +27,9 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
         self.tabBarController?.tabBar.translucent = false;
         
         nameTextField.autocapitalizationType = UITextAutocapitalizationType.Words
-
+        emailTextField.keyboardType = UIKeyboardType.EmailAddress
+        
+        
         //MARK: Скрывать, клавиатуру при тапе по скрол вью
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard:");
         tapGesture.cancelsTouchesInView = false
