@@ -148,7 +148,7 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
         if messageTextView.textColor == UIColor(red: 199/255, green: 199/255, blue: 205/255, alpha: 1) || nameTextField.text == "" || emailTextField.text == ""
         {
             let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-            failureNotification.mode = MBProgressHUDMode.Text
+            failureNotification.mode = MBProgressHUDMode.CustomView
             failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3);
             //failureNotification.color = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 0.8);
             failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
@@ -176,7 +176,7 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
                         loadingNotification.hide(true)
                         
                         let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-                        failureNotification.mode = MBProgressHUDMode.Text
+                        failureNotification.mode = MBProgressHUDMode.CustomView
                         failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
                         //failureNotification.color = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 0.8);
                         failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
@@ -193,12 +193,13 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
                         loadingNotification.hide(true)
                         
                         let successNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-                        successNotification.mode = MBProgressHUDMode.Text
+                        successNotification.mode = MBProgressHUDMode.CustomView
                         successNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-                        successNotification.color = UIColor(red: 0/255, green: 194/255, blue: 18/255, alpha: 0.8);
-                        successNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-                        successNotification.labelText = "Спасибо"
-                        successNotification.detailsLabelText = "Сообщение отправлено!"
+                        let imageView = UIImageView();
+                        imageView.image = UIImage(named: "checkmark");
+                        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50);
+                        imageView.contentMode = UIViewContentMode.Center;
+                        successNotification.customView = imageView
                         
                         successNotification.hide(true, afterDelay: 3)
                     }
