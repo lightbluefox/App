@@ -131,7 +131,14 @@ class NewsViewController: UITableViewController {
         cell.dateMonthYear?.text = currentNews.addedDate.monthYearFromDdMmYyyy
         cell.newsTitle?.text = currentNews.topic
         cell.newsAnnounce?.text = currentNews.fullText
-        cell.newsCellImageView?.sd_setImageWithURL(NSURL(string: currentNews.previewImageGuid))
+        cell.newsCellImageView.clipsToBounds = true
+        cell.newsCellImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        if currentNews.icons.isEmpty {
+            cell.newsCellImageView?.image = UIImage(named: "noimage")
+        }
+        else {
+            cell.newsCellImageView?.sd_setImageWithURL(NSURL(string: currentNews.icons[0]))
+        }
         return cell
     }
     

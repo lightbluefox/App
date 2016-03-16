@@ -39,9 +39,15 @@ class NewsReceiver {
                     let topic =  json["data"][i]["topic"] != nil ? json["data"][i]["topic"].string! : "";
                     let shortText = json["data"][i]["shortText"] != nil ? json["data"][i]["shortText"].string! : "";
                     let fullText = json["data"][i]["fullText"] != nil ? json["data"][i]["fullText"].string! : "";
-                    let previewImageGuid = json["data"][i]["previewImageGuid"] != nil ? json["data"][i]["previewImageGuid"].string! : "";
                     let addedDate = json["data"][i]["addedDate"] != nil ? json["data"][i]["addedDate"].string!.formatedDate : "";
-                    self.newsStack.append(News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, previewImageGuid: previewImageGuid, addedDate: addedDate, postponedPublishingDate: "", validTillDate: "", images: [String]()))
+                    
+                    var icons = [String]()
+                    for var u = 0; u < json["data"][i]["icon"].count; u++
+                    {
+                        icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
+                    }
+                    
+                    self.newsStack.append(News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: "", images: [String]()))
                 
                 }
                 
@@ -71,17 +77,25 @@ class NewsReceiver {
                 let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
     
                 let json = JSON(jsonObject);
-
-                    let guid = json["guid"] != nil ? json["guid"].string! : ""
-                    let topic =  json["topic"] != nil ? json["topic"].string! : "";
-                    let shortText = json["shortText"] != nil ? json["shortText"].string! : "";
-                    let fullText = json["fullText"] != nil ? json["fullText"].string! : "";
-                    let previewImageGuid = json["previewImageGuid"] != nil ? json["previewImageGuid"].string! : "";
-                    let addedDate = json["addedDate"] != nil ? json["addedDate"].string!.formatedDate : "";
-                    let validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string!.formatedDate : "";
-                    let images = json["images"] != nil ? json["images"].arrayObject as! [String] : [String]();
-                    
-                    self.singleNews = News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, previewImageGuid: previewImageGuid, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, images: images)
+                let guid = json["guid"] != nil ? json["guid"].string! : ""
+                let topic =  json["topic"] != nil ? json["topic"].string! : "";
+                let shortText = json["shortText"] != nil ? json["shortText"].string! : "";
+                let fullText = json["fullText"] != nil ? json["fullText"].string! : "";
+                let addedDate = json["addedDate"] != nil ? json["addedDate"].string!.formatedDate : "";
+                let validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string!.formatedDate : "";
+                
+                var images = [String]()
+                for var u = 0; u < json["images"].count; u++
+                {
+                    images.append(json["images"][u]["url"] != nil ? json["images"][u]["url"].string! : "")
+                }
+                var icons = [String]()
+                for var u = 0; u < json["icon"].count; u++
+                {
+                    icons.append(json["icon"][u]["url"] != nil ? json["icon"][u]["url"].string! : "")
+                }
+                
+                self.singleNews = News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, images: images)
     
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandlerNews(success: true, result: "Новости загружены")

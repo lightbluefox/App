@@ -51,15 +51,15 @@ class VacanciesViewController : UITableViewController {
         
         cell.vacancyTitle?.text = currentVac.topic;
         cell.vacancyDate?.text = currentVac.validTillDate.formatedDate;
-        if currentVac.previewImageGuid != ""
+        if currentVac.icons.isEmpty
         {
-            cell.vacancyCellAnnounceImage.sd_setImageWithURL(NSURL(string: currentVac.previewImageGuid))
+            cell.vacancyCellAnnounceImage.image = UIImage(named: "noimage")!
             cell.vacancyCellAnnounceImage.layer.cornerRadius = 3.0
             cell.vacancyCellAnnounceImage.layer.masksToBounds = true
         }
         else
         {
-            cell.vacancyCellAnnounceImage.image = UIImage(named: "noimage")!
+            cell.vacancyCellAnnounceImage.sd_setImageWithURL(NSURL(string: currentVac.icons[0]))
             cell.vacancyCellAnnounceImage.layer.cornerRadius = 3.0
             cell.vacancyCellAnnounceImage.layer.masksToBounds = true
         }

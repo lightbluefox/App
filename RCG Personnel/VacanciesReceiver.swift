@@ -41,13 +41,18 @@ class VacanciesReceiver {
                     let topic =  json["data"][i]["topic"] != nil ? json["data"][i]["topic"].string! : "";
                     let shortText = json["data"][i]["shortText"] != nil ? json["data"][i]["shortText"].string! : "";
                     let fullText = json["data"][i]["fullText"] != nil ? json["data"][i]["fullText"].string! : "";
-                    let previewImageGuid = json["data"][i]["previewImageGuid"] != nil ? json["data"][i]["previewImageGuid"].string! : "";
                     let addedDate = json["data"][i]["addedDate"] != nil ? json["data"][i]["addedDate"].string! : "";
                     let sex =  json["data"][i]["sex"] != nil ? json["data"][i]["sex"].string! : "";
                     let money =  json["data"][i]["money"] != nil ? json["data"][i]["money"].string! : "";
                     let validTillDate = json["data"][i]["validTillDate"] != nil ? json["data"][i]["validTillDate"].string! : "";
                     
-                    self.vacsStack.append(Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, previewImageGuid: previewImageGuid, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, sex: sex, money: money, timeTable: "", images: [String]()))
+                    var icons = [String]()
+                    for var u = 0; u < json["data"][i]["icon"].count; u++
+                    {
+                        icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
+                    }
+                    
+                    self.vacsStack.append(Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, sex: sex, money: money, timeTable: "", images: [String]()))
                     
                 }
                 
@@ -81,16 +86,25 @@ class VacanciesReceiver {
                 let topic =  json["topic"] != nil ? json["topic"].string! : "";
                 let shortText = json["shortText"] != nil ? json["shortText"].string! : "";
                 let fullText = json["fullText"] != nil ? json["fullText"].string! : "";
-                let previewImageGuid = json["previewImageGuid"] != nil ? json["previewImageGuid"].string! : "";
                 let addedDate = json["addedDate"] != nil ? json["addedDate"].string! : "";
                 let validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string! : "";
                 let postponedPublishingDate = json["postponedPublishingDate"] != nil ? json["postponedPublishingDate"].string! : "";
                 let sex = json["sex"] != nil ? json["sex"].string! : "";
                 let money = json["money"] != nil ? json["money"].string! : "";
                 let timeTable = json["timeTable"] != nil ? json["timeTable"].string! : "";
-                let images = json["images"] != nil ? json["images"].arrayObject as! [String] : [String]();
                 
-                self.singleVacancy = Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, previewImageGuid: previewImageGuid, addedDate: addedDate, postponedPublishingDate: postponedPublishingDate, validTillDate: validTillDate, sex: sex, money: money, timeTable: timeTable, images: images)
+                var images = [String]()
+                for var u = 0; u < json["images"].count; u++
+                {
+                    images.append(json["images"][u]["url"] != nil ? json["images"][u]["url"].string! : "")
+                }
+                var icons = [String]()
+                for var u = 0; u < json["icon"].count; u++
+                {
+                    icons.append(json["icon"][u]["url"] != nil ? json["icon"][u]["url"].string! : "")
+                }
+                
+                self.singleVacancy = Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: postponedPublishingDate, validTillDate: validTillDate, sex: sex, money: money, timeTable: timeTable, images: images)
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandlerNews(success: true, result: "Вакансия загружена")

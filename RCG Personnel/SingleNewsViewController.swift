@@ -34,7 +34,14 @@ class SingleNewsViewController : UIViewController {
         self.newsReceiver.getSingleNews(self.newsGuid!, completionHandlerNews: {(success: Bool, result: String) in
             if success {
                 //MARK: получаем только первую фотку из массива, т.к. требований к нескольким фотографиям еще не было
-                self.newsImageView.sd_setImageWithURL(NSURL(string: self.newsReceiver.singleNews.images[0]))
+                if self.newsReceiver.singleNews.images.isEmpty
+                {
+                    self.newsImageView.image = UIImage(named: "noimage")
+                }
+                else {
+                    self.newsImageView.sd_setImageWithURL(NSURL(string: self.newsReceiver.singleNews.images[0]))
+                }
+                self.newsImageView.clipsToBounds = true
                 self.newsDateDay.text = self.newsReceiver.singleNews.addedDate.dayFromDdMmYyyy
                 self.newsDateMonthYear.text = self.newsReceiver.singleNews.addedDate.monthYearFromDdMmYyyy
                 self.newsTitle.text = self.newsReceiver.singleNews.topic

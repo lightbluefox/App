@@ -17,10 +17,10 @@ class Vacancies {
     var addedDate = ""
     var postponedPublishingDate = ""
     var validTillDate = ""
-    var previewImageGuid = ""
     var money = ""
     var sex = "" //сделать enum?
     var timeTable = ""
+    var icons = [String]()
     var images = [String]()
     
     init () {
@@ -29,22 +29,22 @@ class Vacancies {
         self.topic = "";
         self.shortText = "";
         self.fullText = "";
-        self.previewImageGuid = "";
         self.addedDate = "";
         self.postponedPublishingDate = ""
         self.validTillDate = "";
         self.sex = ""
         self.money = ""
         self.timeTable = ""
+        self.icons = [String]()
         self.images = [String]()
     }
-    init (guid: String, status: String, topic: String, shortText: String, fullText: String, previewImageGuid: String, addedDate: String, postponedPublishingDate: String, validTillDate: String, sex: String, money: String, timeTable: String, images: [String]) {
+    init (guid: String, status: String, topic: String, shortText: String, fullText: String, icons: [String], addedDate: String, postponedPublishingDate: String, validTillDate: String, sex: String, money: String, timeTable: String, images: [String]) {
         self.guid = guid;
         self.status = status;
         self.topic = topic;
         self.shortText = shortText;
         self.fullText = fullText;
-        self.previewImageGuid = previewImageGuid;
+        self.icons = icons;
         self.addedDate = addedDate;
         self.postponedPublishingDate = postponedPublishingDate
         self.validTillDate = validTillDate;

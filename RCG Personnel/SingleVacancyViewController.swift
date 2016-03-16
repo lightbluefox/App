@@ -75,7 +75,13 @@ class SingleVacancyViewController: UIViewController {
     
     private func setupVacancyFields() {
         //MARK: получаем только первую фотку из массива, т.к. требований к нескольким фотографиям еще не было
-        self.vacImageVIew.sd_setImageWithURL(NSURL(string: self.vacReceiver.singleVacancy.images[0]))
+        if self.vacReceiver.singleVacancy.images.isEmpty {
+            self.vacImageVIew.image = UIImage(named: "noimage")
+        }
+        else {
+            self.vacImageVIew.sd_setImageWithURL(NSURL(string: self.vacReceiver.singleVacancy.images[0]))
+        }
+        
         self.vacDateDay.text = self.vacReceiver.singleVacancy.validTillDate.formatedDateDDMMYY.dayFromDdMmYyyy
         self.vacDateMonthYear.text = self.vacReceiver.singleVacancy.validTillDate.formatedDateDDMMYY.monthYearFromDdMmYyyy
         self.vacTitle.text = self.vacReceiver.singleVacancy.topic
