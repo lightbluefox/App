@@ -17,7 +17,7 @@ class News {
     var addedDate = ""
     var postponedPublishingDate = ""
     var validTillDate = ""
-    var previewImageGuid = ""
+    var icons = [String]()
     var images = [String]()
     
     init () {
@@ -29,17 +29,17 @@ class News {
         self.addedDate = ""
         self.postponedPublishingDate = ""
         self.validTillDate = ""
-        self.previewImageGuid = ""
+        self.icons = [String]()
         self.images = [String]()
     }
     
-    init (guid: String, status: String, topic: String, shortText: String, fullText: String, previewImageGuid: String, addedDate: String, postponedPublishingDate: String, validTillDate: String, images: [String]) {
+    init (guid: String, status: String, topic: String, shortText: String, fullText: String, icons: [String], addedDate: String, postponedPublishingDate: String, validTillDate: String, images: [String]) {
         self.guid = guid;
         self.status = status;
         self.topic = topic;
         self.shortText = shortText;
         self.fullText = fullText;
-        self.previewImageGuid = previewImageGuid;
+        self.icons = icons;
         self.addedDate = addedDate;
         self.postponedPublishingDate = postponedPublishingDate
         self.validTillDate = validTillDate;

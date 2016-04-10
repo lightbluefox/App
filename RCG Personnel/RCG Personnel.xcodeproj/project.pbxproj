@@ -211,7 +211,7 @@
 		84D05FA61C77C823002CEB6B /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		84D05FA71C77C823002CEB6B /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		84D05FA81C77C823002CEB6B /* HTTPUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPUpload.swift; sourceTree = "<group>"; };
-		84D05FBC1C77C8F8002CEB6B /* RCGPersonnel-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCGPersonnel-Bridging-Header.h"; sourceTree = "<group>"; };
+		84D05FBC1C77C8F8002CEB6B /* RCGPersonnel-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCGPersonnel-Bridging-Header.h"; path = "../RCGPersonnel-Bridging-Header.h"; sourceTree = "<group>"; };
 		84D05FBE1C77CABF002CEB6B /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		84D05FBF1C77CABF002CEB6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		84D05FC31C77CB01002CEB6B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -254,8 +254,8 @@
 		84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleVacancyViewController.swift; sourceTree = "<group>"; };
 		84D0602B1C7D0263002CEB6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "RCG Personnel/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		84D0602F1C8018C9002CEB6B /* RCGButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGButton.swift; sourceTree = "<group>"; };
-		84D060331C809A8A002CEB6B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
+		84D060331C809A8A002CEB6B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = ../MenuViewController.swift; sourceTree = "<group>"; };
+		84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedBackViewController.swift; path = ../FeedBackViewController.swift; sourceTree = "<group>"; };
 		84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGTextFieldClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,20 +284,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		84D05F1F1C763612002CEB6B = {
+		840772061CBA6AA100E58260 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				84D05FBC1C77C8F8002CEB6B /* RCGPersonnel-Bridging-Header.h */,
-				84D05F6F1C7791DF002CEB6B /* Classes */,
-				84D060331C809A8A002CEB6B /* MenuViewController.swift */,
-				84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */,
 				84D05F671C763FFF002CEB6B /* NewsViewController.swift */,
 				84D05F6B1C766F38002CEB6B /* NewsCell.swift */,
 				84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */,
+			);
+			name = News;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		840772071CBA6AB100E58260 /* Vacancies */ = {
+			isa = PBXGroup;
+			children = (
 				84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */,
 				84D060211C7BAD3C002CEB6B /* VacancyCell.swift */,
 				84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */,
 				84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */,
+			);
+			name = Vacancies;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		840772081CBA6C7100E58260 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				84D060331C809A8A002CEB6B /* MenuViewController.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		8407720A1CBA6C8300E58260 /* FeedBacks */ = {
+			isa = PBXGroup;
+			children = (
+				84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */,
+			);
+			name = FeedBacks;
+			sourceTree = "<group>";
+		};
+		84D05F1F1C763612002CEB6B = {
+			isa = PBXGroup;
+			children = (
 				84D05F2A1C763612002CEB6B /* RCG Personnel */,
 				84D05F3F1C763613002CEB6B /* RCG PersonnelTests */,
 				84D05F4A1C763613002CEB6B /* RCG PersonnelUITests */,
@@ -318,11 +346,16 @@
 		84D05F2A1C763612002CEB6B /* RCG Personnel */ = {
 			isa = PBXGroup;
 			children = (
+				84D05F6F1C7791DF002CEB6B /* Classes */,
 				84D05F2B1C763612002CEB6B /* AppDelegate.swift */,
 				84D05F321C763612002CEB6B /* Assets.xcassets */,
 				84D0602A1C7D0263002CEB6B /* Main.storyboard */,
 				84D05F341C763612002CEB6B /* LaunchScreen.storyboard */,
 				84D05F371C763612002CEB6B /* Info.plist */,
+				8407720A1CBA6C8300E58260 /* FeedBacks */,
+				840772081CBA6C7100E58260 /* Menu */,
+				840772061CBA6AA100E58260 /* News */,
+				840772071CBA6AB100E58260 /* Vacancies */,
 				84D05F591C763AE4002CEB6B /* Supporting Files */,
 			);
 			path = "RCG Personnel";
@@ -349,6 +382,7 @@
 		84D05F591C763AE4002CEB6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84D05FBC1C77C8F8002CEB6B /* RCGPersonnel-Bridging-Header.h */,
 				84D05FC31C77CB01002CEB6B /* Extensions.swift */,
 				84D05F5A1C763B9C002CEB6B /* Resources */,
 			);
@@ -380,6 +414,7 @@
 				84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */,
 			);
 			name = Classes;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		84D05F881C779976002CEB6B /* MBProgressHUD */ = {
@@ -468,6 +503,7 @@
 				84D05F241C763612002CEB6B /* Sources */,
 				84D05F251C763612002CEB6B /* Frameworks */,
 				84D05F261C763612002CEB6B /* Resources */,
+				8407720B1CBA70AF00E58260 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -607,6 +643,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8407720B1CBA70AF00E58260 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84D05F241C763612002CEB6B /* Sources */ = {
@@ -826,7 +878,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -865,7 +916,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;

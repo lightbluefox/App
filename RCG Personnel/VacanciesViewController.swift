@@ -25,14 +25,70 @@ class VacanciesViewController : UITableViewController {
         self.vacanciesTableViewController.rowHeight = 80
         
         addPullToRefresh()
-        refresh(self)
-        
+        refreshWithProgressHUD(self)
     }
     
     private func addPullToRefresh() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Потяните вниз, чтобы обновить", attributes: [NSFontAttributeName:UIFont(name: "Roboto", size: 12)!, NSForegroundColorAttributeName:UIColor.blackColor()])
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+    }
+    
+    func refresh(sender:AnyObject) {
+        self.vacanciesReceiver.getAllVacs { (success: Bool, result: String) in
+            if !success
+            {
+                let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+                failureNotification.mode = MBProgressHUDMode.Text
+                failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+                failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
+                failureNotification.labelText = "Ошибка"
+                failureNotification.detailsLabelText = result
+                failureNotification.hide(true, afterDelay: 3)
+            }
+            
+            self.refreshControl?.endRefreshing();
+        }
+    }
+    
+    func refreshWithProgressHUD(sender: AnyObject) {
+        //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружаются вакансии
+        let loadingNotification = showLoadingNotification()
+        
+        self.vacanciesReceiver.getAllVacs { (success: Bool, result: String) in
+            
+            if success
+            {
+                loadingNotification.hide(true)
+            }
+            else
+            {
+                loadingNotification.hide(true)
+                self.showFailureNotification(result)
+            }
+            self.vacanciesTableViewController.reloadData();
+            self.refreshControl?.endRefreshing();
+        }
+    }
+    
+    private func showLoadingNotification() -> AnyObject {
+        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.Indeterminate
+        loadingNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
+        loadingNotification.labelText = "Загрузка"
+        
+        return loadingNotification
+    }
+    private func showFailureNotification(result: String) {
+        
+        let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        failureNotification.mode = MBProgressHUDMode.Text
+        failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
+        failureNotification.labelText = "Ошибка"
+        failureNotification.detailsLabelText = result
+        failureNotification.hide(true, afterDelay: 3)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,17 +105,35 @@ class VacanciesViewController : UITableViewController {
         // Configure the cell...
         let currentVac = vacanciesReceiver.vacsStack[indexPath.row];
         
+        // Получаем разницу в днях между сроком валидности вакансии и в зависимости от нее выводим разные сообщения в ячейке
+        let currentDate = NSDate().gmc0
+        let validTillDate = NSDate(timeIntervalSince1970: Double(currentVac.validTillDate)!/1000)
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.Day, fromDate: calendar.startOfDayForDate(currentDate), toDate: calendar.startOfDayForDate(validTillDate), options: [])
+
+        if components.day == 2 {
+            cell.vacancyDate?.text = "Осталось 2 дня!"
+            cell.vacancyDate?.textColor = UIColor(red: 213/255, green: 0, blue: 0, alpha: 1)
+        }
+        else if components.day <= 1 {
+            cell.vacancyDate?.text = "Последний день!"
+            cell.vacancyDate?.textColor = UIColor(red: 213/255, green: 0, blue: 0, alpha: 1)
+        }
+        else {
+            cell.vacancyDate?.text = "Набор до: " + currentVac.validTillDate.formatedDate
+            cell.vacancyDate?.textColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+        }
+        
         cell.vacancyTitle?.text = currentVac.topic;
-        cell.vacancyDate?.text = currentVac.validTillDate.formatedDate;
-        if currentVac.previewImageGuid != ""
+        if currentVac.icons.isEmpty
         {
-            cell.vacancyCellAnnounceImage.sd_setImageWithURL(NSURL(string: currentVac.previewImageGuid))
+            cell.vacancyCellAnnounceImage.image = UIImage(named: "noimage")!
             cell.vacancyCellAnnounceImage.layer.cornerRadius = 3.0
             cell.vacancyCellAnnounceImage.layer.masksToBounds = true
         }
         else
         {
-            cell.vacancyCellAnnounceImage.image = UIImage(named: "noimage")!
+            cell.vacancyCellAnnounceImage.sd_setImageWithURL(NSURL(string: currentVac.icons[0]))
             cell.vacancyCellAnnounceImage.layer.cornerRadius = 3.0
             cell.vacancyCellAnnounceImage.layer.masksToBounds = true
         }
@@ -89,37 +163,5 @@ class VacanciesViewController : UITableViewController {
         let backButtonItem = UIBarButtonItem()
         backButtonItem.title = ""
         navigationItem.backBarButtonItem = backButtonItem
-    }
-    
-    func refresh(sender:AnyObject) {
-        //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружаются вакансии
-        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.Indeterminate
-        loadingNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        loadingNotification.labelText = "Загрузка"
-
-        self.vacanciesReceiver.getAllVacs { (success: Bool, result: String) in
-
-            if success
-            {
-                loadingNotification.hide(true)
-            }
-            else
-            {
-                loadingNotification.hide(true)
-                
-                let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-                failureNotification.mode = MBProgressHUDMode.Text
-                failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-                failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-                failureNotification.labelText = "Ошибка"
-                failureNotification.detailsLabelText = result
-                failureNotification.hide(true, afterDelay: 3)
-            }
-
-            self.vacanciesTableViewController.reloadData();
-            self.refreshControl?.endRefreshing();
-        }
     }
 }

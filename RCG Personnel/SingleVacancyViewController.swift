@@ -75,7 +75,13 @@ class SingleVacancyViewController: UIViewController {
     
     private func setupVacancyFields() {
         //MARK: получаем только первую фотку из массива, т.к. требований к нескольким фотографиям еще не было
-        self.vacImageVIew.sd_setImageWithURL(NSURL(string: self.vacReceiver.singleVacancy.images[0]))
+        if self.vacReceiver.singleVacancy.images.isEmpty {
+            self.vacImageVIew.image = UIImage(named: "noimage")
+        }
+        else {
+            self.vacImageVIew.sd_setImageWithURL(NSURL(string: self.vacReceiver.singleVacancy.images[0]))
+        }
+        
         self.vacDateDay.text = self.vacReceiver.singleVacancy.validTillDate.formatedDateDDMMYY.dayFromDdMmYyyy
         self.vacDateMonthYear.text = self.vacReceiver.singleVacancy.validTillDate.formatedDateDDMMYY.monthYearFromDdMmYyyy
         self.vacTitle.text = self.vacReceiver.singleVacancy.topic
@@ -107,8 +113,6 @@ class SingleVacancyViewController: UIViewController {
         self.vacReplyButton.backgroundColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0)
         self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Selected)
-        //self.vacReplyButton.titleLabel?.font = UIFont(name: "Roboto Regular", size: 13)
-        //self.vacReplyButton.setTitle("ХОЧУ РАБОТАТЬ", forState: UIControlState.Normal)
         
         self.separator.image = UIImage(named: "verticalSeparator")
         

@@ -32,13 +32,21 @@ class VacancyResponseViewController : UIViewController {
         tapGesture.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(tapGesture)
         
+        phone.keyboardType = UIKeyboardType.NamePhonePad
+        vkId.keyboardType = UIKeyboardType.NamePhonePad
+        
+        setScrolliewSqueezeOnKeyboardAppearance()
+        
+        
+    }
+    
+    private func setScrolliewSqueezeOnKeyboardAppearance() {
         //Mark: Сжимать размер скрол вью при появлении клавы
         self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
-        
-        
     }
+    
     @IBAction func textFieldEditingDone(sender: UITextField) {
         if sender.text != "" {
             let imageView = UIImageView();
@@ -75,7 +83,6 @@ class VacancyResponseViewController : UIViewController {
             loadingNotification.labelText = "Отправляем"
             
             let request = HTTPTask()
-            //let replyText = "{\"lastname\":\"\(phone.text!)\",\"name\":\"\(name.text!)\",\"telephone\":\"\(vkId.text!)\"}"
             let requestUrl = Constants.apiUrl + "api/vacancies/\(vacancyId!)/replies"
             let params: Dictionary<String,AnyObject> = ["name":name.text!, "phone": phone.text!, "vkid": vkId.text!];
             
@@ -103,14 +110,13 @@ class VacancyResponseViewController : UIViewController {
                         loadingNotification.hide(true)
                         
                         let successNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-                        successNotification.mode = MBProgressHUDMode.Text
+                        successNotification.mode = MBProgressHUDMode.CustomView
                         successNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-                        successNotification.color = UIColor(red: 0/255, green: 194/255, blue: 18/255, alpha: 0.8);
-                        //successNotification.color = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8);
-                        successNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-                        successNotification.labelColor = UIColor.whiteColor()
-                        successNotification.labelText = "Отклик отправлен"
-                        successNotification.detailsLabelText = "Мы вам перезвоним!"
+                        let imageView = UIImageView();
+                        imageView.image = UIImage(named: "checkmark");
+                        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50);
+                        imageView.contentMode = UIViewContentMode.Center;
+                        successNotification.customView = imageView
                         
                         successNotification.hide(true, afterDelay: 3)
                     }
@@ -124,7 +130,7 @@ class VacancyResponseViewController : UIViewController {
         if let userInfo = notification.userInfo {
             if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let frame = frameValue.CGRectValue()
-                self.scrollViewBottomMargin.constant = self.scrollViewBottomMarginConstant + frame.size.height  - 45 //-45, т.к. над клавиатурой появляется широкий белый отступ. Нет времени ковырять(
+                self.scrollViewBottomMargin.constant = self.scrollViewBottomMarginConstant + frame.size.height  - 45 //-45, т.к. над клавиатурой появляется широкий белый отступ.
                 
                 switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
                 case let (.Some(duration), .Some(curve)):
