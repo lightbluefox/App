@@ -8,7 +8,8 @@
 
 import UIKit
 
-class FeedBackViewController : UIViewController, UITextViewDelegate {
+class FeedBackViewController : UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+    @IBOutlet weak var themeTextField: RCGTextFieldClass!
     @IBOutlet weak var nameTextField: RCGTextFieldClass!
     @IBOutlet weak var emailTextField: RCGTextFieldClass!
     @IBOutlet weak var messageTextView: UITextView!
@@ -17,6 +18,8 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     //Mark: константа для хранения значения нижнего отступа ScrollView
     var scrollViewBottomMarginConstant : CGFloat = 0
+    
+    var pickerData = [String]()
     
     @IBOutlet weak var scrollViewBottomMargin: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -29,13 +32,29 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
         nameTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
         
+        setShowingPickerViewOnTap(themeTextField)
         
         //MARK: Скрывать, клавиатуру при тапе по скрол вью
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard:");
         tapGesture.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(tapGesture)
+        setScrollViewSqueezeOnKeyboardAppearаnce()
         
-        //Mark: Сжимать размер скрол вью при появлении клавы
+    }
+    
+    private func setShowingPickerViewOnTap(sender: UITextField) {
+        let pickerView = UIPickerView.init(frame: CGRectMake(0, 50, 100, 150))
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        pickerView.showsSelectionIndicator = true
+        self.pickerData = ["Работа приложения", "Работа на акциях", "Предложения", "Другое"]
+        sender.inputView = pickerView
+        
+        //Делегируем полю, чтобы в функции textField() запретить пользователям вставлять текст.
+        sender.delegate = self
+    }
+    
+    private func setScrollViewSqueezeOnKeyboardAppearаnce() {
         self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
@@ -56,7 +75,7 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
         if let userInfo = notification.userInfo {
             if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let frame = frameValue.CGRectValue()
-                self.scrollViewBottomMargin.constant = self.scrollViewBottomMarginConstant + frame.size.height - 45
+                self.scrollViewBottomMargin.constant = self.scrollViewBottomMarginConstant + frame.size.height - 45//-45, т.к. над клавиатурой появляется широкий белый отступ.
                 
                 switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
                 case let (.Some(duration), .Some(curve)):
@@ -129,6 +148,7 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
             messageTextView.textColor = UIColor.darkGrayColor()
         }
     }
+    
     func textViewDidEndEditing(textView: UITextView) {
         if messageTextView.text == ""
         {
@@ -142,10 +162,9 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
         }
         
     }
-
     
     @IBAction func submitButtonClick(sender: UIButton) {
-        if messageTextView.textColor == UIColor(red: 199/255, green: 199/255, blue: 205/255, alpha: 1) || nameTextField.text == "" || emailTextField.text == ""
+        if messageTextView.textColor == UIColor(red: 199/255, green: 199/255, blue: 205/255, alpha: 1) || nameTextField.text == "" || emailTextField.text == "" || themeTextField.text == ""
         {
             let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
             failureNotification.mode = MBProgressHUDMode.CustomView
@@ -167,7 +186,7 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
             
             let request = HTTPTask();
             let requestUrl = Constants.apiUrl + "api/feedback"
-            let params: Dictionary<String,AnyObject> = ["topic":nameTextField.text!, "email":emailTextField.text!, "text":messageTextView.text];
+            let params: Dictionary<String,AnyObject> = ["name":nameTextField.text!, "email":emailTextField.text!, "text":messageTextView.text, "topic":themeTextField.text!];
             
             request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
                 if let err = response.error {
@@ -202,10 +221,23 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
                         successNotification.customView = imageView
                         
                         successNotification.hide(true, afterDelay: 3)
+                        self.clearView()
                     }
                 }
             })
         }
+    }
+    
+    private func clearView() {
+        messageTextView.text = "Текст сообщения"
+        messageTextView.textColor = UIColor(red: 199/255, green: 199/255, blue: 205/255, alpha: 1)
+        messageTextRectangle.selected = false
+        nameTextField.text = ""
+        textFieldEditingDone(nameTextField)
+        themeTextField.text = ""
+        textFieldEditingDone(themeTextField)
+        emailTextField.text = ""
+        textFieldEditingDone(emailTextField)
     }
     
     override func didReceiveMemoryWarning() {
@@ -222,8 +254,35 @@ class FeedBackViewController : UIViewController, UITextViewDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    // MARK: - Navigation
+    //Mark: UITextFieldDelegate
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
     
+    //MARK: UIPickerView
+    // The number of columns of data
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    // The data to return for the row and component (column) that's being passed in
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    // Catpure the picker view selection
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // This method is triggered whenever the user makes a change to the picker selection.
+        // The parameter named row and component represents what was selected.
+        self.themeTextField.text = pickerData[row]
+    }
+
+    // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.

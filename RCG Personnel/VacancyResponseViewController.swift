@@ -35,13 +35,18 @@ class VacancyResponseViewController : UIViewController {
         phone.keyboardType = UIKeyboardType.NamePhonePad
         vkId.keyboardType = UIKeyboardType.NamePhonePad
         
+        setScrolliewSqueezeOnKeyboardAppearance()
+        
+        
+    }
+    
+    private func setScrolliewSqueezeOnKeyboardAppearance() {
         //Mark: Сжимать размер скрол вью при появлении клавы
         self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
-        
-        
     }
+    
     @IBAction func textFieldEditingDone(sender: UITextField) {
         if sender.text != "" {
             let imageView = UIImageView();
@@ -78,7 +83,6 @@ class VacancyResponseViewController : UIViewController {
             loadingNotification.labelText = "Отправляем"
             
             let request = HTTPTask()
-            //let replyText = "{\"lastname\":\"\(phone.text!)\",\"name\":\"\(name.text!)\",\"telephone\":\"\(vkId.text!)\"}"
             let requestUrl = Constants.apiUrl + "api/vacancies/\(vacancyId!)/replies"
             let params: Dictionary<String,AnyObject> = ["name":name.text!, "phone": phone.text!, "vkid": vkId.text!];
             
@@ -126,7 +130,7 @@ class VacancyResponseViewController : UIViewController {
         if let userInfo = notification.userInfo {
             if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let frame = frameValue.CGRectValue()
-                self.scrollViewBottomMargin.constant = self.scrollViewBottomMarginConstant + frame.size.height  - 45 //-45, т.к. над клавиатурой появляется широкий белый отступ. Нет времени ковырять(
+                self.scrollViewBottomMargin.constant = self.scrollViewBottomMarginConstant + frame.size.height  - 45 //-45, т.к. над клавиатурой появляется широкий белый отступ.
                 
                 switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
                 case let (.Some(duration), .Some(curve)):

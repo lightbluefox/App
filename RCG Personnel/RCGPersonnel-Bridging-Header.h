@@ -7,7 +7,7 @@
 //
 
 #import "RCG Personnel/MBProgressHUD/MBProgressHUD.h"
-#import "RCG Personnel/SDWebImage/UIImageView+WebCache.h""
+#import "RCG Personnel/SDWebImage/UIImageView+WebCache.h"
 
 #ifndef RCGPersonnel_Bridging_Header_h
 #define RCGPersonnel_Bridging_Header_h

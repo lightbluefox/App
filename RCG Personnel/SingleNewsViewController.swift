@@ -26,44 +26,57 @@ class SingleNewsViewController : UIViewController {
         self.navigationItem.title = "ЛЕНТА НОВОСТЕЙ";
 
         //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружается новость
-        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.Indeterminate
-        loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        loadingNotification.labelText = "Загрузка"
+        let loadingNotification = setLoadingNotification()
         self.newsReceiver.getSingleNews(self.newsGuid!, completionHandlerNews: {(success: Bool, result: String) in
             if success {
-                //MARK: получаем только первую фотку из массива, т.к. требований к нескольким фотографиям еще не было
-                if self.newsReceiver.singleNews.images.isEmpty
-                {
-                    self.newsImageView.image = UIImage(named: "noimage")
-                }
-                else {
-                    self.newsImageView.sd_setImageWithURL(NSURL(string: self.newsReceiver.singleNews.images[0]))
-                }
-                self.newsImageView.clipsToBounds = true
-                self.newsDateDay.text = self.newsReceiver.singleNews.addedDate.dayFromDdMmYyyy
-                self.newsDateMonthYear.text = self.newsReceiver.singleNews.addedDate.monthYearFromDdMmYyyy
-                self.newsTitle.text = self.newsReceiver.singleNews.topic
-                self.newsFullText.text = self.newsReceiver.singleNews.fullText
+                self.setupNewsFields()
                 loadingNotification.hide(true)
                 
             }
             else if !success
             {
                 loadingNotification.hide(true)
-                
-                let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-                failureNotification.mode = MBProgressHUDMode.Text
-                failureNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-                failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-                failureNotification.labelText = "Ошибка"
-                failureNotification.detailsLabelText = result
-                failureNotification.hide(true, afterDelay: 3)
-                
+                self.showFailureNotification(result)
             }
         })
     }
+    
+    private func setLoadingNotification() -> AnyObject {
+        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.Indeterminate
+        loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
+        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
+        loadingNotification.labelText = "Загрузка"
+        
+        return loadingNotification
+    }
+    
+    private func setupNewsFields() {
+        //MARK: получаем только первую фотку из массива, т.к. отображение нескольких пока не закладывалось
+        if self.newsReceiver.singleNews.images.isEmpty
+        {
+            self.newsImageView.image = UIImage(named: "noimage")
+        }
+        else {
+            self.newsImageView.sd_setImageWithURL(NSURL(string: self.newsReceiver.singleNews.images[0]))
+        }
+        self.newsImageView.clipsToBounds = true
+        self.newsDateDay.text = self.newsReceiver.singleNews.addedDate.dayFromDdMmYyyy
+        self.newsDateMonthYear.text = self.newsReceiver.singleNews.addedDate.monthYearFromDdMmYyyy
+        self.newsTitle.text = self.newsReceiver.singleNews.topic
+        self.newsFullText.text = self.newsReceiver.singleNews.fullText
+    }
+    
+    private func showFailureNotification(result: String) {
+        let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        failureNotification.mode = MBProgressHUDMode.Text
+        failureNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
+        failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
+        failureNotification.labelText = "Ошибка"
+        failureNotification.detailsLabelText = result
+        failureNotification.hide(true, afterDelay: 3)
+    }
+    
     func leftNavButtonClick(sender: UIButton!)
     {
         self.navigationController?.popViewControllerAnimated(true)

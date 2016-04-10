@@ -44,8 +44,8 @@ class NewsViewController: UITableViewController {
         tabItem1.selectedImage = UIImage(named:"vacancySelected")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
         
         let tabItem2 = tabItems![2] ;
-        tabItem2.image = UIImage(named:"menu")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-        tabItem2.selectedImage = UIImage(named:"menuSelected")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+        tabItem2.image = UIImage(named:"feedBack")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+        tabItem2.selectedImage = UIImage(named:"feedBackSelected")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
     }
     
     func addPullToRefresh() {

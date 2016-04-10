@@ -113,8 +113,6 @@ class SingleVacancyViewController: UIViewController {
         self.vacReplyButton.backgroundColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0)
         self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Selected)
-        //self.vacReplyButton.titleLabel?.font = UIFont(name: "Roboto Regular", size: 13)
-        //self.vacReplyButton.setTitle("ХОЧУ РАБОТАТЬ", forState: UIControlState.Normal)
         
         self.separator.image = UIImage(named: "verticalSeparator")
         

@@ -16,9 +16,7 @@ class VacanciesReceiver {
         vacsStack.removeAll(keepCapacity: false);
         
         let currentDate = String(NSDate().gmc0.timeIntervalSince1970*1000)
-        //let requestUrl = Constants.apiUrl + "api/vacancies?count=1000&where=validTillDate>=" + currentDate
-        let requestUrl = Constants.apiUrl + "api/vacancies?count=" + Constants.vacancyCount
-        
+        let requestUrl = Constants.apiUrl + "api/vacancies?count=" + Constants.vacancyCount + "&where=validTillDate>=" + currentDate
         let request = HTTPTask()
         request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
