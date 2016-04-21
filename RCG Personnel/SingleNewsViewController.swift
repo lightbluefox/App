@@ -24,7 +24,7 @@ class SingleNewsViewController : UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "ЛЕНТА НОВОСТЕЙ";
-
+        
         //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружается новость
         let loadingNotification = setLoadingNotification()
         self.newsReceiver.getSingleNews(self.newsGuid!, completionHandlerNews: {(success: Bool, result: String) in
@@ -41,8 +41,19 @@ class SingleNewsViewController : UIViewController {
         })
     }
     
+    /*override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let count = self.navigationController?.viewControllers.count {
+            let backButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+            let parentViewController = self.navigationController?.viewControllers[count - 2]
+            parentViewController?.navigationItem.backBarButtonItem = backButtonItem
+        }
+        
+        
+    }*/
+    
     private func setLoadingNotification() -> AnyObject {
-        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
         loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
         loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)

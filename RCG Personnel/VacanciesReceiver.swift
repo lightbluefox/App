@@ -16,7 +16,7 @@ class VacanciesReceiver {
         vacsStack.removeAll(keepCapacity: false);
         
         let currentDate = String(NSDate().gmc0.timeIntervalSince1970*1000)
-        let requestUrl = Constants.apiUrl + "api/vacancies?count=" + Constants.vacancyCount + "&where=validTillDate>=" + currentDate
+        let requestUrl = Constants.apiUrl + "api/v01/vacancies?count=" + Constants.vacancyCount + "&where=validTillDate>=" + currentDate
         let request = HTTPTask()
         request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
@@ -63,7 +63,7 @@ class VacanciesReceiver {
     }
     
     func getSingleVac(guid: String, completionHandlerNews: (success: Bool, result: String) -> Void){
-        let requestUrl = Constants.apiUrl + "api/vacancies/" + guid
+        let requestUrl = Constants.apiUrl + "api/v01/vacancies/" + guid
         let request = HTTPTask()
         request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {

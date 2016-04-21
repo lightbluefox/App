@@ -160,8 +160,5 @@ class VacanciesViewController : UITableViewController {
         let currentVac = self.vacanciesReceiver.vacsStack[indexPath!.row]
         vacancyViewController.vacGuid = currentVac.guid
         
-        let backButtonItem = UIBarButtonItem()
-        backButtonItem.title = ""
-        navigationItem.backBarButtonItem = backButtonItem
     }
 }

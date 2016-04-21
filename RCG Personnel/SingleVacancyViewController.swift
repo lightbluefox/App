@@ -53,6 +53,15 @@ class SingleVacancyViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let count = self.navigationController?.viewControllers.count {
+            let backButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+            let parentViewController = self.navigationController?.viewControllers[count - 2]
+            parentViewController?.navigationItem.backBarButtonItem = backButtonItem
+        }
+    }
+    
     private func showLoadingNotification() -> AnyObject {
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate

@@ -185,7 +185,7 @@ class FeedBackViewController : UIViewController, UITextViewDelegate, UIPickerVie
             loadingNotification.labelText = "Отправляем..."
             
             let request = HTTPTask();
-            let requestUrl = Constants.apiUrl + "api/feedback"
+            let requestUrl = Constants.apiUrl + "api/v01/feedback"
             let params: Dictionary<String,AnyObject> = ["name":nameTextField.text!, "email":emailTextField.text!, "text":messageTextView.text, "topic":themeTextField.text!];
             
             request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in

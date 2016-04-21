@@ -62,7 +62,7 @@
         <!--Root View Controller-->
         <scene sceneID="LGG-mq-LRP">
             <objects>
-                <tableViewController id="FV9-bA-2Aw" customClass="NewsViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="News" id="FV9-bA-2Aw" customClass="NewsViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="440" sectionHeaderHeight="28" sectionFooterHeight="28" id="2WB-F7-lSk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +155,7 @@
                                     <outlet property="newsAnnounce" destination="iOK-Vc-rhd" id="3UN-rE-Qm1"/>
                                     <outlet property="newsCellImageView" destination="GWQ-Uw-laP" id="b9K-QN-6mh"/>
                                     <outlet property="newsTitle" destination="NhX-5c-TSK" id="Gkt-Na-Xaj"/>
-                                    <segue destination="rjP-bU-3Jr" kind="show" id="G1D-pX-X09"/>
+                                    <segue destination="rjP-bU-3Jr" kind="show" identifier="PushSingleNews" id="G1D-pX-X09"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -177,7 +177,7 @@
         <!--Single News View Controller-->
         <scene sceneID="AJL-sz-x1r">
             <objects>
-                <viewController id="rjP-bU-3Jr" customClass="SingleNewsViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SingleNews" id="rjP-bU-3Jr" customClass="SingleNewsViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HAx-6v-QA6"/>
                         <viewControllerLayoutGuide type="bottom" id="pQi-iD-jzC"/>
@@ -281,7 +281,7 @@
         <!--Single Vacancy View Controller-->
         <scene sceneID="wRc-it-ug6">
             <objects>
-                <viewController id="0Yi-Ew-dDN" customClass="SingleVacancyViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SingleVacancy" id="0Yi-Ew-dDN" customClass="SingleVacancyViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Erg-BU-YlS"/>
                         <viewControllerLayoutGuide type="bottom" id="tAc-NQ-zw6"/>
@@ -514,7 +514,7 @@
         <!--Feed Back View Controller-->
         <scene sceneID="p0r-Ip-cUJ">
             <objects>
-                <viewController id="3NF-eB-yF3" customClass="FeedBackViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedBack" id="3NF-eB-yF3" customClass="FeedBackViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5so-YI-SVf"/>
                         <viewControllerLayoutGuide type="bottom" id="0g6-WV-2fV"/>
@@ -869,7 +869,7 @@
         <!--Root View Controller-->
         <scene sceneID="0jC-ZN-hAh">
             <objects>
-                <tableViewController id="fTK-J3-j44" customClass="VacanciesViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Vacancies" id="fTK-J3-j44" customClass="VacanciesViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ppw-d7-L7V">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1036,7 +1036,7 @@
         <scene sceneID="HXd-LS-lf9">
             <objects>
                 <navigationController id="lFm-2E-Tz7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="menu" selectedImage="menuSelected" id="htD-Yg-N7b">
+                    <tabBarItem key="tabBarItem" title="" image="feedBack" selectedImage="feedBack" id="htD-Yg-N7b">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTu-0k-hJZ">
@@ -1055,7 +1055,7 @@
         <scene sceneID="8k1-Sq-Egn">
             <objects>
                 <navigationController id="psM-tG-TsX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="vacancy" selectedImage="vacancySelected" id="v1N-M0-e6l">
+                    <tabBarItem key="tabBarItem" title="" image="vacancy" selectedImage="vacancy" id="v1N-M0-e6l">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="26K-WR-sNn">
@@ -1074,7 +1074,7 @@
         <scene sceneID="RJP-0W-gfD">
             <objects>
                 <navigationController id="lAo-cE-KfV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="news" selectedImage="newsSelected" id="oJy-vc-BoS">
+                    <tabBarItem key="tabBarItem" title="" image="news" selectedImage="news" id="oJy-vc-BoS">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LL2-qj-wpZ">
@@ -1091,17 +1091,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="feedBack" width="37" height="37"/>
         <image name="femaleRed" width="49" height="44"/>
         <image name="maleRed" width="25" height="25"/>
-        <image name="menu" width="75" height="75"/>
-        <image name="menuSelected" width="75" height="75"/>
         <image name="news" width="37" height="37"/>
         <image name="newsAnnounceImage" width="640" height="458"/>
-        <image name="newsSelected" width="75" height="75"/>
         <image name="textRectangle" width="13" height="13"/>
         <image name="textRectangleOk" width="14" height="13"/>
         <image name="vacancy" width="37" height="37"/>
         <image name="vacancyReplyAvatar" width="148" height="148"/>
-        <image name="vacancySelected" width="75" height="75"/>
     </resources>
 </document>

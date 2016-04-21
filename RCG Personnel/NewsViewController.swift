@@ -16,16 +16,20 @@ class NewsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
         //MARK: Убираем прозрачность таббара и навбара
         self.navigationItem.title = "ЛЕНТА НОВОСТЕЙ";
         self.navigationController?.navigationBar.translucent = false;
         self.tabBarController?.tabBar.translucent = false;
-
+        
         setTabBarIcons()
         setCellsStyle()
         addPullToRefresh()
         refreshWithProgressHUD(self)
     }
+    
+    
     
     func setTabBarIcons() {
         //Задаем иконки в таббаре. Получилось только так, т.к. через сториборд unselected иконки становятся серыми
@@ -152,10 +156,5 @@ class NewsViewController: UITableViewController {
         let currentNews = self.newsReceiver.newsStack[indexPath!.row];
         newsViewController.newsGuid = currentNews.guid
         
-        let backButtonItem = UIBarButtonItem()
-        backButtonItem.title = ""
-        navigationItem.backBarButtonItem = backButtonItem
     }
-    
-
 }

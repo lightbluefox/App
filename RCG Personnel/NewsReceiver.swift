@@ -14,7 +14,7 @@ class NewsReceiver {
     
     func getAllNews(completionHandlerNews: (success: Bool, result: String) -> Void) {
 
-        let requestUrl = Constants.apiUrl + "api/news?count=" + Constants.newsCount
+        let requestUrl = Constants.apiUrl + "api/v01/news?count=" + Constants.newsCount
         let request = HTTPTask()
         request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
@@ -60,7 +60,7 @@ class NewsReceiver {
     }
     
     func getSingleNews(guid: String, completionHandlerNews: (success: Bool, result: String) -> Void){
-        let requestUrl = Constants.apiUrl + "api/news/" + guid
+        let requestUrl = Constants.apiUrl + "api/v01/news/" + guid
         let request = HTTPTask()
         request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {

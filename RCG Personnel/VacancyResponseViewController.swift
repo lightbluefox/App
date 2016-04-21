@@ -40,6 +40,15 @@ class VacancyResponseViewController : UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let count = self.navigationController?.viewControllers.count {
+            let backButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+            let parentViewController = self.navigationController?.viewControllers[count - 2]
+            parentViewController?.navigationItem.backBarButtonItem = backButtonItem
+        }
+    }
+    
     private func setScrolliewSqueezeOnKeyboardAppearance() {
         //Mark: Сжимать размер скрол вью при появлении клавы
         self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
@@ -83,7 +92,7 @@ class VacancyResponseViewController : UIViewController {
             loadingNotification.labelText = "Отправляем"
             
             let request = HTTPTask()
-            let requestUrl = Constants.apiUrl + "api/vacancies/\(vacancyId!)/replies"
+            let requestUrl = Constants.apiUrl + "api/v01/vacancies/\(vacancyId!)/replies"
             let params: Dictionary<String,AnyObject> = ["name":name.text!, "phone": phone.text!, "vkid": vkId.text!];
             
             request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in

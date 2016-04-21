@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 extension UIImage {
     var rounded: UIImage {
         let imageView = UIImageView(image: self);
@@ -19,6 +20,7 @@ extension UIImage {
         return result
     }
 }
+
 extension NSDate {
     var gmc0: NSDate {
         let dateformatter = NSDateFormatter()
@@ -27,6 +29,7 @@ extension NSDate {
         return NSDate(timeInterval: Double(seconds), sinceDate: self)
     }
 }
+
 extension String {
     var formatedDate: String {
         let timeinterval : NSTimeInterval = Double(self)!/1000
@@ -52,7 +55,11 @@ extension String {
         return self.substringWithRange((self.rangeOfString(".")?.endIndex)!..<self.endIndex)
     }
 }
+
 extension UIApplication {
+    class func appName() -> String {
+        return NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String
+    }
     
     class func appVersion() -> String {
         return NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
@@ -68,3 +75,5 @@ extension UIApplication {
         return version == build ? "v\(version)" : "v\(version)(\(build))"
     }
 }
+
+

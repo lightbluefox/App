@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8407720D1CBA8E7D00E58260 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407720C1CBA8E7D00E58260 /* Globals.swift */; };
+		8415638F1CBFFF2400090C38 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415638E1CBFFF2400090C38 /* PushNotification.swift */; };
+		841F89EF1CC2833400A66930 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89EE1CC2833400A66930 /* NavigationManager.swift */; };
+		841F89F11CC2889700A66930 /* BasePushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F01CC2889700A66930 /* BasePushHandler.swift */; };
+		841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F21CC28B1400A66930 /* PushHandler.swift */; };
+		841F89F51CC28F8400A66930 /* SingleNewsPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */; };
+		846AA0021CC00C2000205142 /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA0011CC00C2000205142 /* PushManager.swift */; };
 		84A7D9341C80D2D500E2602A /* VacancyResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */; };
 		84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F2B1C763612002CEB6B /* AppDelegate.swift */; };
 		84D05F331C763612002CEB6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F321C763612002CEB6B /* Assets.xcassets */; };
@@ -157,6 +164,7 @@
 		84D0603C1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
 		84D0603D1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
 		84D0603E1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
+		84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +185,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8407720C1CBA8E7D00E58260 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		8415638E1CBFFF2400090C38 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
+		841F89EE1CC2833400A66930 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		841F89F01CC2889700A66930 /* BasePushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePushHandler.swift; sourceTree = "<group>"; };
+		841F89F21CC28B1400A66930 /* PushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
+		841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsPushHandler.swift; sourceTree = "<group>"; };
+		846AA0011CC00C2000205142 /* PushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
 		84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacancyResponseViewController.swift; sourceTree = "<group>"; };
 		84D05F281C763612002CEB6B /* RCG Personnel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RCG Personnel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D05F2B1C763612002CEB6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -257,6 +272,7 @@
 		84D060331C809A8A002CEB6B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = ../MenuViewController.swift; sourceTree = "<group>"; };
 		84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedBackViewController.swift; path = ../FeedBackViewController.swift; sourceTree = "<group>"; };
 		84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGTextFieldClass.swift; sourceTree = "<group>"; };
+		84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleVacancyPushHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +339,20 @@
 			name = FeedBacks;
 			sourceTree = "<group>";
 		};
+		8415638D1CBFFEF500090C38 /* PushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				8415638E1CBFFF2400090C38 /* PushNotification.swift */,
+				846AA0011CC00C2000205142 /* PushManager.swift */,
+				841F89F01CC2889700A66930 /* BasePushHandler.swift */,
+				841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */,
+				84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */,
+				841F89F21CC28B1400A66930 /* PushHandler.swift */,
+			);
+			name = PushNotifications;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		84D05F1F1C763612002CEB6B = {
 			isa = PBXGroup;
 			children = (
@@ -346,12 +376,14 @@
 		84D05F2A1C763612002CEB6B /* RCG Personnel */ = {
 			isa = PBXGroup;
 			children = (
-				84D05F6F1C7791DF002CEB6B /* Classes */,
+				8415638D1CBFFEF500090C38 /* PushNotifications */,
 				84D05F2B1C763612002CEB6B /* AppDelegate.swift */,
+				841F89EE1CC2833400A66930 /* NavigationManager.swift */,
 				84D05F321C763612002CEB6B /* Assets.xcassets */,
 				84D0602A1C7D0263002CEB6B /* Main.storyboard */,
 				84D05F341C763612002CEB6B /* LaunchScreen.storyboard */,
 				84D05F371C763612002CEB6B /* Info.plist */,
+				84D05F6F1C7791DF002CEB6B /* Classes */,
 				8407720A1CBA6C8300E58260 /* FeedBacks */,
 				840772081CBA6C7100E58260 /* Menu */,
 				840772061CBA6AA100E58260 /* News */,
@@ -406,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				84D05F701C779298002CEB6B /* Constants.swift */,
+				8407720C1CBA8E7D00E58260 /* Globals.swift */,
 				84D05F741C779388002CEB6B /* News.swift */,
 				84D05F7C1C77977E002CEB6B /* Vacancies.swift */,
 				84D05F781C779646002CEB6B /* NewsReceiver.swift */,
@@ -665,6 +698,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8415638F1CBFFF2400090C38 /* PushNotification.swift in Sources */,
 				84D05FF81C77D890002CEB6B /* SDWebImageDownloader.m in Sources */,
 				84D05FB51C77C823002CEB6B /* HTTPTask.swift in Sources */,
 				84D05FC41C77CB01002CEB6B /* Extensions.swift in Sources */,
@@ -672,13 +706,18 @@
 				84D060161C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */,
 				84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
 				84D05FB81C77C823002CEB6B /* HTTPUpload.swift in Sources */,
+				84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */,
 				84D060341C809A8A002CEB6B /* MenuViewController.swift in Sources */,
+				841F89EF1CC2833400A66930 /* NavigationManager.swift in Sources */,
+				841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */,
 				84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */,
 				84D0600A1C77D890002CEB6B /* UIImage+MultiFormat.m in Sources */,
 				84D0600D1C77D890002CEB6B /* UIImage+WebP.m in Sources */,
+				841F89F11CC2889700A66930 /* BasePushHandler.swift in Sources */,
 				84D05FAF1C77C823002CEB6B /* HTTPSecurity.swift in Sources */,
 				84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84D060301C8018C9002CEB6B /* RCGButton.swift in Sources */,
+				846AA0021CC00C2000205142 /* PushManager.swift in Sources */,
 				84D060131C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
 				84D05F6C1C766F38002CEB6B /* NewsCell.swift in Sources */,
 				84A7D9341C80D2D500E2602A /* VacancyResponseViewController.swift in Sources */,
@@ -696,7 +735,9 @@
 				84D060261C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */,
 				84D060381C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */,
 				84D05FF51C77D890002CEB6B /* SDWebImageDecoder.m in Sources */,
+				841F89F51CC28F8400A66930 /* SingleNewsPushHandler.swift in Sources */,
 				84D05FFB1C77D890002CEB6B /* SDWebImageDownloaderOperation.m in Sources */,
+				8407720D1CBA8E7D00E58260 /* Globals.swift in Sources */,
 				84D060221C7BAD3C002CEB6B /* VacancyCell.swift in Sources */,
 				84D05F7D1C77977E002CEB6B /* Vacancies.swift in Sources */,
 				84D0601E1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */,
