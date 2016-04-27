@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedBackViewController : UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var themeTextField: RCGTextFieldClass!
     @IBOutlet weak var nameTextField: RCGTextFieldClass!
     @IBOutlet weak var emailTextField: RCGTextFieldClass!

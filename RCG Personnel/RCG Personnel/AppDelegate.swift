@@ -17,20 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var pushManager = PushManager(handlers: [])
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        if let tabBarController = self.window?.rootViewController as? UITabBarController {
-            pushManager = PushManager(handlers: [SingleNewsPushHandler(tabBar: tabBarController), SingleVacancyPushHandler(tabBar: tabBarController)])
-        }
-        
-        setApplicationFontsAndColors()
-        registerForPushNotifications()
-        
-        if let pushNotificationInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as! NSDictionary! {
-            handlePushWithPayload(pushNotificationInfo, mode: .Background)
-        }
-        
         getAppVersionFromServerAndShowAlertIfItDiffers()
-        
+        setApplicationFontsAndColors()
+        if User.sharedUser.isAuthenticated {
+            if let tabBarController = self.window?.rootViewController as? UITabBarController {
+                pushManager = PushManager(handlers: [SingleNewsPushHandler(tabBar: tabBarController), SingleVacancyPushHandler(tabBar: tabBarController)])
+            }
+            registerForPushNotifications()
+            
+            if let pushNotificationInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as! NSDictionary! {
+                handlePushWithPayload(pushNotificationInfo, mode: .Background)
+            }
+        }
+        else {
+            let rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController?.presentViewController(rootViewController, animated: true, completion: nil)
+        }
         
         
         

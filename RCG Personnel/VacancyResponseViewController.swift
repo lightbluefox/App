@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VacancyResponseViewController : UIViewController {
+class VacancyResponseViewController : BaseViewController {
     var vacancyId: String?
     
     @IBOutlet weak var name: RCGTextFieldClass!

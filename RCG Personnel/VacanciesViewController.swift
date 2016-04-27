@@ -9,7 +9,7 @@
 
 import UIKit
 
-class VacanciesViewController : UITableViewController {
+class VacanciesViewController : BaseTableViewController {
 
     @IBOutlet var vacanciesTableViewController: UITableView!
     var vacanciesReceiver = VacanciesReceiver()

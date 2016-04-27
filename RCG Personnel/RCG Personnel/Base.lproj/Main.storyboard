@@ -40,6 +40,94 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="kK4-Hd-TOV">
+            <objects>
+                <viewController storyboardIdentifier="Login" id="OcU-6m-jTB" customClass="LoginViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q38-XV-eAn"/>
+                        <viewControllerLayoutGuide type="bottom" id="ALC-xH-lT8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nj6-sa-jmn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnK-Wl-Z9q">
+                                <rect key="frame" x="195" y="285" width="57" height="30"/>
+                                <state key="normal" title="LoginVK"/>
+                                <connections>
+                                    <action selector="loginVK:" destination="OcU-6m-jTB" eventType="touchUpInside" id="hbP-Xi-oXY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpf-RU-i5F">
+                                <rect key="frame" x="272" y="285" width="56" height="30"/>
+                                <state key="normal" title="LoginFB"/>
+                                <connections>
+                                    <action selector="loginFB:" destination="OcU-6m-jTB" eventType="touchUpInside" id="oaU-Lw-2xZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OML-0v-tZU">
+                                <rect key="frame" x="348" y="285" width="60" height="30"/>
+                                <state key="normal" title="LoginTW"/>
+                                <connections>
+                                    <action selector="loginTW:" destination="OcU-6m-jTB" eventType="touchUpInside" id="gqz-Sb-SQp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OML-0v-tZU" firstAttribute="leading" secondItem="Wpf-RU-i5F" secondAttribute="trailing" constant="20" id="1Qz-Ds-7EV"/>
+                            <constraint firstItem="Wpf-RU-i5F" firstAttribute="leading" secondItem="pnK-Wl-Z9q" secondAttribute="trailing" constant="20" id="NfN-Ri-oNZ"/>
+                            <constraint firstItem="pnK-Wl-Z9q" firstAttribute="centerY" secondItem="nj6-sa-jmn" secondAttribute="centerY" id="exE-HE-cdp"/>
+                            <constraint firstItem="pnK-Wl-Z9q" firstAttribute="top" secondItem="Wpf-RU-i5F" secondAttribute="bottom" id="i2s-EI-Pjp"/>
+                            <constraint firstItem="Wpf-RU-i5F" firstAttribute="centerX" secondItem="nj6-sa-jmn" secondAttribute="centerX" id="kSa-sq-G7g"/>
+                            <constraint firstItem="OML-0v-tZU" firstAttribute="centerY" secondItem="nj6-sa-jmn" secondAttribute="centerY" id="mMW-kd-9BM"/>
+                            <constraint firstItem="Wpf-RU-i5F" firstAttribute="centerY" secondItem="nj6-sa-jmn" secondAttribute="centerY" id="vwZ-Wt-XlC"/>
+                            <constraint firstItem="OML-0v-tZU" firstAttribute="top" secondItem="Wpf-RU-i5F" secondAttribute="bottom" id="wzj-fx-reJ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="i2s-EI-Pjp"/>
+                                <exclude reference="wzj-fx-reJ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FuD-bl-jpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-698" y="606"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="VSN-WC-MSU">
+            <objects>
+                <viewController storyboardIdentifier="Profile" id="IoU-3w-CED" customClass="ProfileViewController" customModule="RCG_Personnel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kOG-9X-av4"/>
+                        <viewControllerLayoutGuide type="bottom" id="1ej-cc-gCb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ydt-TV-tvc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CpL-vl-m4y">
+                                <rect key="frame" x="277" y="470" width="46" height="30"/>
+                                <state key="normal" title="Выйти"/>
+                                <connections>
+                                    <action selector="logOffButtonPressed:" destination="IoU-3w-CED" eventType="touchUpInside" id="FgH-Dp-ljN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1ej-cc-gCb" firstAttribute="top" secondItem="CpL-vl-m4y" secondAttribute="bottom" constant="100" id="LWg-W7-pWw"/>
+                            <constraint firstItem="CpL-vl-m4y" firstAttribute="centerX" secondItem="ydt-TV-tvc" secondAttribute="centerX" id="rp0-Ik-h7R"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xQd-7K-GjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="1274"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qy6-tC-9UU">
             <objects>
@@ -509,7 +597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNO-4h-eVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2608" y="457"/>
+            <point key="canvasLocation" x="2648" y="438"/>
         </scene>
         <!--Feed Back View Controller-->
         <scene sceneID="p0r-Ip-cUJ">
@@ -864,7 +952,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAi-ip-oO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3352" y="447"/>
+            <point key="canvasLocation" x="3396" y="438"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="0jC-ZN-hAh">

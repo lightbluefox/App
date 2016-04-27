@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingleNewsViewController : UIViewController {
+class SingleNewsViewController : BaseViewController {
     
     var newsGuid: String?
     let newsReceiver = NewsReceiver()
@@ -92,6 +92,7 @@ class SingleNewsViewController : UIViewController {
     {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

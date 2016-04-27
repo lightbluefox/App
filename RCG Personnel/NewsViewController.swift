@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController: UITableViewController {
+class NewsViewController: BaseTableViewController {
 
     @IBOutlet var newsTableViewController: UITableView!
     let newsReceiver = NewsReceiver()

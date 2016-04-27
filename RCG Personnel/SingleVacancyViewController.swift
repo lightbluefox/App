@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingleVacancyViewController: UIViewController {
+class SingleVacancyViewController: BaseViewController {
     
     @IBOutlet weak var vacImageVIew: UIImageView!
     @IBOutlet weak var vacancyFemaleImage: UIImageView!

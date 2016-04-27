@@ -1,0 +1,6 @@
+framework module Pods_RCG_Personnel {
+  umbrella header "Pods-RCG Personnel-umbrella.h"
+
+  export *
+  module * { export * }
+}
