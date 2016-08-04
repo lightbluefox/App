@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "splashscreen_4.png",
+      "filename" : "LS-640.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "splashscreen_6.jpg",
+      "filename" : "LS-750.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "splashscreen_6p_2.png",
+      "filename" : "LS-1242.png",
       "scale" : "3x"
     }
   ],

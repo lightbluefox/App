@@ -174,9 +174,9 @@ extension JSON: SequenceType{
             let array_ = object as! [AnyObject]
             var generate_ = array_.generate()
             var index_: Int = 0
-            return anyGenerator {
+            return AnyGenerator {
                 if let element_: AnyObject = generate_.next() {
-                    return ("\(index_++)", JSON(element_))
+                    return ("\(index_+=1)", JSON(element_))
                 } else {
                     return nil
                 }
@@ -184,7 +184,7 @@ extension JSON: SequenceType{
         case .Dictionary:
             let dictionary_ = object as! [String : AnyObject]
             var generate_ = dictionary_.generate()
-            return anyGenerator {
+            return AnyGenerator {
                 if let (key_, value_): (String, AnyObject) = generate_.next() {
                     return (key_, JSON(value_))
                 } else {
@@ -192,7 +192,7 @@ extension JSON: SequenceType{
                 }
             }
         default:
-            return anyGenerator {
+            return AnyGenerator {
                 return nil
             }
         }

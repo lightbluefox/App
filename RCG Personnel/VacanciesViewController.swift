@@ -17,11 +17,16 @@ class VacanciesViewController : BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //MARK: Убираем прозрачность таббара и навбара, т.к. за счет прозрачонсти цвет становится не тем.
+        //Убираем прозрачность таббара и навбара, т.к. за счет прозрачонсти цвет становится не тем.
         self.navigationItem.title = "ЛЕНТА ВАКАНСИЙ"
         self.navigationController?.navigationBar.translucent = false
         self.tabBarController?.tabBar.translucent = false
         
+        self.parentViewController?.view.backgroundColor = UIColor(patternImage: UIImage(named: "rightBackGround")!)
+        self.view.backgroundColor = UIColor.clearColor()
+        self.tableView.separatorColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
+        //self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "rightBackGround")!)
+
         self.vacanciesTableViewController.rowHeight = 80
         
         addPullToRefresh()
@@ -30,8 +35,8 @@ class VacanciesViewController : BaseTableViewController {
     
     private func addPullToRefresh() {
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "Потяните вниз, чтобы обновить", attributes: [NSFontAttributeName:UIFont(name: "Roboto", size: 12)!, NSForegroundColorAttributeName:UIColor.blackColor()])
-        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Потяните вниз, чтобы обновить", attributes: [NSFontAttributeName:UIFont(name: "Roboto", size: 12)!, NSForegroundColorAttributeName:UIColor.whiteColor()])
+        self.refreshControl?.addTarget(self, action: #selector(VacanciesViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func refresh(sender:AnyObject) {
@@ -104,7 +109,7 @@ class VacanciesViewController : BaseTableViewController {
         let cell = self.vacanciesTableViewController.dequeueReusableCellWithIdentifier("VacancyCell") as! VacancyCell
         // Configure the cell...
         let currentVac = vacanciesReceiver.vacsStack[indexPath.row];
-        
+        cell.backgroundColor = UIColor.clearColor()
         // Получаем разницу в днях между сроком валидности вакансии и в зависимости от нее выводим разные сообщения в ячейке
         let currentDate = NSDate().gmc0
         let validTillDate = NSDate(timeIntervalSince1970: Double(currentVac.validTillDate)!/1000)
@@ -113,15 +118,15 @@ class VacanciesViewController : BaseTableViewController {
 
         if components.day == 2 {
             cell.vacancyDate?.text = "Осталось 2 дня!"
-            cell.vacancyDate?.textColor = UIColor(red: 213/255, green: 0, blue: 0, alpha: 1)
+            cell.vacancyDate?.textColor = UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1)
         }
         else if components.day <= 1 {
             cell.vacancyDate?.text = "Последний день!"
-            cell.vacancyDate?.textColor = UIColor(red: 213/255, green: 0, blue: 0, alpha: 1)
+            cell.vacancyDate?.textColor = UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1)
         }
         else {
             cell.vacancyDate?.text = "Набор до: " + currentVac.validTillDate.formatedDate
-            cell.vacancyDate?.textColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+            cell.vacancyDate?.textColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
         }
         
         cell.vacancyTitle?.text = currentVac.topic;

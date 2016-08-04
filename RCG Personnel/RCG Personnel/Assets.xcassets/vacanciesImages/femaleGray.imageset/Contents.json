@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "femaleGray-1.png",
+      "filename" : "woman_grey-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "femaleGray.png",
+      "filename" : "woman_grey.png",
       "scale" : "2x"
     },
     {

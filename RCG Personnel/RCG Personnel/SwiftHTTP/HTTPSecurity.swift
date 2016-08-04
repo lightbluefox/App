@@ -133,7 +133,7 @@ public class HTTPSecurity {
                 for serverKey in serverPubKeys as [AnyObject] {
                     for key in keys as [AnyObject] {
                         if serverKey.isEqual(key) {
-                            trustedCount++
+                            trustedCount += 1
                             break
                         }
                     }
@@ -159,7 +159,7 @@ public class HTTPSecurity {
                 for serverCert in serverCerts {
                     for cert in certs {
                         if cert == serverCert {
-                            trustedCount++
+                            trustedCount += 1
                             break
                         }
                     }
@@ -214,7 +214,7 @@ public class HTTPSecurity {
     */
     func certificateChainForTrust(trust: SecTrustRef) -> Array<NSData> {
         var collect = Array<NSData>()
-        for var i = 0; i < SecTrustGetCertificateCount(trust); i++ {
+        for i in 0 ..< SecTrustGetCertificateCount(trust) {
             if let cert = SecTrustGetCertificateAtIndex(trust,i) {
                 collect.append(SecCertificateCopyData(cert))
             }
@@ -232,7 +232,7 @@ public class HTTPSecurity {
     func publicKeyChainForTrust(trust: SecTrustRef) -> Array<SecKeyRef> {
         var collect = Array<SecKeyRef>()
         let policy = SecPolicyCreateBasicX509()
-        for var i = 0; i < SecTrustGetCertificateCount(trust); i++ {
+        for i in 0 ..< SecTrustGetCertificateCount(trust) {
             if let cert = SecTrustGetCertificateAtIndex(trust,i) {
                 if let key = extractPublicKeyFromCert(cert, policy: policy) {
                     collect.append(key)

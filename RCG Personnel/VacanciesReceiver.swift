@@ -16,7 +16,7 @@ class VacanciesReceiver {
         vacsStack.removeAll(keepCapacity: false);
         
         let currentDate = String(NSDate().gmc0.timeIntervalSince1970*1000)
-        let requestUrl = Constants.apiUrl + "api/v01/vacancies?count=" + Constants.vacancyCount + "&where=validTillDate>=" + currentDate
+        let requestUrl = Constants.apiUrl + "api/v01/vacancies?limit=" + Constants.vacancyCount + "&where=validTillDate>=" + currentDate
         let request = HTTPTask()
         request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
@@ -33,7 +33,7 @@ class VacanciesReceiver {
                 let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
                 
                 let json = JSON(jsonObject);
-                for var i = 0; i < json["data"].count; i++
+                for i in 0 ..< json["data"].count
                 {
                     let guid = json["data"][i]["guid"] != nil ? json["data"][i]["guid"].string! : ""
                     let topic =  json["data"][i]["topic"] != nil ? json["data"][i]["topic"].string! : "";
@@ -45,7 +45,7 @@ class VacanciesReceiver {
                     let validTillDate = json["data"][i]["validTillDate"] != nil ? json["data"][i]["validTillDate"].string! : "";
                     
                     var icons = [String]()
-                    for var u = 0; u < json["data"][i]["icon"].count; u++
+                    for u in 0 ..< json["data"][i]["icon"].count
                     {
                         icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
                     }
@@ -92,12 +92,12 @@ class VacanciesReceiver {
                 let timeTable = json["timeTable"] != nil ? json["timeTable"].string! : "";
                 
                 var images = [String]()
-                for var u = 0; u < json["images"].count; u++
+                for u in 0 ..< json["images"].count
                 {
                     images.append(json["images"][u]["url"] != nil ? json["images"][u]["url"].string! : "")
                 }
                 var icons = [String]()
-                for var u = 0; u < json["icon"].count; u++
+                for u in 0 ..< json["icon"].count
                 {
                     icons.append(json["icon"][u]["url"] != nil ? json["icon"][u]["url"].string! : "")
                 }

@@ -405,7 +405,7 @@ public class HTTPTask : NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate
     private func createBackgroundIdent() -> String {
         let letters = "abcdefghijklmnopqurstuvwxyz"
         var str = ""
-        for var i = 0; i < 14; i++ {
+        for var i = 0; i < 14; i += 1 {
             let start = Int(arc4random() % 14)
             str.append(letters[letters.startIndex.advancedBy(start)])
         }

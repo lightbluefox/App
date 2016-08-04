@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "maleRed-1.png",
+      "filename" : "man_red-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "maleRed.png",
+      "filename" : "man_red.png",
       "scale" : "2x"
     },
     {

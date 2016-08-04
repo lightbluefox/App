@@ -28,7 +28,7 @@ class VacancyResponseViewController : BaseViewController {
         self.name.autocapitalizationType = UITextAutocapitalizationType.Words
         
         //Mark: Скрывать, клавиатуру при тапе по скрол вью
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard:");
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VacancyResponseViewController.hideKeyboard(_:)));
         tapGesture.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(tapGesture)
         
@@ -52,8 +52,8 @@ class VacancyResponseViewController : BaseViewController {
     private func setScrolliewSqueezeOnKeyboardAppearance() {
         //Mark: Сжимать размер скрол вью при появлении клавы
         self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VacancyResponseViewController.keyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VacancyResponseViewController.keyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     @IBAction func textFieldEditingDone(sender: UITextField) {

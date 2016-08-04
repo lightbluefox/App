@@ -7,37 +7,158 @@
 //
 
 import UIKit
+import Alamofire
+import VK_ios_sdk
+import FBSDKLoginKit
+import FBSDKCoreKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var tokenReceiveAttempts = 0
+    
+    var deviceTokenString = ""
+    var deviceTokenSent = false
+    
     var appVersionOnServer = ""
+    var versionChecked = false
+    
+    var userDataReceived = false
+    
+    var registeredForRemoteNotifications = false
+    
     var pushManager = PushManager(handlers: [])
+    private var reachability : Reachability!
+    
+    let user = User.sharedUser
+    let userReceiver = UserReceiver()
+    let authenticationManager = AuthenticationManager()
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        getAppVersionFromServerAndShowAlertIfItDiffers()
+        //Временная папочка с дефаултсами
+        print(NSTemporaryDirectory())
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(AppDelegate.checkForReachability(_:)), name: ReachabilityChangedNotification, object: nil);
+        
+        do {
+            try
+            self.reachability = Reachability.reachabilityForInternetConnection();
+            try
+            self.reachability.startNotifier()
+        }
+        catch {
+            print(error)
+        }
+        
         setApplicationFontsAndColors()
-        if User.sharedUser.isAuthenticated {
+        
+        //App launch code
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        //Optionally add to ensure your credentials are valid:
+        FBSDKLoginManager.renewSystemCredentials { (result:ACAccountCredentialRenewResult, error:NSError!) -> Void in }
+        
+        
+        /*if user.isAuthenticated {*/
             if let tabBarController = self.window?.rootViewController as? UITabBarController {
                 pushManager = PushManager(handlers: [SingleNewsPushHandler(tabBar: tabBarController), SingleVacancyPushHandler(tabBar: tabBarController)])
             }
-            registerForPushNotifications()
+            //registerForPushNotifications()
             
             if let pushNotificationInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as! NSDictionary! {
                 handlePushWithPayload(pushNotificationInfo, mode: .Background)
             }
-        }
+        /*}
         else {
             let rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
             self.window?.makeKeyAndVisible()
             self.window?.rootViewController?.presentViewController(rootViewController, animated: true, completion: nil)
-        }
+        }*/
         
         
         
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        VKSdk.processOpenURL(url, fromApplication: sourceApplication)
+        
+        let isFacebookURL = url.scheme.hasPrefix("fb\(FBSDKSettings.appID())") && url.host == "authorize"
+        if isFacebookURL {
+            return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        }
+        return true
+    }
+    
+    func checkForReachability(notification:NSNotification)
+    {
+        let networkReachability = notification.object as? Reachability;
+        let remoteHostStatus = networkReachability?.currentReachabilityStatus
+        
+        if (remoteHostStatus == .NotReachable)
+        {
+            NSLog("Internet Not Reachable")
+        }
+        else
+        {
+            if remoteHostStatus == .ReachableViaWiFi {
+                NSLog("Internet Reachable via Wifi")
+            }
+            else {
+                NSLog("Internet Reachable")
+            }
+            if !UIApplication.sharedApplication().isRegisteredForRemoteNotifications() {
+                registerForPushNotifications()
+            }
+            if !deviceTokenSent {
+                if deviceTokenString != "" {
+                    sendToken(deviceTokenString)
+                }
+            }
+            if !user.isTokenChecked {
+                if user.token != nil {
+                    checkIfTokenIsValid({
+                        self.userReceiver.getCurrentUser()
+                    })
+                }
+            }
+            if !versionChecked {
+                getAppVersionFromServerAndShowAlertIfItDiffers()
+            }
+            
+            
+        }
+    }
+    
+    func checkIfTokenIsValid(completion: () -> Void) {
+        NSLog("TokenIsValidCheck. Started.")
+        let headers = ["Authorization" : "Bearer " + user.token ?? ""]
+        Alamofire.request(.GET, Constants.apiUrl + "api/v01/token/check", headers: headers)
+            .responseData { response in
+                switch response.result {
+                case .Success:
+                    if let responseData = response.data {
+                        var jsonError: NSError?
+                        let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                        let isAuthorized = json["authorized"]
+                        if isAuthorized {
+                            self.user.isAuthenticated = true
+                            self.user.isTokenChecked = true
+                            NSLog("TokenIsValidCheck. Done, result: Token is valid.")
+                            completion()
+                        }
+                        else if !isAuthorized {
+                            self.user.isAuthenticated = false
+                            self.user.isTokenChecked = true
+                            
+                            NSLog("TokenIsValidCheck. Done, result: Token is not valid, isAuthenticated property set to false")
+                        }
+                    }
+                    case .Failure:
+                    NSLog("TokenIsValidCheck. Done, result: Request failed, see the description below.")
+                    NSLog((response.result.error?.description)!)
+                }}
     }
     
     func showNewVersionAvailableAlert() {
@@ -45,7 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let defaultAction = UIAlertAction(title: "Нет", style: .Default, handler: nil)
         let gotoItunesAction = UIAlertAction(title: "Загрузить", style: .Default) {(_) -> Void in
-            let itunesURL = NSURL(string: "https://itunes.apple.com/ru/app/cataline-kitty/id450066086?mt=12")
+            let itunesURL = NSURL(string: Constants.appStoreUrl)
             UIApplication.sharedApplication().openURL(itunesURL!)
         }
         
@@ -81,11 +202,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let characterSet: NSCharacterSet = NSCharacterSet(charactersInString: "<>")
         
-        let deviceTokenString: String = ( deviceToken.description as NSString )
+        self.deviceTokenString = ( deviceToken.description as NSString )
             .stringByTrimmingCharactersInSet( characterSet )
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         NSLog("%@", "Registration for Remote Notifications succeed: " + deviceTokenString)
-        sendToken(deviceTokenString)
+        
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -98,17 +219,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navBar = UINavigationBar.appearance()
         let tabBar = UITabBar.appearance()
-        navBar.barStyle = UIBarStyle.BlackOpaque
-        navBar.barTintColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0)
-        tabBar.barTintColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0)
-        tabBar.tintColor = UIColor.whiteColor()
-        /*var tabBarItems = tabBar.items
-        
-        for tabBarItem in tabBar.items! {
-            tabBarItem.setTitleTextAttributes(["NSForegroundColorAttributeName" : UIColor.greenColor()], forState: .Normal)
-            tabBarItem.setTitleTextAttributes(["NSForegroundColorAttributeName" : UIColor.whiteColor()], forState: .Selected)
-            
-        }*/
+        navBar.barTintColor = UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1.0)
         
         navBar.tintColor = UIColor.whiteColor()
         
@@ -122,26 +233,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let request = HTTPTask();
         let requestUrl = Constants.apiUrl + "api/v01/devices"
         let params: Dictionary<String,AnyObject> = ["token":deviceTokenString]
-        tokenReceiveAttempts++
         
         request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
-                print("error: " + err.localizedDescription)
-                if self.tokenReceiveAttempts < 5 {
-                    let seconds = 10.0
-                    let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
-                    let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                    
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                        //code perfomed with delay
-                        print("Trying to send token again for the \(self.tokenReceiveAttempts) time")
-                        self.sendToken(deviceTokenString)
-                    })
-                }
-                else {
-                    print("Stopped trying :(")
-                }
-                
+                NSLog("error: " + err.localizedDescription)
             }
             else if let resp: AnyObject = response.responseObject {
                 let responseData = NSString(data: resp as! NSData, encoding: NSUTF8StringEncoding)
@@ -153,6 +248,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let json = JSON(jsonObject);
                     
                 NSLog("%@", "Token successfully sent to the server with response: " + responseData!.description)
+                self.deviceTokenSent = true
             }
         })
     }
@@ -175,12 +271,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.appVersionOnServer = json["versions"]["iPhone"]["num"] != nil ? json["versions"]["iPhone"]["num"].string! : ""
                 NSLog("%@", "Got application version from server: " + self.appVersionOnServer)
                 if self.appVersionOnServer != UIApplication.appVersion() {
-                    NSLog("%@", "Application version is " + UIApplication.appVersion() + "and it differs from the version at server.")
+                    NSLog("%@", "Application version is " + UIApplication.appVersion() + " and it differs from the version at server. (" + self.appVersionOnServer + ")")
                     self.showNewVersionAvailableAlert()
                 }
                 else {
                     NSLog("%@", "Application version is " + UIApplication.appVersion() + ". The same as version at server.")
                 }
+                
+                self.versionChecked = true
             }
         })
     }
@@ -201,6 +299,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+            FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {

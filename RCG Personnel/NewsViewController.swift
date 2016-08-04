@@ -16,6 +16,8 @@ class NewsViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        automaticallyAdjustsScrollViewInsets = false
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
         //MARK: Убираем прозрачность таббара и навбара
@@ -23,7 +25,7 @@ class NewsViewController: BaseTableViewController {
         self.navigationController?.navigationBar.translucent = false;
         self.tabBarController?.tabBar.translucent = false;
         
-        setTabBarIcons()
+        //setTabBarIcons()
         setCellsStyle()
         addPullToRefresh()
         refreshWithProgressHUD(self)
@@ -31,32 +33,11 @@ class NewsViewController: BaseTableViewController {
     
     
     
-    func setTabBarIcons() {
-        //Задаем иконки в таббаре. Получилось только так, т.к. через сториборд unselected иконки становятся серыми
-        //TODO: Сделать нормально (возможно через init(coder:)
-
-        let tabBar = self.tabBarController?.tabBar;
-        
-        tabBar?.tintColor = UIColor.whiteColor();
-        let tabItems = tabBar?.items;
-        let tabItem0 = tabItems![0] ;
-        tabItem0.image = UIImage(named:"news")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-        tabItem0.selectedImage = UIImage(named:"newsSelected")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-        
-        let tabItem1 = tabItems![1] ;
-        tabItem1.image = UIImage(named:"vacancy")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-        tabItem1.selectedImage = UIImage(named:"vacancySelected")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-        
-        let tabItem2 = tabItems![2] ;
-        tabItem2.image = UIImage(named:"feedBack")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-        tabItem2.selectedImage = UIImage(named:"feedBackSelected")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
-    }
-    
     func addPullToRefresh() {
         //MARK: Описываем пул-ту-рефреш
         self.refreshControl = UIRefreshControl();
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Потяните вниз, чтобы обновить", attributes: [NSFontAttributeName:UIFont(name: "Roboto", size: 12)!, NSForegroundColorAttributeName:UIColor.whiteColor()])
-        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(NewsViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func setCellsStyle() {
@@ -111,6 +92,7 @@ class NewsViewController: BaseTableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         newsTableViewController.reloadData();
     }
     

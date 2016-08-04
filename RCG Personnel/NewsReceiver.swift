@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class NewsReceiver {
     var newsStack = [News]()
@@ -33,7 +34,7 @@ class NewsReceiver {
 
                 self.newsStack.removeAll(keepCapacity: false)
 
-                for var i = 0; i < json["data"].count; i++
+                for i in 0 ..< json["data"].count
                 {
                     let guid = json["data"][i]["guid"] != nil ? json["data"][i]["guid"].string! : ""
                     let topic =  json["data"][i]["topic"] != nil ? json["data"][i]["topic"].string! : "";
@@ -42,7 +43,7 @@ class NewsReceiver {
                     let addedDate = json["data"][i]["addedDate"] != nil ? json["data"][i]["addedDate"].string!.formatedDate : "";
                     
                     var icons = [String]()
-                    for var u = 0; u < json["data"][i]["icon"].count; u++
+                    for u in 0 ..< json["data"][i]["icon"].count
                     {
                         icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
                     }
@@ -77,31 +78,84 @@ class NewsReceiver {
                 let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
     
                 let json = JSON(jsonObject);
-                let guid = json["guid"] != nil ? json["guid"].string! : ""
-                let topic =  json["topic"] != nil ? json["topic"].string! : "";
-                let shortText = json["shortText"] != nil ? json["shortText"].string! : "";
-                let fullText = json["fullText"] != nil ? json["fullText"].string! : "";
-                let addedDate = json["addedDate"] != nil ? json["addedDate"].string!.formatedDate : "";
-                let validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string!.formatedDate : "";
+                self.singleNews.guid = json["guid"] != nil ? json["guid"].string! : ""
+                self.singleNews.topic =  json["topic"] != nil ? json["topic"].string! : "";
+                self.singleNews.shortText = json["shortText"] != nil ? json["shortText"].string! : "";
+                self.singleNews.fullText = json["fullText"] != nil ? json["fullText"].string! : "";
+                self.singleNews.addedDate = json["addedDate"] != nil ? json["addedDate"].string!.formatedDate : "";
+                self.singleNews.validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string!.formatedDate : "";
                 
-                var images = [String]()
-                for var u = 0; u < json["images"].count; u++
+                for u in 0 ..< json["images"].count
                 {
-                    images.append(json["images"][u]["url"] != nil ? json["images"][u]["url"].string! : "")
+                    self.singleNews.images.append(json["images"][u]["url"] != nil ? json["images"][u]["url"].string! : "")
                 }
-                var icons = [String]()
-                for var u = 0; u < json["icon"].count; u++
+                for u in 0 ..< json["icon"].count
                 {
-                    icons.append(json["icon"][u]["url"] != nil ? json["icon"][u]["url"].string! : "")
+                    self.singleNews.icons.append(json["icon"][u]["url"] != nil ? json["icon"][u]["url"].string! : "")
                 }
                 
-                self.singleNews = News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, images: images)
+                //self.singleNews = News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, images: images)
     
                 dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerNews(success: true, result: "Новости загружены")
+                    completionHandlerNews(success: true, result: "Новость загружена")
                 }
     
             }
         })
     }
+    /// Получает комментарии по guid новости. 
+    /// Комментарии добавляются, как массив [Comments] в переменную singleNews. Можно обработать ситуацию, когда комментариев нет и отобразить соответствующую надпись.
+    func getComments(guid: String, completionHandler: (success: Bool, result: String, moreCommentsAvailable: Bool) -> Void) {
+        requestCommentsFromServer(guid, startFrom: singleNews.comments.count, count: singleNews.commentsStep) { success, result in
+            if success {
+                if self.singleNews.commentsTotal == 0 || self.singleNews.commentsTotal == self.singleNews.comments.count {
+                    completionHandler(success: true, result: result, moreCommentsAvailable: false)
+                }
+                else {
+                    completionHandler(success: true, result: result, moreCommentsAvailable: true)
+                }
+            }
+            else {
+                completionHandler(success: false, result: result, moreCommentsAvailable: true)
+            }
+        }
+    }
+    
+    private func requestCommentsFromServer(guid: String, startFrom: Int, count: Int, completionHandler: (success: Bool, result: String) -> Void) {
+        //api/news/b94fc5f8-3fe4-48a2-ac96-0dea2b88cae1/comments
+        let relativeCommentsURL = "api/v01/news/" + guid + "/comments"
+        let commentsParams = "?where=status~confirmed&offset=" + String(startFrom) + "&limit=" + String(count)
+        let requestURL = Constants.apiUrl + relativeCommentsURL + commentsParams
+        
+        Alamofire.request(.GET, requestURL).responseJSON {response in
+            switch response.result {
+            case .Success:
+                if let responseData = response.data {
+                    var jsonError: NSError?
+                    let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                    if let total = json["total"].int {
+                        self.singleNews.commentsTotal = total
+                        if total != 0 {
+                            for u in 0 ..< json["data"].count {
+                                let comment = Comments()
+                                comment.userFirstName = json["data"][u]["users"]["name"].string
+                                comment.userLastName = json["data"][u]["users"]["surName"].string
+                                comment.userPhoto = json["data"][u]["users"]["avatar"].string
+                                comment.text = json["data"][u]["text"].string
+                                comment.date = json["data"][u]["addedDate"].string?.formatedDateDDMMYY
+                                self.singleNews.comments.append(comment)
+                            }
+                            completionHandler(success: true, result: "Комментарии загружены")
+                        }
+                        else {
+                            completionHandler(success: true, result: "Комментариев нет")
+                        }
+                    }
+                }
+            case .Failure(let error):
+                completionHandler(success: false, result: error.description)
+            }
+        }
+    }
+    
 }

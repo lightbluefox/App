@@ -7,23 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8407720D1CBA8E7D00E58260 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407720C1CBA8E7D00E58260 /* Globals.swift */; };
+		4BCFAC7E3C81937CED4D0A5E /* Pods_RCG_PersonnelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC817AA7C1305DC321F56F9 /* Pods_RCG_PersonnelUITests.framework */; };
+		67FBBA52579D597CD89BE9CA /* Pods_RCG_Personnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C4305915F72E2C75D9A6A /* Pods_RCG_Personnel.framework */; };
+		840A0F461CF8833900BD6DF1 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A0F451CF8833900BD6DF1 /* Reachability.swift */; };
+		840A0F481CFC9DE800BD6DF1 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */; };
+		84116B3F1CEB87C5001E5F02 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84116B3C1CEB87C5001E5F02 /* FBSDKCoreKit.framework */; };
+		84116B401CEB87C5001E5F02 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84116B3D1CEB87C5001E5F02 /* FBSDKLoginKit.framework */; };
+		84116B411CEB87C5001E5F02 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84116B3E1CEB87C5001E5F02 /* FBSDKShareKit.framework */; };
+		84116B431CEB8DED001E5F02 /* FBAuthenticationHanler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84116B421CEB8DED001E5F02 /* FBAuthenticationHanler.swift */; };
+		8411A3021CD948E700313D11 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8411A3011CD948E700313D11 /* EditProfileViewController.swift */; };
 		8415638F1CBFFF2400090C38 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415638E1CBFFF2400090C38 /* PushNotification.swift */; };
+		841834331CDBCC6C00698566 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841834321CDBCC6C00698566 /* NSNotificationCenterKeys.swift */; };
 		841F89EF1CC2833400A66930 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89EE1CC2833400A66930 /* NavigationManager.swift */; };
 		841F89F11CC2889700A66930 /* BasePushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F01CC2889700A66930 /* BasePushHandler.swift */; };
 		841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F21CC28B1400A66930 /* PushHandler.swift */; };
 		841F89F51CC28F8400A66930 /* SingleNewsPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */; };
+		8420008C1CF0C34400992576 /* NSUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */; };
+		8420008E1CF0C61D00992576 /* NativeAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */; };
+		842EBD5B1D00D4CD0084F376 /* SingleNewsContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */; };
+		842EBD5D1D01DEE50084F376 /* SingelNewsCommentsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */; };
+		842EBD5F1D02FDDA0084F376 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5E1D02FDDA0084F376 /* Comments.swift */; };
+		843380B81D353A3100FDF411 /* RCGUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843380B71D353A3100FDF411 /* RCGUISwitch.swift */; };
+		843380BA1D3A86C100FDF411 /* UserReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843380B91D3A86C100FDF411 /* UserReceiver.swift */; };
+		844DDB431D048FDC003238A2 /* SingleNewsCommentsFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844DDB421D048FDC003238A2 /* SingleNewsCommentsFooterCell.swift */; };
+		8458FC6B1D3276D200284875 /* RCGPhoneTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8458FC6A1D3276D200284875 /* RCGPhoneTextFieldClass.swift */; };
+		846304211CF8815400BDAA2F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846304201CF8815400BDAA2F /* SystemConfiguration.framework */; };
 		846AA0021CC00C2000205142 /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA0011CC00C2000205142 /* PushManager.swift */; };
+		84891DFE1D3E918A008BBB83 /* SingleNewsCommentsAddNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84891DFD1D3E918A008BBB83 /* SingleNewsCommentsAddNewCell.swift */; };
+		84912C4A1D06F9AC00E8F126 /* SingleNewsCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84912C491D06F9AC00E8F126 /* SingleNewsCommentCell.swift */; };
 		849D62341CC9275E00C90229 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849D62331CC9275E00C90229 /* BaseViewController.swift */; };
 		849D62361CC92D9300C90229 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849D62351CC92D9300C90229 /* BaseTableViewController.swift */; };
 		849D62381CC942BB00C90229 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849D62371CC942BB00C90229 /* LoginViewController.swift */; };
 		84A7D9341C80D2D500E2602A /* VacancyResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */; };
+		84BEFFC01D09E204005BDF71 /* ValidatePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEFFBF1D09E204005BDF71 /* ValidatePhoneViewController.swift */; };
 		84C322331CCA48A100A70641 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322321CCA48A100A70641 /* AuthenticationManager.swift */; };
 		84C322361CCA9F7800A70641 /* VKAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */; };
 		84C322381CCAA1EB00A70641 /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322371CCAA1EB00A70641 /* AuthenticationHandler.swift */; };
 		84C3223A1CCAA3FD00A70641 /* BaseAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322391CCAA3FD00A70641 /* BaseAuthenticationHandler.swift */; };
 		84C3223C1CCC0B5000A70641 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3223B1CCC0B5000A70641 /* User.swift */; };
 		84C3223E1CCD855B00A70641 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3223D1CCD855B00A70641 /* ProfileViewController.swift */; };
+		84C412201D09A1A000DFDC68 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4121F1D09A1A000DFDC68 /* HUDManager.swift */; };
+		84CC6D8C1D3017D70055D039 /* RCGTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CC6D8B1D3017D70055D039 /* RCGTabBarController.swift */; };
 		84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F2B1C763612002CEB6B /* AppDelegate.swift */; };
 		84D05F331C763612002CEB6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F321C763612002CEB6B /* Assets.xcassets */; };
 		84D05F361C763612002CEB6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F341C763612002CEB6B /* LaunchScreen.storyboard */; };
@@ -174,7 +198,9 @@
 		84D0603D1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
 		84D0603E1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
 		84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */; };
-		92DE59329A08A54E8C8AF378 /* Pods_RCG_Personnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD340FEE8D0F86B0F89BE72 /* Pods_RCG_Personnel.framework */; };
+		84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */; };
+		84FD9DA21D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */; };
+		90AEAA5386C457402977CA44 /* Pods_RCG_PersonnelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6287B1DDE2082483458B1C06 /* Pods_RCG_PersonnelTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,23 +221,50 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8407720C1CBA8E7D00E58260 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		0988F38A20B5A24C3281AFAA /* Pods-RCG Personnel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.debug.xcconfig"; sourceTree = "<group>"; };
+		0DAB6FFE6214F1CD16B6AF90 /* Pods-RCG PersonnelUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelUITests/Pods-RCG PersonnelUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5A79356D7B85D30869EB5C5F /* Pods-RCG PersonnelUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelUITests/Pods-RCG PersonnelUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6287B1DDE2082483458B1C06 /* Pods_RCG_PersonnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C13E4474054216A3C8CC4F7 /* Pods-RCG PersonnelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.release.xcconfig"; sourceTree = "<group>"; };
+		840A0F451CF8833900BD6DF1 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = SOURCE_ROOT; };
+		840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		84116B3C1CEB87C5001E5F02 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		84116B3D1CEB87C5001E5F02 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		84116B3E1CEB87C5001E5F02 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		84116B421CEB8DED001E5F02 /* FBAuthenticationHanler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAuthenticationHanler.swift; sourceTree = "<group>"; };
+		8411A3011CD948E700313D11 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		8415638E1CBFFF2400090C38 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
+		841834321CDBCC6C00698566 /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
 		841F89EE1CC2833400A66930 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		841F89F01CC2889700A66930 /* BasePushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePushHandler.swift; sourceTree = "<group>"; };
 		841F89F21CC28B1400A66930 /* PushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsPushHandler.swift; sourceTree = "<group>"; };
+		8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsKeys.swift; sourceTree = "<group>"; };
+		8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeAuthenticationHandler.swift; sourceTree = "<group>"; };
+		842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsContentCell.swift; sourceTree = "<group>"; };
+		842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingelNewsCommentsHeaderCell.swift; sourceTree = "<group>"; };
+		842EBD5E1D02FDDA0084F376 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		843380B71D353A3100FDF411 /* RCGUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGUISwitch.swift; sourceTree = "<group>"; };
+		843380B91D3A86C100FDF411 /* UserReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserReceiver.swift; sourceTree = "<group>"; };
+		844DDB421D048FDC003238A2 /* SingleNewsCommentsFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsCommentsFooterCell.swift; sourceTree = "<group>"; };
+		8458FC6A1D3276D200284875 /* RCGPhoneTextFieldClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGPhoneTextFieldClass.swift; sourceTree = "<group>"; };
+		846304201CF8815400BDAA2F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		846AA0011CC00C2000205142 /* PushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
+		84891DFD1D3E918A008BBB83 /* SingleNewsCommentsAddNewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsCommentsAddNewCell.swift; sourceTree = "<group>"; };
+		84912C491D06F9AC00E8F126 /* SingleNewsCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsCommentCell.swift; sourceTree = "<group>"; };
 		849D62331CC9275E00C90229 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		849D62351CC92D9300C90229 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		849D62371CC942BB00C90229 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacancyResponseViewController.swift; sourceTree = "<group>"; };
+		84BEFFBF1D09E204005BDF71 /* ValidatePhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePhoneViewController.swift; sourceTree = "<group>"; };
 		84C322321CCA48A100A70641 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthenticationHandler.swift; sourceTree = "<group>"; };
 		84C322371CCAA1EB00A70641 /* AuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationHandler.swift; sourceTree = "<group>"; };
 		84C322391CCAA3FD00A70641 /* BaseAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAuthenticationHandler.swift; sourceTree = "<group>"; };
 		84C3223B1CCC0B5000A70641 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84C3223D1CCD855B00A70641 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		84C4121F1D09A1A000DFDC68 /* HUDManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
+		84CC6D8B1D3017D70055D039 /* RCGTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGTabBarController.swift; sourceTree = "<group>"; };
 		84D05F281C763612002CEB6B /* RCG Personnel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RCG Personnel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D05F2B1C763612002CEB6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D05F321C763612002CEB6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -248,7 +301,7 @@
 		84D05FBC1C77C8F8002CEB6B /* RCGPersonnel-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCGPersonnel-Bridging-Header.h"; path = "../RCGPersonnel-Bridging-Header.h"; sourceTree = "<group>"; };
 		84D05FBE1C77CABF002CEB6B /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		84D05FBF1C77CABF002CEB6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		84D05FC31C77CB01002CEB6B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		84D05FC31C77CB01002CEB6B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "RCG Personnel/Extensions.swift"; sourceTree = "<group>"; };
 		84D05FC81C77D890002CEB6B /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		84D05FC91C77D890002CEB6B /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		84D05FCA1C77D890002CEB6B /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -292,9 +345,12 @@
 		84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedBackViewController.swift; path = ../FeedBackViewController.swift; sourceTree = "<group>"; };
 		84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGTextFieldClass.swift; sourceTree = "<group>"; };
 		84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleVacancyPushHandler.swift; sourceTree = "<group>"; };
-		8DD340FEE8D0F86B0F89BE72 /* Pods_RCG_Personnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_Personnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B3B0EA97E52D03A4E2DE334 /* Pods-RCG Personnel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.debug.xcconfig"; sourceTree = "<group>"; };
-		FA34D2D77C1ECDADC5276A83 /* Pods-RCG Personnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.release.xcconfig"; sourceTree = "<group>"; };
+		84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePhoneViewDelegate.swift; sourceTree = "<group>"; };
+		84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewControllerDelegate.swift; sourceTree = "<group>"; };
+		8B5C4305915F72E2C75D9A6A /* Pods_RCG_Personnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_Personnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.release.xcconfig"; sourceTree = "<group>"; };
+		DBC817AA7C1305DC321F56F9 /* Pods_RCG_PersonnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8D1B197310724F55B7F47F3 /* Pods-RCG PersonnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,7 +358,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92DE59329A08A54E8C8AF378 /* Pods_RCG_Personnel.framework in Frameworks */,
+				846304211CF8815400BDAA2F /* SystemConfiguration.framework in Frameworks */,
+				84116B411CEB87C5001E5F02 /* FBSDKShareKit.framework in Frameworks */,
+				84116B3F1CEB87C5001E5F02 /* FBSDKCoreKit.framework in Frameworks */,
+				84116B401CEB87C5001E5F02 /* FBSDKLoginKit.framework in Frameworks */,
+				67FBBA52579D597CD89BE9CA /* Pods_RCG_Personnel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +370,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90AEAA5386C457402977CA44 /* Pods_RCG_PersonnelTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +378,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BCFAC7E3C81937CED4D0A5E /* Pods_RCG_PersonnelUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,9 +388,17 @@
 		840772061CBA6AA100E58260 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				84D05F741C779388002CEB6B /* News.swift */,
+				842EBD5E1D02FDDA0084F376 /* Comments.swift */,
+				84D05F781C779646002CEB6B /* NewsReceiver.swift */,
 				84D05F671C763FFF002CEB6B /* NewsViewController.swift */,
 				84D05F6B1C766F38002CEB6B /* NewsCell.swift */,
 				84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */,
+				842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */,
+				84891DFD1D3E918A008BBB83 /* SingleNewsCommentsAddNewCell.swift */,
+				844DDB421D048FDC003238A2 /* SingleNewsCommentsFooterCell.swift */,
+				84912C491D06F9AC00E8F126 /* SingleNewsCommentCell.swift */,
+				842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */,
 			);
 			name = News;
 			path = ..;
@@ -337,6 +407,8 @@
 		840772071CBA6AB100E58260 /* Vacancies */ = {
 			isa = PBXGroup;
 			children = (
+				84D05F7C1C77977E002CEB6B /* Vacancies.swift */,
+				84D05F801C779881002CEB6B /* VacanciesReceiver.swift */,
 				84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */,
 				84D060211C7BAD3C002CEB6B /* VacancyCell.swift */,
 				84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */,
@@ -380,10 +452,16 @@
 			isa = PBXGroup;
 			children = (
 				849D62371CC942BB00C90229 /* LoginViewController.swift */,
+				840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */,
+				84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */,
 				84C322321CCA48A100A70641 /* AuthenticationManager.swift */,
+				84BEFFBF1D09E204005BDF71 /* ValidatePhoneViewController.swift */,
+				84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */,
 				84C322371CCAA1EB00A70641 /* AuthenticationHandler.swift */,
 				84C322391CCAA3FD00A70641 /* BaseAuthenticationHandler.swift */,
 				84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */,
+				8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */,
+				84116B421CEB8DED001E5F02 /* FBAuthenticationHanler.swift */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -392,7 +470,9 @@
 			isa = PBXGroup;
 			children = (
 				84C3223B1CCC0B5000A70641 /* User.swift */,
+				843380B91D3A86C100FDF411 /* UserReceiver.swift */,
 				84C3223D1CCD855B00A70641 /* ProfileViewController.swift */,
+				8411A3011CD948E700313D11 /* EditProfileViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -404,8 +484,8 @@
 				84D05F3F1C763613002CEB6B /* RCG PersonnelTests */,
 				84D05F4A1C763613002CEB6B /* RCG PersonnelUITests */,
 				84D05F291C763612002CEB6B /* Products */,
-				F24AE7115AB406D342E1E46D /* Pods */,
 				A590264D6D8747913C613698 /* Frameworks */,
+				DCFD4D0A604DCBB6B4678FC0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -463,7 +543,6 @@
 			isa = PBXGroup;
 			children = (
 				84D05FBC1C77C8F8002CEB6B /* RCGPersonnel-Bridging-Header.h */,
-				84D05FC31C77CB01002CEB6B /* Extensions.swift */,
 				84D05F5A1C763B9C002CEB6B /* Resources */,
 			);
 			name = "Supporting Files";
@@ -472,6 +551,7 @@
 		84D05F5A1C763B9C002CEB6B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				840A0F451CF8833900BD6DF1 /* Reachability.swift */,
 				84D05FC71C77D890002CEB6B /* SDWebImage */,
 				84D05FBD1C77CAA3002CEB6B /* JSON */,
 				84D05FA21C77C823002CEB6B /* SwiftHTTP */,
@@ -485,16 +565,18 @@
 		84D05F6F1C7791DF002CEB6B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				84D05FC31C77CB01002CEB6B /* Extensions.swift */,
 				84D05F701C779298002CEB6B /* Constants.swift */,
-				8407720C1CBA8E7D00E58260 /* Globals.swift */,
-				84D05F741C779388002CEB6B /* News.swift */,
-				84D05F7C1C77977E002CEB6B /* Vacancies.swift */,
-				84D05F781C779646002CEB6B /* NewsReceiver.swift */,
-				84D05F801C779881002CEB6B /* VacanciesReceiver.swift */,
 				84D0602F1C8018C9002CEB6B /* RCGButton.swift */,
 				84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */,
+				8458FC6A1D3276D200284875 /* RCGPhoneTextFieldClass.swift */,
 				849D62331CC9275E00C90229 /* BaseViewController.swift */,
+				843380B71D353A3100FDF411 /* RCGUISwitch.swift */,
 				849D62351CC92D9300C90229 /* BaseTableViewController.swift */,
+				841834321CDBCC6C00698566 /* NSNotificationCenterKeys.swift */,
+				8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */,
+				84C4121F1D09A1A000DFDC68 /* HUDManager.swift */,
+				84CC6D8B1D3017D70055D039 /* RCGTabBarController.swift */,
 			);
 			name = Classes;
 			path = ..;
@@ -579,16 +661,26 @@
 		A590264D6D8747913C613698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8DD340FEE8D0F86B0F89BE72 /* Pods_RCG_Personnel.framework */,
+				846304201CF8815400BDAA2F /* SystemConfiguration.framework */,
+				84116B3C1CEB87C5001E5F02 /* FBSDKCoreKit.framework */,
+				84116B3D1CEB87C5001E5F02 /* FBSDKLoginKit.framework */,
+				84116B3E1CEB87C5001E5F02 /* FBSDKShareKit.framework */,
+				8B5C4305915F72E2C75D9A6A /* Pods_RCG_Personnel.framework */,
+				6287B1DDE2082483458B1C06 /* Pods_RCG_PersonnelTests.framework */,
+				DBC817AA7C1305DC321F56F9 /* Pods_RCG_PersonnelUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F24AE7115AB406D342E1E46D /* Pods */ = {
+		DCFD4D0A604DCBB6B4678FC0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9B3B0EA97E52D03A4E2DE334 /* Pods-RCG Personnel.debug.xcconfig */,
-				FA34D2D77C1ECDADC5276A83 /* Pods-RCG Personnel.release.xcconfig */,
+				0988F38A20B5A24C3281AFAA /* Pods-RCG Personnel.debug.xcconfig */,
+				D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */,
+				E8D1B197310724F55B7F47F3 /* Pods-RCG PersonnelTests.debug.xcconfig */,
+				7C13E4474054216A3C8CC4F7 /* Pods-RCG PersonnelTests.release.xcconfig */,
+				0DAB6FFE6214F1CD16B6AF90 /* Pods-RCG PersonnelUITests.debug.xcconfig */,
+				5A79356D7B85D30869EB5C5F /* Pods-RCG PersonnelUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -600,13 +692,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D05F501C763613002CEB6B /* Build configuration list for PBXNativeTarget "RCG Personnel" */;
 			buildPhases = (
-				A7A5FF33C7830105C65E50AA /* Check Pods Manifest.lock */,
+				56F959660F53465AC35B0957 /* 📦 Check Pods Manifest.lock */,
 				84D05F241C763612002CEB6B /* Sources */,
 				84D05F251C763612002CEB6B /* Frameworks */,
 				84D05F261C763612002CEB6B /* Resources */,
 				8407720B1CBA70AF00E58260 /* ShellScript */,
-				1C03E600649C9F43604D4C5C /* Embed Pods Frameworks */,
-				F504E71B101E595FD679B7B2 /* Copy Pods Resources */,
+				8AD2997E6E38D0C38B63E1D0 /* 📦 Embed Pods Frameworks */,
+				3ABD485626047F9C578041F9 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -621,9 +713,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D05F531C763613002CEB6B /* Build configuration list for PBXNativeTarget "RCG PersonnelTests" */;
 			buildPhases = (
+				70C011FE8778511F5FAA43D0 /* 📦 Check Pods Manifest.lock */,
 				84D05F381C763613002CEB6B /* Sources */,
 				84D05F391C763613002CEB6B /* Frameworks */,
 				84D05F3A1C763613002CEB6B /* Resources */,
+				8C6F08D5741086A78AD5900A /* 📦 Embed Pods Frameworks */,
+				37444B5800986E20539B7BC8 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -639,9 +734,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D05F561C763613002CEB6B /* Build configuration list for PBXNativeTarget "RCG PersonnelUITests" */;
 			buildPhases = (
+				6BC10DA1CF4B43195FAF08FE /* 📦 Check Pods Manifest.lock */,
 				84D05F431C763613002CEB6B /* Sources */,
 				84D05F441C763613002CEB6B /* Frameworks */,
 				84D05F451C763613002CEB6B /* Resources */,
+				7B132E407F44482FD645771F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -748,19 +845,94 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C03E600649C9F43604D4C5C /* Embed Pods Frameworks */ = {
+		37444B5800986E20539B7BC8 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3ABD485626047F9C578041F9 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56F959660F53465AC35B0957 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6BC10DA1CF4B43195FAF08FE /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		70C011FE8778511F5FAA43D0 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7B132E407F44482FD645771F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG PersonnelUITests/Pods-RCG PersonnelUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8407720B1CBA70AF00E58260 /* ShellScript */ = {
@@ -776,34 +948,34 @@
 			shellPath = /bin/bash;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
-		A7A5FF33C7830105C65E50AA /* Check Pods Manifest.lock */ = {
+		8AD2997E6E38D0C38B63E1D0 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F504E71B101E595FD679B7B2 /* Copy Pods Resources */ = {
+		8C6F08D5741086A78AD5900A /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -813,21 +985,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84912C4A1D06F9AC00E8F126 /* SingleNewsCommentCell.swift in Sources */,
+				842EBD5B1D00D4CD0084F376 /* SingleNewsContentCell.swift in Sources */,
 				8415638F1CBFFF2400090C38 /* PushNotification.swift in Sources */,
 				84D05FF81C77D890002CEB6B /* SDWebImageDownloader.m in Sources */,
 				849D62361CC92D9300C90229 /* BaseTableViewController.swift in Sources */,
 				84D05FB51C77C823002CEB6B /* HTTPTask.swift in Sources */,
+				842EBD5D1D01DEE50084F376 /* SingelNewsCommentsHeaderCell.swift in Sources */,
 				849D62341CC9275E00C90229 /* BaseViewController.swift in Sources */,
+				8420008C1CF0C34400992576 /* NSUserDefaultsKeys.swift in Sources */,
 				84D05FC41C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060011C77D890002CEB6B /* SDWebImagePrefetcher.m in Sources */,
+				843380BA1D3A86C100FDF411 /* UserReceiver.swift in Sources */,
 				84D060161C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */,
+				8458FC6B1D3276D200284875 /* RCGPhoneTextFieldClass.swift in Sources */,
+				8411A3021CD948E700313D11 /* EditProfileViewController.swift in Sources */,
 				84C3223C1CCC0B5000A70641 /* User.swift in Sources */,
 				84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
+				8420008E1CF0C61D00992576 /* NativeAuthenticationHandler.swift in Sources */,
 				84D05FB81C77C823002CEB6B /* HTTPUpload.swift in Sources */,
+				84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */,
 				84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */,
 				84D060341C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84C3223E1CCD855B00A70641 /* ProfileViewController.swift in Sources */,
 				841F89EF1CC2833400A66930 /* NavigationManager.swift in Sources */,
+				84CC6D8C1D3017D70055D039 /* RCGTabBarController.swift in Sources */,
+				84891DFE1D3E918A008BBB83 /* SingleNewsCommentsAddNewCell.swift in Sources */,
 				841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */,
 				84C3223A1CCAA3FD00A70641 /* BaseAuthenticationHandler.swift in Sources */,
 				84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */,
@@ -836,6 +1019,7 @@
 				841F89F11CC2889700A66930 /* BasePushHandler.swift in Sources */,
 				84D05FAF1C77C823002CEB6B /* HTTPSecurity.swift in Sources */,
 				84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */,
+				84BEFFC01D09E204005BDF71 /* ValidatePhoneViewController.swift in Sources */,
 				84D060301C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				846AA0021CC00C2000205142 /* PushManager.swift in Sources */,
 				84D060131C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
@@ -846,31 +1030,39 @@
 				84C322361CCA9F7800A70641 /* VKAuthenticationHandler.swift in Sources */,
 				84D05F901C779976002CEB6B /* MBProgressHUD.m in Sources */,
 				84D05FB21C77C823002CEB6B /* HTTPStatusCode.swift in Sources */,
+				840A0F481CFC9DE800BD6DF1 /* RegisterViewController.swift in Sources */,
 				84D05F811C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
 				84D05FAC1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */,
 				84D05FC01C77CABF002CEB6B /* SwiftyJSON.swift in Sources */,
+				844DDB431D048FDC003238A2 /* SingleNewsCommentsFooterCell.swift in Sources */,
 				84D05FEC1C77D890002CEB6B /* NSData+ImageContentType.m in Sources */,
 				84D05F711C779298002CEB6B /* Constants.swift in Sources */,
 				84D05FA91C77C823002CEB6B /* HTTPRequestSerializer.swift in Sources */,
 				84D0603C1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */,
 				84D05FFE1C77D890002CEB6B /* SDWebImageManager.m in Sources */,
 				84D060261C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */,
+				843380B81D353A3100FDF411 /* RCGUISwitch.swift in Sources */,
 				84D060381C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */,
 				84D05FF51C77D890002CEB6B /* SDWebImageDecoder.m in Sources */,
 				841F89F51CC28F8400A66930 /* SingleNewsPushHandler.swift in Sources */,
+				841834331CDBCC6C00698566 /* NSNotificationCenterKeys.swift in Sources */,
+				84116B431CEB8DED001E5F02 /* FBAuthenticationHanler.swift in Sources */,
 				84D05FFB1C77D890002CEB6B /* SDWebImageDownloaderOperation.m in Sources */,
-				8407720D1CBA8E7D00E58260 /* Globals.swift in Sources */,
 				84D060221C7BAD3C002CEB6B /* VacancyCell.swift in Sources */,
+				84C412201D09A1A000DFDC68 /* HUDManager.swift in Sources */,
+				84FD9DA21D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift in Sources */,
 				84D05F7D1C77977E002CEB6B /* Vacancies.swift in Sources */,
 				84D0601E1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */,
 				84D05F791C779646002CEB6B /* NewsReceiver.swift in Sources */,
 				84C322331CCA48A100A70641 /* AuthenticationManager.swift in Sources */,
+				842EBD5F1D02FDDA0084F376 /* Comments.swift in Sources */,
 				84D05FE91C77D890002CEB6B /* MKAnnotationView+WebCache.m in Sources */,
 				84D05FF21C77D890002CEB6B /* SDWebImageCompat.m in Sources */,
 				84C322381CCAA1EB00A70641 /* AuthenticationHandler.swift in Sources */,
 				84D060041C77D890002CEB6B /* UIButton+WebCache.m in Sources */,
 				84D060101C77D890002CEB6B /* UIImageView+HighlightedWebCache.m in Sources */,
 				84D060071C77D890002CEB6B /* UIImage+GIF.m in Sources */,
+				840A0F461CF8833900BD6DF1 /* Reachability.swift in Sources */,
 				84D05FEF1C77D890002CEB6B /* SDImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1091,11 +1283,15 @@
 		};
 		84D05F511C763613002CEB6B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B3B0EA97E52D03A4E2DE334 /* Pods-RCG Personnel.debug.xcconfig */;
+			baseConfigurationReference = 0988F38A20B5A24C3281AFAA /* Pods-RCG Personnel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "RCG Personnel/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1107,15 +1303,19 @@
 		};
 		84D05F521C763613002CEB6B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA34D2D77C1ECDADC5276A83 /* Pods-RCG Personnel.release.xcconfig */;
+			baseConfigurationReference = D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "RCG Personnel/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DRELEASE_VERSION";
+				OTHER_SWIFT_FLAGS = "-DREALEASE_VERSION $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.lightbluefox.RCG-Personnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1124,6 +1324,7 @@
 		};
 		84D05F541C763613002CEB6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8D1B197310724F55B7F47F3 /* Pods-RCG PersonnelTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "RCG PersonnelTests/Info.plist";
@@ -1136,6 +1337,7 @@
 		};
 		84D05F551C763613002CEB6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C13E4474054216A3C8CC4F7 /* Pods-RCG PersonnelTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "RCG PersonnelTests/Info.plist";
@@ -1148,6 +1350,7 @@
 		};
 		84D05F571C763613002CEB6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DAB6FFE6214F1CD16B6AF90 /* Pods-RCG PersonnelUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "RCG PersonnelUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1160,6 +1363,7 @@
 		};
 		84D05F581C763613002CEB6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A79356D7B85D30869EB5C5F /* Pods-RCG PersonnelUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "RCG PersonnelUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

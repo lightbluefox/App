@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import VK_ios_sdk
+import FBSDKShareKit
+import Social
 
-class SingleVacancyViewController: BaseViewController {
+class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     
     @IBOutlet weak var vacImageVIew: UIImageView!
     @IBOutlet weak var vacancyFemaleImage: UIImageView!
-    
-    @IBOutlet weak var vacancyCircle: UIImageView!
     @IBOutlet weak var vacancyTopBackgroundImage: UIImageView!
     @IBOutlet weak var vacancyMaleImage: UIImageView!
     @IBOutlet weak var vacValidTillLabel: UILabel!
@@ -27,6 +28,66 @@ class SingleVacancyViewController: BaseViewController {
     @IBOutlet weak var separator: UIImageView!
     @IBOutlet weak var vacFullText: UILabel!
     @IBOutlet weak var vacReplyButton: UIButton!
+    @IBAction func vacShareVKButtonTouched(sender: AnyObject) {
+        let shareDialog = VKShareDialogController()
+        shareDialog.text = "Hello, World!"
+        shareDialog.shareLink = VKShareLink(title: "More hellowolds...", link: NSURL(string: "http://www.rcg.agency/"))
+        shareDialog.completionHandler = {(vc : VKShareDialogController!, result: VKShareDialogControllerResult) in self.dismissViewControllerAnimated(true, completion: nil)}
+        
+        self.presentViewController(shareDialog, animated: true, completion: nil)
+    }
+    
+    @IBAction func vacShareTWButtonTouched(sender: AnyObject) {
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            let twitterSheet : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            twitterSheet.setInitialText("Share on Twitter")
+            self.presentViewController(twitterSheet, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func vacShareFBButtonTouched(sender: AnyObject) {
+        //if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
+            //var facebookSheet : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            //facebookSheet.setInitialText("Share on Facebook")
+            let shareDialog = FBSDKShareDialog()
+            let content = FBSDKShareLinkContent()
+            
+            content.contentTitle = "Hello world Title!"
+            content.contentDescription = "Sharing hellow world!"
+            content.contentURL = NSURL(string: "http://www.rcg.agency")
+            shareDialog.shareContent = content
+            shareDialog.fromViewController = self
+            shareDialog.delegate = self
+            shareDialog.mode = .Native
+            
+            if !shareDialog.canShow() {
+                shareDialog.mode = .FeedBrowser
+            }
+            
+            shareDialog.show()
+       /* } else {
+            var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } */
+    }
+    
+    func sharerDidCancel(sharer: FBSDKSharing!) {
+        print("Canceled")
+    }
+    func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject : AnyObject]!) {
+        print("Completed")
+    }
+    func sharer(sharer: FBSDKSharing!, didFailWithError error: NSError!) {
+        print("Failed")
+        print(error.description)
+    }
     
     var vacGuid: String?
     
@@ -77,7 +138,7 @@ class SingleVacancyViewController: BaseViewController {
         buttonBack.frame = CGRectMake(0, 0, 40, 40)
         buttonBack.setImage(UIImage(named: "backArrow"), forState: .Normal);
         buttonBack.setImage(UIImage(named: "backArrowSelected"), forState: UIControlState.Highlighted)
-        buttonBack.addTarget(self, action: "leftNavButtonClick:", forControlEvents: UIControlEvents.TouchUpInside);
+        buttonBack.addTarget(self, action: #selector(SingleVacancyViewController.leftNavButtonClick(_:)), forControlEvents: UIControlEvents.TouchUpInside);
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem(customView: buttonBack);
         self.navigationItem.setLeftBarButtonItem(leftBarButtonItem, animated: false);
     }
@@ -99,8 +160,8 @@ class SingleVacancyViewController: BaseViewController {
         self.vacMoney.text = self.vacReceiver.singleVacancy.money
         
         switch self.vacReceiver.singleVacancy.sex {
-        case "male" : self.vacancyFemaleImage?.image = UIImage(named: "femaleLightGray"); self.vacancyMaleImage?.image = UIImage(named: "maleRed");
-        case "female" : self.vacancyFemaleImage?.image = UIImage(named: "femaleRed"); self.vacancyMaleImage?.image = UIImage(named: "maleLightGray");
+        case "male" : self.vacancyFemaleImage?.image = UIImage(named: "femaleGray"); self.vacancyMaleImage?.image = UIImage(named: "maleRed");
+        case "female" : self.vacancyFemaleImage?.image = UIImage(named: "femaleRed"); self.vacancyMaleImage?.image = UIImage(named: "maleGray");
         case "both" : self.vacancyFemaleImage?.image = UIImage(named: "femaleRed"); self.vacancyMaleImage?.image = UIImage(named: "maleRed");
         default : self.vacancyFemaleImage?.image = UIImage(named: "femaleRed"); self.vacancyMaleImage?.image = UIImage(named: "maleRed");
         }
@@ -113,20 +174,20 @@ class SingleVacancyViewController: BaseViewController {
         
         //MARK: Make a circle
         self.vacImageVIew.clipsToBounds = true
-        self.vacImageVIew.layer.cornerRadius = 75
+        self.vacImageVIew.layer.cornerRadius = 10
         
         //MARK: Make it gray and blured
         //self.addBluredGrayBackground()
         
         
-        self.vacReplyButton.backgroundColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0)
-        self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Selected)
-        
+        //self.vacReplyButton.backgroundColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0)
+        //self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Normal) //в сториборде сд
+        //self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Selected)
+ 
         self.separator.image = UIImage(named: "verticalSeparator")
         
-        self.vacancyTopBackgroundImage.image = UIImage(named: "vacancyBackGround")
-        self.vacancyCircle.image = UIImage(named: "vacancyPersCircle")
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "leftBackGround")!)
+        //self.view.backgroundColor = UIColor(red: 15/255, green: 15/255, blue: 15/255, alpha: 1)
     }
     
     private func showFailureNotification(result:String){

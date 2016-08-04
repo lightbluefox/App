@@ -19,6 +19,10 @@ class News {
     var validTillDate = ""
     var icons = [String]()
     var images = [String]()
+    var comments = [Comments]()
+    var commentsCount = 0
+    var commentsStep = 1 //сколько получать комментариев за 1 запрос
+    var commentsTotal = 0
     
     init () {
         self.guid = ""
@@ -46,4 +50,3 @@ class News {
         self.images = images
     }
 }
-

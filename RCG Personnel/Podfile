@@ -1,8 +1,10 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target 'RCG Personnel' do
-pod 'VK-ios-sdk' 
+pod 'VK-ios-sdk'
+pod 'Alamofire', '~> 3.4'
+#pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
 
 end
 
@@ -13,4 +15,5 @@ end
 target 'RCG PersonnelUITests' do
 
 end
+
 

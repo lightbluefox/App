@@ -202,7 +202,7 @@ public class HTTPRequestSerializer: NSObject {
                     mutData.appendData(boundSplit)
                 }
             }
-            i++
+            i += 1
         }
         return mutData
     }

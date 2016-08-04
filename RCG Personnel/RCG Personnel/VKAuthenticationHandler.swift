@@ -11,9 +11,7 @@ import VK_ios_sdk
 
 class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkUIDelegate {
     
-    let userVkIdConstantName = "UserVkId"
-    let userVkAccessTokenConstantName = "UserVkAccessToken"
-    let vkAppID = "5270581"
+    let vkAppID = "5429703"
     let defaults = NSUserDefaults.standardUserDefaults()
     
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -37,7 +35,12 @@ class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkU
             }
         }
         else {
-            VKSdk.authorize([VK_PER_EMAIL,VK_PER_FRIENDS,VK_PER_WALL])
+            if VKSdk.vkAppMayExists() {
+                VKSdk.authorize([VK_PER_EMAIL,VK_PER_FRIENDS,VK_PER_WALL,VK_PER_OFFLINE])
+            } else {
+                VKSdk.authorize([VK_PER_EMAIL,VK_PER_FRIENDS,VK_PER_WALL, VK_PER_OFFLINE])
+            }
+            
             print(VKSdk.isLoggedIn())
             //parentViewController?.dismissViewControllerAnimated(true, completion: nil)
             
@@ -51,10 +54,9 @@ class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkU
     func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
         if let usertoken = result.token {
             
-            print(result.user.id)
+            //print(result.user.id)
             print(VKSdk.isLoggedIn())//Okay
-            //defaults.setObject(result.user.id, forKey: userVkIdConstantName)
-            //defaults.setObject(result.token.accessToken, forKey: userVkAccessTokenConstantName)
+            print(result.token.accessToken)
         }
         else if let error = result.error {
             if (error.vkError.errorCode == -102) {
@@ -62,7 +64,7 @@ class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkU
                 NSLog("%@","Authroization failed: VK Api cancelled")
             }
             else {
-                print("Authorization failed: Some other error, e.g. network")
+                NSLog("%@","Authorization failed: network error, or user denied authentication prompt in app")
             }
         }
     }
@@ -85,6 +87,12 @@ class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkU
     }
     
     func vkSdkNeedCaptchaEnter(captchaError: VKError!) {
-        print("viewController")
+        let vc = VKCaptchaViewController.captchaControllerWithError(captchaError)
+        vc.presentIn(parentViewController)
+    }
+    
+    func vkSdkAccessTokenUpdated(newToken: VKAccessToken!, oldToken: VKAccessToken!) {
+        print(newToken?.accessToken)
+        print(oldToken?.accessToken)
     }
 }

@@ -19,8 +19,27 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return result
     }
+    func makeImageWithColorAndSize(color: UIColor, size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(CGRectMake(0, 0, size.width, size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        if image != nil {
+            return image
+        }
+        else {
+            return UIImage()
+        }
+    }
+    func encodeToBase64() -> String? {
+        let imageData = UIImagePNGRepresentation(self)
+        if let encoded = imageData?.base64EncodedStringWithOptions(.Encoding64CharacterLineLength) {
+            return encoded
+        }
+        return nil
+    }
 }
-
 extension NSDate {
     var gmc0: NSDate {
         let dateformatter = NSDateFormatter()
@@ -31,15 +50,23 @@ extension NSDate {
 }
 
 extension String {
+    ///Converts string to DD.MM.YYYY format
     var formatedDate: String {
-        let timeinterval : NSTimeInterval = Double(self)!/1000
-        let dateObject = NSDate(timeIntervalSince1970: timeinterval)
         
-        let dateformatter = NSDateFormatter()
-        dateformatter.timeZone = .localTimeZone()
-        dateformatter.dateFormat = "dd.MM.YYYY"
-        return dateformatter.stringFromDate(dateObject);
+        if let doubleSelf = Double(self) {
+            let timeinterval : NSTimeInterval = doubleSelf/1000
+            let dateObject = NSDate(timeIntervalSince1970: timeinterval)
+        
+            let dateformatter = NSDateFormatter()
+            dateformatter.timeZone = .localTimeZone()
+            dateformatter.dateFormat = "dd.MM.YYYY"
+            return dateformatter.stringFromDate(dateObject);
+        }
+        else {
+            return ""
+        }
     }
+    ///Converts string to DD.MM.YY format
     var formatedDateDDMMYY: String {
         let timeinterval : NSTimeInterval = Double(self)!/1000
         let dateObject = NSDate(timeIntervalSince1970: timeinterval)
@@ -48,12 +75,58 @@ extension String {
         dateformatter.dateFormat = "dd.MM.YY"
         return dateformatter.stringFromDate(dateObject);
     }
-    var dayFromDdMmYyyy: String {
-        return self.substringWithRange(self.startIndex..<(self.rangeOfString(".")?.startIndex)!)
+    ///Returns Day from String in DD.MM.YYYY format
+    var dayFromDdMmYyyy: String? {
+        if let index = self.rangeOfString(".")?.startIndex {
+            return self.substringWithRange(self.startIndex ..< index)
+        } else {
+            return nil
+        }
     }
-    var monthYearFromDdMmYyyy: String {
-        return self.substringWithRange((self.rangeOfString(".")?.endIndex)!..<self.endIndex)
+    ///Returns Month from String in DD.MM.YYYY format
+    var monthYearFromDdMmYyyy: String? {
+        if let index = self.rangeOfString(".")?.endIndex {
+            return self.substringWithRange(index ..< self.endIndex)
+        }
+        else {
+            return nil
+        }
+        
     }
+    ///Returns BIGINT from String in dd.MM.yyyy format
+    var timeIntervalSince1970FromDdMmYyyy: String? {
+        let dateformatter = NSDateFormatter()
+        //dateformatter.timeZone = .localTimeZone()
+        dateformatter.dateFormat = "dd.MM.yyyy"
+        if let date = dateformatter.dateFromString(self) {
+            let newdate = String(IntMax(date.timeIntervalSince1970*1000))
+            return newdate
+        }
+        else {
+            return nil
+        }
+    }
+    
+    subscript (i: Int) -> String {
+        if self.characters.count > i {
+            return String(Array(arrayLiteral: self)[i])
+        }
+        return ""
+    }
+    
+    func indexAt(theInt:Int)->String.Index {
+        return self.startIndex.advancedBy(theInt)
+    }
+    
+    func decodeUIImageFromBase64() -> UIImage? {
+        if let data = NSData(base64EncodedString: self, options: .IgnoreUnknownCharacters) {
+            if let decoded = UIImage(data: data) {
+                return decoded
+            }
+        }
+        return nil
+    }
+    
 }
 
 extension UIApplication {

@@ -35,7 +35,7 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
         setShowingPickerViewOnTap(themeTextField)
         
         //MARK: Скрывать, клавиатуру при тапе по скрол вью
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard:");
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(FeedBackViewController.hideKeyboard(_:)));
         tapGesture.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(tapGesture)
         setScrollViewSqueezeOnKeyboardAppearаnce()
@@ -56,8 +56,8 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
     
     private func setScrollViewSqueezeOnKeyboardAppearаnce() {
         self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FeedBackViewController.keyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FeedBackViewController.keyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         messageTextView.textContainerInset = UIEdgeInsetsMake(8, 3, 8, 30)
         messageTextView.layer.borderWidth = 1
