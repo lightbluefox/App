@@ -287,7 +287,7 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
     }
     
     func updateUserOnServer() {
-        let hud = hudManager.showHUD("Сохраняем информацию о пользователе...", details: nil, type: .Processing)
+        let hud = hudManager.showHUD("Сохраняем...", details: nil, type: .Processing)
         
         var gender = Gender.Male
         if sex.text == "Женский" {
