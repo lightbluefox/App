@@ -184,17 +184,21 @@ class UserReceiver {
         let headers = ["Authorization" : "Bearer " + user.token ?? ""]
         
         if let nsdataFromPhoto = UIImagePNGRepresentation(photo) {
-            Alamofire.upload(.POST, Constants.apiUrl + "/api/v01/images", headers: headers, multipartFormData: {
+            Alamofire.upload(.POST, Constants.apiUrl + "api/v01/images", headers: headers, multipartFormData: {
                 multipartFormData in
                 multipartFormData.appendBodyPart(data: nsdataFromPhoto, name: "image")
             }, encodingCompletion: {
                 encodingResult in
                 switch encodingResult {
                 case .Success(let upload, _, _):
-                        upload.responseJSON { response in
+                        upload.responseString { response in
                             switch response.result {
                             case .Success:
-                                if let responseData = response.data {
+                                if response.result.value == "Not Found"
+                                {
+                                    print(response.result.value!)
+                                }
+                                else if let responseData = response.data {
                                     var jsonError: NSError?
                                     let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
                                     self.user.photoUrl = json["url"].stringValue
