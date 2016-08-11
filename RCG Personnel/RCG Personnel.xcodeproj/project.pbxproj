@@ -201,6 +201,7 @@
 		84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */; };
 		84FD9DA21D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */; };
 		90AEAA5386C457402977CA44 /* Pods_RCG_PersonnelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6287B1DDE2082483458B1C06 /* Pods_RCG_PersonnelTests.framework */; };
+		F26FCD411D5BC052005CD2C0 /* SocialAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,6 +352,7 @@
 		D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.release.xcconfig"; sourceTree = "<group>"; };
 		DBC817AA7C1305DC321F56F9 /* Pods_RCG_PersonnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D1B197310724F55B7F47F3 /* Pods-RCG PersonnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialAuthenticationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,6 +453,7 @@
 		84C322341CCA83B000A70641 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				F26FCD3F1D5BC037005CD2C0 /* Social */,
 				849D62371CC942BB00C90229 /* LoginViewController.swift */,
 				840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */,
 				84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */,
@@ -683,6 +686,15 @@
 				5A79356D7B85D30869EB5C5F /* Pods-RCG PersonnelUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F26FCD3F1D5BC037005CD2C0 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */,
+			);
+			name = Social;
+			path = Authentication/Social;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1009,6 +1021,7 @@
 				84D060341C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84C3223E1CCD855B00A70641 /* ProfileViewController.swift in Sources */,
 				841F89EF1CC2833400A66930 /* NavigationManager.swift in Sources */,
+				F26FCD411D5BC052005CD2C0 /* SocialAuthenticationService.swift in Sources */,
 				84CC6D8C1D3017D70055D039 /* RCGTabBarController.swift in Sources */,
 				84891DFE1D3E918A008BBB83 /* SingleNewsCommentsAddNewCell.swift in Sources */,
 				841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */,
