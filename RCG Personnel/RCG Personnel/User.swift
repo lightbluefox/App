@@ -12,6 +12,15 @@ import Alamofire
 enum Gender {
     case Male
     case Female
+    
+    var localizedTitle: String {
+        switch self {
+        case .Male:
+            return "Мужской"
+        case .Female:
+            return "Женский"
+        }
+    }
 }
 
 class User {
@@ -84,15 +93,15 @@ class User {
         }
     }
     
-    var vkToken: String!
-    var fbToken: String!
-    var twToken: String!
+    var vkToken: String?
+    var fbToken: String?
+    var twToken: String?
     
+    // TODO: выпилить. Текущего юзера получать через AuthenticationService.currentUser(_:)
+    @available(*, deprecated, message="Текущего юзера получать через AuthenticationService.currentUser(_:)")
     static let sharedUser = User()
     
-    init() {
-        
-    }
+    init() {}
     
     init(photo: String, firstName: String, middleName: String, lastName: String, phone: String, email: String, birthDate: String, height: Int, size: Int, hasMedicalBook: Bool, medicalBookNumber: String, metroStation: String, passportData: String, gender: Gender) {
         self.photoUrl = photo

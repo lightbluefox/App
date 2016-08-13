@@ -23,71 +23,8 @@ class HUDManager {
     var parentViewController: UIViewController?
     
     func showHUD(label: String?, details: String?, type: HUDType) -> MBProgressHUD {
-        let hud = MBProgressHUD.showHUDAddedTo(self.parentViewController?.view.window /* это трЕш */, animated: true)
-        
-        switch type {
-        case .Processing :
-            hud.mode = MBProgressHUDMode.Indeterminate
-            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
-            hud.labelText = label ?? ""
-            return hud
-        
-        case .Failure :
-            hud.mode = MBProgressHUDMode.CustomView
-            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
-            hud.labelText = label ?? ""
-            hud.detailsLabelText = details ?? ""
-            hud.hide(true, afterDelay: 3)
-            return hud
-            
-        case .Success :
-            hud.mode = MBProgressHUDMode.CustomView
-            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            let imageView = UIImageView();
-            imageView.image = UIImage(named: "checkmark");
-            imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50);
-            imageView.contentMode = UIViewContentMode.Center;
-            hud.customView = imageView
-            hud.hide(true, afterDelay: 3)
-            return hud
-        
-        default :
-            hud.mode = MBProgressHUDMode.CustomView
-            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
-            hud.labelText = label ?? ""
-            hud.detailsLabelText = details ?? ""
-            hud.hide(true, afterDelay: 3)
-            return hud
-        }
-        /*
-        if type == .Processing {
-            hud.mode = MBProgressHUDMode.Indeterminate
-            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
-            hud.labelText = label
-        }
-        else if type == .Failure {
-            hud.mode = MBProgressHUDMode.CustomView
-            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
-            hud.labelText = label
-            hud.detailsLabelText = details
-            hud.hide(true, afterDelay: 3)
-        }
-        else if type == .Success {
-            hud.mode = MBProgressHUDMode.CustomView
-            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            let imageView = UIImageView();
-            imageView.image = UIImage(named: "checkmark");
-            imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50);
-            imageView.contentMode = UIViewContentMode.Center;
-            hud.customView = imageView
-            hud.hide(true, afterDelay: 3)
-        }
-        return hud*/
+        let view = self.parentViewController?.view.window // это трЕш
+        return MBProgressHUD.showHUD(label, details: details, type: type, inView: view!)  // implicit unwrapping оправдан только тем, что оно и так крэшнется в случае, если view == nil
     }
     
     ///Shows alert with 2 buttons - cancelation and custom action
@@ -120,4 +57,79 @@ class HUDManager {
     /*init(parentViewController: UIViewController) {
         self.parentViewController = parentViewController
     }*/
+}
+
+extension MBProgressHUD {
+    
+    static func showHUD(label: String?, details: String?, type: HUDType, inView view: UIView) -> MBProgressHUD {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        switch type {
+        case .Processing :
+            hud.mode = MBProgressHUDMode.Indeterminate
+            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+            hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
+            hud.labelText = label ?? ""
+            return hud
+            
+        case .Failure :
+            hud.mode = MBProgressHUDMode.CustomView
+            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+            hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
+            hud.labelText = label ?? ""
+            hud.detailsLabelText = details ?? ""
+            hud.hide(true, afterDelay: 3)
+            return hud
+            
+        case .Success :
+            hud.mode = MBProgressHUDMode.CustomView
+            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+            let imageView = UIImageView();
+            imageView.image = UIImage(named: "checkmark");
+            imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50);
+            imageView.contentMode = UIViewContentMode.Center;
+            hud.customView = imageView
+            hud.hide(true, afterDelay: 3)
+            return hud
+            
+        default :
+            hud.mode = MBProgressHUDMode.CustomView
+            hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+            hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
+            hud.labelText = label ?? ""
+            hud.detailsLabelText = details ?? ""
+            hud.hide(true, afterDelay: 3)
+            return hud
+        }
+        /*
+         if type == .Processing {
+         hud.mode = MBProgressHUDMode.Indeterminate
+         hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+         hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
+         hud.labelText = label
+         }
+         else if type == .Failure {
+         hud.mode = MBProgressHUDMode.CustomView
+         hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+         hud.labelFont = UIFont(name: "Roboto Regular", size: 12)
+         hud.labelText = label
+         hud.detailsLabelText = details
+         hud.hide(true, afterDelay: 3)
+         }
+         else if type == .Success {
+         hud.mode = MBProgressHUDMode.CustomView
+         hud.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+         let imageView = UIImageView();
+         imageView.image = UIImage(named: "checkmark");
+         imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50);
+         imageView.contentMode = UIViewContentMode.Center;
+         hud.customView = imageView
+         hud.hide(true, afterDelay: 3)
+         }
+         return hud*/
+    }
+    
+    static func showError(error: NSError?, inView view: UIView) {
+        showHUD("Ошибка", details: error?.localizedDescription ?? "Неизвестная ошибка", type: .Failure, inView: view)
+    }
 }

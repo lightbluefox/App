@@ -8,34 +8,20 @@
 
 import Foundation
 
-class ProfileViewController : BaseViewController {
+final class ProfileViewController : BaseViewController {
  
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var phoneLabel: UILabel!
-    
     @IBOutlet weak var mailLabel: UILabel!
-    
     @IBOutlet weak var agesLabel: UILabel!
-    
     @IBOutlet weak var heightLabel: UILabel!
-    
     @IBOutlet weak var sizeLabel: UILabel!
-    
     @IBOutlet weak var medicalBookNumber: UILabel!
-    
     @IBOutlet weak var metroLabel: UILabel!
-    
     @IBOutlet weak var passportLabel: UILabel!
-    
     @IBOutlet weak var userPhotoImageView: UIImageView!
-    
     @IBOutlet weak var maleImageView: UIImageView!
-    
     @IBOutlet weak var femaleImageView: UIImageView!
-    
-    
-    var authenticationManager = AuthenticationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +30,6 @@ class ProfileViewController : BaseViewController {
         
         prepareViewStyle()
         prepareViewWithUpdatedUserProperties()
-        
     }
     
     override func setBarButtons() {

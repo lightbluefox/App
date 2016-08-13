@@ -51,11 +51,16 @@ final class AuthenticationServiceImpl: AuthenticationService {
         }
     }
     
+    func register(parameters: RegistrationParameters, completion: AuthenticationResult -> ()) {
+        // TODO
+    }
+    
     func currentUser(completion: User? -> ()) {
         // TODO
     }
     
-    func signOut(completion: (() -> ())?) {
+    func signOut(completion completion: (() -> ())?) {
+        authTokenStorage.setAuthToken(nil)
         currentUser = nil
         completion?()
         NSNotificationCenter.defaultCenter().postNotificationName(userDidSignOutNotification, object: self)

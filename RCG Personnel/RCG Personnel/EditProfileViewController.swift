@@ -8,20 +8,23 @@
 
 import Foundation
 
-class EditProfileViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+final class EditProfileViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let authenticationManager = AuthenticationManager()
+    private let authenticationService: AuthenticationService = AuthenticationServiceImpl()  // TODO: DI
     
     @IBAction func logoffButtonPressed(sender: AnyObject) {
         //Показать алерт - "Вы уверены?"
         //Очистить данные о пользователе - все токены и пр (в том числе из NSDefaults)
         //Перейти на NewsViewController
         //Презентовать LoginViewController
-        let logOffAction = UIAlertAction(title: "Да", style: .Default) { (_) -> Void in
-            self.authenticationManager.logoff(self.tabBarController!)
-        }
-        hudManager.showAlertWithСancelButton("Точно?", message: "Вы не сможете писать комментарии и откликаться на вакансии", cancelButtonTitle: "Нет", action: logOffAction)
-        
+        hudManager.showAlertWithСancelButton(
+            "Точно?",
+            message: "Вы не сможете писать комментарии и откликаться на вакансии",
+            cancelButtonTitle: "Нет",
+            action: UIAlertAction(title: "Да", style: .Default) { (_) -> Void in
+                self.authenticationService.signOut(completion: nil)
+            }
+        )
     }
     
     @IBAction func editingDidEnd(sender: RCGTextFieldClass) {

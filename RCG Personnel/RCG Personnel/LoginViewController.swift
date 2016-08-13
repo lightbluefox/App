@@ -21,8 +21,12 @@ final class LoginViewController: BaseViewController, RegisterViewControllerDeleg
     // MARK: - UIViewController
     
     required init?(coder aDecoder: NSCoder) {
+        
         authenticationService = AuthenticationServiceImpl()     // TODO: DI
+        
         super.init(coder: aDecoder)
+        
+        hudManager.parentViewController = self
     }
     
     override func viewDidLoad() {
@@ -75,15 +79,8 @@ final class LoginViewController: BaseViewController, RegisterViewControllerDeleg
     // MARK: - RegisterViewControllerDelegate
     
     func didFinishRegistering(sender: RegisterViewController) {
-        // TODO: это костыль, нужно сделать по-нормальному
         // AuthenticationService в случае успешной регистрации сразу авторизует юзера, так что можно просто закрыть контроллер
-        
-        phoneField.text = sender.phoneNumber.text
-        codeField.text = sender.validationCode
-        
-        print("Finished registering with: Phone \(phoneField.text) and code \(codeField.text). Authenticating now.")
-//        authenticationManager.parentViewController = self
-//        authenticationManager.authenticate(.Native)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Private
@@ -94,7 +91,13 @@ final class LoginViewController: BaseViewController, RegisterViewControllerDeleg
         
         authenticationService.authenticate(method) { [weak self, weak progressIndicator] result in
             progressIndicator?.hide(true)
-            // TODO
+            
+            switch result {
+            case .Success:
+                self?.dismissViewControllerAnimated(true, completion: nil)
+            case .Failed(let error):
+                self?.hudManager.showHUD("Ошибка", details: error?.localizedDescription, type: .Failure)
+            }
         }
     }
 }

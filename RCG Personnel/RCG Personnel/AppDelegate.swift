@@ -33,7 +33,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let user = User.sharedUser
     let userReceiver = UserReceiver()
-    let authenticationManager = AuthenticationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

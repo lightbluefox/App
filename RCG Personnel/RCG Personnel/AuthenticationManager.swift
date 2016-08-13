@@ -18,6 +18,7 @@ enum AuthenticationType {
 }
 
 // TODO: выпилить
+@available(*, deprecated, message="Use AuthenticationService instead")
 class AuthenticationManager: NSObject {
 
     var parentViewController: UIViewController?

@@ -32,7 +32,8 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
      "twid": null
      */
     @IBOutlet weak var scrollView: UIScrollView!
-    var clearPhone = ""
+    
+    // TODO: переименовать все филды нормально (phoneNumberField, firstNameField и т.п.)
     @IBOutlet weak var phoneNumber: RCGPhoneTextField!
     @IBOutlet weak var firstName: RCGTextFieldClass!
     @IBOutlet weak var middleName: RCGTextFieldClass!
@@ -63,42 +64,52 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var medicalCardNumberHeight: NSLayoutConstraint!
     @IBOutlet weak var medicalCardNumber: RCGTextFieldClass!
     @IBOutlet weak var subwayStationTopMarginFromMedicalCardUISwitch: NSLayoutConstraint!
-    @IBOutlet weak var SubwayStation: RCGTextFieldClass!
+    @IBOutlet weak var SubwayStation: RCGTextFieldClass!    // TODO: с маленькой буквы
     @IBOutlet weak var passport: RCGTextFieldClass!
+    
+    private var gender = Gender.Male
+    
+    private let birthDateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter
+    }()
+    
     @IBAction func registerButtonTouched(sender: AnyObject) {
         if fieldsAreValid.values.contains(false) {
             hudManager.showHUD("Ошибка", details: "Все поля обязательны для заполнения", type: .Failure)
         }
         else {
-            let bdate = birthDate.text?.timeIntervalSince1970FromDdMmYyyy
-            let heightFinal = height.text ?? "0"
-            let sizeFinal = clothesSize.text ?? "0"
-            if let unwrappedPhone = self.phoneNumber.text {
-                clearPhone = removeInvalidCharacters(unwrappedPhone, charactersString: "0123456789")
-            }
-            var gender = Gender.Male
-            if sex.text == "Женский" {
-                gender = Gender.Female
-            }
-            else {
-                gender = Gender.Male
-            }
+            let phone = phoneNumber.text.flatMap { removeInvalidCharacters($0, charactersString: "0123456789") } ?? ""
             
-            authenticationManager.registerNewUser(self,
-                                                  user: User(photo: "",
-                                                    firstName: firstName.text ?? "",
-                                                    middleName: middleName.text ?? "",
-                                                    lastName: lastName.text ?? "",
-                                                    phone: clearPhone,
-                                                    email: email.text ?? "",
-                                                    birthDate: bdate ?? "",
-                                                    height: Int(heightFinal) ?? 0,
-                                                    size: Int(sizeFinal) ?? 0,
-                                                    hasMedicalBook: hasMedicalCard.on,
-                                                    medicalBookNumber: medicalCardNumber.text ?? "",
-                                                    metroStation: SubwayStation.text ?? "",
-                                                    passportData: passport.text ?? "",
-                                                    gender: gender))
+            let registrationParameters = RegistrationParameters(
+                login: phone,
+                firstName: firstName.text,
+                lastName: lastName.text,
+                middleName: middleName.text,
+                email: email.text,
+                gender: gender,
+                dateOfBirth: birthDate.text.flatMap { birthDateFormatter.dateFromString($0) },
+                height: height.text.flatMap { Int($0) },
+                clothingSize: clothesSize.text.flatMap { Int($0) },
+                metro: SubwayStation.text,
+                passport: passport.text
+            )
+            
+            let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            
+            authenticationService.register(registrationParameters) { [weak self, weak progressHUD] result in
+                guard let strongSelf = self else { return }
+                
+                progressHUD?.hide(true)
+                
+                switch result {
+                case .Success:
+                    self?.delegate?.didFinishRegistering(strongSelf)
+                case .Failed(let error):
+                    MBProgressHUD.showError(error, inView: strongSelf.view)
+                }
+            }
             
             //authenticationManager.registerNewUser(self, user: User(photo: "https://lh5.googleusercontent.com/-MlnvEdpKY2w/AAAAAAAAAAI/AAAAAAAAAFw/x6wHNLJmtQ0/s0-c-k-no-ns/photo.jpg", firstName: "Иван", middleName: "Петрович", lastName: "Путинов", phone: self.phoneNumber.text ?? "", email: "mail@mail.ru", birthDate: "22.07.1912", height: 180, size: 42, hasMedicalBook: true, medicalBookNumber: "1231231", metroStation: "Севастопольская", passportData: "1231 312312", gender: .Male))
         }
@@ -122,9 +133,9 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     var validationCode: String?
     var hudManager = HUDManager()
     let imagePicker = UIImagePickerController()
-    var genderPickerData = [String]()
+    var genderOptions: [Gender] = [.Male, .Female]
     let validatePhoneViewController = ValidatePhoneViewController()
-    var authenticationManager = AuthenticationManager()
+    private let authenticationService: AuthenticationService = AuthenticationServiceImpl()
     weak var delegate : RegisterViewControllerDelegate?
     
     required init?(coder aDecoder: NSCoder) {
@@ -258,19 +269,20 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     
     // The number of rows of data
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return genderPickerData.count
+        return genderOptions.count
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genderPickerData[row]
+        return genderOptions[row].localizedTitle
     }
     
     // Catpure the picker view selection
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
-        self.sex.text = genderPickerData[row]
+        gender = genderOptions[row]
+        sex.text = gender.localizedTitle
     }
     
     ///Создает PickerView с выбором пола, который открывается при тапе на TextField
@@ -279,7 +291,6 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
         pickerView.dataSource = self
         pickerView.delegate = self
         pickerView.showsSelectionIndicator = true
-        self.genderPickerData = ["Мужской", "Женский"]
         sender.inputView = pickerView
         
         //Чтобы в функции textField() запретить пользователям вставлять или изменять
@@ -297,13 +308,9 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     }
     
     func setValueFromDatePickerToBirhDateTextField(datepicker: UIDatePicker) {
-        let dateFormatter: NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let selectedDate = dateFormatter.stringFromDate(datepicker.date)
+        let selectedDate = birthDateFormatter.stringFromDate(datepicker.date)
         self.birthDate.text = selectedDate
-        
     }
-    
     
     //Mark: UITextFieldDelegate
     
