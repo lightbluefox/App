@@ -205,6 +205,7 @@
 		F26FCD471D5F15D9005CD2C0 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26FCD461D5F15D9005CD2C0 /* ApiClient.swift */; };
 		F26FCD491D5F165A005CD2C0 /* ApiClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26FCD481D5F165A005CD2C0 /* ApiClientImpl.swift */; };
 		F2CC18501D5F5B390046B450 /* AuthTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CC184F1D5F5B390046B450 /* AuthTokenStorage.swift */; };
+		F2DA59001D5F71F30030DC2D /* AuthenticationServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA58FF1D5F71F30030DC2D /* AuthenticationServiceImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -359,6 +360,7 @@
 		F26FCD461D5F15D9005CD2C0 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		F26FCD481D5F165A005CD2C0 /* ApiClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClientImpl.swift; sourceTree = "<group>"; };
 		F2CC184F1D5F5B390046B450 /* AuthTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenStorage.swift; sourceTree = "<group>"; };
+		F2DA58FF1D5F71F30030DC2D /* AuthenticationServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -715,6 +717,7 @@
 			isa = PBXGroup;
 			children = (
 				F26FCD421D5F0D72005CD2C0 /* AuthenticationService.swift */,
+				F2DA58FF1D5F71F30030DC2D /* AuthenticationServiceImpl.swift */,
 				F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */,
 				F2CC184F1D5F5B390046B450 /* AuthTokenStorage.swift */,
 			);
@@ -1074,6 +1077,7 @@
 				84D05F811C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
 				84D05FAC1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */,
 				84D05FC01C77CABF002CEB6B /* SwiftyJSON.swift in Sources */,
+				F2DA59001D5F71F30030DC2D /* AuthenticationServiceImpl.swift in Sources */,
 				844DDB431D048FDC003238A2 /* SingleNewsCommentsFooterCell.swift in Sources */,
 				84D05FEC1C77D890002CEB6B /* NSData+ImageContentType.m in Sources */,
 				84D05F711C779298002CEB6B /* Constants.swift in Sources */,
