@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: убрать, это плохо
 class NSUserDefaultsKeys {
     static let tokenKey = "token"
 }

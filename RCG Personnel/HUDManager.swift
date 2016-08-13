@@ -19,10 +19,11 @@ enum HUDType {
 /// Shows different HUDs - processing, failure, alerts etc.
 class HUDManager {
     
+    // Это трЕш
     var parentViewController: UIViewController?
     
     func showHUD(label: String?, details: String?, type: HUDType) -> MBProgressHUD {
-        let hud = MBProgressHUD.showHUDAddedTo(self.parentViewController?.view.window, animated: true)
+        let hud = MBProgressHUD.showHUDAddedTo(self.parentViewController?.view.window /* это трЕш */, animated: true)
         
         switch type {
         case .Processing :

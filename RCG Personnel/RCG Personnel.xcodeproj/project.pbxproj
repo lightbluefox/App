@@ -23,7 +23,6 @@
 		841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F21CC28B1400A66930 /* PushHandler.swift */; };
 		841F89F51CC28F8400A66930 /* SingleNewsPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */; };
 		8420008C1CF0C34400992576 /* NSUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */; };
-		8420008E1CF0C61D00992576 /* NativeAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */; };
 		842EBD5B1D00D4CD0084F376 /* SingleNewsContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */; };
 		842EBD5D1D01DEE50084F376 /* SingelNewsCommentsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */; };
 		842EBD5F1D02FDDA0084F376 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5E1D02FDDA0084F376 /* Comments.swift */; };
@@ -202,6 +201,10 @@
 		84FD9DA21D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */; };
 		90AEAA5386C457402977CA44 /* Pods_RCG_PersonnelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6287B1DDE2082483458B1C06 /* Pods_RCG_PersonnelTests.framework */; };
 		F26FCD411D5BC052005CD2C0 /* SocialAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */; };
+		F26FCD431D5F0D72005CD2C0 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26FCD421D5F0D72005CD2C0 /* AuthenticationService.swift */; };
+		F26FCD471D5F15D9005CD2C0 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26FCD461D5F15D9005CD2C0 /* ApiClient.swift */; };
+		F26FCD491D5F165A005CD2C0 /* ApiClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26FCD481D5F165A005CD2C0 /* ApiClientImpl.swift */; };
+		F2CC18501D5F5B390046B450 /* AuthTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CC184F1D5F5B390046B450 /* AuthTokenStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,7 +244,6 @@
 		841F89F21CC28B1400A66930 /* PushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsPushHandler.swift; sourceTree = "<group>"; };
 		8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsKeys.swift; sourceTree = "<group>"; };
-		8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeAuthenticationHandler.swift; sourceTree = "<group>"; };
 		842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsContentCell.swift; sourceTree = "<group>"; };
 		842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingelNewsCommentsHeaderCell.swift; sourceTree = "<group>"; };
 		842EBD5E1D02FDDA0084F376 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
@@ -352,7 +354,11 @@
 		D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.release.xcconfig"; sourceTree = "<group>"; };
 		DBC817AA7C1305DC321F56F9 /* Pods_RCG_PersonnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D1B197310724F55B7F47F3 /* Pods-RCG PersonnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialAuthenticationService.swift; sourceTree = "<group>"; };
+		F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocialAuthenticationService.swift; path = Authentication/Social/SocialAuthenticationService.swift; sourceTree = "<group>"; };
+		F26FCD421D5F0D72005CD2C0 /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationService.swift; path = Authentication/Social/AuthenticationService.swift; sourceTree = "<group>"; };
+		F26FCD461D5F15D9005CD2C0 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		F26FCD481D5F165A005CD2C0 /* ApiClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClientImpl.swift; sourceTree = "<group>"; };
+		F2CC184F1D5F5B390046B450 /* AuthTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,7 +459,6 @@
 		84C322341CCA83B000A70641 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				F26FCD3F1D5BC037005CD2C0 /* Social */,
 				849D62371CC942BB00C90229 /* LoginViewController.swift */,
 				840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */,
 				84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */,
@@ -463,7 +468,6 @@
 				84C322371CCAA1EB00A70641 /* AuthenticationHandler.swift */,
 				84C322391CCAA3FD00A70641 /* BaseAuthenticationHandler.swift */,
 				84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */,
-				8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */,
 				84116B421CEB8DED001E5F02 /* FBAuthenticationHanler.swift */,
 			);
 			name = Authentication;
@@ -505,15 +509,16 @@
 		84D05F2A1C763612002CEB6B /* RCG Personnel */ = {
 			isa = PBXGroup;
 			children = (
+				F26FCD441D5F15BE005CD2C0 /* Core */,
 				84D05F2B1C763612002CEB6B /* AppDelegate.swift */,
 				841F89EE1CC2833400A66930 /* NavigationManager.swift */,
 				84D05F321C763612002CEB6B /* Assets.xcassets */,
 				84D0602A1C7D0263002CEB6B /* Main.storyboard */,
 				84D05F341C763612002CEB6B /* LaunchScreen.storyboard */,
 				84D05F371C763612002CEB6B /* Info.plist */,
+				84C322341CCA83B000A70641 /* Authentication */,
 				84D05F6F1C7791DF002CEB6B /* Classes */,
 				84C3223F1CCD856D00A70641 /* Profile */,
-				84C322341CCA83B000A70641 /* Authentication */,
 				8415638D1CBFFEF500090C38 /* PushNotifications */,
 				8407720A1CBA6C8300E58260 /* FeedBacks */,
 				840772081CBA6C7100E58260 /* Menu */,
@@ -688,13 +693,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F26FCD3F1D5BC037005CD2C0 /* Social */ = {
+		F26FCD441D5F15BE005CD2C0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */,
+				F26FCD4A1D5F1735005CD2C0 /* Authentication */,
+				F26FCD451D5F15C6005CD2C0 /* Network */,
 			);
-			name = Social;
-			path = Authentication/Social;
+			name = Core;
+			sourceTree = "<group>";
+		};
+		F26FCD451D5F15C6005CD2C0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F26FCD461D5F15D9005CD2C0 /* ApiClient.swift */,
+				F26FCD481D5F165A005CD2C0 /* ApiClientImpl.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		F26FCD4A1D5F1735005CD2C0 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				F26FCD421D5F0D72005CD2C0 /* AuthenticationService.swift */,
+				F26FCD401D5BC052005CD2C0 /* SocialAuthenticationService.swift */,
+				F2CC184F1D5F5B390046B450 /* AuthTokenStorage.swift */,
+			);
+			name = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -998,6 +1022,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84912C4A1D06F9AC00E8F126 /* SingleNewsCommentCell.swift in Sources */,
+				F2CC18501D5F5B390046B450 /* AuthTokenStorage.swift in Sources */,
 				842EBD5B1D00D4CD0084F376 /* SingleNewsContentCell.swift in Sources */,
 				8415638F1CBFFF2400090C38 /* PushNotification.swift in Sources */,
 				84D05FF81C77D890002CEB6B /* SDWebImageDownloader.m in Sources */,
@@ -1009,15 +1034,16 @@
 				84D05FC41C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060011C77D890002CEB6B /* SDWebImagePrefetcher.m in Sources */,
 				843380BA1D3A86C100FDF411 /* UserReceiver.swift in Sources */,
+				F26FCD431D5F0D72005CD2C0 /* AuthenticationService.swift in Sources */,
 				84D060161C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */,
 				8458FC6B1D3276D200284875 /* RCGPhoneTextFieldClass.swift in Sources */,
 				8411A3021CD948E700313D11 /* EditProfileViewController.swift in Sources */,
 				84C3223C1CCC0B5000A70641 /* User.swift in Sources */,
 				84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
-				8420008E1CF0C61D00992576 /* NativeAuthenticationHandler.swift in Sources */,
 				84D05FB81C77C823002CEB6B /* HTTPUpload.swift in Sources */,
 				84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */,
 				84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */,
+				F26FCD491D5F165A005CD2C0 /* ApiClientImpl.swift in Sources */,
 				84D060341C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84C3223E1CCD855B00A70641 /* ProfileViewController.swift in Sources */,
 				841F89EF1CC2833400A66930 /* NavigationManager.swift in Sources */,
@@ -1033,6 +1059,7 @@
 				84D05FAF1C77C823002CEB6B /* HTTPSecurity.swift in Sources */,
 				84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84BEFFC01D09E204005BDF71 /* ValidatePhoneViewController.swift in Sources */,
+				F26FCD471D5F15D9005CD2C0 /* ApiClient.swift in Sources */,
 				84D060301C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				846AA0021CC00C2000205142 /* PushManager.swift in Sources */,
 				84D060131C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,

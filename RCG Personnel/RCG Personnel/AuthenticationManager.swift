@@ -17,12 +17,12 @@ enum AuthenticationType {
     case Native //через логин и пароль
 }
 
+// TODO: выпилить
 class AuthenticationManager: NSObject {
 
     var parentViewController: UIViewController?
     let vkAuthenticationHandler = VKAuthenticationHandler()
     let fbAuthenticationHandler = FBAuthenticationHandler()
-    let nativeAuthenticationHandler = NativeAuthenticationHandler()
     
     func authenticate(authenticationType: AuthenticationType) {
         if authenticationType == .VK {
@@ -32,7 +32,7 @@ class AuthenticationManager: NSObject {
         
         else if authenticationType == .FB {
             NSLog("%@", "Trying to authenticate via Facebook.")
-            //Тут где-то добавить dismissViewControllerAnimated!
+            // Тут где-то добавить dismissViewControllerAnimated!
             fbAuthenticationHandler.loginToFacebookWithSuccess({print("Authentication via Facebook succeed!")}, andFailure: { (error: NSError?) -> () in
                 print("Authentication via Facebook failed!")
                 print(error)
@@ -44,7 +44,7 @@ class AuthenticationManager: NSObject {
         }
         
         else if authenticationType == .Native {
-            nativeAuthenticationHandler.performAuthentication(self.parentViewController)
+//            nativeAuthenticationHandler.performAuthentication(self.parentViewController)
             NSLog("%@", "Trying to authenticate via login and password.")
         }
     }

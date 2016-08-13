@@ -6,49 +6,60 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
-
-class LoginViewController: BaseViewController, RegisterViewControllerDelegate {
-    @IBOutlet weak var phone: UITextField!
+final class LoginViewController: BaseViewController, RegisterViewControllerDelegate {
     
-    @IBOutlet weak var code: UITextField!
-    var hudManger = HUDManager()
-    var authenticationManager = AuthenticationManager()
+    // MARK: - Dependencies
+    
+    private let hudManager = HUDManager()
+    private let authenticationService: AuthenticationService
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var phoneField: UITextField!
+    @IBOutlet weak var codeField: UITextField!
+    
+    // MARK: - UIViewController
     
     required init?(coder aDecoder: NSCoder) {
+        authenticationService = AuthenticationServiceImpl()     // TODO: DI
         super.init(coder: aDecoder)
-        self.authenticationManager.parentViewController = self
-        self.hudManger.parentViewController = self
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // TODO: это все можно проставить в сториборде
+        codeField.secureTextEntry = true
+        codeField.keyboardType = .NumberPad
+    }
+    
+    // MARK: - Actions
     
     @IBAction func textFieldEditingDidEnd(sender: RCGTextFieldClass) {
         sender.validate()
     }
     
-    
-    @IBAction func closeButton(sender: AnyObject) {
-    self.dismissViewControllerAnimated(true, completion: nil)
-        
+    @IBAction func closeButton(_: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func loginTW(sender: AnyObject) {
-        authenticationManager.authenticate(.TW)
+    @IBAction func loginTW(_: AnyObject) {
+        authenticate(.Social(.Twitter))
     }
     
-    @IBAction func loginFB(sender: AnyObject) {
-        authenticationManager.authenticate(.FB)
+    @IBAction func loginFB(_: AnyObject) {
+        authenticate(.Social(.Facebook))
     }
     
     @IBAction func loginVK(sender: UIButton) {
-        authenticationManager.authenticate(.VK)
+        authenticate(.Social(.VKontakte))
     }
     
     @IBAction func loginNative(sender: AnyObject) {
-        if phone.text == "" || code.text == "" {
-            hudManger.showHUD("Ошибка", details: "Введите номер телефона и код", type: .Failure)
-        }
-        else {
-            authenticationManager.authenticate(.Native)
+        if let login = phoneField.text, password = codeField.text where !login.isEmpty && !password.isEmpty {
+            authenticate(.Native(login: login, password: password))
+        } else {
+            hudManager.showHUD("Ошибка", details: "Введите номер телефона и код", type: .Failure)
         }
     }
     
@@ -61,18 +72,29 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        code.secureTextEntry = true
-        code.keyboardType = .NumberPad
-    }
+    // MARK: - RegisterViewControllerDelegate
     
     func didFinishRegistering(sender: RegisterViewController) {
-        self.phone.text = sender.phoneNumber.text
-        self.code.text = sender.validationCode
-        print("Finished registering with: Phone \(phone.text) and code \(code.text). Authenticating now.")
-        authenticationManager.parentViewController = self
-        authenticationManager.authenticate(.Native)
+        // TODO: это костыль, нужно сделать по-нормальному
+        // AuthenticationService в случае успешной регистрации сразу авторизует юзера, так что можно просто закрыть контроллер
+        
+        phoneField.text = sender.phoneNumber.text
+        codeField.text = sender.validationCode
+        
+        print("Finished registering with: Phone \(phoneField.text) and code \(codeField.text). Authenticating now.")
+//        authenticationManager.parentViewController = self
+//        authenticationManager.authenticate(.Native)
+    }
+    
+    // MARK: - Private
+    
+    private func authenticate(method: AuthenticationMethod) {
+        
+        let progressIndicator = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        authenticationService.authenticate(method) { [weak self, weak progressIndicator] result in
+            progressIndicator?.hide(true)
+            // TODO
+        }
     }
 }
