@@ -26,7 +26,6 @@ enum Gender {
 // TODO: сделать структурой
 class User {
     
-    let noPhotoImage = UIImage(named: "nophoto_user") as UIImage?
     var guid : String?
     var photoUrl : String?
     var firstName: String?
@@ -66,7 +65,7 @@ class User {
     
     @available(*, deprecated, message="Брать из AuthenticationService")
     var token: String!
-    
+
     var fullName: String? {
         get {
             let l = lastName ?? ""

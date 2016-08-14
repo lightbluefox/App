@@ -1,4 +1,6 @@
 final class AuthenticationServiceImpl: AuthenticationService {
+
+    static let sharedInstance = AuthenticationServiceImpl()
     
     private var authToken: String?
     private var currentUser: User?

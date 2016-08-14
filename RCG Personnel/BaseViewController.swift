@@ -6,13 +6,11 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class BaseViewController: UIViewController {
     
-    let user = User.sharedUser
-    let defaults = NSUserDefaults.standardUserDefaults()
+    private let authenticationService = AuthenticationServiceImpl.sharedInstance    // TODO: DI
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +23,14 @@ class BaseViewController: UIViewController {
     }
     
     func showProfile() {
-        if user.isAuthenticated {
-            if let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Profile")
-            {
-                self.navigationController?.pushViewController(profileViewController, animated: true)
+        switch authenticationService.authenticationStatus {
+        case .Authenticated:
+            if let profileViewController = storyboard?.instantiateViewControllerWithIdentifier("Profile") {
+                navigationController?.pushViewController(profileViewController, animated: true)
             }
-        }
-        else {
-            if let loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Login") as? LoginViewController {
-                
-                self.navigationController?.presentViewController(loginViewController, animated: true, completion: nil)
+        case .Unauthenticated, .Intermediate /* по идее при Intermediate надо открыть экран регистрации */:
+            if let loginViewController = storyboard?.instantiateViewControllerWithIdentifier("Login") {
+                navigationController?.presentViewController(loginViewController, animated: true, completion: nil)
             }
         }
     }
@@ -44,22 +40,14 @@ class BaseViewController: UIViewController {
         let profileButton = UIButton(type: .Custom)
         profileButton.bounds = CGRectMake(0, 0, 30, 30)
         profileButton.addTarget(self, action: #selector(BaseViewController.showProfile), forControlEvents: .TouchUpInside)
-        profileButton.setImage(user.noPhotoImage, forState: .Normal)
-        if let photoUrlString = user.photoUrl {
-            if let photoUrl = NSURL(string: photoUrlString) {
-                if UIApplication.sharedApplication().canOpenURL(photoUrl) {
-                    let imageview = UIImageView()
-                    imageview.sd_setImageWithPreviousCachedImageWithURL(photoUrl, andPlaceholderImage: user.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
-                    profileButton.setImage(imageview.image, forState: .Normal)
-                }
-                else
-                {
-                    if let decodedFromBase64Image = photoUrlString.decodeUIImageFromBase64() {
-                        profileButton.setImage(decodedFromBase64Image, forState: .Normal)
-                    }
-                }
+        profileButton.setImage(UIImage(named: "nophoto_user"), forState: .Normal)
+        
+        authenticationService.currentUser { user in
+            if let photoUrl = user?.photoUrl.flatMap({ NSURL(string: $0) }) {
+                profileButton.setImage(url: photoUrl, forState: .Normal)
             }
         }
+        
         let button = UIBarButtonItem(customView: profileButton)
         
         //Костыль, чтобы убрать большой отступ у кнопки профиля http://stackoverflow.com/questions/6021138/how-to-adjust-uitoolbar-left-and-right-padding
