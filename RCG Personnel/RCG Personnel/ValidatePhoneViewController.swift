@@ -15,7 +15,7 @@ class ValidatePhoneViewController: BaseViewController, UITextFieldDelegate {
     var hudManager = HUDManager()
     
     var phoneNumber : String?
-    weak var delegate : ValidatePhoneViewDelegate?
+    var onFinish: (() -> ())?
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var code: UITextField!
@@ -85,16 +85,16 @@ class ValidatePhoneViewController: BaseViewController, UITextFieldDelegate {
             "sms":code.text ?? ""
         ]
         Alamofire.request(.POST, requestUrl, parameters: params)
-            .responseString { response in
+            .responseString { [weak self] response in
                 switch response.result {
                 case .Success:
-                    self.hudManager.hideHUD(hud)
-                    self.dismissViewControllerAnimated(false, completion: nil)
-                    self.delegate?.didFinishValidating(self)
+                    self?.hudManager.hideHUD(hud)
+                    self?.dismissViewControllerAnimated(false, completion: nil)
+                    self?.onFinish?()
                 case .Failure(let error):
                     print("Error: \(error)")
-                    self.hudManager.hideHUD(hud)
-                    self.hudManager.showHUD("Ошибка", details: error.description, type: .Failure)
+                    self?.hudManager.hideHUD(hud)
+                    self?.hudManager.showHUD("Ошибка", details: error.description, type: .Failure)
                 }
         }
   

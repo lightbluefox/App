@@ -9,5 +9,5 @@
 import Foundation
 
 class NSNotificationCenterKeys {
-    static let notifyThatUserHaveBeenUpdated = "ru.lightbluefox.notifyThatUserHaveBeenUpdated"
+    static let notifyThatUserHaveBeenUpdated = "ru.lightbluefox.notifyThatUserHaveBeenUpdated" // Это плохо
 }

@@ -23,6 +23,7 @@ enum Gender {
     }
 }
 
+// TODO: сделать структурой
 class User {
     
     let noPhotoImage = UIImage(named: "nophoto_user") as UIImage?
@@ -36,7 +37,7 @@ class User {
     
     //FullData
     var gender: Gender?
-    var birthDate: String?
+    var birthDate: String?  // TODO: это должна быть дата, а не строка
     var height: Int?
     var size: Int? 
     var hasMedicalBook: Bool?
@@ -57,16 +58,14 @@ class User {
     var metroStation: String?
     var passportData: String?
     
+    @available(*, deprecated, message="Брать из AuthenticationService")
     var isTokenChecked = false
+    
+    @available(*, deprecated, message="Брать из AuthenticationService")
     var isAuthenticated = false
-    var token: String! {
-        get {
-           return NSUserDefaults.standardUserDefaults().stringForKey(NSUserDefaultsKeys.tokenKey)
-        }
-        set(newToken) {
-            NSUserDefaults.standardUserDefaults().setObject(newToken, forKey: NSUserDefaultsKeys.tokenKey)
-        }
-    }
+    
+    @available(*, deprecated, message="Брать из AuthenticationService")
+    var token: String!
     
     var fullName: String? {
         get {
@@ -103,7 +102,21 @@ class User {
     
     init() {}
     
-    init(photo: String, firstName: String, middleName: String, lastName: String, phone: String, email: String, birthDate: String, height: Int, size: Int, hasMedicalBook: Bool, medicalBookNumber: String, metroStation: String, passportData: String, gender: Gender) {
+    init(photo: String?,
+         firstName: String?,
+         middleName: String?,
+         lastName: String?,
+         phone: String?,
+         email: String?,
+         birthDate: String?,
+         height: Int?,
+         size: Int?,
+         hasMedicalBook: Bool?,
+         medicalBookNumber: String?,
+         metroStation: String?,
+         passportData: String?,
+         gender: Gender?)
+    {
         self.photoUrl = photo
         self.firstName = firstName
         self.lastName = lastName
@@ -118,5 +131,19 @@ class User {
         self.metroStation = metroStation
         self.passportData = passportData
         self.gender = gender
+    }
+    
+    var requiredFieldsFilled: Bool {
+        // Это минимальная проверка, она пропустит пустые строки
+        return phone?.isEmpty == false &&
+               firstName?.isEmpty == false &&
+               lastName?.isEmpty == false &&
+               email?.isEmpty == false &&
+               gender != nil &&
+               birthDate?.isEmpty != nil &&
+               height != nil &&
+               size != nil &&
+               metroStation?.isEmpty == false &&
+               passportData?.isEmpty == false
     }
 }

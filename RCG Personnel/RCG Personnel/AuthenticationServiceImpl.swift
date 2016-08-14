@@ -1,7 +1,7 @@
 final class AuthenticationServiceImpl: AuthenticationService {
     
     private var authToken: String?
-    private(set) var currentUser: User?
+    private var currentUser: User?
     
     private let socialAuthenticationService: SocialAuthenticationService
     private let apiClient: ApiClient
@@ -28,6 +28,8 @@ final class AuthenticationServiceImpl: AuthenticationService {
     
     // MARK: - AuthenticationService
     
+    private(set) var authenticationStatus: AuthenticationStatus = .Unauthenticated
+    
     func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
         
         switch method {
@@ -40,7 +42,7 @@ final class AuthenticationServiceImpl: AuthenticationService {
                         self?.handleAuthenticationResult(result, completion: completion)
                     }
                 case .Failed(let error):
-                    completion(.Failed(error: error))
+                    completion(.Failed(error))
                 }
             }
             
@@ -51,17 +53,33 @@ final class AuthenticationServiceImpl: AuthenticationService {
         }
     }
     
-    func register(parameters: RegistrationParameters, completion: AuthenticationResult -> ()) {
+    func register(parameters: RegistrationParameters, completion: RegistrationResult -> ()) {
         // TODO
+        completion(.Failed(nil))
     }
     
     func currentUser(completion: User? -> ()) {
-        // TODO
+        // TODO: надо подумать, как тут будет обновляться user при редактировании профиля
+        if let currentUser = currentUser {
+            completion(currentUser)
+        } else {
+            apiClient.userInfo { [weak self] result in
+                result.onSuccess { user in
+                    self?.currentUser = user
+                    completion(user)
+                }
+                result.onFailure { _ in
+                    completion(nil)
+                }
+            }
+        }
     }
     
     func signOut(completion completion: (() -> ())?) {
         authTokenStorage.setAuthToken(nil)
         currentUser = nil
+        authenticationStatus = .Unauthenticated
+        
         completion?()
         NSNotificationCenter.defaultCenter().postNotificationName(userDidSignOutNotification, object: self)
     }
@@ -70,12 +88,25 @@ final class AuthenticationServiceImpl: AuthenticationService {
     
     private func handleAuthenticationResult(result: ApiResult<String>, completion: AuthenticationResult -> ()) {
         switch result {
+        
         case .Success(let token):
             authTokenStorage.setAuthToken(token)
-            completion(.Success)
-            NSNotificationCenter.defaultCenter().postNotificationName(userDidSignInNotification, object: self)
+            
+            apiClient.userInfo { [weak self] result in
+                result.onSuccess { user in
+                    self?.currentUser = user
+                    self?.authenticationStatus = user.requiredFieldsFilled ? .Authenticated : .Intermediate
+                    
+                    completion(.Success)
+                    NSNotificationCenter.defaultCenter().postNotificationName(userDidSignInNotification, object: self)
+                }
+                result.onFailure { error in
+                    completion(.Failed(error))
+                }
+            }
+        
         case .Failure(let error):
-            completion(.Failed(error: error))
+            completion(.Failed(error))
         }
     }
 }

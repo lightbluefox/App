@@ -8,10 +8,12 @@
 
 import Foundation
 
-class RegisterViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidatePhoneViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+final class RegisterViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    var onFinish: (() -> ())?
     
     @IBAction func closeButtonTouched(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     /*
      "name": null,
@@ -96,16 +98,41 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
                 passport: passport.text
             )
             
-            let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            weak var progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
             
-            authenticationService.register(registrationParameters) { [weak self, weak progressHUD] result in
+            authenticationService.register(registrationParameters) { [weak self] result in
                 guard let strongSelf = self else { return }
                 
                 progressHUD?.hide(true)
                 
                 switch result {
+                
                 case .Success:
-                    self?.delegate?.didFinishRegistering(strongSelf)
+                    guard let validatePhoneViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("ValidatePhone") as? ValidatePhoneViewController else {
+                        return assertionFailure("ValidatePhoneViewController not found")
+                    }
+                    
+                    validatePhoneViewController.modalPresentationStyle = .OverFullScreen
+                    validatePhoneViewController.phoneNumber = phone
+                    validatePhoneViewController.onFinish = {
+                        self?.onFinish?()
+                    }
+                    
+                    self?.showDetailViewController(validatePhoneViewController, sender: self)
+                    
+                case .PhoneAlreadyRegistered:
+                    self?.hudManager.showAlertWithСancelButton(
+                        "Номер уже зарегистрирован",
+                        message: "Выслать на него новый пароль?",
+                        cancelButtonTitle: "Нет",
+                        action: UIAlertAction(title: "Выслать", style: .Default) { _ in
+                            self?.dismissViewControllerAnimated(true) {
+                                //registerViewController?.parentViewController?.showViewController(<#T##vc: UIViewController##UIViewController#>, sender: <#T##AnyObject?#>)
+                                //отобразить вью контроллер для восстановления пароля хотя мб достаточно отразить главный VC
+                            }
+                        }
+                    )
+                    
                 case .Failed(let error):
                     MBProgressHUD.showError(error, inView: strongSelf.view)
                 }
@@ -135,17 +162,17 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     let imagePicker = UIImagePickerController()
     var genderOptions: [Gender] = [.Male, .Female]
     let validatePhoneViewController = ValidatePhoneViewController()
+    
     private let authenticationService: AuthenticationService = AuthenticationServiceImpl()
-    weak var delegate : RegisterViewControllerDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.hudManager.parentViewController = self
+        hudManager.parentViewController = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.fieldsAreValid = [
+        fieldsAreValid = [
             phoneNumber : phoneNumber.isValid,
             firstName : firstName.isValid,
             middleName : middleName.isValid,
@@ -195,7 +222,7 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     }
     
     private func setScrollViewSqueezeOnKeyboardAppearаnce() {
-        self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
+        scrollViewBottomMarginConstant = scrollViewBottomMargin.constant
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -204,7 +231,7 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
         if let userInfo = notification.userInfo {
             if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let frame = frameValue.CGRectValue()
-                self.scrollViewBottomMargin.constant = self.scrollViewBottomMarginConstant + frame.size.height
+                scrollViewBottomMargin.constant = scrollViewBottomMarginConstant + frame.size.height
                 
                 switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
                 case let (.Some(duration), .Some(curve)):
@@ -229,7 +256,7 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     }
     
     func keyboardWillHideNotification(notification: NSNotification){
-        self.scrollViewBottomMargin.constant = self.scrollViewBottomMarginConstant
+        scrollViewBottomMargin.constant = scrollViewBottomMarginConstant
         if let userInfo = notification.userInfo {
             
             switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
@@ -251,15 +278,6 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
             }
         }
     }
-    
-    //MARK: ValidatePhoneDelegate
-    func didFinishValidating(sender: ValidatePhoneViewController) {
-        validationCode = sender.code.text
-        dismissViewControllerAnimated(false, completion: nil)
-        delegate?.didFinishRegistering(self)
-    }
-    
-    
     
     //MARK: UIPickerViewDelegate
     // The number of columns of data
@@ -309,7 +327,7 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     
     func setValueFromDatePickerToBirhDateTextField(datepicker: UIDatePicker) {
         let selectedDate = birthDateFormatter.stringFromDate(datepicker.date)
-        self.birthDate.text = selectedDate
+        birthDate.text = selectedDate
     }
     
     //Mark: UITextFieldDelegate

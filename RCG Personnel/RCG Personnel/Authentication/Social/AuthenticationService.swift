@@ -1,8 +1,20 @@
 protocol AuthenticationService {
+    
+    var authenticationStatus: AuthenticationStatus { get }
+    
     func authenticate(_: AuthenticationMethod, completion: AuthenticationResult -> ())
-    func register(_: RegistrationParameters, completion: AuthenticationResult -> ())
+    func register(_: RegistrationParameters, completion: RegistrationResult -> ())
     func currentUser(completion: User? -> ())
     func signOut(completion _: (() -> ())?)
+}
+
+enum AuthenticationStatus {
+    /// Пользователь не авторизован
+    case Unauthenticated
+    /// Авторизован, но заполнены не все обязательный регистрационные данные (например, зашел впервые через соцсеть)
+    case Intermediate
+    /// Авторизован
+    case Authenticated
 }
 
 enum AuthenticationMethod {
@@ -12,7 +24,13 @@ enum AuthenticationMethod {
 
 enum AuthenticationResult {
     case Success
-    case Failed(error: NSError?)
+    case Failed(NSError?)
+}
+
+enum RegistrationResult {
+    case Success
+    case PhoneAlreadyRegistered
+    case Failed(NSError?)
 }
 
 struct RegistrationParameters {

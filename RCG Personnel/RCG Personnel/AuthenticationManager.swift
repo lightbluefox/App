@@ -184,7 +184,7 @@ class AuthenticationManager: NSObject {
                         if let validatePhoneViewController = storyboard.instantiateViewControllerWithIdentifier("ValidatePhone") as? ValidatePhoneViewController {
                             validatePhoneViewController.modalPresentationStyle = .OverFullScreen
                             validatePhoneViewController.phoneNumber = login
-                            validatePhoneViewController.delegate = registerViewController
+//                            validatePhoneViewController.delegate = registerViewController
                             registerViewController?.showDetailViewController(validatePhoneViewController, sender: self)
                         }
                     }

@@ -6,7 +6,7 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-final class LoginViewController: BaseViewController, RegisterViewControllerDelegate {
+final class LoginViewController: BaseViewController {
     
     // MARK: - Dependencies
     
@@ -68,33 +68,43 @@ final class LoginViewController: BaseViewController, RegisterViewControllerDeleg
     }
     
     @IBAction func registerButtonTouched(sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let registerViewController = storyboard.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController {
-            registerViewController.modalPresentationStyle = .OverFullScreen
-            registerViewController.delegate = self
-            self.showDetailViewController(registerViewController, sender: self)
+        guard let registerViewController = storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
+            return assertionFailure("RegisterViewController not found")
         }
-    }
-    
-    // MARK: - RegisterViewControllerDelegate
-    
-    func didFinishRegistering(sender: RegisterViewController) {
-        // AuthenticationService в случае успешной регистрации сразу авторизует юзера, так что можно просто закрыть контроллер
-        dismissViewControllerAnimated(true, completion: nil)
+        
+        registerViewController.modalPresentationStyle = .OverFullScreen
+        registerViewController.onFinish = { [weak self] in
+            // AuthenticationService в случае успешной регистрации сразу авторизует юзера, так что можно просто закрыть контроллер
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        showDetailViewController(registerViewController, sender: self)
     }
     
     // MARK: - Private
     
     private func authenticate(method: AuthenticationMethod) {
         
-        let progressIndicator = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        weak var progressIndicator = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
-        authenticationService.authenticate(method) { [weak self, weak progressIndicator] result in
+        authenticationService.authenticate(method) { [weak self] result in
+            guard let strongSelf = self else { return }
+            
             progressIndicator?.hide(true)
             
             switch result {
+            
             case .Success:
                 self?.dismissViewControllerAnimated(true, completion: nil)
+                
+                switch strongSelf.authenticationService.authenticationStatus {
+                case .Intermediate:
+                    // TODO: нужно показать контроллер регистрации для ввода обязательной регистрационной инфы
+                    break
+                default:
+                    break
+                }
+            
             case .Failed(let error):
                 self?.hudManager.showHUD("Ошибка", details: error?.localizedDescription, type: .Failure)
             }

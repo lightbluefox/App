@@ -5,6 +5,19 @@ protocol ApiClient {
 }
 
 enum ApiResult<T> {
+    
     case Success(T)
     case Failure(NSError?)
+    
+    func onSuccess(handler: T -> ()) {
+        if case .Success(let result) = self {
+            handler(result)
+        }
+    }
+    
+    func onFailure(handler: NSError? -> ()) {
+        if case .Failure(let error) = self {
+            handler(error)
+        }
+    }
 }
