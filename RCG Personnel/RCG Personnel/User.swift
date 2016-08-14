@@ -61,10 +61,24 @@ class User {
     
     var fullName: String? {
         get {
-            let l = lastName ?? ""
-            let f = firstName ?? ""
-            let m = middleName ?? ""
-            return l + " " + f + " " + m
+            if lastName == nil && firstName == nil && middleName == nil {
+                return nil
+            }
+            else {
+                var l = ""
+                var f = ""
+                var m = ""
+                if lastName != nil {
+                    l = "\(lastName!) "
+                }
+                if middleName != nil {
+                    m = "\(middleName!)"
+                }
+                if firstName != nil {
+                    f = "\(firstName!) "
+                }
+                return l+f+m
+            }
         }
     }
     

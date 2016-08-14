@@ -12,6 +12,7 @@ import Alamofire
 class NewsReceiver {
     var newsStack = [News]()
     var singleNews = News()
+    var user = User.sharedUser
     
     func getAllNews(completionHandlerNews: (success: Bool, result: String) -> Void) {
 
@@ -62,46 +63,49 @@ class NewsReceiver {
     
     func getSingleNews(guid: String, completionHandlerNews: (success: Bool, result: String) -> Void){
         let requestUrl = Constants.apiUrl + "api/v01/news/" + guid
-        let request = HTTPTask()
-        request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
-            if let err = response.error {
+        
+        var headers: [String:String]?
+        if user.token != nil {
+            headers = ["Authorization" : "Bearer " + user.token ?? ""]
+        }
+        
+        Alamofire.request(.GET, requestUrl, headers: headers).responseData {response in
+            switch response.result {
+            case .Success:
+                if let responseData = response.data {
+                    var jsonError: NSError?
+                    let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                    
+                    self.singleNews.guid = json["guid"].stringValue
+                    self.singleNews.topic =  json["topic"].stringValue
+                    self.singleNews.shortText = json["shortText"].stringValue
+                    self.singleNews.fullText = json["fullText"].stringValue
+                    self.singleNews.addedDate = json["addedDate"] != nil ? json["addedDate"].string!.formatedDate : "";
+                    self.singleNews.validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string!.formatedDate : "";
+                    
+                    for u in 0 ..< json["images"].count
+                    {
+                        self.singleNews.images.append(json["images"][u]["url"].stringValue)
+                    }
+                    for u in 0 ..< json["icon"].count
+                    {
+                        self.singleNews.icons.append(json["icon"][u]["url"].stringValue)
+                    }
+                    
+                    if let canComment = json["canComment"].bool {
+                        self.singleNews.canComment = canComment
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandlerNews(success: true, result: "Новость загружена")
+                    }
+                }
+            case .Failure(let err):
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandlerNews(success: false, result: err.localizedDescription)
                 }
-                return
             }
-            else if let data = response.responseObject as? NSData {
-                let requestedData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                let requestedDataUnwrapped = requestedData!;
-                let jsonString = requestedDataUnwrapped;
-                let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
-    
-                let json = JSON(jsonObject);
-                self.singleNews.guid = json["guid"] != nil ? json["guid"].string! : ""
-                self.singleNews.topic =  json["topic"] != nil ? json["topic"].string! : "";
-                self.singleNews.shortText = json["shortText"] != nil ? json["shortText"].string! : "";
-                self.singleNews.fullText = json["fullText"] != nil ? json["fullText"].string! : "";
-                self.singleNews.addedDate = json["addedDate"] != nil ? json["addedDate"].string!.formatedDate : "";
-                self.singleNews.validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string!.formatedDate : "";
-                
-                for u in 0 ..< json["images"].count
-                {
-                    self.singleNews.images.append(json["images"][u]["url"] != nil ? json["images"][u]["url"].string! : "")
-                }
-                for u in 0 ..< json["icon"].count
-                {
-                    self.singleNews.icons.append(json["icon"][u]["url"] != nil ? json["icon"][u]["url"].string! : "")
-                }
-                
-                //self.singleNews = News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, images: images)
-    
-                dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerNews(success: true, result: "Новость загружена")
-                }
-    
-            }
-        })
+        }
     }
     /// Получает комментарии по guid новости. 
     /// Комментарии добавляются, как массив [Comments] в переменную singleNews. Можно обработать ситуацию, когда комментариев нет и отобразить соответствующую надпись.
@@ -156,6 +160,32 @@ class NewsReceiver {
                 completionHandler(success: false, result: error.description)
             }
         }
+    }
+    
+    func sendCommentForNews(guid: String, comment: String, completionHandler: (success: Bool, result: String) -> Void) {
+        NSLog("SendigComment. Started.")
+        let headers = ["Authorization" : "Bearer " + user.token ?? ""]
+        let requestUrl = Constants.apiUrl + "api/v01/news/\(guid)/comments"
+        let params = ["text": comment]
+        Alamofire.request(.POST, requestUrl, parameters: params, headers: headers).responseString { response in
+            switch response.result {
+            case .Success:
+                if let responseData = response.data {
+                    var jsonError: NSError?
+                    let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                    if let error = json ["error"].string {
+                        completionHandler(success: false, result: error)
+                    }
+                    else {
+                        completionHandler(success: true, result: response.description)
+                    }
+                }
+            case .Failure(let err):
+                completionHandler(success: false, result: err.description)
+                NSLog("SendigComment. Failed: \(err.description)")
+            }
+        }
+        
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PhoneNumberKit
 
 class RegisterViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidatePhoneViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
@@ -33,6 +34,7 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
      */
     @IBOutlet weak var scrollView: UIScrollView!
     var clearPhone = ""
+    
     @IBOutlet weak var phoneNumber: RCGPhoneTextField!
     @IBOutlet weak var firstName: RCGTextFieldClass!
     @IBOutlet weak var middleName: RCGTextFieldClass!
@@ -105,7 +107,10 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func editingDidEnd(sender: RCGTextFieldClass) {
-        if sender.text != "" {
+        sender.validate()
+        fieldsAreValid.updateValue(sender.isValid, forKey: sender)
+
+        /*if sender.text != "" {
             sender.isValid = true
             print(fieldsAreValid.indexForKey(sender))
             print(fieldsAreValid.values)
@@ -115,7 +120,7 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
             sender.isValid = false
             fieldsAreValid.updateValue(sender.isValid, forKey: sender)
         }
-        sender.setRightImage()
+        sender.setRightImage()*/
     }
     
     var fieldsAreValid = [UITextField : Bool]()
@@ -163,6 +168,7 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
         email.keyboardType = .EmailAddress
         height.keyboardType = .NumberPad
         clothesSize.keyboardType = .NumberPad
+        //phoneNumber.becomeFirstResponder()
         
         //Чтобы в методе textView сделать форматирование вводимого номера налету
         phoneNumber.delegate = self
@@ -306,7 +312,7 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
     
     
     //Mark: UITextFieldDelegate
-    
+    var oldNumber = ""
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         
@@ -315,38 +321,82 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
         }
         
         if textField == phoneNumber || textField == clothesSize || textField == height {
-            let invalidCharacters = NSCharacterSet(charactersInString: "0123456789").invertedSet
+            let invalidCharacters = NSCharacterSet(charactersInString: "+()-0123456789").invertedSet
             return string.rangeOfCharacterFromSet(invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
         }
         
         return false //для полей, у которых делегатом выставлен этот класс нельзя никаких значений заполнить по умолчанию
     }
     
-    func applyMaskToPhoneField(textField: UITextField) {
-        func formatPhone(s: String, _ mask: String) -> String {
-         let result = String(format: mask, s.substringToIndex(s.startIndex.advancedBy(1)),
-         s.substringWithRange(s.startIndex.advancedBy(1) ... s.startIndex.advancedBy(3)),
-         s.substringWithRange(s.startIndex.advancedBy(4) ... s.startIndex.advancedBy(6)),
-         s.substringWithRange(s.startIndex.advancedBy(7) ... s.startIndex.advancedBy(8)),
-         s.substringWithRange(s.startIndex.advancedBy(9) ... s.startIndex.advancedBy(10))
-         )
-         return result
-         }
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == phoneNumber {
+            if textField.text?.characters.count < 3 {
+                textField.text = "+7"
+                oldNumber = textField.text!
+            }
+        }
         
-         //Для phoneNumber.
-         //Форматируем после 11 знаков.
-         //После 12 знаков форматирование убираем
-         if textField == phoneNumber {
-            if textField.text != "" {
-                if textField.text?.characters.count == 11 {
-                    textField.text = formatPhone(textField.text!, "%@(%@)%@-%@-%@")
+    }
+    
+    func applyMaskToPhoneField(textField: UITextField) {
+        let count = textField.text?.characters.count
+        if count < 3 {
+            textField.text = "+7"
+        }
+        if oldNumber.characters.count < textField.text?.characters.count {
+             //если символов меньше - цифры номера добавляются, нужно применять форматирование
+            if let text = textField.text {
+                if count == 3 {
+                    let result = String(format: "%@(%@",
+                                        text.substringToIndex(text.startIndex.advancedBy(2)),
+                                        text.substringWithRange(text.startIndex.advancedBy(2) ... text.startIndex.advancedBy(2)))
+                    textField.text = result
+                    oldNumber = result
                 }
-                else {
-                    textField.text = removeInvalidCharacters(textField.text!, charactersString: "0123456789")
+                if count == 7 {
+                    let result = String(format: "%@)%@",
+                                    text.substringToIndex(text.startIndex.advancedBy(6)),
+                                    text.substringWithRange(text.startIndex.advancedBy(6) ... text.startIndex.advancedBy(6)))
+                    textField.text = result
+                    oldNumber = result
+                }
+                if count == 11 {
+                    let result = String(format: "%@-%@",
+                                        text.substringToIndex(text.startIndex.advancedBy(10)),
+                                        text.substringWithRange(text.startIndex.advancedBy(10) ... text.startIndex.advancedBy(10)))
+                    textField.text = result
+                    oldNumber = result
+                }
+                if count == 14 {
+                    let result = String(format: "%@-%@",
+                                        text.substringToIndex(text.startIndex.advancedBy(13)),
+                                        text.substringWithRange(text.startIndex.advancedBy(13) ... text.startIndex.advancedBy(13)))
+                    textField.text = result
+                    oldNumber = result
+                }
+                if count > 16 {
+                    let result = String(format: "%@",
+                                        text.substringToIndex(text.startIndex.advancedBy(count!-1)))
+                    textField.text = result
+                    oldNumber = result
+                }
+                
+                
+            }
+        }
+        else if oldNumber.characters.count > textField.text?.characters.count {
+            //если символов больше - цифры удаляются, нужно отменять форматирование
+            if let text = textField.text {
+                if count == 3 || count == 7 || count == 11 || count == 14{
+                    let result = String(format: "%@",
+                                        text.substringToIndex(text.startIndex.advancedBy(count!-1)))
+                    textField.text = result
+                    oldNumber = result
                 }
             }
-         }
+        }
     }
+    
     func removeInvalidCharacters(s: String, charactersString: String) -> String {
         let invalidCharactersSet = NSCharacterSet(charactersInString: charactersString).invertedSet
         return s.componentsSeparatedByCharactersInSet(invalidCharactersSet).joinWithSeparator("")

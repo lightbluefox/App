@@ -62,11 +62,17 @@ CocoaPods is a dependency manager for Objective-C, which automates and simplifie
 `Podfile`
 
     platform :ios, '6.0'
-    pod "VK-ios-sdk"
+    target 'YourProjectName' do
+      pod 'VK-ios-sdk'
+    end
 
-Then import the main header.
+Then import the project as module if your podfile contains `use_frameworks!` directive:
 
-    #import <VKSdk.h>
+    @import VK_ios_sdk;
+    
+Or import the main project header, if you're installing pods without `use_frameworks!` directive:
+
+    #import <VK-ios-sdk/VKSdk.h>
 
 Installation with [Carthage](https://github.com/Carthage/Carthage)
 ----------
@@ -74,7 +80,7 @@ Installation with [Carthage](https://github.com/Carthage/Carthage)
 
 Add this to you `Cartfile`:
 ```
-github "VKCOM/vk-ios-sdk" >= 1.3.8
+github "VKCOM/vk-ios-sdk" >= 1.4
 ```
 
 See building instructions for [Carthage here](https://github.com/Carthage/Carthage#if-youre-building-for-ios)
@@ -172,12 +178,12 @@ User Authorization
 ----------
 
 If you don't have a session yet, you have to authorize user with a next method:
-You have to conform to both `VKSdkDelegate` and `VKSdkUIDelegate` to get methods called.
 ```
 [VKSdk authorize:scope];
 ```
+You have to conform to both `VKSdkDelegate` and `VKSdkUIDelegate` protocols to get appropriate methods called.
 
-After authorization, all common delegates will be called with a next method:
+After the authorization, all common delegates will be called with a next method:
 ```
 - (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult *)result;
 ```
@@ -194,7 +200,7 @@ Below we have listed some examples for several request types.
 
 1) Plain request
 ```
-VKRequest *audioReq = [[VKApi users] get];
+VKRequest *usersReq = [[VKApi users] get];
 ```
 
 2) Request with parameters

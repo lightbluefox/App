@@ -178,15 +178,14 @@ class UserReceiver {
         }
     }
     
-    func uploadPhoto(photo: UIImage, completionHandler: ()) {
+    func uploadPhoto(photo: UIImage, completionHandler: (isSuccess: Bool, error: String?) -> Void) {
         NSLog("UploadingPhotoForUser. Started")
         
         let headers = ["Authorization" : "Bearer " + user.token ?? ""]
-        
-        if let nsdataFromPhoto = UIImagePNGRepresentation(photo) {
+        if let nsdataFromPhoto = UIImageJPEGRepresentation(photo, 0.5) {
             Alamofire.upload(.POST, Constants.apiUrl + "api/v01/images", headers: headers, multipartFormData: {
                 multipartFormData in
-                multipartFormData.appendBodyPart(data: nsdataFromPhoto, name: "image")
+                multipartFormData.appendBodyPart(data: nsdataFromPhoto, name: "image", fileName: "image.png", mimeType: "image/png")
             }, encodingCompletion: {
                 encodingResult in
                 switch encodingResult {
@@ -202,17 +201,19 @@ class UserReceiver {
                                     var jsonError: NSError?
                                     let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
                                     self.user.photoUrl = json["url"].stringValue
+                                    NSLog("UploadingPhotoForUser. Done.")
+                                    completionHandler(isSuccess: true, error: nil)
                                 }
                             case .Failure(let error):
-                                print (error)
+                                NSLog("UploadingPhotoForUser. Failed with error: \(error.description)")
+                                completionHandler(isSuccess: false, error: error.description)
                             }
                     }
                 case .Failure(let encodingError):
-                    print(encodingError)
+                    NSLog("UploadingPhotoForUser. Failed on encoding: \(encodingError)")
+                    completionHandler(isSuccess: false, error: "Не удалось преобразовать изображение.")
                 }
             })
         }
-        
-        completionHandler
     }
 }

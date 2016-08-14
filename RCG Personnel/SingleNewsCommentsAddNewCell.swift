@@ -10,7 +10,10 @@ import Foundation
 
 class SingleNewsCommentsAddNewCell : UITableViewCell {
     
-    var tapAction: ((sender: RCGButton) -> Void)?
+    var tapAction: ((sender: RCGButton)  -> Void)?
+    
+    var tapCompletionHandler: ((success: Bool) -> Void)?
+    
     
     @IBOutlet weak var addCommentTextView: UITextView!
     

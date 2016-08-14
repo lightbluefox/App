@@ -22,6 +22,10 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
     @IBOutlet weak var newsTitle: UILabel!
     @IBOutlet weak var newsFullText: UILabel!
     
+    @IBOutlet weak var addCommentButton: RCGButton!
+    
+    
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +35,14 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
         self.navigationItem.title = "ЛЕНТА НОВОСТЕЙ";
         newsTableView.separatorStyle = .None
         newsTableView.keyboardDismissMode = .Interactive
-        setCellStyle()
+        //Mark: Скрывать, клавиатуру при тапе по newsTableView
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard(_:)));
+        tapGesture.cancelsTouchesInView = false
+        newsTableView.addGestureRecognizer(tapGesture)
+                setCellStyle()
         
+        
+        setTableViewSqueezeOnKeyboardAppearance()
         loadNews()
         loadComments()
     }
@@ -79,6 +89,12 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
         }
     }
     
+    private func setTableViewSqueezeOnKeyboardAppearance() {
+        //Mark: Сжимать размер скрол вью при появлении клавы
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         self.newsTableView.reloadData()
     }
@@ -93,27 +109,67 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
         return loadingNotification
     }
     
+    func hideKeyboard(sender: AnyObject) {
+        self.newsTableView.endEditing(true)
+    }
+    
+    func keyboardWillShowNotification(notification: NSNotification){
+        if let userInfo = notification.userInfo {
+            if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+                let frame = frameValue.CGRectValue()
+                self.tableViewBottomConstraint.constant = frame.size.height  - 45 //-45, т.к. над клавиатурой появляется широкий белый отступ.
+                
+                switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
+                case let (.Some(duration), .Some(curve)):
+                    
+                    let options = UIViewAnimationOptions(rawValue: curve.unsignedLongValue)
+                    
+                    UIView.animateWithDuration(
+                        NSTimeInterval(duration.doubleValue),
+                        delay: 0,
+                        options: options,
+                        animations: {
+                            UIApplication.sharedApplication().keyWindow?.layoutIfNeeded()
+                            return
+                        }, completion: { finished in
+                    })
+                default:
+                    
+                    break
+                }
+            }
+        }
+    }
+    
+    func keyboardWillHideNotification(notification: NSNotification){
+        self.tableViewBottomConstraint.constant = 0
+        if let userInfo = notification.userInfo {
+            
+            switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
+            case let (.Some(duration), .Some(curve)):
+                
+                let options = UIViewAnimationOptions(rawValue: curve.unsignedLongValue)
+                
+                UIView.animateWithDuration(
+                    NSTimeInterval(duration.doubleValue),
+                    delay: 0,
+                    options: options,
+                    animations: {
+                        UIApplication.sharedApplication().keyWindow?.layoutIfNeeded()
+                        return
+                    }, completion: { finished in
+                })
+            default:
+                break
+            }
+        }
+    }
+
     private func setCellStyle() {
         self.newsTableView.backgroundColor = UIColor.clearColor()
         //self.newsTableView.estimatedRowHeight = 80
         self.newsTableView.rowHeight = UITableViewAutomaticDimension
     }
-    
-    /*private func setupNewsFields() {
-        //MARK: получаем только первую фотку из массива, т.к. отображение нескольких пока не закладывалось
-        if self.newsReceiver.singleNews.images.isEmpty
-        {
-            self.newsImageView.image = UIImage(named: "noimage")
-        }
-        else {
-            self.newsImageView.sd_setImageWithURL(NSURL(string: self.newsReceiver.singleNews.images[0]))
-        }
-        self.newsImageView.clipsToBounds = true
-        self.newsDateDay.text = self.newsReceiver.singleNews.addedDate.dayFromDdMmYyyy
-        self.newsDateMonthYear.text = self.newsReceiver.singleNews.addedDate.monthYearFromDdMmYyyy
-        self.newsTitle.text = self.newsReceiver.singleNews.topic
-        self.newsFullText.text = self.newsReceiver.singleNews.fullText
-    }*/
     
     private func showFailureNotification(result: String) {
         let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
@@ -189,6 +245,7 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         if indexPath.section == 0 { //Полное содержимое новости
             let cell = self.newsTableView.dequeueReusableCellWithIdentifier("SingleNewsFields", forIndexPath: indexPath) as? SingleNewsContentCell
             cell?.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 0)
@@ -228,22 +285,42 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
             cell?.addCommentTextView.textColor = UIColor.whiteColor()
             cell?.addCommentTextView.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 0.2)
             cell?.addCommentTextView.contentInset = UIEdgeInsetsMake(4,4,0,-4)
-            if !user.isAuthenticated {
-                //cell?.addCommentButton.disabled = true
-                //cell?.addCommentButton.backgroundColor = UIColor.darkGrayColor()
-                cell?.tapAction = { (sender:RCGButton) -> Void in
-                    _ = self.hudManager.showHUD("Ошибка", details: "Авторизуйтесь для отправки комментариев", type: .Failure)
+            
+            if let canComment = self.newsReceiver.singleNews.canComment {
+                if canComment {
+                    //Если может комментировать, то кнопка активна, добавляем отправку комментария по нажатию
+                    cell?.addCommentButton.setBackgroundColor(UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1.0), forUIControlState: .Normal)
+                    cell?.addCommentButton.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
+                    
+                    cell?.tapCompletionHandler = {(success: Bool) -> Void  in
+                        if success {
+                            cell?.addCommentTextView.text = ""
+                        }
+                    }
+                    cell?.tapAction = {
+                        (sender:RCGButton) -> Void in
+                        if let comment = cell?.addCommentTextView.text {
+                            self.sendComment(comment) {
+                                (success: Bool) -> Void in
+                                if success {
+                                    cell?.addCommentTextView.text = ""
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    //Если не может - это из-за того, что он не в группе
+                    cell?.addCommentButton.setBackgroundColor(UIColor.grayColor(), forUIControlState: .Normal)
+                    cell?.addCommentButton.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
+                    cell?.addCommentButton.addTarget(self, action: #selector(self.showMessageThatUserIsNotApprovedYet), forControlEvents: .TouchUpInside)
                 }
             }
-                
-                else {
-                    //cell?.addCommentButton.disabled = false
-                    //cell?.addCommentButton.backgroundColor =
-                cell?.tapAction = {
-                    (sender:RCGButton) -> Void in
-                    self.hudManager.showHUD("", details: "", type: .Success)
-                }
-                }
+            else {
+                cell?.addCommentButton.setBackgroundColor(UIColor.grayColor(), forUIControlState: .Normal)
+                cell?.addCommentButton.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
+                cell?.addCommentButton.addTarget(self, action: #selector(self.showMessageThatUserIsNotAuthenticated), forControlEvents: .TouchUpInside)
+            }
             return cell!
         }
         else { //Остальные секции (секция с комментариями)
@@ -264,6 +341,38 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
         }
     }
     
+    func showMessageThatUserIsNotApprovedYet() {
+        hudManager.showHUD("Дождитесь подтверждения модератора", details: "Только подтвержденные пользователи могут писать комментарии. Обычно это занимает около часа :)", type: .Failure)
+    }
+    
+    func showMessageThatUserIsNotAuthenticated() {
+        hudManager.showHUD("Войдите в приложение", details: "Только авторизованные пользователи могут писать комментарии", type: .Failure)
+    }
+    
+    func sendComment(comment: String, completionHandler: (success: Bool) -> Void) {
+        if comment == "" {
+            hudManager.showHUD(":(", details: "Не надо отправлять пустой комментарий.", type: .Failure)
+        }
+        else {
+            let hud = hudManager.showHUD("Отправляем...", details: nil, type: .Processing)
+            newsReceiver.sendCommentForNews(newsReceiver.singleNews.guid, comment: comment) {
+                (success: Bool, result: String) -> Void in
+                if success {
+                    self.hudManager.hideHUD(hud)
+                    self.hudManager.showHUD("Комментарий отправлен!", details: "Он появится сразу же после одобрения модератора.", type: .Failure)
+                    completionHandler(success: true)
+                }
+                else {
+                    self.hudManager.hideHUD(hud)
+                    self.hudManager.showHUD("Ошибка", details: result, type: .Failure)
+                    completionHandler(success: false)
+                }
+            }
+        }
+        
+        
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -67,7 +67,7 @@ class ProfileViewController : BaseViewController {
     func prepareViewWithUpdatedUserProperties() {
         //Prepare view
         nameLabel.text = user.fullName?.uppercaseString
-        phoneLabel.text = formatPhone(user.phone ?? "", "%@(%@)%@-%@-%@")
+        phoneLabel.text = formatPhone(user.phone ?? "", "+%@(%@)%@-%@-%@")
         mailLabel.text = user.email
         agesLabel.text = "Возраст: " + (user.age ?? "0")
         heightLabel.text = "Рост: " + String(user.height ?? 0)

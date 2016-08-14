@@ -21,6 +21,7 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
     
     var pickerData = [String]()
     
+    
     @IBOutlet weak var scrollViewBottomMargin: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,18 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
         tapGesture.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(tapGesture)
         setScrollViewSqueezeOnKeyboardAppearаnce()
+        getDataFromProfile()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.getDataFromProfile), name: NSNotificationCenterKeys.notifyThatUserHaveBeenUpdated, object: nil)
+    }
+    
+    func getDataFromProfile() {
+        if let email = user.email {
+            self.emailTextField.text = email
+        }
+        if let fullName = user.fullName {
+            self.nameTextField.text = fullName
+        }
     }
     
     private func setShowingPickerViewOnTap(sender: UITextField) {

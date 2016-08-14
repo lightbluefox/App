@@ -152,8 +152,8 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
     private func fillInInputValues() {
         self.phoneNumber.enabled = false
         self.phoneNumber.text = user.phone
-        self.phoneNumber.validate()
         applyMaskToPhoneField(self.phoneNumber)
+        self.phoneNumber.validate()
         self.firstName.text = user.firstName
         self.firstName.validate()
         self.lastName.text = user.lastName
@@ -275,9 +275,22 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
             hudManager.showHUD("Ошибка", details: "Все поля обязательны для заполнения", type: .Failure)
         }
         else {
-            
             if photoDidChange {
-                userReceiver.uploadPhoto(userPhoto.image!, completionHandler: updateUserOnServer())
+                let hud = hudManager.showHUD("Загружаем фотографию...", details: nil, type: .Processing)
+                userReceiver.uploadPhoto(userPhoto.image!) {
+                    (isSuccess, error) -> Void in
+                    if isSuccess {
+                        self.hudManager.hideHUD(hud)
+                        self.updateUserOnServer()
+                    }
+                    else {
+                        self.hudManager.hideHUD(hud)
+                        self.hudManager.showHUD("Ошибка", details: error ?? "Не удалось отправить фотографию", type: .Failure)
+                        self.photoDidChange = false
+                        self.prepareUserPhoto()
+                    }
+                    
+                }
             }
             else
             {
@@ -286,7 +299,7 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
         }
     }
     
-    func updateUserOnServer() {
+    func updateUserOnServer() -> Void {
         let hud = hudManager.showHUD("Сохраняем...", details: nil, type: .Processing)
         
         var gender = Gender.Male
@@ -432,7 +445,7 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
         }
         
         if textField.text?.characters.count == 11 {
-                    textField.text = formatPhone(textField.text!, "%@(%@)%@-%@-%@")
+                    textField.text = formatPhone(textField.text!, "+%@(%@)%@-%@-%@")
         }
     }
     

@@ -22,6 +22,7 @@ class Vacancies {
     var timeTable = ""
     var icons = [String]()
     var images = [String]()
+    var userReplied : Bool?
     
     init () {
         self.guid = "";
@@ -38,7 +39,7 @@ class Vacancies {
         self.icons = [String]()
         self.images = [String]()
     }
-    init (guid: String, status: String, topic: String, shortText: String, fullText: String, icons: [String], addedDate: String, postponedPublishingDate: String, validTillDate: String, sex: String, money: String, timeTable: String, images: [String]) {
+    init (guid: String, status: String, topic: String, shortText: String, fullText: String, icons: [String], addedDate: String, postponedPublishingDate: String, validTillDate: String, sex: String, money: String, timeTable: String, images: [String], userReplied: Bool?) {
         self.guid = guid;
         self.status = status;
         self.topic = topic;
@@ -52,5 +53,6 @@ class Vacancies {
         self.money = money
         self.timeTable = timeTable
         self.images = images
+        self.userReplied = userReplied
     }
 }

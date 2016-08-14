@@ -518,13 +518,13 @@
                                             <action selector="editingDidEnd:" destination="hfg-3p-IEa" eventType="editingDidEnd" id="8cR-Ea-o7e"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Есть медицинская книжка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-f5-g3J">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Есть медицинская книжка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwZ-f5-g3J">
                                         <rect key="frame" x="20" y="509" width="147" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WeE-bR-xtN" customClass="RCGUISwitch" customModule="RCG_Personnel" customModuleProvider="target">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WeE-bR-xtN" customClass="RCGUISwitch" customModule="RCG_Personnel" customModuleProvider="target">
                                         <rect key="frame" x="177" y="506" width="51" height="31"/>
                                         <color key="onTintColor" red="0.94117647410000005" green="0.1764705926" blue="0.34901961679999999" alpha="1" colorSpace="custom" customColorSpace="deviceRGB"/>
                                         <connections>
@@ -707,7 +707,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bq1-Cu-55Z">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="0.37647058823529411" green="0.5725490196078431" blue="0.63137254901960782" alpha="0.36584051724137934" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.16427469897354915" green="0.16005950618502426" blue="0.16160010774444009" alpha="0.36584051724137934" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dil-Tp-vms">
                                 <rect key="frame" x="180" y="250" width="240" height="100"/>
@@ -865,13 +865,13 @@
                                             <action selector="editingDidEnd:" destination="d2f-PU-Ydj" eventType="editingDidEnd" id="Q7O-0O-Lam"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Есть медицинская книжка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qa-1J-8It">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Есть медицинская книжка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qa-1J-8It">
                                         <rect key="frame" x="20" y="388" width="147" height="25"/>
                                         <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" offImage="textRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="DVj-gI-6hP" customClass="RCGUISwitch" customModule="RCG_Personnel" customModuleProvider="target">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" offImage="textRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="DVj-gI-6hP" customClass="RCGUISwitch" customModule="RCG_Personnel" customModuleProvider="target">
                                         <rect key="frame" x="177" y="385" width="51" height="31"/>
                                         <color key="onTintColor" red="0.94117647410000005" green="0.1764705926" blue="0.34901961679999999" alpha="1" colorSpace="custom" customColorSpace="deviceRGB"/>
                                         <connections>
@@ -1331,13 +1331,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="КОММЕНТАРИИ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poJ-1L-HHI">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="КОММЕНТАРИИ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poJ-1L-HHI">
                                                     <rect key="frame" x="236" y="12" width="128" height="20"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="216" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1D-3N-P47">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="216" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1D-3N-P47">
                                                     <rect key="frame" x="368" y="16" width="22" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1369,7 +1369,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="253" translatesAutoresizingMaskIntoConstraints="NO" id="yd8-Y2-glW">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="253" translatesAutoresizingMaskIntoConstraints="NO" id="yd8-Y2-glW">
                                                     <rect key="frame" x="16" y="13" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="hQq-22-hmY"/>
@@ -1386,8 +1386,8 @@
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhB-Xd-Zri">
-                                                    <rect key="frame" x="84" y="29" width="498" height="43"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhB-Xd-Zri">
+                                                    <rect key="frame" x="84" y="29" width="498" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1412,20 +1412,23 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="brZ-km-oT4" secondAttribute="trailing" constant="10" id="BQv-id-otV"/>
                                                 <constraint firstItem="brZ-km-oT4" firstAttribute="leading" secondItem="ZhB-Xd-Zri" secondAttribute="trailing" constant="-42" id="CBs-qj-BF6"/>
                                                 <constraint firstItem="brZ-km-oT4" firstAttribute="top" secondItem="yd8-Y2-glW" secondAttribute="top" id="Fjm-d9-TKt"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ZhB-Xd-Zri" secondAttribute="bottom" constant="2" id="JYw-Q5-FCd"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ZhB-Xd-Zri" secondAttribute="bottom" priority="999" constant="2" id="JYw-Q5-FCd"/>
                                                 <constraint firstItem="7g9-K3-eZk" firstAttribute="leading" secondItem="brZ-km-oT4" secondAttribute="trailing" constant="-498" id="Ms4-cE-wNx"/>
                                                 <constraint firstItem="ZhB-Xd-Zri" firstAttribute="leading" secondItem="yd8-Y2-glW" secondAttribute="trailing" constant="8" id="NVE-5D-6fa"/>
                                                 <constraint firstItem="ZhB-Xd-Zri" firstAttribute="top" secondItem="brZ-km-oT4" secondAttribute="bottom" constant="10" id="Oqs-f5-isw"/>
                                                 <constraint firstItem="yd8-Y2-glW" firstAttribute="top" secondItem="WCE-OQ-jzj" secondAttribute="topMargin" constant="5" id="Rba-Bz-9aI"/>
                                                 <constraint firstItem="ZhB-Xd-Zri" firstAttribute="top" secondItem="brZ-km-oT4" secondAttribute="bottom" constant="11" id="Tc4-sk-c7x"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="yd8-Y2-glW" secondAttribute="bottom" constant="2" id="VN4-33-Iia"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ZhB-Xd-Zri" secondAttribute="trailing" constant="10" id="VvL-JW-tnO"/>
                                                 <constraint firstItem="brZ-km-oT4" firstAttribute="bottom" secondItem="7g9-K3-eZk" secondAttribute="bottom" constant="-1" id="Yqk-Xg-QJA"/>
                                                 <constraint firstItem="brZ-km-oT4" firstAttribute="leading" secondItem="yd8-Y2-glW" secondAttribute="trailing" constant="8" id="amd-wS-r2J"/>
                                                 <constraint firstItem="yd8-Y2-glW" firstAttribute="leading" secondItem="WCE-OQ-jzj" secondAttribute="leadingMargin" constant="8" id="d2S-3d-i7o"/>
                                                 <constraint firstItem="7g9-K3-eZk" firstAttribute="leading" secondItem="yd8-Y2-glW" secondAttribute="trailing" constant="8" id="mYE-ps-eFl"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yd8-Y2-glW" secondAttribute="bottom" constant="2" id="pgq-ZJ-7Mh"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="VN4-33-Iia"/>
                                                     <exclude reference="Ms4-cE-wNx"/>
                                                     <exclude reference="8qq-Kg-6b3"/>
                                                     <exclude reference="Oqs-f5-isw"/>
@@ -1542,7 +1545,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="addCommentButton" destination="qxN-pm-MeZ" id="t78-jd-CLQ"/>
+                                            <outlet property="addCommentButton" destination="qxN-pm-MeZ" id="OTJ-0J-awq"/>
                                             <outlet property="addCommentTextView" destination="81s-QB-UJj" id="eku-cw-tRV"/>
                                         </connections>
                                     </tableViewCell>
@@ -1563,6 +1566,7 @@
                     </view>
                     <connections>
                         <outlet property="newsTableView" destination="PC5-CY-CCT" id="sgA-Be-gAw"/>
+                        <outlet property="tableViewBottomConstraint" destination="j6y-0D-kjp" id="TMT-nC-50k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GST-OR-LHN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1638,9 +1642,6 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="PQN-LH-PHq" kind="show" id="EY2-wU-JOc"/>
-                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qad-M1-zt4">
                                         <rect key="frame" x="11" y="200" width="25" height="25"/>
@@ -2315,7 +2316,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lK9-Hy-38c">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lK9-Hy-38c">
                                 <rect key="frame" x="233" y="285" width="135" height="31"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                 <state key="normal" title="ОБРАТНАЯ СВЯЗЬ">

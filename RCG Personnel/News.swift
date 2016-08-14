@@ -20,6 +20,7 @@ class News {
     var icons = [String]()
     var images = [String]()
     var comments = [Comments]()
+    var canComment : Bool?
     var commentsCount = 0
     var commentsStep = 1 //сколько получать комментариев за 1 запрос
     var commentsTotal = 0
@@ -48,5 +49,19 @@ class News {
         self.postponedPublishingDate = postponedPublishingDate
         self.validTillDate = validTillDate;
         self.images = images
+    }
+    
+    init (guid: String, status: String, topic: String, shortText: String, fullText: String, icons: [String], addedDate: String, postponedPublishingDate: String, validTillDate: String, images: [String], canComment: Bool?) {
+        self.guid = guid;
+        self.status = status;
+        self.topic = topic;
+        self.shortText = shortText;
+        self.fullText = fullText;
+        self.icons = icons;
+        self.addedDate = addedDate;
+        self.postponedPublishingDate = postponedPublishingDate
+        self.validTillDate = validTillDate;
+        self.images = images
+        self.canComment = canComment
     }
 }

@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import Alamofire
 
 class VacanciesReceiver {
     var vacsStack = [Vacancies]()
     var singleVacancy = Vacancies()
+    let user = User.sharedUser
     
-    func getAllVacs(completionHandlerNews: (success: Bool, result: String) -> Void) {
+    func getAllVacs(completionHandlerVacs: (success: Bool, result: String) -> Void) {
         vacsStack.removeAll(keepCapacity: false);
         
         let currentDate = String(NSDate().gmc0.timeIntervalSince1970*1000)
@@ -21,7 +23,7 @@ class VacanciesReceiver {
         request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerNews(success: false, result: err.localizedDescription)
+                    completionHandlerVacs(success: false, result: err.localizedDescription)
                 }
                 return
             }
@@ -50,64 +52,70 @@ class VacanciesReceiver {
                         icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
                     }
                     
-                    self.vacsStack.append(Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, sex: sex, money: money, timeTable: "", images: [String]()))
+                    self.vacsStack.append(Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, sex: sex, money: money, timeTable: "", images: [String](), userReplied: nil))
                     
                 }
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerNews(success: true, result: "Вакансии загружены")
+                    completionHandlerVacs(success: true, result: "Вакансии загружены")
                 }
                 
             }
         })
     }
     
-    func getSingleVac(guid: String, completionHandlerNews: (success: Bool, result: String) -> Void){
+    func getSingleVac(guid: String, completionHandlerVacs: (success: Bool, result: String) -> Void){
+        
+        var headers : [String: String]? = nil
+        if user.token != nil {
+            headers = ["Authorization" : "Bearer " + user.token ?? ""]
+        }
+        
         let requestUrl = Constants.apiUrl + "api/v01/vacancies/" + guid
-        let request = HTTPTask()
-        request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
-            if let err = response.error {
+        Alamofire.request(.GET, requestUrl, parameters: nil, headers: headers).responseData {response in
+            switch response.result {
+            case .Success:
+                if let responseData = response.data {
+                    var jsonError: NSError?
+                    let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                    
+                    let guid = json["guid"].stringValue
+                    let topic =  json["topic"].stringValue
+                    let shortText = json["shortText"].stringValue
+                    let fullText = json["fullText"].stringValue
+                    let addedDate = json["addedDate"].stringValue
+                    let validTillDate = json["validTillDate"].stringValue
+                    let postponedPublishingDate = json["postponedPublishingDate"].stringValue
+                    let sex = json["sex"].stringValue
+                    let money = json["money"].stringValue
+                    let timeTable = json["timeTable"].stringValue
+                    
+                    var images = [String]()
+                    for u in 0 ..< json["images"].count
+                    {
+                        images.append(json["images"][u]["url"].stringValue)
+                    }
+                    var icons = [String]()
+                    for u in 0 ..< json["icon"].count
+                    {
+                        icons.append(json["icon"][u]["url"].stringValue)
+                    }
+                    var replied : Bool?
+                    if let userReplied = json["userReplied"].bool {
+                        replied = userReplied
+                    }
+                    
+                    self.singleVacancy = Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: postponedPublishingDate, validTillDate: validTillDate, sex: sex, money: money, timeTable: timeTable, images: images, userReplied: replied)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandlerVacs(success: true, result: "Вакансия загружена")
+                    }
+                }
+            case .Failure(let err):
                 dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerNews(success: false, result: err.localizedDescription)
-                }
-                return
-            }
-            else if let data = response.responseObject as? NSData {
-                let requestedData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                let requestedDataUnwrapped = requestedData!;
-                let jsonString = requestedDataUnwrapped;
-                let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
-                
-                let json = JSON(jsonObject);
-                let guid = json["guid"] != nil ? json["guid"].string! : ""
-                let topic =  json["topic"] != nil ? json["topic"].string! : "";
-                let shortText = json["shortText"] != nil ? json["shortText"].string! : "";
-                let fullText = json["fullText"] != nil ? json["fullText"].string! : "";
-                let addedDate = json["addedDate"] != nil ? json["addedDate"].string! : "";
-                let validTillDate = json["validTillDate"] != nil ? json["validTillDate"].string! : "";
-                let postponedPublishingDate = json["postponedPublishingDate"] != nil ? json["postponedPublishingDate"].string! : "";
-                let sex = json["sex"] != nil ? json["sex"].string! : "";
-                let money = json["money"] != nil ? json["money"].string! : "";
-                let timeTable = json["timeTable"] != nil ? json["timeTable"].string! : "";
-                
-                var images = [String]()
-                for u in 0 ..< json["images"].count
-                {
-                    images.append(json["images"][u]["url"] != nil ? json["images"][u]["url"].string! : "")
-                }
-                var icons = [String]()
-                for u in 0 ..< json["icon"].count
-                {
-                    icons.append(json["icon"][u]["url"] != nil ? json["icon"][u]["url"].string! : "")
-                }
-                
-                self.singleVacancy = Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: postponedPublishingDate, validTillDate: validTillDate, sex: sex, money: money, timeTable: timeTable, images: images)
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerNews(success: true, result: "Вакансия загружена")
+                    completionHandlerVacs(success: false, result: err.localizedDescription)
                 }
             }
-        })
+        }
     }
 }

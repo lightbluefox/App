@@ -40,7 +40,6 @@
 #import "VKResponse.h"
 #import "VKImageParameters.h"
 #import "VKUploadImage.h"
-#import "NSData+MD5.h"
 #import "NSString+MD5.h"
 #import "OrderedDictionary.h"
 #import "VKUtil.h"

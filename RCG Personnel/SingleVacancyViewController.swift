@@ -10,6 +10,7 @@ import UIKit
 import VK_ios_sdk
 import FBSDKShareKit
 import Social
+import Alamofire
 
 class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     
@@ -27,7 +28,10 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     
     @IBOutlet weak var separator: UIImageView!
     @IBOutlet weak var vacFullText: UILabel!
-    @IBOutlet weak var vacReplyButton: UIButton!
+    @IBOutlet weak var vacReplyButton: RCGButton!
+    
+    @IBAction func vacReplyButtonTouched(sender: AnyObject) {
+    }
     @IBAction func vacShareVKButtonTouched(sender: AnyObject) {
         let shareDialog = VKShareDialogController()
         shareDialog.text = "Hello, World!"
@@ -92,15 +96,23 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     var vacGuid: String?
     
     let vacReceiver = VacanciesReceiver()
+    let hudManager = HUDManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hudManager.parentViewController = self
         self.navigationItem.title = "ЛЕНТА ВАКАНСИЙ"
                 
+        reloadView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.reloadViewSilently), name: NSNotificationCenterKeys.notifyThatUserHaveBeenUpdated, object: nil)
+    }
+    
+    func reloadView() {
         //MARK: используя MBProgressHUD делаем экран загрузки, пока подгружается вакансия
         let loadingNotification = self.showLoadingNotification()
-        self.vacReceiver.getSingleVac(self.vacGuid!, completionHandlerNews: { (success: Bool, result: String) in
+        self.vacReceiver.getSingleVac(self.vacGuid!, completionHandlerVacs: { (success: Bool, result: String) in
             if success {
                 self.setupVacancyFields()
                 self.setupVacancyView()
@@ -111,7 +123,15 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
                 self.showFailureNotification(result)
             }
         })
-        
+    }
+    
+    func reloadViewSilently() {
+        self.vacReceiver.getSingleVac(self.vacGuid!, completionHandlerVacs: { (success: Bool, result: String) in
+            if success {
+                self.setupVacancyFields()
+                self.setupVacancyView()
+            }
+        })
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -176,6 +196,30 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
         self.vacImageVIew.clipsToBounds = true
         self.vacImageVIew.layer.cornerRadius = 10
         
+        //MARK: Modify replyButton depending on user authentication: Gray, Red or Green
+        //if nil - not authenticated, gray
+        //if true - authenitcated, already replied, green
+        //if false - authenticated, not replied, red
+        if let replied = self.vacReceiver.singleVacancy.userReplied {
+            switch replied {
+            case true:
+                self.vacReplyButton.setBackgroundColor(UIColor(red: 66/255, green: 186/255, blue: 97/255, alpha: 1.0), forUIControlState: UIControlState.Normal)
+                self.vacReplyButton.setTitle("ЗАПРОС ОТПРАВЛЕН", forState: .Normal)
+                self.vacReplyButton.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
+                
+            case false:
+                self.vacReplyButton.setBackgroundColor(UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1.0), forUIControlState: .Normal)
+                self.vacReplyButton.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
+                self.vacReplyButton.addTarget(self, action: #selector(self.vacancyReply), forControlEvents: UIControlEvents.TouchUpInside)
+                
+            }
+        }
+        else {
+            self.vacReplyButton.setBackgroundColor(UIColor.grayColor(), forUIControlState: UIControlState.Normal)
+            self.vacReplyButton.addTarget(self, action: #selector(self.showHudThatUserIsNotAuthenticated), forControlEvents: UIControlEvents.TouchUpInside)
+        }
+        
+        
         //MARK: Make it gray and blured
         //self.addBluredGrayBackground()
         
@@ -188,6 +232,48 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "leftBackGround")!)
         //self.view.backgroundColor = UIColor(red: 15/255, green: 15/255, blue: 15/255, alpha: 1)
+    }
+    
+    func vacancyReply() {
+        NSLog("VacancyReplying(\(self.vacReceiver.singleVacancy.guid)). Started.")
+        
+        let hud = hudManager.showHUD("Отправляем отклик...", details: nil, type: .Processing)
+        
+        let requestUrl = Constants.apiUrl + "api/v01/vacancies/" + self.vacReceiver.singleVacancy.guid + "/replies"
+        let headers = ["Authorization": "Bearer " + user.token ?? "", "Content-Type": "application/x-www-form-urlencoded"]
+        
+        
+        Alamofire.request(.POST, requestUrl, headers: headers).responseString {response in
+            switch response.result {
+            case .Success:
+                if let responseData = response.data {
+                    var jsonError: NSError?
+                    let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                    
+                    if let error = json["error"].string {
+                        self.hudManager.hideHUD(hud)
+                        self.hudManager.showHUD("Ошибка", details: error, type: .Failure)
+                        NSLog("VacancyReplying(\(self.vacReceiver.singleVacancy.guid)). Error. \(error)")
+                    }
+                    else {
+                        self.hudManager.hideHUD(hud)
+                        self.hudManager.showHUD("", details: "", type: .Success)
+                        NSLog("VacancyReplying(\(self.vacReceiver.singleVacancy.guid)). Reply succeed. Reloading vacancy data...")
+                        self.reloadViewSilently()
+                        NSLog("VacancyReplying(\(self.vacReceiver.singleVacancy.guid)). Data reloaded. Finished.")
+                        
+                    }
+                }
+            case .Failure(let err):
+                self.hudManager.hideHUD(hud)
+                self.hudManager.showHUD("Ошибка", details: err.description, type: .Failure)
+                NSLog("VacancyReplying(\(self.vacReceiver.singleVacancy.guid)). Error. \(err.description)")
+            }
+        }
+    }
+    
+    func showHudThatUserIsNotAuthenticated() {
+        hudManager.showHUD("Войдите в приложение", details: "Только авторизованные пользователи могут откликаться на вакансии.", type: .Failure)
     }
     
     private func showFailureNotification(result:String){

@@ -35,7 +35,7 @@ class VacancyResponseViewController : BaseViewController {
         phone.keyboardType = UIKeyboardType.NamePhonePad
         vkId.keyboardType = UIKeyboardType.NamePhonePad
         
-        setScrolliewSqueezeOnKeyboardAppearance()
+        setScrollviewSqueezeOnKeyboardAppearance()
         
         
     }
@@ -49,7 +49,7 @@ class VacancyResponseViewController : BaseViewController {
         }
     }
     
-    private func setScrolliewSqueezeOnKeyboardAppearance() {
+    private func setScrollviewSqueezeOnKeyboardAppearance() {
         //Mark: Сжимать размер скрол вью при появлении клавы
         self.scrollViewBottomMarginConstant = self.scrollViewBottomMargin.constant;
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VacancyResponseViewController.keyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)

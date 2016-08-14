@@ -21,8 +21,7 @@ class NativeAuthenticationHandler {
         
         let request = HTTPTask();
         let requestUrl = Constants.apiUrl + "api/v01/token"
-        //let params: Dictionary<String,AnyObject> = ["login":"admin", "password":"password"];
-        let params: Dictionary<String,AnyObject> = ["login":loginViewController.phone.text!, "password":loginViewController.code.text!];
+        let params: Dictionary<String,AnyObject> = ["login":loginViewController.phone.unmaskText() ?? "", "password":loginViewController.code.text!];
         
         let hud = hudManager.showHUD("Авторизуем...", details: nil, type: .Processing)
         request.PUT(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
