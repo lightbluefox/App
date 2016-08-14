@@ -26,6 +26,10 @@ enum Gender {
 // TODO: сделать структурой
 class User {
     
+    // TODO: Антон, убери эту дичь
+    @available(*, deprecated, message="Убрать это отсюда")
+    let noPhotoImage = UIImage(named: "nophoto_user")
+    
     var guid : String?
     var photoUrl : String?
     var firstName: String?

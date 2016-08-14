@@ -3,7 +3,7 @@ final class AuthenticationServiceImpl: AuthenticationService {
     static let sharedInstance = AuthenticationServiceImpl()
     
     private var authToken: String?
-    private var currentUser: User?
+    private(set) var currentUser: User?
     
     private let socialAuthenticationService: SocialAuthenticationService
     private let apiClient: ApiClient
@@ -58,23 +58,6 @@ final class AuthenticationServiceImpl: AuthenticationService {
     func register(parameters: RegistrationParameters, completion: RegistrationResult -> ()) {
         // TODO
         completion(.Failed(nil))
-    }
-    
-    func currentUser(completion: User? -> ()) {
-        // TODO: надо подумать, как тут будет обновляться user при редактировании профиля
-        if let currentUser = currentUser {
-            completion(currentUser)
-        } else {
-            apiClient.userInfo { [weak self] result in
-                result.onSuccess { user in
-                    self?.currentUser = user
-                    completion(user)
-                }
-                result.onFailure { _ in
-                    completion(nil)
-                }
-            }
-        }
     }
     
     func signOut(completion completion: (() -> ())?) {

@@ -51,34 +51,34 @@ final class ProfileViewController : BaseViewController {
     
     func prepareViewWithUpdatedUserProperties() {
         //Prepare view
-        nameLabel.text = user.fullName?.uppercaseString
-        phoneLabel.text = formatPhone(user.phone ?? "", "%@(%@)%@-%@-%@")
-        mailLabel.text = user.email
-        agesLabel.text = "Возраст: " + (user.age ?? "0")
-        heightLabel.text = "Рост: " + String(user.height ?? 0)
-        sizeLabel.text = "Размер одежды: " + String(user.size ?? 0)
-        medicalBookNumber.text = "Мед. книжка: " + user.medicalBookNumber!
-        metroLabel.text = "Метро: " + (user.metroStation ?? "")
-        passportLabel.text = "Паспорт: " + (user.passportData ?? "")
-        if let photoUrl = NSURL(string: user.photoUrl ?? "") {
+        nameLabel.text = user?.fullName?.uppercaseString
+        phoneLabel.text = formatPhone(user?.phone ?? "", "%@(%@)%@-%@-%@")
+        mailLabel.text = user?.email
+        agesLabel.text = "Возраст: " + (user?.age ?? "0")
+        heightLabel.text = "Рост: " + String(user?.height ?? 0)
+        sizeLabel.text = "Размер одежды: " + String(user?.size ?? 0)
+        medicalBookNumber.text = "Мед. книжка: " + (user?.medicalBookNumber ?? "")
+        metroLabel.text = "Метро: " + (user?.metroStation ?? "")
+        passportLabel.text = "Паспорт: " + (user?.passportData ?? "")
+        if let photoUrl = NSURL(string: user?.photoUrl ?? "") {
             if UIApplication.sharedApplication().canOpenURL(photoUrl) {
-                userPhotoImageView.sd_setImageWithPreviousCachedImageWithURL(NSURL(string: user.photoUrl ?? ""), andPlaceholderImage: user.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
+                userPhotoImageView.sd_setImageWithPreviousCachedImageWithURL(NSURL(string: user?.photoUrl ?? ""), andPlaceholderImage: user?.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
             }
             else
             {
-                if let decodedFromBase64Image = user.photoUrl?.decodeUIImageFromBase64() {
+                if let decodedFromBase64Image = user?.photoUrl?.decodeUIImageFromBase64() {
                     userPhotoImageView.image = decodedFromBase64Image
                 }
             }
         }
         else {
-            userPhotoImageView.image = user.noPhotoImage
+            userPhotoImageView.image = user?.noPhotoImage
         }
         userPhotoImageView.clipsToBounds = true
         userPhotoImageView.contentMode = .ScaleAspectFill
         userPhotoImageView.layer.cornerRadius = 10
         
-        if let gender = user.gender {
+        if let gender = user?.gender {
             switch gender {
             case .Male:
                 self.maleImageView.image = UIImage(named: "maleRed")

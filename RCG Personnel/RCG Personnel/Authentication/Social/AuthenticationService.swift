@@ -1,10 +1,10 @@
 protocol AuthenticationService {
     
     var authenticationStatus: AuthenticationStatus { get }
+    var currentUser: User? { get }  // TODO: хорошо бы ему быть асинхронным
     
     func authenticate(_: AuthenticationMethod, completion: AuthenticationResult -> ())
     func register(_: RegistrationParameters, completion: RegistrationResult -> ())
-    func currentUser(completion: User? -> ())
     func signOut(completion _: (() -> ())?)
 }
 

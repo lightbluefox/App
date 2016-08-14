@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITableViewDelegate {
+final class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     var newsGuid: String?
     var hudManager = HUDManager()
@@ -207,60 +207,64 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
             cell?.newsTitle.text = self.newsReceiver.singleNews.topic
             cell?.newsFullText.text = self.newsReceiver.singleNews.fullText
             
+            // TODO: Антон, убери эту дичь (смотри, как сделано в секциях 2 и 3)
             return cell!
         }
         else if indexPath.section == 2 { //Область под комментариями, с кнопкой "Загрузить еще"
-            let cell = self.newsTableView.dequeueReusableCellWithIdentifier("SingleNewsCommentsFooter", forIndexPath: indexPath) as? SingleNewsCommentsFooterCell
-            cell?.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 0)
-            cell?.tapAction = {
-                self.loadComments()
-            }
-            if self.hideMoreCommentsButton {
-                cell?.hidden =  true
+            let cell = newsTableView.dequeueReusableCellWithIdentifier("SingleNewsCommentsFooter", forIndexPath: indexPath)
+            
+            if let cell = cell as? SingleNewsCommentsFooterCell {
+                cell.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 0)
+                cell.tapAction = { [weak self] in
+                    self?.loadComments()
+                }
+                // TODO: Антон, убери эту дичь
+                if hideMoreCommentsButton {
+                    cell.hidden = true
+                }
             }
             
-            return cell!
+            return cell
         }
         else if indexPath.section == 3 { //Область с отправкой комментария
-            let cell = self.newsTableView.dequeueReusableCellWithIdentifier("SingleNewsCommentsAddNew", forIndexPath: indexPath) as? SingleNewsCommentsAddNewCell
+            let cell = newsTableView.dequeueReusableCellWithIdentifier("SingleNewsCommentsAddNew", forIndexPath: indexPath)
             
-            cell?.backgroundColor = UIColor.clearColor()
-            cell?.addCommentTextView.textColor = UIColor.whiteColor()
-            cell?.addCommentTextView.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 0.2)
-            cell?.addCommentTextView.contentInset = UIEdgeInsetsMake(4,4,0,-4)
-            if !user.isAuthenticated {
-                //cell?.addCommentButton.disabled = true
-                //cell?.addCommentButton.backgroundColor = UIColor.darkGrayColor()
-                cell?.tapAction = { (sender:RCGButton) -> Void in
-                    _ = self.hudManager.showHUD("Ошибка", details: "Авторизуйтесь для отправки комментариев", type: .Failure)
+            if let cell = cell as? SingleNewsCommentsAddNewCell {
+                cell.backgroundColor = UIColor.clearColor()
+                cell.addCommentTextView.textColor = UIColor.whiteColor()
+                cell.addCommentTextView.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 0.2)
+                cell.addCommentTextView.contentInset = UIEdgeInsetsMake(4,4,0,-4)
+                
+                cell.tapAction = { [weak self] _ in
+                    if self?.authenticationService.authenticationStatus == .Authenticated {
+                        self?.hudManager.showHUD("", details: "", type: .Success)
+                    } else {
+                        self?.hudManager.showHUD("Ошибка", details: "Авторизуйтесь для отправки комментариев", type: .Failure)
+                    }
                 }
             }
-                
-                else {
-                    //cell?.addCommentButton.disabled = false
-                    //cell?.addCommentButton.backgroundColor =
-                cell?.tapAction = {
-                    (sender:RCGButton) -> Void in
-                    self.hudManager.showHUD("", details: "", type: .Success)
-                }
-                }
-            return cell!
+            
+            return cell
         }
         else { //Остальные секции (секция с комментариями)
-            let cell = self.newsTableView.dequeueReusableCellWithIdentifier("SingleNewsComment", forIndexPath: indexPath) as? SingleNewsCommentCell
-            cell?.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 0)
+            let cell = self.newsTableView.dequeueReusableCellWithIdentifier("SingleNewsComment", forIndexPath: indexPath)
             
-            let comment = self.newsReceiver.singleNews.comments[indexPath.row]
-            cell?.commentData.text = comment.date
-            cell?.commentText.text = comment.text
-            cell?.commentUserName.text = (comment.userLastName ?? "").uppercaseString + " " + (comment.userFirstName ?? "").uppercaseString
+            if let cell = cell as? SingleNewsCommentCell {
+                cell.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 0)
+                
+                let comment = newsReceiver.singleNews.comments[indexPath.row]
+                cell.commentData.text = comment.date
+                cell.commentText.text = comment.text
+                cell.commentUserName.text = (comment.userLastName ?? "").uppercaseString + " " + (comment.userFirstName ?? "").uppercaseString
+                
                 if comment.userPhoto == "" {
-                    cell?.commentUserPhoto.image = user.noPhotoImage
+                    cell.commentUserPhoto.image = user?.noPhotoImage
+                } else {
+                    cell.commentUserPhoto.sd_setImageWithPreviousCachedImageWithURL(NSURL(string: comment.userPhoto ?? ""), andPlaceholderImage: user?.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
                 }
-                else {
-                    cell?.commentUserPhoto.sd_setImageWithPreviousCachedImageWithURL(NSURL(string: comment.userPhoto ?? ""), andPlaceholderImage: user.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
-                }
-            return cell!
+            }
+            
+            return cell
         }
     }
     

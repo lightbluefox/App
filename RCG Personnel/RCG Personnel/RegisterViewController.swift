@@ -163,8 +163,6 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
     var genderOptions: [Gender] = [.Male, .Female]
     let validatePhoneViewController = ValidatePhoneViewController()
     
-    private let authenticationService: AuthenticationService = AuthenticationServiceImpl()
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         hudManager.parentViewController = self

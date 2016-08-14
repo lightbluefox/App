@@ -11,7 +11,6 @@ final class LoginViewController: BaseViewController {
     // MARK: - Dependencies
     
     private let hudManager = HUDManager()
-    private let authenticationService: AuthenticationService
     
     // MARK: - Outlets
     
@@ -21,9 +20,6 @@ final class LoginViewController: BaseViewController {
     // MARK: - UIViewController
     
     required init?(coder aDecoder: NSCoder) {
-        
-        authenticationService = AuthenticationServiceImpl()     // TODO: DI
-        
         super.init(coder: aDecoder)
         
         hudManager.parentViewController = self

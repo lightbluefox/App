@@ -10,8 +10,6 @@ import Foundation
 
 final class EditProfileViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    private let authenticationService: AuthenticationService = AuthenticationServiceImpl()  // TODO: DI
-    
     @IBAction func logoffButtonPressed(sender: AnyObject) {
         //Показать алерт - "Вы уверены?"
         //Очистить данные о пользователе - все токены и пр (в том числе из NSDefaults)
@@ -130,63 +128,62 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
     }
     
     private func prepareUserPhoto() {
-        userPhoto.image = user.noPhotoImage
-        if let photoUrlString = user.photoUrl {
-            if let photoUrl = NSURL(string: photoUrlString) {
-                if UIApplication.sharedApplication().canOpenURL(photoUrl) {
-                    userPhoto.sd_setImageWithPreviousCachedImageWithURL(NSURL(string: user.photoUrl ?? ""), andPlaceholderImage: user.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
-                }
-                else
-                {
-                    if let decodedFromBase64Image = user.photoUrl?.decodeUIImageFromBase64() {
-                        userPhoto.image = decodedFromBase64Image
-                    }
-                }
-            }
-        }
+        userPhoto.image = UIImage(named: "nophoto_user")
         userPhoto.clipsToBounds = true
         userPhoto.contentMode = .ScaleAspectFill
         userPhoto.layer.cornerRadius = 10
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.showImagePickerDialog(_:)))
         userPhoto.userInteractionEnabled = true
-        userPhoto.addGestureRecognizer(tap)
+        
+        userPhoto.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.showImagePickerDialog(_:))
+        ))
+        
+        if let photoUrl = authenticationService.currentUser?.photoUrl.flatMap({ NSURL(string: $0) }) {
+            userPhoto.sd_setImageWithURL(
+                photoUrl,
+                placeholderImage: UIImage(named: "nophoto_user"),
+                options: .RetryFailed,
+                completed: nil
+            )
+        }
     }
     
     private func fillInInputValues() {
         self.phoneNumber.enabled = false
-        self.phoneNumber.text = user.phone
+        self.phoneNumber.text = user?.phone
         self.phoneNumber.validate()
         applyMaskToPhoneField(self.phoneNumber)
-        self.firstName.text = user.firstName
+        self.firstName.text = user?.firstName
         self.firstName.validate()
-        self.lastName.text = user.lastName
+        self.lastName.text = user?.lastName
         self.lastName.validate()
-        self.middleName.text = user.middleName
+        self.middleName.text = user?.middleName
         self.middleName.validate()
-        self.email.text = user.email
+        self.email.text = user?.email
         self.email.validate()
-        if let gender = user.gender {
+        if let gender = user?.gender {
             switch gender {
                 case .Male: self.sex.text = "Мужской"
                 case .Female: self.sex.text = "Женский"
             }
             self.sex.validate()
         }
-        self.birthDate.text = user.birthDate?.formatedDate
+        self.birthDate.text = user?.birthDate?.formatedDate
         self.birthDate.validate()
-        self.height.text = String(user.height ?? 0)
+        self.height.text = String(user?.height ?? 0)
         self.height.validate()
-        self.clothesSize.text = String(user.size ?? 0)
+        self.clothesSize.text = String(user?.size ?? 0)
         self.clothesSize.validate()
-        self.subwayStation.text = user.metroStation
+        self.subwayStation.text = user?.metroStation
         self.subwayStation.validate()
-        if user.hasMedicalBook ?? false {
+        if user?.hasMedicalBook == true {
             self.hasMedicalCard.setOn(true, animated: false)
             hasMedicalCardSwitched(hasMedicalCard)
-            self.medicalCardNumber.text = user.medicalBookNumber
+            self.medicalCardNumber.text = user?.medicalBookNumber
             self.medicalCardNumber.validate()
         }
-        self.passport.text = user.passportData
+        self.passport.text = user?.passportData
         self.passport.validate()
         
     }
@@ -290,6 +287,7 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
     }
     
     func updateUserOnServer() {
+        let user = authenticationService.currentUser
         let hud = hudManager.showHUD("Сохраняем...", details: nil, type: .Processing)
         
         var gender = Gender.Male
@@ -300,7 +298,7 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
             gender = Gender.Male
         }
 
-        userReceiver.updateCurrentUserWithValues(user.photoUrl ?? "",
+        userReceiver.updateCurrentUserWithValues(user?.photoUrl ?? "",
             firstName: firstName.text ?? "",
             middleName: middleName.text ?? "",
             lastName: lastName.text ?? "",

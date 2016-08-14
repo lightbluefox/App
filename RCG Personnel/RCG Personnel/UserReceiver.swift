@@ -9,9 +9,11 @@
 import Foundation
 import Alamofire
 
-class UserReceiver {
+final class UserReceiver {
+    
     var photoDidChange = false
-    let user = User.sharedUser
+    
+    private(set) var user = User()
     
     ///Gets current user properties by token from authorization header
     
@@ -46,35 +48,31 @@ class UserReceiver {
         NSLog("GetUserByToken. Started.")
         let headers = ["Authorization" : "Bearer " + user.token ?? ""]
         Alamofire.request(.GET, Constants.apiUrl + "api/v01/users/current", headers: headers)
-            .responseData {response in
+            .responseData { [weak self] response in
                 switch response.result {
                 case .Success:
                     if let responseData = response.data {
                         var jsonError: NSError?
                         let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
-                        self.user.guid = json["guid"].stringValue
-                        self.user.phone = json["login"].stringValue
-                        self.user.photoUrl = json["usersdata"]["avatar"].stringValue
-                        self.user.firstName = json["usersdata"]["name"].stringValue
-                        self.user.middleName = json["usersdata"]["fatherName"].stringValue
-                        self.user.lastName = json["usersdata"]["surName"].stringValue
-                        self.user.email = json["usersdata"]["email"].stringValue
                         
-                        //FullData
+                        let user = User()
+                        user.guid = json["guid"].stringValue
+                        user.phone = json["login"].stringValue
+                        user.photoUrl = json["usersdata"]["avatar"].stringValue
+                        user.firstName = json["usersdata"]["name"].stringValue
+                        user.middleName = json["usersdata"]["fatherName"].stringValue
+                        user.lastName = json["usersdata"]["surName"].stringValue
+                        user.email = json["usersdata"]["email"].stringValue
+                        user.gender = json["usersdata"]["ifMale"].boolValue ? .Male : .Female
+                        user.birthDate = json["usersdata"]["birthDate"].stringValue
+                        user.height = json["usersdata"]["height"].intValue
+                        user.size = json["usersdata"]["clothesSize"].intValue
+                        user.hasMedicalBook = json["usersdata"]["hasMedicalCard"].boolValue
+                        user.medicalBookNumber = json["usersdata"]["medicalCardNumber"].stringValue
+                        user.metroStation = json["usersdata"]["subWayStation"].stringValue
+                        user.passportData = json["usersdata"]["passportData"].stringValue
                         
-                        switch json["usersdata"]["ifMale"].boolValue {
-                        case true:
-                            self.user.gender = .Male
-                        case false:
-                            self.user.gender = .Female
-                        }
-                        self.user.birthDate = json["usersdata"]["birthDate"].stringValue
-                        self.user.height = json["usersdata"]["height"].intValue
-                        self.user.size = json["usersdata"]["clothesSize"].intValue
-                        self.user.hasMedicalBook = json["usersdata"]["hasMedicalCard"].boolValue
-                        self.user.medicalBookNumber = json["usersdata"]["medicalCardNumber"].stringValue
-                        self.user.metroStation = json["usersdata"]["subWayStation"].stringValue
-                        self.user.passportData = json["usersdata"]["passportData"].stringValue
+                        self?.user = user
                         
                         NSLog("GetUserByToken. Done with success.")
                         NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationCenterKeys.notifyThatUserHaveBeenUpdated, object: self)

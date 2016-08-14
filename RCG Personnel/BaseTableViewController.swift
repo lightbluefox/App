@@ -10,7 +10,8 @@ import Foundation
 
 class BaseTableViewController: UITableViewController {
 
-    private let authenticationService = AuthenticationServiceImpl.sharedInstance    // TODO: DI
+    let authenticationService = AuthenticationServiceImpl.sharedInstance    // TODO: DI
+    let user = AuthenticationServiceImpl.sharedInstance.currentUser // TODO: выпилить
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +43,8 @@ class BaseTableViewController: UITableViewController {
         profileButton.addTarget(self, action: #selector(BaseTableViewController.showProfile), forControlEvents: .TouchUpInside)
         profileButton.setImage(UIImage(named: "nophoto_user"), forState: .Normal)
         
-        authenticationService.currentUser { user in
-            if let photoUrl = user?.photoUrl.flatMap({ NSURL(string: $0) }) {
-                profileButton.setImage(url: photoUrl, forState: .Normal)
-            }
+        if let photoUrl = authenticationService.currentUser?.photoUrl.flatMap({ NSURL(string: $0) }) {
+            profileButton.setImage(url: photoUrl, forState: .Normal)
         }
         
         let button = UIBarButtonItem(customView: profileButton)
