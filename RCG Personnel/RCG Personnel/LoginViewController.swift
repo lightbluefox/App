@@ -64,6 +64,27 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
         }
     }
     
+    @IBAction func requestNewPasswordButtonTouchUpInside(sender: AnyObject) {
+        
+        if !phone.isValid {
+            hudManger.showHUD("Ошибка", details: "Введите корректный номер телефона, на него будет повторно отправлен код.", type: .Failure)
+        }
+        else {
+            let hud = hudManger.showHUD("Отправяем смс...", details: "", type: .Processing)
+            authenticationManager.requestNewPassword(for: phone.unmaskText() ?? "") {
+                (success: Bool, result: String?) -> Void in
+                if success {
+                    self.hudManger.hideHUD(hud)
+                    self.hudManger.showHUD("", details: "", type: .Success)
+                }
+                else {
+                    self.hudManger.hideHUD(hud)
+                    self.hudManger.showHUD("Ошибка", details: result, type: .Failure)
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
