@@ -10,21 +10,27 @@ import Foundation
 import VK_ios_sdk
 import Alamofire
 
-enum AuthenticationType {
-    case VK //через ВК
-    case FB //через фэйсбук
-    case TW //через Твиттер
-    case Native //через логин и пароль
-}
-
-class AuthenticationManager: NSObject {
+final class AuthenticationManager {
 
     var parentViewController: UIViewController?
     let vkAuthenticationHandler = VKAuthenticationHandler()
     let fbAuthenticationHandler = FBAuthenticationHandler()
     let nativeAuthenticationHandler = NativeAuthenticationHandler()
     
-    func authenticate(authenticationType: AuthenticationType) {
+    func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
+        switch method {
+        case .Native(let login, let password):
+            nativeAuthenticationHandler.performAuthentication(login: login, password: password, completion: completion)
+        case .Social(.VKontakte):
+            break   // TODO
+        case .Social(.Facebook):
+            break   // TODO
+        case .Social(.Twitter):
+            break   // TODO
+        }
+    }
+    
+    func old_and_ugly_authenticate(authenticationType: AuthenticationType) {
         if authenticationType == .VK {
             NSLog("%@", "Trying to authenticate via Vkontakte.")
             vkAuthenticationHandler.performAuthentication(self.parentViewController)
@@ -44,7 +50,7 @@ class AuthenticationManager: NSObject {
         }
         
         else if authenticationType == .Native {
-            nativeAuthenticationHandler.performAuthentication(self.parentViewController)
+//            nativeAuthenticationHandler.performAuthentication(self.parentViewController)
             NSLog("%@", "Trying to authenticate via login and password.")
         }
     }
@@ -246,5 +252,28 @@ class AuthenticationManager: NSObject {
     func confirmUserWithCode(parentViewController: UIViewController, user: User) {
         
     }
-    
+}
+
+enum AuthenticationType {
+    case VK //через ВК
+    case FB //через фэйсбук
+    case TW //через Твиттер
+    case Native //через логин и пароль
+}
+
+enum AuthenticationMethod {
+    case Native(login: String, password: String)
+    case Social(SocialNetwork)
+}
+
+enum SocialNetwork {
+    case VKontakte
+    case Facebook
+    case Twitter
+}
+
+enum AuthenticationResult {
+    case Success
+    case Unregistered(socialToken: String)
+    case Failure(NSError?)
 }

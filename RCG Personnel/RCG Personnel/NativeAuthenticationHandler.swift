@@ -8,59 +8,49 @@
 
 import Foundation
 
-class NativeAuthenticationHandler {
+final class NativeAuthenticationHandler {
     
-    let user = User.sharedUser
-    let userReceiver = UserReceiver()
-    let hudManager = HUDManager()
+    private let user = User.sharedUser
+    private let userReceiver = UserReceiver()
     
-    func performAuthentication(parentViewController: UIViewController?) {
-        let loginViewController = parentViewController as! LoginViewController
+    func performAuthentication(login login: String, password: String, completion: AuthenticationResult -> ()) {
         
-        hudManager.parentViewController = parentViewController
-        
-        let request = HTTPTask();
+        let request = HTTPTask()
         let requestUrl = Constants.apiUrl + "api/v01/token"
-        let params: Dictionary<String,AnyObject> = ["login":loginViewController.phone.unmaskText() ?? "", "password":loginViewController.code.text!];
+        let params = ["login": login, "password": password]
         
-        let hud = hudManager.showHUD("Авторизуем...", details: nil, type: .Processing)
-        request.PUT(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
-            if let err = response.error {
-                print("error: " + err.localizedDescription)
+        request.PUT(requestUrl, parameters: params) { response in
+            if let error = response.error {
+                debugPrint("error: " + error.localizedDescription)
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.hudManager.hideHUD(hud)
-                    self.hudManager.showHUD("Ошибка", details: err.localizedDescription, type: .Failure)
+                    completion(.Failure(error))
+                }
+            } else {
+                let data = response.responseObject as? NSData
+                let jsonObject = data.flatMap {
+                    try? NSJSONSerialization.JSONObjectWithData($0, options: NSJSONReadingOptions(rawValue: 0))
                 }
                 
-            }
-            else if let resp: AnyObject = response.responseObject {
-                if let data = NSString(data: resp as! NSData, encoding: NSUTF8StringEncoding) {
+                guard let json = jsonObject.flatMap({ JSON($0) }) else {
+                    return completion(.Failure(nil))
+                }
                 
-                    let jsonData = data.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                    let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
-                    let json = JSON(jsonObject)
-                    
-                    if let error = json["error"].string {
-                        print("error: " + error)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.hudManager.hideHUD(hud)
-                            self.hudManager.showHUD("Ошибка", details: error, type: .Failure)
-                        }
+                if let error = json["error"].string {
+                    print("error: " + error)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(.Failure(nil))
                     }
-                    else if let userToken = json["token"].string
-                    {
-                        self.user.token = userToken
-                        self.user.isAuthenticated = true
-                        self.user.isTokenChecked = true
-                        print("Native authentication completed, user token: \(userToken)")
-                        self.userReceiver.getCurrentUser()
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.hudManager.hideHUD(hud)
-                            loginViewController.dismissViewControllerAnimated(true, completion: nil)
-                        }
+                } else if let userToken = json["token"].string {
+                    self.user.token = userToken
+                    self.user.isAuthenticated = true
+                    self.user.isTokenChecked = true
+                    print("Native authentication completed, user token: \(userToken)")
+                    self.userReceiver.getCurrentUser()
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(.Success)
                     }
                 }
             }
-        })
+        }
     }
 }

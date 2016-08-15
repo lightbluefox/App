@@ -33,25 +33,26 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
     }
     
     @IBAction func loginTW(sender: AnyObject) {
-        authenticationManager.authenticate(.TW)
+        authenticationManager.old_and_ugly_authenticate(.TW)
     }
     
     @IBAction func loginFB(sender: AnyObject) {
-        authenticationManager.authenticate(.FB)
+        authenticationManager.old_and_ugly_authenticate(.FB)
     }
     
     @IBAction func loginVK(sender: UIButton) {
-        authenticationManager.authenticate(.VK)
+        authenticationManager.old_and_ugly_authenticate(.VK)
     }
     
     @IBAction func loginNative(sender: AnyObject) {
+        
         phone.validate()
         code.validate()
-        if !phone.isValid || !code.isValid {
+        
+        if phone.isValid && code.isValid {
+            performNativeAuthentication()
+        } else {
             hudManger.showHUD("Ошибка", details: "Введите номер телефона и код", type: .Failure)
-        }
-        else {
-            authenticationManager.authenticate(.Native)
         }
     }
     
@@ -182,6 +183,27 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
         self.code.text = sender.validationCode
         NSLog("Finished registering with: Phone \(phone.text) and code \(code.text). Authenticating now.")
         authenticationManager.parentViewController = self
-        authenticationManager.authenticate(.Native)
+        
+        performNativeAuthentication()
+    }
+    
+    private func performNativeAuthentication() {
+        let phone = self.phone.unmaskText() ?? ""
+        let code = self.code.text ?? ""
+        
+        weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        authenticationManager.authenticate(.Native(login: phone, password: code)) { [weak self] result in
+            hud?.hide(true)
+            
+            switch result {
+            case .Success:
+                self?.dismissViewControllerAnimated(true, completion: nil)
+            case .Unregistered:
+                self?.hudManger.showHUD("Ошибка", details: "Неизвестная ошибка", type: .Failure)
+            case .Failure(let error):
+                self?.hudManger.showHUD("Ошибка", details: error?.localizedDescription ?? "Неизвестная ошибка", type: .Failure)
+            }
+        }
     }
 }
