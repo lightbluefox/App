@@ -29,6 +29,8 @@ class RCGPhoneTextField : RCGTextFieldClass {
     }
     
     ///Removes all characters but 0123456789 from text.
+    ///
+    ///This is done, because server works only with phones formatted as 79161112233
     func unmaskText() -> String? {
         
         if let unwrappedtext = self.text {

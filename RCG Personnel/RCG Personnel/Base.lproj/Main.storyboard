@@ -144,6 +144,9 @@
                                 <state key="normal" title="ЗАБЫЛ ПАРОЛЬ">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="requestNewPasswordButtonTouchUpInside:" destination="OcU-6m-jTB" eventType="touchUpInside" id="qMH-8Y-boC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -118,27 +118,40 @@ class AuthenticationManager: NSObject {
         User.sharedUser.twToken = ""
         User.sharedUser.vkToken = ""
     }
-    /*func checkIfTokenIsValid(token: String) {
-        let loginViewController = parentViewController as! LoginViewController
+    
+    func requestNewPassword(for login: String, completionHandler: (success:Bool, result: String?) -> Void) {
         
-        let request = HTTPTask();
-        let requestUrl = Constants.apiUrl + "api/v01/token"
-        let params: Dictionary<String,AnyObject> = ["login":"admin", "password":"password"];
-        //let params: Dictionary<String,AnyObject> = ["login":loginViewController.phone.text!, "password":parentViewController.code.text!];
-        request.GET(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
-            if let err = response.error {
-                print("error: " + err.localizedDescription)
-            }
-            else if let resp: AnyObject = response.responseObject {
-                if let data = NSString(data: resp as! NSData, encoding: NSUTF8StringEncoding) {
-                    let jsonData = data.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                    let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
-                    let json = JSON(jsonObject)
+        let requestUrl = Constants.apiUrl + "api/v01/users/recover"
+        let params = ["login": login]
+        
+        Alamofire.request(.POST, requestUrl, parameters: params).responseString {
+            response in
+            switch response.result {
+            case .Success:
+                if let responseData = response.data {
+                    var jsonError: NSError?
+                    let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                    if let error = json["error"].string {
+                        if error == "wait" {
+                            let remainingTime = json["time"].intValue
+                            completionHandler(success: false, result: "Повторная отправка смс возможна через \(remainingTime) сек.")
+                        }
+                        else
+                        {
+                            completionHandler(success: false, result: error)
+                        }
+                    }
+                    else {
+                        completionHandler(success: true, result: nil)
+                    }
+                    
                 }
-                NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationCenterKeys.notifyThatUserHaveBeenUpdated, object: self)
+            case .Failure(let err):
+                completionHandler(success: false, result: err.description)
             }
-        })
-    }*/
+            
+        }
+    }
     
     func registerNewUser(parentViewController: UIViewController, user: User) {
         /*1. post /api/users/
@@ -195,11 +208,25 @@ class AuthenticationManager: NSObject {
                             else if error == "already exists" {
                                 registerViewController?.hudManager.hideHUD(hud!)
                                 let alertAction = UIAlertAction(title: "Выслать", style: .Default) {(_) -> Void in
-                                    registerViewController?.dismissViewControllerAnimated(true) {() -> Void in
-                                        //registerViewController?.parentViewController?.showViewController(<#T##vc: UIViewController##UIViewController#>, sender: <#T##AnyObject?#>)
+                                    self.requestNewPassword(for: user.phone ?? "") {
+                                        (success: Bool, result: String?) -> Void in
+                                        if success {
+                                            registerViewController?.dismissViewControllerAnimated(true, completion: nil)
+                                        }
+                                        else {
+                                            registerViewController?.hudManager.showHUD("Ошибка", details: result, type: .Failure)
+                                        }
+                                    }
+                                 }
+                                /*registerViewController?.hudManager.hideHUD(hud!)
+                                let alertAction = UIAlertAction(title: "Выслать", style: .Default) {(_) -> Void in
+                                    //registerViewController?.dismissViewControllerAnimated(true) {() -> Void in
+                                        
+                                        //Запросить восстановление пароля /api/recover
+                                                                                //registerViewController?.parentViewController?.showViewController(<#T##vc: UIViewController##UIViewController#>, sender: <#T##AnyObject?#>)
                                         //отобразить вью контроллер для восстановления пароля хотя мб достаточно отразить главный VC
                                     }
-                                }
+                                }*/
                                 registerViewController?.hudManager.showAlertWithСancelButton("Номер уже зарегистрирован", message: "Выслать на него новый пароль?", cancelButtonTitle: "Нет", action: alertAction)
                             }
                             else {
@@ -207,7 +234,6 @@ class AuthenticationManager: NSObject {
                                 registerViewController?.hudManager.showHUD("Упс", details: error, type: .Failure)
                             }
                     }
-
                 }
             case .Failure(let error):
                 registerViewController?.hudManager.hideHUD(hud!)

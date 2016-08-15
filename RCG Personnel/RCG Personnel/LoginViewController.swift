@@ -11,7 +11,7 @@ import Foundation
 class LoginViewController: BaseViewController, RegisterViewControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var phone: RCGPhoneTextField!
     
-    @IBOutlet weak var code: UITextField!
+    @IBOutlet weak var code: RCGTextFieldClass!
     var hudManger = HUDManager()
     var authenticationManager = AuthenticationManager()
     var oldNumber = ""
@@ -45,7 +45,9 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
     }
     
     @IBAction func loginNative(sender: AnyObject) {
-        if phone.text == "" || code.text == "" {
+        phone.validate()
+        code.validate()
+        if !phone.isValid || !code.isValid {
             hudManger.showHUD("Ошибка", details: "Введите номер телефона и код", type: .Failure)
         }
         else {
@@ -82,6 +84,7 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField == phone {
+            
             textField.addTarget(self, action: #selector(applyMaskToPhoneField(_:)), forControlEvents: .EditingChanged)
             let invalidCharacters = NSCharacterSet(charactersInString: "+()-0123456789").invertedSet
             return string.rangeOfCharacterFromSet(invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
@@ -90,7 +93,7 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
         return false
     }
     
-    func applyMaskToPhoneField(textField: UITextField) {
+    func applyMaskToPhoneField(textField: RCGPhoneTextField) {
         let count = phone.text?.characters.count
         if count < 3 {
             textField.text = "+7"
@@ -132,8 +135,6 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
                     textField.text = result
                     oldNumber = result
                 }
-                
-                
             }
         }
         else if oldNumber.characters.count > textField.text?.characters.count {
@@ -147,6 +148,7 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
                 }
             }
         }
+        textField.validate()
     }
     
     func removeInvalidCharacters(s: String, charactersString: String) -> String {
