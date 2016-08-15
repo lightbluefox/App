@@ -9,41 +9,42 @@
 import Foundation
 import VK_ios_sdk
 
-class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkUIDelegate {
+enum SocialAuthenticationResult {
+    case Success(socialToken: String)
+    case Cancelled
+    case Failure(NSError?)
+}
+
+final class VKAuthenticationHandler: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
-    let vkAppID = "5429703"
-    let defaults = NSUserDefaults.standardUserDefaults()
+    private let vkAppID = "5429703"
+    private let defaults = NSUserDefaults.standardUserDefaults()
+    private var parentViewController: UIViewController?
     
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    private var authorizationCompletion: (SocialAuthenticationResult -> ())?
     
-    
-    func performAuthentication(parentViewController: UIViewController?) {
+    func performAuthentication(parentViewController: UIViewController?, completion: SocialAuthenticationResult -> ()) {
+        
         self.parentViewController = parentViewController
         
-        let instance = VKSdk.initializeWithAppId(self.vkAppID)
+        let instance = VKSdk.initializeWithAppId(vkAppID)
         instance.registerDelegate(self)
         instance.uiDelegate = self
         
-        if VKSdk.isLoggedIn()
-        {
-            VKSdk.wakeUpSession([VK_PER_EMAIL,VK_PER_FRIENDS,VK_PER_WALL]) { (state: VKAuthorizationState, error: NSError!) -> Void in
-            if state == .Authorized {
+        let permissions = [VK_PER_EMAIL, VK_PER_FRIENDS, VK_PER_WALL, VK_PER_OFFLINE]
+        
+        VKSdk.wakeUpSession(permissions) { [weak self] state, error in
+            switch state {
+            case .Authorized:
                 print(VKSdk.isLoggedIn())
-                NSLog("%@","Allready authorized, dismissing parent view controller")
-                parentViewController?.dismissViewControllerAnimated(true, completion: nil)
-                }
+                NSLog("%@","Already authorized, dismissing parent view controller")
+                completion(.Success(socialToken: VKSdk.accessToken().accessToken))
+            case .Error:
+                completion(.Failure(error))
+            default:
+                self?.authorizationCompletion = completion
+                VKSdk.authorize(permissions)
             }
-        }
-        else {
-            if VKSdk.vkAppMayExists() {
-                VKSdk.authorize([VK_PER_EMAIL,VK_PER_FRIENDS,VK_PER_WALL,VK_PER_OFFLINE])
-            } else {
-                VKSdk.authorize([VK_PER_EMAIL,VK_PER_FRIENDS,VK_PER_WALL, VK_PER_OFFLINE])
-            }
-            
-            print(VKSdk.isLoggedIn())
-            //parentViewController?.dismissViewControllerAnimated(true, completion: nil)
-            
         }
     }
     
@@ -52,27 +53,19 @@ class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkU
     }
     
     func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
-        if let usertoken = result.token {
-            
-            //print(result.user.id)
-            print(VKSdk.isLoggedIn())//Okay
-            print(result.token.accessToken)
-        }
-        else if let error = result.error {
-            if (error.vkError.errorCode == -102) {
-                //Canceled
-                NSLog("%@","Authroization failed: VK Api cancelled")
-            }
-            else {
-                NSLog("%@","Authorization failed: network error, or user denied authentication prompt in app")
+        if let token = result.token {
+            authorizationCompletion?(.Success(socialToken: token.accessToken))
+        } else if let error = result.error {
+            if error.vkError.errorCode == Int(VK_API_CANCELED) {
+                authorizationCompletion?(.Cancelled)
+            } else {
+                authorizationCompletion?(.Failure(error))
             }
         }
     }
     
-    
     func vkSdkUserAuthorizationFailed() {
         //Вызывается, когда пользователь деавторизовал приложение на сайте или сменил пароль: https://github.com/VKCOM/vk-ios-sdk/issues/299
-        
     }
     
     func vkSdkShouldPresentViewController(controller: UIViewController!) {

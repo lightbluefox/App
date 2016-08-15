@@ -28,20 +28,19 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
     
     
     @IBAction func closeButton(sender: AnyObject) {
-    self.dismissViewControllerAnimated(true, completion: nil)
-        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func loginTW(sender: AnyObject) {
-        authenticationManager.old_and_ugly_authenticate(.TW)
+        performAuthentication(.Social(.Twitter))
     }
     
     @IBAction func loginFB(sender: AnyObject) {
-        authenticationManager.old_and_ugly_authenticate(.FB)
+        performAuthentication(.Social(.Facebook))
     }
     
     @IBAction func loginVK(sender: UIButton) {
-        authenticationManager.old_and_ugly_authenticate(.VK)
+        performAuthentication(.Social(.VKontakte))
     }
     
     @IBAction func loginNative(sender: AnyObject) {
@@ -188,19 +187,33 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
     }
     
     private func performNativeAuthentication() {
-        let phone = self.phone.unmaskText() ?? ""
-        let code = self.code.text ?? ""
-        
+        performAuthentication(.Native(
+            login: self.phone.unmaskText() ?? "",
+            password: self.code.text ?? ""
+        ))
+    }
+    
+    private func performAuthentication(method: AuthenticationMethod) {
         weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
-        authenticationManager.authenticate(.Native(login: phone, password: code)) { [weak self] result in
+        authenticationManager.authenticate(method) { [weak self] result in
             hud?.hide(true)
             
             switch result {
+            
             case .Success:
                 self?.dismissViewControllerAnimated(true, completion: nil)
-            case .Unregistered:
-                self?.hudManger.showHUD("Ошибка", details: "Неизвестная ошибка", type: .Failure)
+            
+            case .Unregistered(let socialNetwork, let socialToken):
+                guard let registrationViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
+                    return assertionFailure("RegisterViewController not found")
+                }
+                
+                registrationViewController.socialNetwork = socialNetwork
+                registrationViewController.socialToken = socialToken
+                
+                self?.presentViewController(registrationViewController, animated: true, completion: nil)
+            
             case .Failure(let error):
                 self?.hudManger.showHUD("Ошибка", details: error?.localizedDescription ?? "Неизвестная ошибка", type: .Failure)
             }

@@ -9,7 +9,10 @@
 import Foundation
 import PhoneNumberKit
 
-class RegisterViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidatePhoneViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+final class RegisterViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidatePhoneViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    var socialNetwork: SocialNetwork?
+    var socialToken: String?
     
     @IBAction func closeButtonTouched(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)

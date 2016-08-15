@@ -19,10 +19,15 @@ final class AuthenticationManager {
     
     func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
         switch method {
+        
         case .Native(let login, let password):
             nativeAuthenticationHandler.performAuthentication(login: login, password: password, completion: completion)
+        
         case .Social(.VKontakte):
-            break   // TODO
+            vkAuthenticationHandler.performAuthentication(nil) { [weak self] result in
+                // TODO
+            }
+        
         case .Social(.Facebook):
             break   // TODO
         case .Social(.Twitter):
@@ -33,7 +38,7 @@ final class AuthenticationManager {
     func old_and_ugly_authenticate(authenticationType: AuthenticationType) {
         if authenticationType == .VK {
             NSLog("%@", "Trying to authenticate via Vkontakte.")
-            vkAuthenticationHandler.performAuthentication(self.parentViewController)
+//            vkAuthenticationHandler.performAuthentication(self.parentViewController)
         }
         
         else if authenticationType == .FB {
@@ -274,6 +279,7 @@ enum SocialNetwork {
 
 enum AuthenticationResult {
     case Success
-    case Unregistered(socialToken: String)
+    /// Незарегистрированный социальный юзер
+    case Unregistered(socialNetwork: SocialNetwork, socialToken: String)
     case Failure(NSError?)
 }
