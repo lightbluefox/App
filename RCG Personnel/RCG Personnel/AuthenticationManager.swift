@@ -12,20 +12,31 @@ import Alamofire
 
 final class AuthenticationManager {
 
-    var parentViewController: UIViewController?
-    let vkAuthenticationHandler = VKAuthenticationHandler()
-    let fbAuthenticationHandler = FBAuthenticationHandler()
-    let nativeAuthenticationHandler = NativeAuthenticationHandler()
+    var parentViewController: UIViewController? {
+        didSet {
+            vkAuthenticationService.parentViewController = parentViewController
+        }
+    }
+    
+    private let vkAuthenticationService = VKAuthenticationService()
+    private let fbAuthenticationHandler = FBAuthenticationHandler()
     
     func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
         switch method {
         
-        case .Native(let login, let password):
-            nativeAuthenticationHandler.performAuthentication(login: login, password: password, completion: completion)
+        case .Native:
+            sendAuthenticationRequest(method, socialToken: nil, completion: completion)
         
         case .Social(.VKontakte):
-            vkAuthenticationHandler.performAuthentication(nil) { [weak self] result in
-                // TODO
+            vkAuthenticationService.performAuthentication { [weak self] result in
+                switch result {
+                case .Success(let socialToken):
+                    self?.sendAuthenticationRequest(method, socialToken: socialToken, completion: completion)
+                case .Cancelled:
+                    completion(.Failure(nil))
+                case .Failure(let error):
+                    completion(.Failure(error))
+                }
             }
         
         case .Social(.Facebook):
@@ -38,7 +49,7 @@ final class AuthenticationManager {
     func old_and_ugly_authenticate(authenticationType: AuthenticationType) {
         if authenticationType == .VK {
             NSLog("%@", "Trying to authenticate via Vkontakte.")
-//            vkAuthenticationHandler.performAuthentication(self.parentViewController)
+//            vkAuthenticationService.performAuthentication(self.parentViewController)
         }
         
         else if authenticationType == .FB {
@@ -92,7 +103,7 @@ final class AuthenticationManager {
             }
         }
         //разлогиниться из приложения вк, фб, и тв
-        vkAuthenticationHandler.performLogoff()
+        vkAuthenticationService.performLogoff()
         fbAuthenticationHandler.performLogoff()
         
         //очистить все из дефаултсов (там хранится токен)
@@ -257,6 +268,67 @@ final class AuthenticationManager {
     func confirmUserWithCode(parentViewController: UIViewController, user: User) {
         
     }
+    
+    // MARK: - Sending request
+    
+    private let user = User.sharedUser
+    private let userReceiver = UserReceiver()
+    
+    private func sendAuthenticationRequest(method: AuthenticationMethod, socialToken: String?, completion: AuthenticationResult -> ()) {
+        
+        let request = HTTPTask()
+        let requestUrl = Constants.apiUrl + "api/v01/token"
+        let params = parametersForAuthenticationMethod(method, socialToken: socialToken)
+        
+        request.PUT(requestUrl, parameters: params) { [weak self] response in
+            if let error = response.error {
+                debugPrint("error: " + error.localizedDescription)
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(.Failure(error))
+                }
+            } else {
+                let data = response.responseObject as? NSData
+                let jsonObject = data.flatMap {
+                    try? NSJSONSerialization.JSONObjectWithData($0, options: NSJSONReadingOptions(rawValue: 0))
+                }
+                
+                guard let json = jsonObject.flatMap({ JSON($0) }) else {
+                    return completion(.Failure(nil))
+                }
+                
+                if let error = json["error"].string {
+                    print("error: " + error)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if error == "no such a user" {
+                            completion(.UserNotFound(socialNetwork: method.socialNetwork, socialToken: socialToken))
+                        } else {
+                            completion(.Failure(nil))
+                        }
+                    }
+                } else if let userToken = json["token"].string {
+                    self?.user.token = userToken
+                    self?.user.isAuthenticated = true
+                    self?.user.isTokenChecked = true
+                    print("Native authentication completed, user token: \(userToken)")
+                    self?.userReceiver.getCurrentUser()
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(.Success)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func parametersForAuthenticationMethod(method: AuthenticationMethod, socialToken: String?) -> [String: AnyObject] {
+        switch method {
+        case .Native(let login, let password):
+            return ["login": login, "password": password]
+        case .Social(.VKontakte):
+            return ["vkToken": socialToken ?? ""]
+        default:
+            return [:]
+        }
+    }
 }
 
 enum AuthenticationType {
@@ -267,8 +339,17 @@ enum AuthenticationType {
 }
 
 enum AuthenticationMethod {
+    
     case Native(login: String, password: String)
     case Social(SocialNetwork)
+    
+    var socialNetwork: SocialNetwork? {
+        if case .Social(let socialNetwork) = self {
+            return socialNetwork
+        } else {
+            return nil
+        }
+    }
 }
 
 enum SocialNetwork {
@@ -279,7 +360,6 @@ enum SocialNetwork {
 
 enum AuthenticationResult {
     case Success
-    /// Незарегистрированный социальный юзер
-    case Unregistered(socialNetwork: SocialNetwork, socialToken: String)
+    case UserNotFound(socialNetwork: SocialNetwork?, socialToken: String?)
     case Failure(NSError?)
 }

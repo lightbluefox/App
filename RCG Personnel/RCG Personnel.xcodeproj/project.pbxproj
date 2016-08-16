@@ -23,7 +23,6 @@
 		841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F21CC28B1400A66930 /* PushHandler.swift */; };
 		841F89F51CC28F8400A66930 /* SingleNewsPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */; };
 		8420008C1CF0C34400992576 /* NSUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */; };
-		8420008E1CF0C61D00992576 /* NativeAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */; };
 		842EBD5B1D00D4CD0084F376 /* SingleNewsContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */; };
 		842EBD5D1D01DEE50084F376 /* SingelNewsCommentsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */; };
 		842EBD5F1D02FDDA0084F376 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5E1D02FDDA0084F376 /* Comments.swift */; };
@@ -41,7 +40,7 @@
 		84A7D9341C80D2D500E2602A /* VacancyResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */; };
 		84BEFFC01D09E204005BDF71 /* ValidatePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEFFBF1D09E204005BDF71 /* ValidatePhoneViewController.swift */; };
 		84C322331CCA48A100A70641 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322321CCA48A100A70641 /* AuthenticationManager.swift */; };
-		84C322361CCA9F7800A70641 /* VKAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */; };
+		84C322361CCA9F7800A70641 /* VKAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322351CCA9F7800A70641 /* VKAuthenticationService.swift */; };
 		84C322381CCAA1EB00A70641 /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322371CCAA1EB00A70641 /* AuthenticationHandler.swift */; };
 		84C3223A1CCAA3FD00A70641 /* BaseAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322391CCAA3FD00A70641 /* BaseAuthenticationHandler.swift */; };
 		84C3223C1CCC0B5000A70641 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3223B1CCC0B5000A70641 /* User.swift */; };
@@ -240,7 +239,6 @@
 		841F89F21CC28B1400A66930 /* PushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsPushHandler.swift; sourceTree = "<group>"; };
 		8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsKeys.swift; sourceTree = "<group>"; };
-		8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeAuthenticationHandler.swift; sourceTree = "<group>"; };
 		842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsContentCell.swift; sourceTree = "<group>"; };
 		842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingelNewsCommentsHeaderCell.swift; sourceTree = "<group>"; };
 		842EBD5E1D02FDDA0084F376 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
@@ -258,7 +256,7 @@
 		84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacancyResponseViewController.swift; sourceTree = "<group>"; };
 		84BEFFBF1D09E204005BDF71 /* ValidatePhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePhoneViewController.swift; sourceTree = "<group>"; };
 		84C322321CCA48A100A70641 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
-		84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthenticationHandler.swift; sourceTree = "<group>"; };
+		84C322351CCA9F7800A70641 /* VKAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthenticationService.swift; sourceTree = "<group>"; };
 		84C322371CCAA1EB00A70641 /* AuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationHandler.swift; sourceTree = "<group>"; };
 		84C322391CCAA3FD00A70641 /* BaseAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAuthenticationHandler.swift; sourceTree = "<group>"; };
 		84C3223B1CCC0B5000A70641 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -459,8 +457,7 @@
 				84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */,
 				84C322371CCAA1EB00A70641 /* AuthenticationHandler.swift */,
 				84C322391CCAA3FD00A70641 /* BaseAuthenticationHandler.swift */,
-				84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */,
-				8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */,
+				84C322351CCA9F7800A70641 /* VKAuthenticationService.swift */,
 				84116B421CEB8DED001E5F02 /* FBAuthenticationHanler.swift */,
 			);
 			name = Authentication;
@@ -1002,7 +999,6 @@
 				8411A3021CD948E700313D11 /* EditProfileViewController.swift in Sources */,
 				84C3223C1CCC0B5000A70641 /* User.swift in Sources */,
 				84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
-				8420008E1CF0C61D00992576 /* NativeAuthenticationHandler.swift in Sources */,
 				84D05FB81C77C823002CEB6B /* HTTPUpload.swift in Sources */,
 				84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */,
 				84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */,
@@ -1027,7 +1023,7 @@
 				84A7D9341C80D2D500E2602A /* VacancyResponseViewController.swift in Sources */,
 				849D62381CC942BB00C90229 /* LoginViewController.swift in Sources */,
 				84D05F751C779388002CEB6B /* News.swift in Sources */,
-				84C322361CCA9F7800A70641 /* VKAuthenticationHandler.swift in Sources */,
+				84C322361CCA9F7800A70641 /* VKAuthenticationService.swift in Sources */,
 				84D05F901C779976002CEB6B /* MBProgressHUD.m in Sources */,
 				84D05FB21C77C823002CEB6B /* HTTPStatusCode.swift in Sources */,
 				840A0F481CFC9DE800BD6DF1 /* RegisterViewController.swift in Sources */,

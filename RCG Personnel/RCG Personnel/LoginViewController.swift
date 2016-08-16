@@ -9,23 +9,24 @@
 import Foundation
 
 class LoginViewController: BaseViewController, RegisterViewControllerDelegate, UITextFieldDelegate {
-    @IBOutlet weak var phone: RCGPhoneTextField!
     
+    @IBOutlet weak var phone: RCGPhoneTextField!
     @IBOutlet weak var code: RCGTextFieldClass!
-    var hudManger = HUDManager()
-    var authenticationManager = AuthenticationManager()
-    var oldNumber = ""
+    
+    private let hudManger = HUDManager()
+    private let authenticationManager = AuthenticationManager()
+    
+    private var oldNumber = ""
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.authenticationManager.parentViewController = self
-        self.hudManger.parentViewController = self
+        authenticationManager.parentViewController = self
+        hudManger.parentViewController = self
     }
     
     @IBAction func textFieldEditingDidEnd(sender: RCGTextFieldClass) {
         sender.validate()
     }
-    
     
     @IBAction func closeButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -204,7 +205,7 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
             case .Success:
                 self?.dismissViewControllerAnimated(true, completion: nil)
             
-            case .Unregistered(let socialNetwork, let socialToken):
+            case .UserNotFound(let socialNetwork, let socialToken):
                 guard let registrationViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
                     return assertionFailure("RegisterViewController not found")
                 }

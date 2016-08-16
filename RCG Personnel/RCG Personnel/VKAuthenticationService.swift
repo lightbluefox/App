@@ -15,17 +15,15 @@ enum SocialAuthenticationResult {
     case Failure(NSError?)
 }
 
-final class VKAuthenticationHandler: NSObject, VKSdkDelegate, VKSdkUIDelegate {
+final class VKAuthenticationService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
+    
+    var parentViewController: UIViewController?
     
     private let vkAppID = "5429703"
     private let defaults = NSUserDefaults.standardUserDefaults()
-    private var parentViewController: UIViewController?
-    
     private var authorizationCompletion: (SocialAuthenticationResult -> ())?
     
-    func performAuthentication(parentViewController: UIViewController?, completion: SocialAuthenticationResult -> ()) {
-        
-        self.parentViewController = parentViewController
+    func performAuthentication(completion: SocialAuthenticationResult -> ()) {
         
         let instance = VKSdk.initializeWithAppId(vkAppID)
         instance.registerDelegate(self)
