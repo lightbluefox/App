@@ -175,7 +175,7 @@ final class AuthenticationManager {
         }
     }
     
-    func registerNewUser(parentViewController: UIViewController, user: User) {
+    func registerNewUser(parentViewController: UIViewController, user: User, socialNetwork: SocialNetwork?, socialToken: String?) {
         /*1. post /api/users/
         success: if already exists, alert
         if not, openPhoneConfirmationDialog(Phone)
@@ -186,7 +186,7 @@ final class AuthenticationManager {
         
         //Параметры только так, т.к. их много и XCODE зависает при индексации, ломает автокомплит и вообще плохо себя ведет =(
         //var params = ["":""]
-        var params : Dictionary<String,AnyObject> = [
+        var params : [String: AnyObject] = [
             "login": user.phone ?? "",
             "name": user.firstName ?? "",
             "surName": user.lastName ?? "",
@@ -202,6 +202,17 @@ final class AuthenticationManager {
         params.updateValue(user.height ?? 0, forKey: "height")
         params.updateValue(user.size ?? 0, forKey: "clothesSize")
         params.updateValue(user.birthDate ?? "", forKey: "birthDate")
+        
+        if let socialNetwork = socialNetwork, socialToken = socialToken {
+            switch socialNetwork {
+            case .VKontakte:
+                params["vkToken"] = socialToken
+            case .Facebook:
+                break   // TODO
+            case .Twitter:
+                break   // TODO
+            }
+        }
         
         Alamofire.request(.POST, requestURL, parameters: params, encoding: .URL).responseJSON {
             response in
