@@ -206,7 +206,8 @@ final class AuthenticationManager {
         if let socialNetwork = socialNetwork, socialToken = socialToken {
             switch socialNetwork {
             case .VKontakte:
-                params["vkToken"] = socialToken
+                params["type"] = "vk"
+                params["token"] = socialToken
             case .Facebook:
                 break   // TODO
             case .Twitter:
@@ -335,7 +336,7 @@ final class AuthenticationManager {
         case .Native(let login, let password):
             return ["login": login, "password": password]
         case .Social(.VKontakte):
-            return ["vkToken": socialToken ?? ""]
+            return ["type": "vk", "token": socialToken ?? ""]
         default:
             return [:]
         }
