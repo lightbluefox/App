@@ -205,6 +205,7 @@
 		84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */; };
 		84FD9DA21D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */; };
 		98F0FB423AA2408230FD2C24 /* Pods_RCG_Personnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D2CE24D6DA1823D9C05DF3 /* Pods_RCG_Personnel.framework */; };
+		F2C0AA8B1D64F8DE003492E7 /* TwitterAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C0AA8A1D64F8DE003492E7 /* TwitterAuthenticationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -359,6 +360,7 @@
 		CCC52349DED7CF626C09F5D8 /* Pods_RCG_PersonnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.release.xcconfig"; sourceTree = "<group>"; };
 		E8D1B197310724F55B7F47F3 /* Pods-RCG PersonnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F2C0AA8A1D64F8DE003492E7 /* TwitterAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAuthenticationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +474,7 @@
 			children = (
 				842CD1A51D64D4C3007459F1 /* FBAuthenticationService.swift */,
 				842CD1A61D64D4C3007459F1 /* VKAuthenticationService.swift */,
+				F2C0AA8A1D64F8DE003492E7 /* TwitterAuthenticationService.swift */,
 				849D62371CC942BB00C90229 /* LoginViewController.swift */,
 				840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */,
 				84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */,
@@ -716,7 +719,6 @@
 				84D05F241C763612002CEB6B /* Sources */,
 				84D05F251C763612002CEB6B /* Frameworks */,
 				84D05F261C763612002CEB6B /* Resources */,
-				8407720B1CBA70AF00E58260 /* ShellScript */,
 				8AD2997E6E38D0C38B63E1D0 /* 📦 Embed Pods Frameworks */,
 				3ABD485626047F9C578041F9 /* 📦 Copy Pods Resources */,
 				842CD1A41D64C21B007459F1 /* ShellScript */,
@@ -956,19 +958,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG PersonnelUITests/Pods-RCG PersonnelUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8407720B1CBA70AF00E58260 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
-		};
 		842CD1A41D64C21B007459F1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1056,6 +1045,7 @@
 				84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84BEFFC01D09E204005BDF71 /* ValidatePhoneViewController.swift in Sources */,
 				84D060301C8018C9002CEB6B /* RCGButton.swift in Sources */,
+				F2C0AA8B1D64F8DE003492E7 /* TwitterAuthenticationService.swift in Sources */,
 				846AA0021CC00C2000205142 /* PushManager.swift in Sources */,
 				84D060131C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
 				84D05F6C1C766F38002CEB6B /* NewsCell.swift in Sources */,

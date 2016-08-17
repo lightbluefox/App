@@ -21,6 +21,7 @@ final class AuthenticationManager {
     
     private let vkAuthenticationService = VKAuthenticationService()
     private let fbAuthenticationService = FBAuthenticationService()
+    private let twitterAuthenticationService = TwitterAuthenticationService()
     
     func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
         switch method {
@@ -35,7 +36,12 @@ final class AuthenticationManager {
                 self?.handleSocialAuthenticationResult(result, method: method, completion: completion)
             }
         case .Social(.Twitter):
-            break   // TODO
+            twitterAuthenticationService.performAuthentication { [weak self] result in
+                if case .Success(let token, let tokenSecret) = result {
+                    print("token = \(token), tokenSecret = \(tokenSecret)")
+                }
+//                self?.handleSocialAuthenticationResult(result, method: method, completion: completion)
+            }
         }
     }
     
