@@ -9,7 +9,10 @@
 import Foundation
 import PhoneNumberKit
 
-class RegisterViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidatePhoneViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+final class RegisterViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidatePhoneViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    var socialNetwork: SocialNetwork?
+    var socialToken: String?
     
     @IBAction func closeButtonTouched(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -86,21 +89,24 @@ class RegisterViewController: BaseViewController, UIImagePickerControllerDelegat
                 gender = Gender.Male
             }
             
-            authenticationManager.registerNewUser(self,
-                                                  user: User(photo: "",
-                                                    firstName: firstName.text ?? "",
-                                                    middleName: middleName.text ?? "",
-                                                    lastName: lastName.text ?? "",
-                                                    phone: clearPhone,
-                                                    email: email.text ?? "",
-                                                    birthDate: bdate ?? "",
-                                                    height: Int(heightFinal) ?? 0,
-                                                    size: Int(sizeFinal) ?? 0,
-                                                    hasMedicalBook: hasMedicalCard.on,
-                                                    medicalBookNumber: medicalCardNumber.text ?? "",
-                                                    metroStation: SubwayStation.text ?? "",
-                                                    passportData: passport.text ?? "",
-                                                    gender: gender))
+            let user = User(
+                photo: "",
+                firstName: firstName.text ?? "",
+                middleName: middleName.text ?? "",
+                lastName: lastName.text ?? "",
+                phone: clearPhone,
+                email: email.text ?? "",
+                birthDate: bdate ?? "",
+                height: Int(heightFinal) ?? 0,
+                size: Int(sizeFinal) ?? 0,
+                hasMedicalBook: hasMedicalCard.on,
+                medicalBookNumber: medicalCardNumber.text ?? "",
+                metroStation: SubwayStation.text ?? "",
+                passportData: passport.text ?? "",
+                gender: gender
+            )
+            
+            authenticationManager.registerNewUser(self, user: user, socialNetwork: socialNetwork, socialToken: socialToken)
             
             //authenticationManager.registerNewUser(self, user: User(photo: "https://lh5.googleusercontent.com/-MlnvEdpKY2w/AAAAAAAAAAI/AAAAAAAAAFw/x6wHNLJmtQ0/s0-c-k-no-ns/photo.jpg", firstName: "Иван", middleName: "Петрович", lastName: "Путинов", phone: self.phoneNumber.text ?? "", email: "mail@mail.ru", birthDate: "22.07.1912", height: 180, size: 42, hasMedicalBook: true, medicalBookNumber: "1231231", metroStation: "Севастопольская", passportData: "1231 312312", gender: .Male))
         }

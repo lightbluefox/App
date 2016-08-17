@@ -12,46 +12,30 @@ import Alamofire
 
 final class AuthenticationManager {
 
-    var parentViewController: UIViewController?
-    let vkAuthenticationHandler = VKAuthenticationHandler()
-    let fbAuthenticationHandler = FBAuthenticationHandler()
-    let nativeAuthenticationHandler = NativeAuthenticationHandler()
-    
-    func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
-        switch method {
-        case .Native(let login, let password):
-            nativeAuthenticationHandler.performAuthentication(login: login, password: password, completion: completion)
-        case .Social(.VKontakte):
-            break   // TODO
-        case .Social(.Facebook):
-            break   // TODO
-        case .Social(.Twitter):
-            break   // TODO
+    var parentViewController: UIViewController? {
+        didSet {
+            vkAuthenticationService.parentViewController = parentViewController
+            fbAuthenticationService.parentViewController = parentViewController
         }
     }
     
-    func old_and_ugly_authenticate(authenticationType: AuthenticationType) {
-        if authenticationType == .VK {
-            NSLog("%@", "Trying to authenticate via Vkontakte.")
-            vkAuthenticationHandler.performAuthentication(self.parentViewController)
-        }
-        
-        else if authenticationType == .FB {
-            NSLog("%@", "Trying to authenticate via Facebook.")
-            //Тут где-то добавить dismissViewControllerAnimated!
-            fbAuthenticationHandler.loginToFacebookWithSuccess({print("Authentication via Facebook succeed!")}, andFailure: { (error: NSError?) -> () in
-                print("Authentication via Facebook failed!")
-                print(error)
-            })
-        }
-            
-        else if authenticationType == .TW {
-            NSLog("%@", "Trying to authenticate via Twitter.")
-        }
-        
-        else if authenticationType == .Native {
-//            nativeAuthenticationHandler.performAuthentication(self.parentViewController)
-            NSLog("%@", "Trying to authenticate via login and password.")
+    private let vkAuthenticationService = VKAuthenticationService()
+    private let fbAuthenticationService = FBAuthenticationService()
+    
+    func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
+        switch method {
+        case .Native:
+            sendAuthenticationRequest(method, socialToken: nil, completion: completion)
+        case .Social(.VKontakte):
+            vkAuthenticationService.performAuthentication { [weak self] result in
+                self?.handleSocialAuthenticationResult(result, method: method, completion: completion)
+            }
+        case .Social(.Facebook):
+            fbAuthenticationService.performAuthentication { [weak self] result in
+                self?.handleSocialAuthenticationResult(result, method: method, completion: completion)
+            }
+        case .Social(.Twitter):
+            break   // TODO
         }
     }
     
@@ -87,8 +71,8 @@ final class AuthenticationManager {
             }
         }
         //разлогиниться из приложения вк, фб, и тв
-        vkAuthenticationHandler.performLogoff()
-        fbAuthenticationHandler.performLogoff()
+        vkAuthenticationService.performLogoff()
+        fbAuthenticationService.performLogoff()
         
         //очистить все из дефаултсов (там хранится токен)
         clearDefaults()
@@ -159,7 +143,7 @@ final class AuthenticationManager {
         }
     }
     
-    func registerNewUser(parentViewController: UIViewController, user: User) {
+    func registerNewUser(parentViewController: UIViewController, user: User, socialNetwork: SocialNetwork?, socialToken: String?) {
         /*1. post /api/users/
         success: if already exists, alert
         if not, openPhoneConfirmationDialog(Phone)
@@ -170,7 +154,7 @@ final class AuthenticationManager {
         
         //Параметры только так, т.к. их много и XCODE зависает при индексации, ломает автокомплит и вообще плохо себя ведет =(
         //var params = ["":""]
-        var params : Dictionary<String,AnyObject> = [
+        var params : [String: AnyObject] = [
             "login": user.phone ?? "",
             "name": user.firstName ?? "",
             "surName": user.lastName ?? "",
@@ -186,6 +170,11 @@ final class AuthenticationManager {
         params.updateValue(user.height ?? 0, forKey: "height")
         params.updateValue(user.size ?? 0, forKey: "clothesSize")
         params.updateValue(user.birthDate ?? "", forKey: "birthDate")
+        
+        if let socialNetwork = socialNetwork, socialToken = socialToken {
+            params["token"] = socialToken
+            params["type"] = stringTypeForSocialNetwork(socialNetwork)
+        }
         
         Alamofire.request(.POST, requestURL, parameters: params, encoding: .URL).responseJSON {
             response in
@@ -252,6 +241,94 @@ final class AuthenticationManager {
     func confirmUserWithCode(parentViewController: UIViewController, user: User) {
         
     }
+    
+    // MARK: - Sending request
+    
+    private let user = User.sharedUser
+    private let userReceiver = UserReceiver()
+    
+    private func handleSocialAuthenticationResult(
+        result: SocialAuthenticationResult,
+        method: AuthenticationMethod,
+        completion: AuthenticationResult -> ())
+    {
+        switch result {
+        case .Success(let socialToken):
+            sendAuthenticationRequest(method, socialToken: socialToken, completion: completion)
+        case .Cancelled:
+            completion(.Failure(nil))
+        case .Failure(let error):
+            completion(.Failure(error))
+        }
+    }
+    
+    private func sendAuthenticationRequest(method: AuthenticationMethod, socialToken: String?, completion: AuthenticationResult -> ()) {
+        
+        let request = HTTPTask()
+        let requestUrl = Constants.apiUrl + "api/v01/token"
+        let params = parametersForAuthenticationMethod(method, socialToken: socialToken)
+        
+        request.PUT(requestUrl, parameters: params) { [weak self] response in
+            if let error = response.error {
+                debugPrint("error: " + error.localizedDescription)
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(.Failure(error))
+                }
+            } else {
+                let data = response.responseObject as? NSData
+                let jsonObject = data.flatMap {
+                    try? NSJSONSerialization.JSONObjectWithData($0, options: NSJSONReadingOptions(rawValue: 0))
+                }
+                
+                guard let json = jsonObject.flatMap({ JSON($0) }) else {
+                    return completion(.Failure(nil))
+                }
+                
+                if let error = json["error"].string {
+                    print("error: " + error)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if error == "no such a user" {
+                            completion(.UserNotFound(socialNetwork: method.socialNetwork, socialToken: socialToken))
+                        } else {
+                            completion(.Failure(nil))
+                        }
+                    }
+                } else if let userToken = json["token"].string {
+                    self?.user.token = userToken
+                    self?.user.isAuthenticated = true
+                    self?.user.isTokenChecked = true
+                    print("Native authentication completed, user token: \(userToken)")
+                    self?.userReceiver.getCurrentUser()
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(.Success)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func parametersForAuthenticationMethod(method: AuthenticationMethod, socialToken: String?) -> [String: AnyObject] {
+        switch method {
+        case .Native(let login, let password):
+            return ["login": login, "password": password]
+        case .Social(let socialNetwork):
+            return [
+                "type": stringTypeForSocialNetwork(socialNetwork),
+                "token": socialToken ?? ""
+            ]
+        }
+    }
+    
+    private func stringTypeForSocialNetwork(socialNetwork: SocialNetwork) -> String {
+        switch socialNetwork {
+        case .VKontakte:
+            return "vk"
+        case .Facebook:
+            return "fb"
+        case .Twitter:
+            return "tw"
+        }
+    }
 }
 
 enum AuthenticationType {
@@ -262,8 +339,17 @@ enum AuthenticationType {
 }
 
 enum AuthenticationMethod {
+    
     case Native(login: String, password: String)
     case Social(SocialNetwork)
+    
+    var socialNetwork: SocialNetwork? {
+        if case .Social(let socialNetwork) = self {
+            return socialNetwork
+        } else {
+            return nil
+        }
+    }
 }
 
 enum SocialNetwork {
@@ -274,6 +360,6 @@ enum SocialNetwork {
 
 enum AuthenticationResult {
     case Success
-    case Unregistered(socialToken: String)
+    case UserNotFound(socialNetwork: SocialNetwork?, socialToken: String?)
     case Failure(NSError?)
 }
