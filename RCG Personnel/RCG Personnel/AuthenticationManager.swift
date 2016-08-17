@@ -15,6 +15,7 @@ final class AuthenticationManager {
     var parentViewController: UIViewController? {
         didSet {
             vkAuthenticationService.parentViewController = parentViewController
+            fbAuthenticationService.parentViewController = parentViewController
         }
     }
     

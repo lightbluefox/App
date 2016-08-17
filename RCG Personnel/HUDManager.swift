@@ -22,7 +22,7 @@ class HUDManager {
     var parentViewController: UIViewController?
     
     func showHUD(label: String?, details: String?, type: HUDType) -> MBProgressHUD {
-        let hud = MBProgressHUD.showHUDAddedTo(self.parentViewController?.view.window, animated: true)
+        let hud = MBProgressHUD.showHUDAddedTo(parentViewController?.view, animated: true)
         
         switch type {
         case .Processing :
