@@ -204,15 +204,8 @@ final class AuthenticationManager {
         params.updateValue(user.birthDate ?? "", forKey: "birthDate")
         
         if let socialNetwork = socialNetwork, socialToken = socialToken {
-            switch socialNetwork {
-            case .VKontakte:
-                params["type"] = "vk"
-                params["token"] = socialToken
-            case .Facebook:
-                break   // TODO
-            case .Twitter:
-                break   // TODO
-            }
+            params["token"] = socialToken
+            params["type"] = stringTypeForSocialNetwork(socialNetwork)
         }
         
         Alamofire.request(.POST, requestURL, parameters: params, encoding: .URL).responseJSON {
@@ -335,10 +328,22 @@ final class AuthenticationManager {
         switch method {
         case .Native(let login, let password):
             return ["login": login, "password": password]
-        case .Social(.VKontakte):
-            return ["type": "vk", "token": socialToken ?? ""]
-        default:
-            return [:]
+        case .Social(let socialNetwork):
+            return [
+                "type": stringTypeForSocialNetwork(socialNetwork),
+                "token": socialToken ?? ""
+            ]
+        }
+    }
+    
+    private func stringTypeForSocialNetwork(socialNetwork: SocialNetwork) -> String {
+        switch socialNetwork {
+        case .VKontakte:
+            return "vk"
+        case .Facebook:
+            return "fb"
+        case .Twitter:
+            return "tw"
         }
     }
 }
