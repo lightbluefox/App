@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BCFAC7E3C81937CED4D0A5E /* Pods_RCG_PersonnelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC817AA7C1305DC321F56F9 /* Pods_RCG_PersonnelUITests.framework */; };
-		67FBBA52579D597CD89BE9CA /* Pods_RCG_Personnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C4305915F72E2C75D9A6A /* Pods_RCG_Personnel.framework */; };
+		47447102B68B09086D7E3C16 /* Pods_RCG_PersonnelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6079146B21D0FB26B34C91 /* Pods_RCG_PersonnelUITests.framework */; };
+		798B0BE3E6517621EA074A9A /* Pods_RCG_PersonnelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC52349DED7CF626C09F5D8 /* Pods_RCG_PersonnelTests.framework */; };
 		840A0F461CF8833900BD6DF1 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A0F451CF8833900BD6DF1 /* Reachability.swift */; };
 		840A0F481CFC9DE800BD6DF1 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */; };
 		84116B3F1CEB87C5001E5F02 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84116B3C1CEB87C5001E5F02 /* FBSDKCoreKit.framework */; };
@@ -24,6 +24,10 @@
 		841F89F51CC28F8400A66930 /* SingleNewsPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */; };
 		8420008C1CF0C34400992576 /* NSUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */; };
 		8420008E1CF0C61D00992576 /* NativeAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */; };
+		842CD19D1D624FB7007459F1 /* VKShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD19C1D624FB7007459F1 /* VKShareManager.swift */; };
+		842CD19F1D625537007459F1 /* BaseShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD19E1D625537007459F1 /* BaseShareManager.swift */; };
+		842CD1A11D63BB6C007459F1 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD1A01D63BB6C007459F1 /* ShareManager.swift */; };
+		842CD1A31D63C176007459F1 /* FBShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD1A21D63C176007459F1 /* FBShareManager.swift */; };
 		842EBD5B1D00D4CD0084F376 /* SingleNewsContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */; };
 		842EBD5D1D01DEE50084F376 /* SingelNewsCommentsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */; };
 		842EBD5F1D02FDDA0084F376 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842EBD5E1D02FDDA0084F376 /* Comments.swift */; };
@@ -200,7 +204,7 @@
 		84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */; };
 		84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */; };
 		84FD9DA21D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */; };
-		90AEAA5386C457402977CA44 /* Pods_RCG_PersonnelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6287B1DDE2082483458B1C06 /* Pods_RCG_PersonnelTests.framework */; };
+		98F0FB423AA2408230FD2C24 /* Pods_RCG_Personnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D2CE24D6DA1823D9C05DF3 /* Pods_RCG_Personnel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,8 +227,8 @@
 /* Begin PBXFileReference section */
 		0988F38A20B5A24C3281AFAA /* Pods-RCG Personnel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.debug.xcconfig"; sourceTree = "<group>"; };
 		0DAB6FFE6214F1CD16B6AF90 /* Pods-RCG PersonnelUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelUITests/Pods-RCG PersonnelUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4E6079146B21D0FB26B34C91 /* Pods_RCG_PersonnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A79356D7B85D30869EB5C5F /* Pods-RCG PersonnelUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelUITests/Pods-RCG PersonnelUITests.release.xcconfig"; sourceTree = "<group>"; };
-		6287B1DDE2082483458B1C06 /* Pods_RCG_PersonnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C13E4474054216A3C8CC4F7 /* Pods-RCG PersonnelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.release.xcconfig"; sourceTree = "<group>"; };
 		840A0F451CF8833900BD6DF1 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = SOURCE_ROOT; };
 		840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +245,10 @@
 		841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsPushHandler.swift; sourceTree = "<group>"; };
 		8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		8420008D1CF0C61D00992576 /* NativeAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeAuthenticationHandler.swift; sourceTree = "<group>"; };
+		842CD19C1D624FB7007459F1 /* VKShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKShareManager.swift; sourceTree = "<group>"; };
+		842CD19E1D625537007459F1 /* BaseShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseShareManager.swift; sourceTree = "<group>"; };
+		842CD1A01D63BB6C007459F1 /* ShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
+		842CD1A21D63C176007459F1 /* FBShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBShareManager.swift; sourceTree = "<group>"; };
 		842EBD5A1D00D4CD0084F376 /* SingleNewsContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsContentCell.swift; sourceTree = "<group>"; };
 		842EBD5C1D01DEE40084F376 /* SingelNewsCommentsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingelNewsCommentsHeaderCell.swift; sourceTree = "<group>"; };
 		842EBD5E1D02FDDA0084F376 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
@@ -347,9 +355,9 @@
 		84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleVacancyPushHandler.swift; sourceTree = "<group>"; };
 		84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePhoneViewDelegate.swift; sourceTree = "<group>"; };
 		84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewControllerDelegate.swift; sourceTree = "<group>"; };
-		8B5C4305915F72E2C75D9A6A /* Pods_RCG_Personnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_Personnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6D2CE24D6DA1823D9C05DF3 /* Pods_RCG_Personnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_Personnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCC52349DED7CF626C09F5D8 /* Pods_RCG_PersonnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.release.xcconfig"; sourceTree = "<group>"; };
-		DBC817AA7C1305DC321F56F9 /* Pods_RCG_PersonnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D1B197310724F55B7F47F3 /* Pods-RCG PersonnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -362,7 +370,7 @@
 				84116B411CEB87C5001E5F02 /* FBSDKShareKit.framework in Frameworks */,
 				84116B3F1CEB87C5001E5F02 /* FBSDKCoreKit.framework in Frameworks */,
 				84116B401CEB87C5001E5F02 /* FBSDKLoginKit.framework in Frameworks */,
-				67FBBA52579D597CD89BE9CA /* Pods_RCG_Personnel.framework in Frameworks */,
+				98F0FB423AA2408230FD2C24 /* Pods_RCG_Personnel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +378,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90AEAA5386C457402977CA44 /* Pods_RCG_PersonnelTests.framework in Frameworks */,
+				798B0BE3E6517621EA074A9A /* Pods_RCG_PersonnelTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +386,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BCFAC7E3C81937CED4D0A5E /* Pods_RCG_PersonnelUITests.framework in Frameworks */,
+				47447102B68B09086D7E3C16 /* Pods_RCG_PersonnelUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +456,17 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		842CD19B1D624F85007459F1 /* Sharing */ = {
+			isa = PBXGroup;
+			children = (
+				842CD19C1D624FB7007459F1 /* VKShareManager.swift */,
+				842CD19E1D625537007459F1 /* BaseShareManager.swift */,
+				842CD1A01D63BB6C007459F1 /* ShareManager.swift */,
+				842CD1A21D63C176007459F1 /* FBShareManager.swift */,
+			);
+			name = Sharing;
+			sourceTree = "<group>";
+		};
 		84C322341CCA83B000A70641 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +530,7 @@
 				84D05F6F1C7791DF002CEB6B /* Classes */,
 				84C3223F1CCD856D00A70641 /* Profile */,
 				84C322341CCA83B000A70641 /* Authentication */,
+				842CD19B1D624F85007459F1 /* Sharing */,
 				8415638D1CBFFEF500090C38 /* PushNotifications */,
 				8407720A1CBA6C8300E58260 /* FeedBacks */,
 				840772081CBA6C7100E58260 /* Menu */,
@@ -665,9 +685,9 @@
 				84116B3C1CEB87C5001E5F02 /* FBSDKCoreKit.framework */,
 				84116B3D1CEB87C5001E5F02 /* FBSDKLoginKit.framework */,
 				84116B3E1CEB87C5001E5F02 /* FBSDKShareKit.framework */,
-				8B5C4305915F72E2C75D9A6A /* Pods_RCG_Personnel.framework */,
-				6287B1DDE2082483458B1C06 /* Pods_RCG_PersonnelTests.framework */,
-				DBC817AA7C1305DC321F56F9 /* Pods_RCG_PersonnelUITests.framework */,
+				B6D2CE24D6DA1823D9C05DF3 /* Pods_RCG_Personnel.framework */,
+				CCC52349DED7CF626C09F5D8 /* Pods_RCG_PersonnelTests.framework */,
+				4E6079146B21D0FB26B34C91 /* Pods_RCG_PersonnelUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -699,6 +719,7 @@
 				8407720B1CBA70AF00E58260 /* ShellScript */,
 				8AD2997E6E38D0C38B63E1D0 /* 📦 Embed Pods Frameworks */,
 				3ABD485626047F9C578041F9 /* 📦 Copy Pods Resources */,
+				842CD1A41D64C21B007459F1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -948,6 +969,19 @@
 			shellPath = /bin/bash;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
+		842CD1A41D64C21B007459F1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" e9af5e896978d25b9694ae7c26b46f37e9283759 2212a515e2677245ff40cdeb306ffcd46f8752ee3641f65b42fca39bbe74f9c4";
+		};
 		8AD2997E6E38D0C38B63E1D0 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1013,6 +1047,7 @@
 				84891DFE1D3E918A008BBB83 /* SingleNewsCommentsAddNewCell.swift in Sources */,
 				841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */,
 				84C3223A1CCAA3FD00A70641 /* BaseAuthenticationHandler.swift in Sources */,
+				842CD1A31D63C176007459F1 /* FBShareManager.swift in Sources */,
 				84D05F2C1C763612002CEB6B /* AppDelegate.swift in Sources */,
 				84D0600A1C77D890002CEB6B /* UIImage+MultiFormat.m in Sources */,
 				84D0600D1C77D890002CEB6B /* UIImage+WebP.m in Sources */,
@@ -1028,14 +1063,17 @@
 				849D62381CC942BB00C90229 /* LoginViewController.swift in Sources */,
 				84D05F751C779388002CEB6B /* News.swift in Sources */,
 				84C322361CCA9F7800A70641 /* VKAuthenticationHandler.swift in Sources */,
+				842CD19F1D625537007459F1 /* BaseShareManager.swift in Sources */,
 				84D05F901C779976002CEB6B /* MBProgressHUD.m in Sources */,
 				84D05FB21C77C823002CEB6B /* HTTPStatusCode.swift in Sources */,
 				840A0F481CFC9DE800BD6DF1 /* RegisterViewController.swift in Sources */,
+				842CD19D1D624FB7007459F1 /* VKShareManager.swift in Sources */,
 				84D05F811C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
 				84D05FAC1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */,
 				84D05FC01C77CABF002CEB6B /* SwiftyJSON.swift in Sources */,
 				844DDB431D048FDC003238A2 /* SingleNewsCommentsFooterCell.swift in Sources */,
 				84D05FEC1C77D890002CEB6B /* NSData+ImageContentType.m in Sources */,
+				842CD1A11D63BB6C007459F1 /* ShareManager.swift in Sources */,
 				84D05F711C779298002CEB6B /* Constants.swift in Sources */,
 				84D05FA91C77C823002CEB6B /* HTTPRequestSerializer.swift in Sources */,
 				84D0603C1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */,

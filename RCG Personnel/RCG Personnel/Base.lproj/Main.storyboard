@@ -1667,21 +1667,21 @@
                                             <constraint firstAttribute="width" constant="1" id="mx5-h1-h07"/>
                                         </constraints>
                                     </imageView>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODf-K0-8JE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODf-K0-8JE">
                                         <rect key="frame" x="271" y="333" width="59" height="30"/>
                                         <state key="normal" title="ShareVK"/>
                                         <connections>
                                             <action selector="vacShareVKButtonTouched:" destination="0Yi-Ew-dDN" eventType="touchUpInside" id="VcY-V6-zlT"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Scv-U2-nS2">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Scv-U2-nS2">
                                         <rect key="frame" x="193" y="333" width="58" height="30"/>
                                         <state key="normal" title="ShareFB"/>
                                         <connections>
                                             <action selector="vacShareFBButtonTouched:" destination="0Yi-Ew-dDN" eventType="touchUpInside" id="e12-fk-iAw"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ew-NL-FP6">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ew-NL-FP6">
                                         <rect key="frame" x="350" y="333" width="63" height="30"/>
                                         <state key="normal" title="ShareTW"/>
                                         <connections>

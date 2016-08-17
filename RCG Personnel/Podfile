@@ -7,6 +7,8 @@ pod 'Alamofire', '~> 3.4'
 #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
 source 'https://github.com/CocoaPods/Specs.git'
 pod 'PhoneNumberKit', '~> 0.8'
+pod 'Fabric'
+pod 'TwitterKit'
 
 end
 

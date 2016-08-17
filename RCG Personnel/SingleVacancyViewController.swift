@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import VK_ios_sdk
+//import VK_ios_sdk
 import FBSDKShareKit
 import Social
 import Alamofire
@@ -33,12 +33,8 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     @IBAction func vacReplyButtonTouched(sender: AnyObject) {
     }
     @IBAction func vacShareVKButtonTouched(sender: AnyObject) {
-        let shareDialog = VKShareDialogController()
-        shareDialog.text = "Hello, World!"
-        shareDialog.shareLink = VKShareLink(title: "More hellowolds...", link: NSURL(string: "http://www.rcg.agency/"))
-        shareDialog.completionHandler = {(vc : VKShareDialogController!, result: VKShareDialogControllerResult) in self.dismissViewControllerAnimated(true, completion: nil)}
-        
-        self.presentViewController(shareDialog, animated: true, completion: nil)
+ 
+        shareManager.share(to: .Vkontakte(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImageVIew.image!, url: NSURL(string: "http://www.rcg.agency")!, urlTitle: "Больше вакансий"))
     }
     
     @IBAction func vacShareTWButtonTouched(sender: AnyObject) {
@@ -56,30 +52,8 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     }
     
     @IBAction func vacShareFBButtonTouched(sender: AnyObject) {
-        //if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
-            //var facebookSheet : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            //facebookSheet.setInitialText("Share on Facebook")
-            let shareDialog = FBSDKShareDialog()
-            let content = FBSDKShareLinkContent()
-            
-            content.contentTitle = "Hello world Title!"
-            content.contentDescription = "Sharing hellow world!"
-            content.contentURL = NSURL(string: "http://www.rcg.agency")
-            shareDialog.shareContent = content
-            shareDialog.fromViewController = self
-            shareDialog.delegate = self
-            shareDialog.mode = .Native
-            
-            if !shareDialog.canShow() {
-                shareDialog.mode = .FeedBrowser
-            }
-            
-            shareDialog.show()
-       /* } else {
-            var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-        } */
+        
+        shareManager.share(to: .Facebook(title: "Появилась новая вакансия - \(vacTitle.text ?? "")", description: "Ставка: \(vacMoney.text ?? ""). \n\(vacShortText.text ?? "")", url: NSURL(string: "http://www.rcg.agency")!, imageURL: NSURL(string: self.vacReceiver.singleVacancy.images[0])))
     }
     
     func sharerDidCancel(sharer: FBSDKSharing!) {
@@ -97,9 +71,12 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     
     let vacReceiver = VacanciesReceiver()
     let hudManager = HUDManager()
+    let shareManager = ShareManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.shareManager.vkShareManager.parentViewController = self
         
         self.hudManager.parentViewController = self
         self.navigationItem.title = "ЛЕНТА ВАКАНСИЙ"

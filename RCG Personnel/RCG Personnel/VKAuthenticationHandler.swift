@@ -19,7 +19,6 @@ class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkU
     
     func performAuthentication(parentViewController: UIViewController?) {
         self.parentViewController = parentViewController
-        
         let instance = VKSdk.initializeWithAppId(self.vkAppID)
         instance.registerDelegate(self)
         instance.uiDelegate = self
