@@ -10,17 +10,26 @@ import Foundation
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class FBAuthenticationHandler: BaseAuthenticationHandler {
+final class FBAuthenticationService: BaseAuthenticationHandler {
  
-    let facebookReadPermissions = ["public_profile", "email", "user_friends"]
+    private let facebookReadPermissions = ["public_profile", "email", "user_friends"]
     
     func performLogoff() {
         FBSDKLoginManager().logOut()
     }
     
-    func loginToFacebookWithSuccess(successBlock: () -> (), andFailure failureBlock: (NSError?) -> ()) {
+    func performAuthentication(completion: SocialAuthenticationResult -> ()) {
+        loginToFacebookWithSuccess({ token in
+            completion(.Success(socialToken: token))
+        }, andFailure: { error in
+            completion(.Failure(error))
+        })
+    }
+    
+    private func loginToFacebookWithSuccess(successBlock: (token: String) -> (), andFailure failureBlock: (NSError?) -> ()) {
         
-        if FBSDKAccessToken.currentAccessToken() != nil {
+        if let currentToken = FBSDKAccessToken.currentAccessToken() {
+            successBlock(token: currentToken.tokenString)
             //For debugging, when we want to ensure that facebook login always happens
             //FBSDKLoginManager().logOut()
             //Otherwise do:
@@ -55,8 +64,6 @@ class FBAuthenticationHandler: BaseAuthenticationHandler {
                 }*/
                 //if allPermsGranted {
                     // Do work
-                    let fbToken = result.token.tokenString
-                    let fbUserID = result.token.userID
                     
                     //Send fbToken and fbUserID to your web API for processing, or just hang on to that locally if needed
                     //self.post("myserver/myendpoint", parameters: ["token": fbToken, "userID": fbUserId]) {(error: NSError?) ->() in
@@ -67,7 +74,7 @@ class FBAuthenticationHandler: BaseAuthenticationHandler {
                     //	}
                     //}
                     
-                    successBlock()
+                    successBlock(token: result.token.tokenString)
                 //} else {
                     //The user did not grant all permissions requested
                     //Discover which permissions are granted

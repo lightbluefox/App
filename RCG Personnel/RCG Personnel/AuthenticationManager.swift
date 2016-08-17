@@ -19,55 +19,22 @@ final class AuthenticationManager {
     }
     
     private let vkAuthenticationService = VKAuthenticationService()
-    private let fbAuthenticationHandler = FBAuthenticationHandler()
+    private let fbAuthenticationService = FBAuthenticationService()
     
     func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
         switch method {
-        
         case .Native:
             sendAuthenticationRequest(method, socialToken: nil, completion: completion)
-        
         case .Social(.VKontakte):
             vkAuthenticationService.performAuthentication { [weak self] result in
-                switch result {
-                case .Success(let socialToken):
-                    self?.sendAuthenticationRequest(method, socialToken: socialToken, completion: completion)
-                case .Cancelled:
-                    completion(.Failure(nil))
-                case .Failure(let error):
-                    completion(.Failure(error))
-                }
+                self?.handleSocialAuthenticationResult(result, method: method, completion: completion)
             }
-        
         case .Social(.Facebook):
-            break   // TODO
+            fbAuthenticationService.performAuthentication { [weak self] result in
+                self?.handleSocialAuthenticationResult(result, method: method, completion: completion)
+            }
         case .Social(.Twitter):
             break   // TODO
-        }
-    }
-    
-    func old_and_ugly_authenticate(authenticationType: AuthenticationType) {
-        if authenticationType == .VK {
-            NSLog("%@", "Trying to authenticate via Vkontakte.")
-//            vkAuthenticationService.performAuthentication(self.parentViewController)
-        }
-        
-        else if authenticationType == .FB {
-            NSLog("%@", "Trying to authenticate via Facebook.")
-            //Тут где-то добавить dismissViewControllerAnimated!
-            fbAuthenticationHandler.loginToFacebookWithSuccess({print("Authentication via Facebook succeed!")}, andFailure: { (error: NSError?) -> () in
-                print("Authentication via Facebook failed!")
-                print(error)
-            })
-        }
-            
-        else if authenticationType == .TW {
-            NSLog("%@", "Trying to authenticate via Twitter.")
-        }
-        
-        else if authenticationType == .Native {
-//            nativeAuthenticationHandler.performAuthentication(self.parentViewController)
-            NSLog("%@", "Trying to authenticate via login and password.")
         }
     }
     
@@ -104,7 +71,7 @@ final class AuthenticationManager {
         }
         //разлогиниться из приложения вк, фб, и тв
         vkAuthenticationService.performLogoff()
-        fbAuthenticationHandler.performLogoff()
+        fbAuthenticationService.performLogoff()
         
         //очистить все из дефаултсов (там хранится токен)
         clearDefaults()
@@ -278,6 +245,21 @@ final class AuthenticationManager {
     
     private let user = User.sharedUser
     private let userReceiver = UserReceiver()
+    
+    private func handleSocialAuthenticationResult(
+        result: SocialAuthenticationResult,
+        method: AuthenticationMethod,
+        completion: AuthenticationResult -> ())
+    {
+        switch result {
+        case .Success(let socialToken):
+            sendAuthenticationRequest(method, socialToken: socialToken, completion: completion)
+        case .Cancelled:
+            completion(.Failure(nil))
+        case .Failure(let error):
+            completion(.Failure(error))
+        }
+    }
     
     private func sendAuthenticationRequest(method: AuthenticationMethod, socialToken: String?, completion: AuthenticationResult -> ()) {
         
