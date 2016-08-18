@@ -193,14 +193,14 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         }
-        else if section == 1 {
+        else if section == 2 {
             return self.newsReceiver.singleNews.comments.count
         }
         else {
@@ -284,7 +284,14 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
             
             return cell!
         }
-        else if indexPath.section == 2 { //Область под комментариями, с кнопкой "Загрузить еще"
+        else if indexPath.section == 1 { //Область с кнпоками для шаринга
+            let cell = self.newsTableView.dequeueReusableCellWithIdentifier("SingleNewsShare", forIndexPath: indexPath) as? SingleNewsShareCell
+            cell?.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 0)
+            
+            return cell!
+        }
+            
+        else if indexPath.section == 3 { //Область под комментариями, с кнопкой "Загрузить еще"
             let cell = self.newsTableView.dequeueReusableCellWithIdentifier("SingleNewsCommentsFooter", forIndexPath: indexPath) as? SingleNewsCommentsFooterCell
             cell?.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 0)
             cell?.tapAction = {
@@ -296,7 +303,7 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
             
             return cell!
         }
-        else if indexPath.section == 3 { //Область с отправкой комментария
+        else if indexPath.section == 4 { //Область с отправкой комментария
             let cell = self.newsTableView.dequeueReusableCellWithIdentifier("SingleNewsCommentsAddNew", forIndexPath: indexPath) as? SingleNewsCommentsAddNewCell
             
             cell?.backgroundColor = UIColor.clearColor()
