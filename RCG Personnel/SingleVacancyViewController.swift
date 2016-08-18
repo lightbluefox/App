@@ -38,17 +38,8 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     }
     
     @IBAction func vacShareTWButtonTouched(sender: AnyObject) {
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
-            let twitterSheet : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            twitterSheet.setInitialText("Share on Twitter")
-            self.presentViewController(twitterSheet, animated: true, completion: nil)
-        }
-        else
-        {
-            let alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
+        
+        shareManager.share(to: .Twitter(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImageVIew.image!, url: NSURL(string: "http://www.rcg.agency")!))
     }
     
     @IBAction func vacShareFBButtonTouched(sender: AnyObject) {
@@ -77,6 +68,8 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
         super.viewDidLoad()
         
         self.shareManager.vkShareManager.parentViewController = self
+        self.shareManager.twShareManager.parentViewController = self
+        self.shareManager.fbShareManager.parentViewController = self
         
         self.hudManager.parentViewController = self
         self.navigationItem.title = "ЛЕНТА ВАКАНСИЙ"

@@ -342,11 +342,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SingleVacancyViewController.swift"
-            timestampString = "493078695.600025"
+            timestampString = "493199246.134177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "showLoadingNotification()"
             landmarkType = "5">
             <Locations>
@@ -406,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SingleVacancyViewController.swift"
-            timestampString = "493078695.600025"
+            timestampString = "493199246.134177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -438,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SingleVacancyViewController.swift"
-            timestampString = "493078695.600025"
+            timestampString = "493199246.134177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "setupVacancyFields()"
             landmarkType = "5">
          </BreakpointContent>
@@ -454,27 +454,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SingleVacancyViewController.swift"
-            timestampString = "493078695.600025"
+            timestampString = "493199246.134177"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "setupVacancyFields()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SingleVacancyViewController.swift"
+            timestampString = "493199246.134177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "143"
             endingLineNumber = "143"
-            landmarkName = "setupVacancyFields()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SingleVacancyViewController.swift"
-            timestampString = "493078695.600025"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
             landmarkName = "setupVacancyFields()"
             landmarkType = "5">
          </BreakpointContent>
@@ -998,11 +998,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SingleVacancyViewController.swift"
-            timestampString = "493078695.600025"
+            timestampString = "493199246.134177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>

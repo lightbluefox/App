@@ -9,7 +9,7 @@
 import Foundation
 import VK_ios_sdk
 
-class VKShareManager: BaseShareManager, VKSdkDelegate {
+final class VKShareManager: BaseShareManager, VKSdkDelegate {
     let vkAppID = "5429703"
     
     

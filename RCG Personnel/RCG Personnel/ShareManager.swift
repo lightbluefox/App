@@ -8,10 +8,11 @@
 
 import Foundation
 
-class ShareManager: NSObject {
+final class ShareManager: NSObject {
     
     let vkShareManager = VKShareManager()
     let fbShareManager = FBShareManager()
+    let twShareManager = TWShareManager()
     
     func share(to socialNetworkType: SharingSocialType) {
         switch socialNetworkType {
@@ -19,8 +20,8 @@ class ShareManager: NSObject {
             vkShareManager.share(text, image: image, url: url, urlTitle: urlText)
         case .Facebook(let title, let description, let url, let imageURL):
             fbShareManager.share(title, description: description, url: url, imageURL: imageURL)
-        case .Twitter:
-            break
+        case .Twitter(let text, let image, let url):
+            twShareManager.share(text, image: image, url: url)
         }
     }
 }
@@ -28,5 +29,5 @@ class ShareManager: NSObject {
 enum SharingSocialType {
     case Vkontakte(text: String, image: UIImage, url: NSURL, urlTitle: String)
     case Facebook(title: String, description: String, url: NSURL, imageURL: NSURL?)
-    case Twitter
+    case Twitter(text: String, image: UIImage, url: NSURL)
 }

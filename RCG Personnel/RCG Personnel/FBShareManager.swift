@@ -9,7 +9,7 @@
 import Foundation
 import FBSDKShareKit
 
-class FBShareManager: BaseShareManager, FBSDKSharingDelegate {
+final class FBShareManager: BaseShareManager, FBSDKSharingDelegate {
     
     let hudManager = HUDManager()
     
