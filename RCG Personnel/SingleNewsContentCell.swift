@@ -10,6 +10,12 @@ import Foundation
 
 class SingleNewsContentCell: UITableViewCell {
 
+    var fbTapAction : (() -> Void)?
+    var vkTapAction : (() -> Void)?
+    var twTapAction : (() -> Void)?
+    
+    
+    
     @IBOutlet weak var newsImageView: UIImageView!
     
     @IBOutlet weak var newsTitle: UILabel!
@@ -19,8 +25,19 @@ class SingleNewsContentCell: UITableViewCell {
     
     @IBOutlet weak var newsFullText: UILabel!
     
-    @IBAction func shareButtonTouched(sender: AnyObject) {
+    @IBAction func fbShareTouchUpInside(sender: AnyObject) {
+        print("touching")
+        fbTapAction?()
     }
+    
+    @IBAction func vkShareTouchUpInside(sender: AnyObject) {
+        vkTapAction?()
+    }
+    
+    @IBAction func twShareTouchUpInside(sender: AnyObject) {
+        twTapAction?()
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

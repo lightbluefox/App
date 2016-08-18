@@ -1209,11 +1209,11 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsFields" rowHeight="297" id="l8F-eh-Xee" customClass="SingleNewsContentCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="297"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsFields" rowHeight="340" id="l8F-eh-Xee" customClass="SingleNewsContentCell" customModule="RCG_Personnel" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="340"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l8F-eh-Xee" id="ZiJ-Zn-Oyy">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="296"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="339"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6L-m3-8QH">
@@ -1259,22 +1259,28 @@
                                                     <color key="textColor" red="0.97186975671140841" green="0.9710272322114093" blue="0.9725251677852349" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ПОДЕЛИТЬСЯ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e5-Cn-rfo">
-                                                    <rect key="frame" x="243" y="169" width="115" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ПОДЕЛИТЬСЯ:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e5-Cn-rfo">
+                                                    <rect key="frame" x="240" y="169" width="120" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICl-cM-dfp">
-                                                    <rect key="frame" x="159" y="210" width="81" height="68"/>
+                                                    <rect key="frame" x="159" y="200" width="81" height="68"/>
                                                     <state key="normal" image="fb"/>
+                                                    <connections>
+                                                        <action selector="fbShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="xQm-Lc-tu5"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEv-qq-UqU">
-                                                    <rect key="frame" x="361" y="210" width="81" height="68"/>
+                                                    <rect key="frame" x="361" y="200" width="81" height="68"/>
                                                     <state key="normal" image="tw"/>
+                                                    <connections>
+                                                        <action selector="twShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="qcu-rA-KK7"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-BL-le3" customClass="RCGButton" customModule="RCG_Personnel" customModuleProvider="target">
-                                                    <rect key="frame" x="260" y="210" width="81" height="68"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-BL-le3">
+                                                    <rect key="frame" x="260" y="200" width="81" height="121"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="PCg-m8-1Qw"/>
                                                     </constraints>
@@ -1285,7 +1291,7 @@
                                                         </mask>
                                                     </variation>
                                                     <connections>
-                                                        <action selector="shareButtonTouched:" destination="l8F-eh-Xee" eventType="touchUpInside" id="zcy-Zf-yLF"/>
+                                                        <action selector="vkShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="KMb-kg-2vO"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1298,7 +1304,7 @@
                                                 <constraint firstItem="KEv-qq-UqU" firstAttribute="top" secondItem="YlI-BL-le3" secondAttribute="top" id="6Ca-Xc-inc"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Xq3-p3-asb" secondAttribute="trailing" constant="10" id="6wd-Vx-weq"/>
                                                 <constraint firstItem="YlI-BL-le3" firstAttribute="top" secondItem="Xq3-p3-asb" secondAttribute="bottom" constant="20" id="7MO-oV-jc3"/>
-                                                <constraint firstItem="YlI-BL-le3" firstAttribute="top" secondItem="2e5-Cn-rfo" secondAttribute="bottom" constant="20" id="7o5-0j-qRU"/>
+                                                <constraint firstItem="YlI-BL-le3" firstAttribute="top" secondItem="2e5-Cn-rfo" secondAttribute="bottom" constant="10" id="7o5-0j-qRU"/>
                                                 <constraint firstItem="cKP-PG-DVP" firstAttribute="top" secondItem="0PR-4v-hHG" secondAttribute="bottom" constant="-1" id="CVS-tV-IDC"/>
                                                 <constraint firstItem="YlI-BL-le3" firstAttribute="leading" secondItem="ICl-cM-dfp" secondAttribute="trailing" constant="20" id="DP4-B4-1bK"/>
                                                 <constraint firstItem="KEv-qq-UqU" firstAttribute="top" secondItem="ICl-cM-dfp" secondAttribute="top" id="Gjw-WX-hSw"/>
@@ -1359,7 +1365,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsCommentsHeader" id="Pp2-1A-t4S" customClass="SingleNewsCommentsHeaderCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="389" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="432" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pp2-1A-t4S" id="7BS-n6-dCO">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1397,7 +1403,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsComment" rowHeight="83" id="OGW-tI-tmy" customClass="SingleNewsCommentCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="433" width="600" height="83"/>
+                                        <rect key="frame" x="0.0" y="476" width="600" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OGW-tI-tmy" id="WCE-OQ-jzj">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="82"/>
@@ -1481,7 +1487,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsCommentsFooter" id="kS9-Kh-jni" customClass="SingleNewsCommentsFooterCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="516" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="559" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kS9-Kh-jni" id="kSo-6v-fpD">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1508,7 +1514,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsCommentsAddNew" rowHeight="200" id="m8v-vF-aDN" customClass="SingleNewsCommentsAddNewCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="560" width="600" height="200"/>
+                                        <rect key="frame" x="0.0" y="603" width="600" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m8v-vF-aDN" id="fHk-oW-fX1">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
@@ -1623,7 +1629,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xsa-JA-MdD">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="502"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="472"/>
                                     </containerView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BFD-GO-yAb">
                                         <rect key="frame" x="225" y="20" width="150" height="150"/>
@@ -1699,21 +1705,21 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODf-K0-8JE">
-                                        <rect key="frame" x="260" y="394" width="81" height="68"/>
+                                        <rect key="frame" x="260" y="364" width="81" height="68"/>
                                         <state key="normal" image="vk"/>
                                         <connections>
                                             <action selector="vacShareVKButtonTouched:" destination="0Yi-Ew-dDN" eventType="touchUpInside" id="VcY-V6-zlT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Scv-U2-nS2">
-                                        <rect key="frame" x="159" y="394" width="81" height="68"/>
+                                        <rect key="frame" x="159" y="364" width="81" height="68"/>
                                         <state key="normal" image="fb"/>
                                         <connections>
                                             <action selector="vacShareFBButtonTouched:" destination="0Yi-Ew-dDN" eventType="touchUpInside" id="e12-fk-iAw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ew-NL-FP6">
-                                        <rect key="frame" x="361" y="394" width="81" height="68"/>
+                                        <rect key="frame" x="361" y="364" width="81" height="68"/>
                                         <state key="normal" image="tw"/>
                                         <connections>
                                             <action selector="vacShareTWButtonTouched:" destination="0Yi-Ew-dDN" eventType="touchUpInside" id="RbB-Ef-CzQ"/>
@@ -1732,7 +1738,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ПОДЕЛИТЬСЯ:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMJ-p0-f8e">
-                                        <rect key="frame" x="240" y="353" width="120" height="21"/>
+                                        <rect key="frame" x="240" y="333" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1748,7 +1754,7 @@
                                     <constraint firstItem="Xsa-JA-MdD" firstAttribute="leading" secondItem="jNm-16-wZz" secondAttribute="leading" id="8Us-hT-Diz"/>
                                     <constraint firstItem="8ML-Rq-EO9" firstAttribute="top" secondItem="TcQ-BG-hFy" secondAttribute="bottom" constant="-1" id="8j3-Rb-FCB"/>
                                     <constraint firstAttribute="bottom" secondItem="EoW-de-p0m" secondAttribute="bottom" constant="40" id="8l5-kZ-VoX"/>
-                                    <constraint firstItem="PMJ-p0-f8e" firstAttribute="top" secondItem="EoW-de-p0m" secondAttribute="bottom" constant="40" id="9Yk-YF-pB0"/>
+                                    <constraint firstItem="PMJ-p0-f8e" firstAttribute="top" secondItem="EoW-de-p0m" secondAttribute="bottom" constant="20" id="9Yk-YF-pB0"/>
                                     <constraint firstItem="EoW-de-p0m" firstAttribute="top" secondItem="KxI-o3-bTc" secondAttribute="bottom" constant="11" id="AQN-VR-FCN"/>
                                     <constraint firstItem="TcQ-BG-hFy" firstAttribute="leading" secondItem="M7T-FY-UOe" secondAttribute="trailing" constant="8" id="Ah0-xm-Hay"/>
                                     <constraint firstItem="fmn-wk-dVH" firstAttribute="leading" secondItem="qad-M1-zt4" secondAttribute="trailing" constant="8" id="CPB-K5-jX9"/>
@@ -1775,7 +1781,7 @@
                                     <constraint firstItem="KxI-o3-bTc" firstAttribute="top" secondItem="TcQ-BG-hFy" secondAttribute="bottom" constant="10" id="VCJ-0t-ZEC"/>
                                     <constraint firstItem="M7T-FY-UOe" firstAttribute="leading" secondItem="fmn-wk-dVH" secondAttribute="trailing" constant="8" id="VOW-QK-60D"/>
                                     <constraint firstItem="PMJ-p0-f8e" firstAttribute="top" secondItem="EoW-de-p0m" secondAttribute="bottom" constant="40" id="X32-gl-aB7"/>
-                                    <constraint firstItem="ODf-K0-8JE" firstAttribute="top" secondItem="PMJ-p0-f8e" secondAttribute="bottom" constant="20" id="X5L-wd-pzN"/>
+                                    <constraint firstItem="ODf-K0-8JE" firstAttribute="top" secondItem="PMJ-p0-f8e" secondAttribute="bottom" constant="10" id="X5L-wd-pzN"/>
                                     <constraint firstAttribute="trailing" secondItem="8ML-Rq-EO9" secondAttribute="trailing" constant="11" id="XO2-Dg-F0V"/>
                                     <constraint firstAttribute="trailing" secondItem="KxI-o3-bTc" secondAttribute="trailing" constant="11" id="XjC-9X-L08"/>
                                     <constraint firstItem="Xsa-JA-MdD" firstAttribute="top" secondItem="jNm-16-wZz" secondAttribute="top" id="Xt1-VV-8ck"/>

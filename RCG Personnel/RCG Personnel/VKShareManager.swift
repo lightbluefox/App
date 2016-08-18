@@ -13,17 +13,18 @@ final class VKShareManager: BaseShareManager, VKSdkDelegate {
     let vkAppID = "5429703"
     
     
-    func share(text: String, image: UIImage, url: NSURL, urlTitle: String) {
+    func share(text: String, image: UIImage?, url: NSURL, urlTitle: String) {
         let instance = VKSdk.initializeWithAppId(self.vkAppID)
         instance.registerDelegate(self)
         
         let shareDialogController = VKShareDialogController()
-        shareDialogController.text = text
         
         let params = VKImageParameters()
-        let image = VKUploadImage(image: image, andParams: params)
+        if image != nil {
+            let image = VKUploadImage(image: image, andParams: params)
+            shareDialogController.uploadImages = [image]
+        }
         
-        shareDialogController.uploadImages = [image]
         shareDialogController.text = text
         shareDialogController.shareLink = VKShareLink(title: urlTitle, link: url)
         shareDialogController.completionHandler = {(controlelr: VKShareDialogController!, result: VKShareDialogControllerResult!) -> Void in

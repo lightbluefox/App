@@ -12,14 +12,18 @@ import TwitterKit
 
 final class TWShareManager: BaseShareManager {
     
-    func share(text: String, image: UIImage, url: NSURL) {
+    func share(text: String, image: UIImage?, url: NSURL) {
         Fabric.with([Twitter.self])
         
         let composer = TWTRComposer()
         
         composer.setURL(url)
         composer.setText(text)
-        composer.setImage(image)
+        
+        if image != nil {
+            composer.setImage(image)
+        }
+        
         if parentViewController != nil {
             composer.showFromViewController(parentViewController!) { result in
                 

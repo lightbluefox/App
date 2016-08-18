@@ -11,8 +11,10 @@ import UIKit
 class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     var newsGuid: String?
-    var hudManager = HUDManager()
+    let hudManager = HUDManager()
     let newsReceiver = NewsReceiver()
+    let shareManager = ShareManager()
+    
     var hideMoreCommentsButton = false
     
     @IBOutlet weak var newsTableView: UITableView!
@@ -31,6 +33,10 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         
         self.hudManager.parentViewController = self
+        self.shareManager.fbShareManager.parentViewController = self
+        self.shareManager.twShareManager.parentViewController = self
+        self.shareManager.vkShareManager.parentViewController = self
+        
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "leftBackGround")!)
         self.navigationItem.title = "ЛЕНТА НОВОСТЕЙ";
         newsTableView.separatorStyle = .None
@@ -263,6 +269,18 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
             cell?.newsDateMonthYear.text = self.newsReceiver.singleNews.addedDate.monthYearFromDdMmYyyy
             cell?.newsTitle.text = self.newsReceiver.singleNews.topic
             cell?.newsFullText.text = self.newsReceiver.singleNews.fullText
+            
+            cell?.fbTapAction = {
+                self.shareManager.fbShareManager.share(cell?.newsTitle.text ?? "", description: cell?.newsFullText.text ?? "", url: NSURL(string: "http://www.rcg.agency")!, imageURL: (NSURL(string: self.newsReceiver.singleNews.images[0])))
+            }
+            cell?.vkTapAction = {
+                self.shareManager.vkShareManager.share(cell?.newsTitle.text ?? "", image: cell?.newsImageView.image, url: NSURL(string: "http://www.rcg.agency")!, urlTitle: "Больше новостей")
+            }
+            
+            cell?.twTapAction = {
+                self.shareManager.twShareManager.share(cell?.newsTitle.text ?? "", image: cell?.newsImageView.image, url: NSURL(string: "http://www.rcg.agency")!)
+            }
+            
             
             return cell!
         }

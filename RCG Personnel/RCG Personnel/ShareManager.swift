@@ -27,7 +27,7 @@ final class ShareManager: NSObject {
 }
 
 enum SharingSocialType {
-    case Vkontakte(text: String, image: UIImage, url: NSURL, urlTitle: String)
+    case Vkontakte(text: String, image: UIImage?, url: NSURL, urlTitle: String)
     case Facebook(title: String, description: String, url: NSURL, imageURL: NSURL?)
-    case Twitter(text: String, image: UIImage, url: NSURL)
+    case Twitter(text: String, image: UIImage?, url: NSURL)
 }
