@@ -8,9 +8,9 @@
 
 import Foundation
 
-class EditProfileViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+final class EditProfileViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let authenticationManager = AuthenticationManager()
+    private let authenticationManager = AuthenticationManager()
     
     @IBAction func logoffButtonPressed(sender: AnyObject) {
         //Показать алерт - "Вы уверены?"
@@ -72,6 +72,9 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
     @IBOutlet weak var subwayStation: RCGTextFieldClass!
     @IBOutlet weak var passport: RCGTextFieldClass!
     
+    @IBOutlet weak var vkButton: UIButton!
+    @IBOutlet weak var fbButton: UIButton!
+    @IBOutlet weak var twButton: UIButton!
 
     var fieldsAreValid = [UITextField : Bool]()
     var hudManager = HUDManager()
@@ -83,6 +86,10 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.hudManager.parentViewController = self
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func viewDidLoad() {
@@ -106,6 +113,57 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
         addDatePickerViewOnTap(forTextField: birthDate)
         imagePicker.delegate = self
         
+        vkButton.addTarget(self, action: #selector(onSocialButtonTap(_:)), forControlEvents: .TouchUpInside)
+        fbButton.addTarget(self, action: #selector(onSocialButtonTap(_:)), forControlEvents: .TouchUpInside)
+        twButton.addTarget(self, action: #selector(onSocialButtonTap(_:)), forControlEvents: .TouchUpInside)
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(fillInInputValues),
+            name: NSNotificationCenterKeys.notifyThatUserHaveBeenUpdated,
+            object: nil
+        )
+    }
+    
+    @objc private func onSocialButtonTap(button: UIButton) {
+        guard let socialNetwork = socialNetworkForButton(button) else { return }
+        
+        let socialId = user.tokenForSocialNetwork(socialNetwork)
+        
+        weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        if socialId?.isEmpty == false {    // соцсеть привязана
+            authenticationManager.unbindSocialNetwork(socialNetwork) { [weak self] error in
+                hud?.hide(true)
+                if let error = error {
+                    self?.hudManager.showHUD("Ошибка", details: error.localizedDescription, type: .Failure)
+                } else {
+                    self?.hudManager.showHUD(nil, details: nil, type: .Success)
+                }
+            }
+        } else {    // соцсеть не привязана
+            authenticationManager.bindSocialNetwork(socialNetwork) { [weak self] error in
+                hud?.hide(true)
+                if let error = error {
+                    self?.hudManager.showHUD("Ошибка", details: error.localizedDescription, type: .Failure)
+                } else {
+                    self?.hudManager.showHUD(nil, details: nil, type: .Success)
+                }
+            }
+        }
+    }
+    
+    private func socialNetworkForButton(button: UIButton) -> SocialNetwork? {
+        switch button {
+        case vkButton:
+            return .VKontakte
+        case fbButton:
+            return .Facebook
+        case twButton:
+            return .Twitter
+        default:
+            return nil
+        }
     }
     
     private func setupView() {
@@ -149,7 +207,7 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
         userPhoto.addGestureRecognizer(tap)
     }
     
-    private func fillInInputValues() {
+    @objc private func fillInInputValues() {
         self.phoneNumber.enabled = false
         self.phoneNumber.text = user.phone
         applyMaskToPhoneField(self.phoneNumber)
@@ -186,6 +244,9 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
         self.passport.text = user.passportData
         self.passport.validate()
         
+        vkButton.setTitleColor(user.vkToken?.isEmpty == false ? .blueColor() : .grayColor(), forState: .Normal)
+        fbButton.setTitleColor(user.fbToken?.isEmpty == false ? .blueColor() : .grayColor(), forState: .Normal)
+        twButton.setTitleColor(user.twToken?.isEmpty == false ? .blueColor() : .grayColor(), forState: .Normal)
     }
     
     func prepareScrollView() {

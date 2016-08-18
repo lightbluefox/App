@@ -102,6 +102,17 @@ class User {
     var fbToken: String!
     var twToken: String!
     
+    func tokenForSocialNetwork(socialNetwork: SocialNetwork) -> String? {
+        switch socialNetwork {
+        case .VKontakte:
+            return vkToken
+        case .Facebook:
+            return fbToken
+        case .Twitter:
+            return twToken
+        }
+    }
+    
     static let sharedUser = User()
     
     init() {

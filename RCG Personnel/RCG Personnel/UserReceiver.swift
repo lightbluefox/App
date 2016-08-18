@@ -75,6 +75,9 @@ class UserReceiver {
                         self.user.medicalBookNumber = json["usersdata"]["medicalCardNumber"].stringValue
                         self.user.metroStation = json["usersdata"]["subWayStation"].stringValue
                         self.user.passportData = json["usersdata"]["passportData"].stringValue
+                        self.user.vkToken = json["vkid"].stringValue
+                        self.user.fbToken = json["fbid"].stringValue
+                        self.user.twToken = json["twid"].stringValue
                         
                         NSLog("GetUserByToken. Done with success.")
                         NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationCenterKeys.notifyThatUserHaveBeenUpdated, object: self)

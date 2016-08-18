@@ -328,10 +328,12 @@ final class AuthenticationManager {
                 )
                 
                 request.responseJSON { response in
+                    debugPrint("\(response)")
                     if let responseDict = response.result.value as? [String: AnyObject] {
                         if let error = responseDict["error"] {
                             completion(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
                         } else {
+                            self?.userReceiver.getCurrentUser()
                             completion(nil)
                         }
                     } else {
@@ -354,11 +356,13 @@ final class AuthenticationManager {
             headers: ["Authorization" : "Bearer " + User.sharedUser.token ?? ""]
         )
         
-        request.responseJSON { response in
+        request.responseJSON { [weak self] response in
+            debugPrint("\(response)")
             if let responseDict = response.result.value as? [String: AnyObject] {
                 if let error = responseDict["error"] {
                     completion(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
                 } else {
+                    self?.userReceiver.getCurrentUser()
                     completion(nil)
                 }
             } else {
