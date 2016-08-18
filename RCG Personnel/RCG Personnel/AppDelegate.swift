@@ -11,7 +11,8 @@ import Alamofire
 import VK_ios_sdk
 import FBSDKLoginKit
 import FBSDKCoreKit
-
+import Fabric
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //Временная папочка с дефаултсами
         print(NSTemporaryDirectory())
+        
+        Fabric.with([Twitter.self])
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(AppDelegate.checkForReachability(_:)), name: ReachabilityChangedNotification, object: nil);
         
