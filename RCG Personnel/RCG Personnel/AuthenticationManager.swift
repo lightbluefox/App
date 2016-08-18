@@ -313,16 +313,128 @@ final class AuthenticationManager {
         }
     }
     
+    func bindSocialNetwork(socialNetwork: SocialNetwork, completion: NSError? -> ()) {
+        
+        authenticateInSocialNetwork(
+            socialNetwork,
+            onSuccess: { [weak self] token, tokenSecret in
+                guard let strongSelf = self else { return }
+                
+                let request = Alamofire.request(
+                    .PUT,
+                    Constants.apiUrl + "api/v01/users/current/social",
+                    parameters: strongSelf.parametersForSocialNetwork(socialNetwork, token: token),
+                    headers: ["Authorization" : "Bearer " + User.sharedUser.token ?? ""]
+                )
+                
+                request.responseJSON { response in
+                    if let responseDict = response.result.value as? [String: AnyObject] {
+                        if let error = responseDict["error"] {
+                            completion(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
+                        } else {
+                            completion(nil)
+                        }
+                    } else {
+                        completion(response.result.error ?? NSError(domain: "", code: 0, userInfo: nil))
+                    }
+                }
+            },
+            onFailure: { error in
+                debugPrint(error)
+            }
+        )
+    }
+    
+    func unbindSocialNetwork(socialNetwork: SocialNetwork, completion: NSError? -> ()) {
+        
+        authenticateInSocialNetwork(
+            socialNetwork,
+            onSuccess: { [weak self] token, tokenSecret in
+                guard let strongSelf = self else { return }
+                
+                let request = Alamofire.request(
+                    .POST,
+                    Constants.apiUrl + "api/v01/users/current/social",
+                    parameters: strongSelf.parametersForSocialNetwork(socialNetwork, token: token),
+                    headers: ["Authorization" : "Bearer " + User.sharedUser.token ?? ""]
+                )
+                
+                request.responseJSON { response in
+                    if let responseDict = response.result.value as? [String: AnyObject] {
+                        if let error = responseDict["error"] {
+                            completion(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
+                        } else {
+                            completion(nil)
+                        }
+                    } else {
+                        completion(response.result.error ?? NSError(domain: "", code: 0, userInfo: nil))
+                    }
+                }
+            },
+            onFailure: { error in
+                debugPrint(error)
+            }
+        )
+    }
+    
+    // TODO: вынести в отдельный SocialAuthService
+    private func authenticateInSocialNetwork(
+        socialNetwork: SocialNetwork,
+        onSuccess: (token: String, tokenSecret: String?) -> (),
+        onFailure: (error: NSError?) -> ())
+    {
+        switch socialNetwork {
+        
+        case .VKontakte:
+            vkAuthenticationService.performAuthentication { result in
+                switch result {
+                case .Success(let token):
+                    onSuccess(token: token, tokenSecret: nil)
+                case .Cancelled:
+                    onFailure(error: nil)
+                case .Failure(let error):
+                    onFailure(error: error)
+                }
+            }
+            
+        case .Facebook:
+            fbAuthenticationService.performAuthentication { result in
+                switch result {
+                case .Success(let token):
+                    onSuccess(token: token, tokenSecret: nil)
+                case .Cancelled:
+                    onFailure(error: nil)
+                case .Failure(let error):
+                    onFailure(error: error)
+                }
+            }
+            
+        case .Twitter:
+            twitterAuthenticationService.performAuthentication { result in
+                switch result {
+                case .Success(let token, let tokenSecret):
+                    onSuccess(token: token, tokenSecret: tokenSecret)
+                case .Failure(let error):
+                    onFailure(error: error)
+                }
+            }
+        }
+    }
+    
     private func parametersForAuthenticationMethod(method: AuthenticationMethod, socialToken: String?) -> [String: AnyObject] {
         switch method {
         case .Native(let login, let password):
             return ["login": login, "password": password]
         case .Social(let socialNetwork):
-            return [
-                "type": stringTypeForSocialNetwork(socialNetwork),
-                "token": socialToken ?? ""
-            ]
+            return parametersForSocialNetwork(socialNetwork, token: socialToken ?? "")
         }
+    }
+    
+    private func parametersForSocialNetwork(socialNetwork: SocialNetwork, token: String) -> [String: AnyObject] {
+        return [
+            "type": stringTypeForSocialNetwork(socialNetwork),
+            "token": token
+        ]
     }
     
     private func stringTypeForSocialNetwork(socialNetwork: SocialNetwork) -> String {
