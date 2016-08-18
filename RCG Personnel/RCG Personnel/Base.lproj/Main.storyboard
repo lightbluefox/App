@@ -1209,15 +1209,15 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsFields" rowHeight="340" id="l8F-eh-Xee" customClass="SingleNewsContentCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="340"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsFields" rowHeight="297" id="l8F-eh-Xee" customClass="SingleNewsContentCell" customModule="RCG_Personnel" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="297"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l8F-eh-Xee" id="ZiJ-Zn-Oyy">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="339"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="296"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6L-m3-8QH">
-                                                    <rect key="frame" x="72" y="144" width="502" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6L-m3-8QH">
+                                                    <rect key="frame" x="72" y="144" width="502" height="19"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1253,34 +1253,34 @@
                                                     <color key="textColor" red="0.90980392160000001" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xq3-p3-asb">
-                                                    <rect key="frame" x="72" y="149" width="510" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xq3-p3-asb">
+                                                    <rect key="frame" x="72" y="168" width="510" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <color key="textColor" red="0.97186975671140841" green="0.9710272322114093" blue="0.9725251677852349" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ПОДЕЛИТЬСЯ:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e5-Cn-rfo">
-                                                    <rect key="frame" x="240" y="169" width="120" height="21"/>
+                                                    <rect key="frame" x="240" y="188" width="120" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICl-cM-dfp">
-                                                    <rect key="frame" x="159" y="200" width="81" height="68"/>
+                                                    <rect key="frame" x="159" y="219" width="81" height="68"/>
                                                     <state key="normal" image="fb"/>
                                                     <connections>
                                                         <action selector="fbShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="xQm-Lc-tu5"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEv-qq-UqU">
-                                                    <rect key="frame" x="361" y="200" width="81" height="68"/>
+                                                    <rect key="frame" x="361" y="219" width="81" height="68"/>
                                                     <state key="normal" image="tw"/>
                                                     <connections>
                                                         <action selector="twShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="qcu-rA-KK7"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-BL-le3">
-                                                    <rect key="frame" x="260" y="200" width="81" height="121"/>
+                                                    <rect key="frame" x="260" y="219" width="81" height="68"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="PCg-m8-1Qw"/>
                                                     </constraints>
@@ -1317,6 +1317,7 @@
                                                 <constraint firstItem="cKP-PG-DVP" firstAttribute="top" secondItem="7db-tH-uPc" secondAttribute="bottom" constant="8" id="RQT-B7-yok"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="7db-tH-uPc" secondAttribute="trailing" id="TOW-jL-POn"/>
                                                 <constraint firstItem="cKP-PG-DVP" firstAttribute="leading" secondItem="ZiJ-Zn-Oyy" secondAttribute="leadingMargin" constant="8" id="VUy-PY-uIE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Xq3-p3-asb" secondAttribute="bottom" constant="120" id="XAx-cR-Cox"/>
                                                 <constraint firstItem="0PR-4v-hHG" firstAttribute="leading" secondItem="ZiJ-Zn-Oyy" secondAttribute="leadingMargin" constant="8" id="akt-yE-lZE"/>
                                                 <constraint firstItem="Xq3-p3-asb" firstAttribute="leading" secondItem="cKP-PG-DVP" secondAttribute="trailing" constant="8" id="ayv-Bb-cjL"/>
                                                 <constraint firstItem="7db-tH-uPc" firstAttribute="leading" secondItem="ZiJ-Zn-Oyy" secondAttribute="leadingMargin" id="eEe-eS-gpp"/>
@@ -1329,6 +1330,7 @@
                                                 <constraint firstItem="0PR-4v-hHG" firstAttribute="top" secondItem="cKP-PG-DVP" secondAttribute="bottom" constant="-1" id="sMw-iU-KKL"/>
                                                 <constraint firstItem="cKP-PG-DVP" firstAttribute="leading" secondItem="7db-tH-uPc" secondAttribute="leading" id="sPM-eK-LNc"/>
                                                 <constraint firstItem="0PR-4v-hHG" firstAttribute="bottom" secondItem="cKP-PG-DVP" secondAttribute="bottom" id="u8Y-Aj-K7D"/>
+                                                <constraint firstItem="2e5-Cn-rfo" firstAttribute="top" secondItem="Xq3-p3-asb" secondAttribute="bottom" constant="20" id="ubm-jy-Ezi"/>
                                                 <constraint firstItem="2e5-Cn-rfo" firstAttribute="centerX" secondItem="ZiJ-Zn-Oyy" secondAttribute="centerX" id="vPc-SI-3wL"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="W6L-m3-8QH" secondAttribute="trailing" constant="18" id="w8N-EA-9rx"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="7db-tH-uPc" secondAttribute="bottom" constant="40" id="wef-Q8-1b3"/>
@@ -1351,7 +1353,9 @@
                                                     <exclude reference="PPw-Um-btW"/>
                                                     <exclude reference="u8Y-Aj-K7D"/>
                                                     <exclude reference="JyF-g0-Jef"/>
+                                                    <exclude reference="fow-KP-5bt"/>
                                                     <exclude reference="7MO-oV-jc3"/>
+                                                    <exclude reference="OtC-gH-qEe"/>
                                                     <exclude reference="Gjw-WX-hSw"/>
                                                 </mask>
                                             </variation>
@@ -1365,7 +1369,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsCommentsHeader" id="Pp2-1A-t4S" customClass="SingleNewsCommentsHeaderCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="432" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="389" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pp2-1A-t4S" id="7BS-n6-dCO">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1403,7 +1407,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsComment" rowHeight="83" id="OGW-tI-tmy" customClass="SingleNewsCommentCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="476" width="600" height="83"/>
+                                        <rect key="frame" x="0.0" y="433" width="600" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OGW-tI-tmy" id="WCE-OQ-jzj">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="82"/>
@@ -1487,7 +1491,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsCommentsFooter" id="kS9-Kh-jni" customClass="SingleNewsCommentsFooterCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="559" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="516" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kS9-Kh-jni" id="kSo-6v-fpD">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1514,7 +1518,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleNewsCommentsAddNew" rowHeight="200" id="m8v-vF-aDN" customClass="SingleNewsCommentsAddNewCell" customModule="RCG_Personnel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="603" width="600" height="200"/>
+                                        <rect key="frame" x="0.0" y="560" width="600" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m8v-vF-aDN" id="fHk-oW-fX1">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
