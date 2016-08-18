@@ -347,34 +347,25 @@ final class AuthenticationManager {
     
     func unbindSocialNetwork(socialNetwork: SocialNetwork, completion: NSError? -> ()) {
         
-        authenticateInSocialNetwork(
-            socialNetwork,
-            onSuccess: { [weak self] token, tokenSecret in
-                guard let strongSelf = self else { return }
-                
-                let request = Alamofire.request(
-                    .POST,
-                    Constants.apiUrl + "api/v01/users/current/social",
-                    parameters: strongSelf.parametersForSocialNetwork(socialNetwork, token: token),
-                    headers: ["Authorization" : "Bearer " + User.sharedUser.token ?? ""]
-                )
-                
-                request.responseJSON { response in
-                    if let responseDict = response.result.value as? [String: AnyObject] {
-                        if let error = responseDict["error"] {
-                            completion(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
-                        } else {
-                            completion(nil)
-                        }
-                    } else {
-                        completion(response.result.error ?? NSError(domain: "", code: 0, userInfo: nil))
-                    }
-                }
-            },
-            onFailure: { error in
-                debugPrint(error)
-            }
+        let request = Alamofire.request(
+            .POST,
+            Constants.apiUrl + "api/v01/users/current/social",
+            parameters: ["type": stringTypeForSocialNetwork(socialNetwork)],
+            headers: ["Authorization" : "Bearer " + User.sharedUser.token ?? ""]
         )
+        
+        request.responseJSON { response in
+            if let responseDict = response.result.value as? [String: AnyObject] {
+                if let error = responseDict["error"] {
+                    completion(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
+                } else {
+                    completion(nil)
+                }
+            } else {
+                completion(response.result.error ?? NSError(domain: "", code: 0, userInfo: nil))
+            }
+        }
+
     }
     
     // TODO: вынести в отдельный SocialAuthService
