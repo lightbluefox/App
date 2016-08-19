@@ -22,7 +22,7 @@ class News {
     var comments = [Comments]()
     var canComment : Bool?
     var commentsCount = 0
-    var commentsStep = 1 //сколько получать комментариев за 1 запрос
+    var commentsStep = 3 //сколько получать комментариев за 1 запрос
     var commentsTotal = 0
     
     init () {

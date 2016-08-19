@@ -262,6 +262,7 @@
 		8458FC6A1D3276D200284875 /* RCGPhoneTextFieldClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGPhoneTextFieldClass.swift; sourceTree = "<group>"; };
 		846304201CF8815400BDAA2F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		846AA0011CC00C2000205142 /* PushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
+		846CFA6F1D670D8E00EB26FE /* VK_ios_sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VK_ios_sdk.framework; path = "../../../../Users/Admin/Library/Developer/Xcode/DerivedData/RCG_Personnel-ctekgyzprnslqoehonpnuwyeizjc/Build/Products/Debug-iphonesimulator/VK-ios-sdk/VK_ios_sdk.framework"; sourceTree = "<group>"; };
 		84791B361D663F0B001119B8 /* SingleNewsShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsShareCell.swift; sourceTree = "<group>"; };
 		84891DFD1D3E918A008BBB83 /* SingleNewsCommentsAddNewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsCommentsAddNewCell.swift; sourceTree = "<group>"; };
 		84912C491D06F9AC00E8F126 /* SingleNewsCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsCommentCell.swift; sourceTree = "<group>"; };
@@ -690,6 +691,7 @@
 		A590264D6D8747913C613698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				846CFA6F1D670D8E00EB26FE /* VK_ios_sdk.framework */,
 				846304201CF8815400BDAA2F /* SystemConfiguration.framework */,
 				84116B3C1CEB87C5001E5F02 /* FBSDKCoreKit.framework */,
 				84116B3D1CEB87C5001E5F02 /* FBSDKLoginKit.framework */,
@@ -721,12 +723,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D05F501C763613002CEB6B /* Build configuration list for PBXNativeTarget "RCG Personnel" */;
 			buildPhases = (
-				56F959660F53465AC35B0957 /* 📦 Check Pods Manifest.lock */,
+				56F959660F53465AC35B0957 /* [CP] Check Pods Manifest.lock */,
 				84D05F241C763612002CEB6B /* Sources */,
 				84D05F251C763612002CEB6B /* Frameworks */,
 				84D05F261C763612002CEB6B /* Resources */,
-				8AD2997E6E38D0C38B63E1D0 /* 📦 Embed Pods Frameworks */,
-				3ABD485626047F9C578041F9 /* 📦 Copy Pods Resources */,
+				8AD2997E6E38D0C38B63E1D0 /* [CP] Embed Pods Frameworks */,
+				3ABD485626047F9C578041F9 /* [CP] Copy Pods Resources */,
 				842CD1A41D64C21B007459F1 /* ShellScript */,
 			);
 			buildRules = (
@@ -742,12 +744,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D05F531C763613002CEB6B /* Build configuration list for PBXNativeTarget "RCG PersonnelTests" */;
 			buildPhases = (
-				70C011FE8778511F5FAA43D0 /* 📦 Check Pods Manifest.lock */,
+				70C011FE8778511F5FAA43D0 /* [CP] Check Pods Manifest.lock */,
 				84D05F381C763613002CEB6B /* Sources */,
 				84D05F391C763613002CEB6B /* Frameworks */,
 				84D05F3A1C763613002CEB6B /* Resources */,
-				8C6F08D5741086A78AD5900A /* 📦 Embed Pods Frameworks */,
-				37444B5800986E20539B7BC8 /* 📦 Copy Pods Resources */,
+				8C6F08D5741086A78AD5900A /* [CP] Embed Pods Frameworks */,
+				37444B5800986E20539B7BC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -763,11 +765,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D05F561C763613002CEB6B /* Build configuration list for PBXNativeTarget "RCG PersonnelUITests" */;
 			buildPhases = (
-				6BC10DA1CF4B43195FAF08FE /* 📦 Check Pods Manifest.lock */,
+				6BC10DA1CF4B43195FAF08FE /* [CP] Check Pods Manifest.lock */,
 				84D05F431C763613002CEB6B /* Sources */,
 				84D05F441C763613002CEB6B /* Frameworks */,
 				84D05F451C763613002CEB6B /* Resources */,
-				7B132E407F44482FD645771F /* 📦 Copy Pods Resources */,
+				7B132E407F44482FD645771F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -874,14 +876,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		37444B5800986E20539B7BC8 /* 📦 Copy Pods Resources */ = {
+		37444B5800986E20539B7BC8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -889,14 +891,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3ABD485626047F9C578041F9 /* 📦 Copy Pods Resources */ = {
+		3ABD485626047F9C578041F9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -904,14 +906,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		56F959660F53465AC35B0957 /* 📦 Check Pods Manifest.lock */ = {
+		56F959660F53465AC35B0957 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -919,14 +921,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6BC10DA1CF4B43195FAF08FE /* 📦 Check Pods Manifest.lock */ = {
+		6BC10DA1CF4B43195FAF08FE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -934,14 +936,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		70C011FE8778511F5FAA43D0 /* 📦 Check Pods Manifest.lock */ = {
+		70C011FE8778511F5FAA43D0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -949,14 +951,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		7B132E407F44482FD645771F /* 📦 Copy Pods Resources */ = {
+		7B132E407F44482FD645771F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -977,14 +979,14 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" e9af5e896978d25b9694ae7c26b46f37e9283759 2212a515e2677245ff40cdeb306ffcd46f8752ee3641f65b42fca39bbe74f9c4";
 		};
-		8AD2997E6E38D0C38B63E1D0 /* 📦 Embed Pods Frameworks */ = {
+		8AD2997E6E38D0C38B63E1D0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,14 +994,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8C6F08D5741086A78AD5900A /* 📦 Embed Pods Frameworks */ = {
+		8C6F08D5741086A78AD5900A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1351,6 +1353,47 @@
 				INFOPLIST_FILE = "RCG Personnel/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accounts\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"PhoneNumberKit\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"Social\"",
+					"-framework",
+					"\"TwitterCore\"",
+					"-framework",
+					"\"TwitterKit\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"VK_ios_sdk\"",
+				);
 				OTHER_SWIFT_FLAGS = "-DREALEASE_VERSION $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.lightbluefox.RCG-Personnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
