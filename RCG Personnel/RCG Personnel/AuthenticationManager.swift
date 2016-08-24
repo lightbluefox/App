@@ -26,7 +26,7 @@ final class AuthenticationManager {
     func authenticate(method: AuthenticationMethod, completion: AuthenticationResult -> ()) {
         switch method {
         case .Native:
-            sendAuthenticationRequest(method, socialToken: nil, completion: completion)
+            sendAuthenticationRequest(method, socialToken: nil, tokenSecret: nil, completion: completion)
         case .Social(.VKontakte):
             vkAuthenticationService.performAuthentication { [weak self] result in
                 self?.handleSocialAuthenticationResult(result, method: method, completion: completion)
@@ -37,10 +37,13 @@ final class AuthenticationManager {
             }
         case .Social(.Twitter):
             twitterAuthenticationService.performAuthentication { [weak self] result in
-                if case .Success(let token, let tokenSecret) = result {
-                    print("token = \(token), tokenSecret = \(tokenSecret)")
+                switch result {
+                case .Success(let token, let tokenSecret):
+                    debugPrint("token = \(token), tokenSecret = \(tokenSecret)")
+                    self?.sendAuthenticationRequest(method, socialToken: token, tokenSecret: tokenSecret, completion: completion)
+                case .Failure(let error):
+                    completion(.Failure(error))
                 }
-//                self?.handleSocialAuthenticationResult(result, method: method, completion: completion)
             }
         }
     }
@@ -79,6 +82,7 @@ final class AuthenticationManager {
         //разлогиниться из приложения вк, фб, и тв
         vkAuthenticationService.performLogoff()
         fbAuthenticationService.performLogoff()
+        twitterAuthenticationService.performLogoff()
         
         //очистить все из дефаултсов (там хранится токен)
         clearDefaults()
@@ -149,7 +153,13 @@ final class AuthenticationManager {
         }
     }
     
-    func registerNewUser(parentViewController: UIViewController, user: User, socialNetwork: SocialNetwork?, socialToken: String?) {
+    func registerNewUser(
+        parentViewController: UIViewController,
+        user: User,
+        socialNetwork: SocialNetwork?,
+        socialToken: String?,
+        tokenSecret: String?)
+    {
         /*1. post /api/users/
         success: if already exists, alert
         if not, openPhoneConfirmationDialog(Phone)
@@ -177,13 +187,17 @@ final class AuthenticationManager {
         params.updateValue(user.size ?? 0, forKey: "clothesSize")
         params.updateValue(user.birthDate ?? "", forKey: "birthDate")
         
-        if let socialNetwork = socialNetwork, socialToken = socialToken {
-            params["token"] = socialToken
-            params["type"] = stringTypeForSocialNetwork(socialNetwork)
+        if let socialNetwork = socialNetwork, token = socialToken {
+            for (key, value) in parametersForSocialNetwork(socialNetwork, token: token, tokenSecret: tokenSecret) {
+                params[key] = value
+            }
         }
         
-        Alamofire.request(.POST, requestURL, parameters: params, encoding: .URL).responseJSON {
-            response in
+        Alamofire.request(.POST, requestURL, parameters: params, encoding: .URL).responseJSON { response in
+            
+            let responseString = NSString(data: response.data!, encoding: NSUTF8StringEncoding)
+            debugPrint(responseString)
+            
             switch response.result {
             case .Success:
                 if let responseData = response.data {
@@ -260,7 +274,7 @@ final class AuthenticationManager {
     {
         switch result {
         case .Success(let socialToken):
-            sendAuthenticationRequest(method, socialToken: socialToken, completion: completion)
+            sendAuthenticationRequest(method, socialToken: socialToken, tokenSecret: nil, completion: completion)
         case .Cancelled:
             completion(.Failure(nil))
         case .Failure(let error):
@@ -268,11 +282,15 @@ final class AuthenticationManager {
         }
     }
     
-    private func sendAuthenticationRequest(method: AuthenticationMethod, socialToken: String?, completion: AuthenticationResult -> ()) {
-        
+    private func sendAuthenticationRequest(
+        method: AuthenticationMethod,
+        socialToken: String?,
+        tokenSecret: String?,
+        completion: AuthenticationResult -> ())
+    {
         let request = HTTPTask()
         let requestUrl = Constants.apiUrl + "api/v01/token"
-        let params = parametersForAuthenticationMethod(method, socialToken: socialToken)
+        let params = parametersForAuthenticationMethod(method, socialToken: socialToken, tokenSecret: tokenSecret)
         
         request.PUT(requestUrl, parameters: params) { [weak self] response in
             if let error = response.error {
@@ -294,7 +312,7 @@ final class AuthenticationManager {
                     print("error: " + error)
                     dispatch_async(dispatch_get_main_queue()) {
                         if error == "no such a user" {
-                            completion(.UserNotFound(socialNetwork: method.socialNetwork, socialToken: socialToken))
+                            completion(.UserNotFound(socialNetwork: method.socialNetwork, socialToken: socialToken, tokenSecret: tokenSecret))
                         } else {
                             completion(.Failure(nil))
                         }
@@ -323,7 +341,7 @@ final class AuthenticationManager {
                 let request = Alamofire.request(
                     .PUT,
                     Constants.apiUrl + "api/v01/users/current/social",
-                    parameters: strongSelf.parametersForSocialNetwork(socialNetwork, token: token),
+                    parameters: strongSelf.parametersForSocialNetwork(socialNetwork, token: token, tokenSecret: tokenSecret),
                     headers: ["Authorization" : "Bearer " + User.sharedUser.token ?? ""]
                 )
                 
@@ -416,20 +434,35 @@ final class AuthenticationManager {
         }
     }
     
-    private func parametersForAuthenticationMethod(method: AuthenticationMethod, socialToken: String?) -> [String: AnyObject] {
+    private func parametersForAuthenticationMethod(method: AuthenticationMethod, socialToken: String?, tokenSecret: String?)
+        -> [String: AnyObject]
+    {
         switch method {
         case .Native(let login, let password):
             return ["login": login, "password": password]
         case .Social(let socialNetwork):
-            return parametersForSocialNetwork(socialNetwork, token: socialToken ?? "")
+            return parametersForSocialNetwork(socialNetwork, token: socialToken ?? "", tokenSecret: tokenSecret)
         }
     }
     
-    private func parametersForSocialNetwork(socialNetwork: SocialNetwork, token: String) -> [String: AnyObject] {
-        return [
-            "type": stringTypeForSocialNetwork(socialNetwork),
-            "token": token
-        ]
+    private func parametersForSocialNetwork(socialNetwork: SocialNetwork, token: String, tokenSecret: String?)
+        -> [String: AnyObject]
+    {
+        switch socialNetwork {
+        case .VKontakte, .Facebook:
+            return [
+                "type": stringTypeForSocialNetwork(socialNetwork),
+                "token": token
+            ]
+        case .Twitter:
+            return [
+                "type": stringTypeForSocialNetwork(socialNetwork),
+                "token": [
+                    "token": token,
+                    "secret": tokenSecret ?? ""
+                ]
+            ]
+        }
     }
     
     private func stringTypeForSocialNetwork(socialNetwork: SocialNetwork) -> String {
@@ -473,6 +506,6 @@ enum SocialNetwork {
 
 enum AuthenticationResult {
     case Success
-    case UserNotFound(socialNetwork: SocialNetwork?, socialToken: String?)
+    case UserNotFound(socialNetwork: SocialNetwork?, socialToken: String?, tokenSecret: String?)
     case Failure(NSError?)
 }

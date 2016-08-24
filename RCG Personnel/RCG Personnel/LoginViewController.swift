@@ -205,13 +205,14 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
             case .Success:
                 self?.dismissViewControllerAnimated(true, completion: nil)
             
-            case .UserNotFound(let socialNetwork, let socialToken):
+            case .UserNotFound(let socialNetwork, let socialToken, let tokenSecret):
                 guard let registrationViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
                     return assertionFailure("RegisterViewController not found")
                 }
                 
                 registrationViewController.socialNetwork = socialNetwork
                 registrationViewController.socialToken = socialToken
+                registrationViewController.tokenSecret = tokenSecret
                 
                 self?.presentViewController(registrationViewController, animated: true, completion: nil)
             

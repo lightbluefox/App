@@ -13,6 +13,7 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
     
     var socialNetwork: SocialNetwork?
     var socialToken: String?
+    var tokenSecret: String?
     
     @IBAction func closeButtonTouched(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -106,7 +107,13 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
                 gender: gender
             )
             
-            authenticationManager.registerNewUser(self, user: user, socialNetwork: socialNetwork, socialToken: socialToken)
+            authenticationManager.registerNewUser(
+                self,
+                user: user,
+                socialNetwork: socialNetwork,
+                socialToken: socialToken,
+                tokenSecret: tokenSecret
+            )
             
             //authenticationManager.registerNewUser(self, user: User(photo: "https://lh5.googleusercontent.com/-MlnvEdpKY2w/AAAAAAAAAAI/AAAAAAAAAFw/x6wHNLJmtQ0/s0-c-k-no-ns/photo.jpg", firstName: "Иван", middleName: "Петрович", lastName: "Путинов", phone: self.phoneNumber.text ?? "", email: "mail@mail.ru", birthDate: "22.07.1912", height: 180, size: 42, hasMedicalBook: true, medicalBookNumber: "1231231", metroStation: "Севастопольская", passportData: "1231 312312", gender: .Male))
         }
