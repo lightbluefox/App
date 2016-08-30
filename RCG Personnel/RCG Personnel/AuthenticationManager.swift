@@ -48,6 +48,10 @@ final class AuthenticationManager {
         }
     }
     
+    func authenticate(socialNetwork: SocialNetwork, token: String, tokenSecret: String?, completion: AuthenticationResult -> ()) {
+        sendAuthenticationRequest(.Social(socialNetwork), socialToken: token, tokenSecret: tokenSecret, completion: completion)
+    }
+    
     func logoff(tabBarController: UITabBarController) {
         //Ребилд стэка навигации, чтобы все контроллеры были в исходном положении
         //Презентовать LoginViewController

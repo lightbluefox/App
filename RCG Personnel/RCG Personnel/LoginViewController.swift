@@ -179,12 +179,15 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
     }
     
     func didFinishRegistering(sender: RegisterViewController) {
-        self.phone.text = sender.phoneNumber.text
-        self.code.text = sender.validationCode
-        NSLog("Finished registering with: Phone \(phone.text) and code \(code.text). Authenticating now.")
-        authenticationManager.parentViewController = self
-        
-        performNativeAuthentication()
+        if let socialNetwork = sender.socialNetwork {
+            weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            authenticationManager.authenticate(socialNetwork, token: sender.socialToken ?? "", tokenSecret: sender.tokenSecret) { [weak self] result in
+                hud?.hide(true)
+                self?.handleAuthenticationResult(result)
+            }
+        } else {
+            performNativeAuthentication()
+        }
     }
     
     private func performNativeAuthentication() {
@@ -196,29 +199,32 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
     
     private func performAuthentication(method: AuthenticationMethod) {
         weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        
         authenticationManager.authenticate(method) { [weak self] result in
             hud?.hide(true)
+            self?.handleAuthenticationResult(result)
+        }
+    }
+    
+    private func handleAuthenticationResult(result: AuthenticationResult) {
+        switch result {
             
-            switch result {
+        case .Success:
+            dismissViewControllerAnimated(true, completion: nil)
             
-            case .Success:
-                self?.dismissViewControllerAnimated(true, completion: nil)
-            
-            case .UserNotFound(let socialNetwork, let socialToken, let tokenSecret):
-                guard let registrationViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
-                    return assertionFailure("RegisterViewController not found")
-                }
-                
-                registrationViewController.socialNetwork = socialNetwork
-                registrationViewController.socialToken = socialToken
-                registrationViewController.tokenSecret = tokenSecret
-                
-                self?.presentViewController(registrationViewController, animated: true, completion: nil)
-            
-            case .Failure(let error):
-                self?.hudManger.showHUD("Ошибка", details: error?.localizedDescription ?? "Неизвестная ошибка", type: .Failure)
+        case .UserNotFound(let socialNetwork, let socialToken, let tokenSecret):
+            guard let registrationViewController = storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
+                return assertionFailure("RegisterViewController not found")
             }
+            
+            registrationViewController.delegate = self
+            registrationViewController.socialNetwork = socialNetwork
+            registrationViewController.socialToken = socialToken
+            registrationViewController.tokenSecret = tokenSecret
+            
+            presentViewController(registrationViewController, animated: true, completion: nil)
+            
+        case .Failure(let error):
+            hudManger.showHUD("Ошибка", details: error?.localizedDescription ?? "Неизвестная ошибка", type: .Failure)
         }
     }
 }
