@@ -89,16 +89,14 @@ final class AuthenticationManager {
         twitterAuthenticationService.performLogoff()
         
         //очистить все из дефаултсов (там хранится токен)
-        clearDefaults()
+        clearUserTokenFromDefaults()
         
         //заполнить дефолтными значениями sharedUser'а
         clearSharedUser()
         
     }
-    private func clearDefaults() {
-        if let appDomain = NSBundle.mainBundle().bundleIdentifier {
-            NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
-        }
+    private func clearUserTokenFromDefaults() {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(NSUserDefaultsKeys.tokenKey)
     }
     
     func clearSharedUser() {
@@ -139,6 +137,9 @@ final class AuthenticationManager {
                         if error == "wait" {
                             let remainingTime = json["time"].intValue
                             completionHandler(success: false, result: "Повторная отправка смс возможна через \(remainingTime) сек.")
+                        }
+                        else if error == "user unconfirmed" {
+                            completionHandler(success: false, result: "Пользователь не подтвержден. Пройдите повторную регистрацию.")
                         }
                         else
                         {
@@ -237,20 +238,17 @@ final class AuthenticationManager {
                                         }
                                     }
                                  }
-                                /*registerViewController?.hudManager.hideHUD(hud!)
-                                let alertAction = UIAlertAction(title: "Выслать", style: .Default) {(_) -> Void in
-                                    //registerViewController?.dismissViewControllerAnimated(true) {() -> Void in
-                                        
-                                        //Запросить восстановление пароля /api/recover
-                                                                                //registerViewController?.parentViewController?.showViewController(<#T##vc: UIViewController##UIViewController#>, sender: <#T##AnyObject?#>)
-                                        //отобразить вью контроллер для восстановления пароля хотя мб достаточно отразить главный VC
-                                    }
-                                }*/
                                 registerViewController?.hudManager.showAlertWithСancelButton("Номер уже зарегистрирован", message: "Выслать на него новый пароль?", cancelButtonTitle: "Нет", action: alertAction)
+                            }
+                            else if error == "wait" {
+                                let remainingTime = json["time"].intValue
+                                registerViewController?.hudManager.hideHUD(hud!)
+                                registerViewController?.hudManager.showHUD("Ошибка", details: "Повторная отправка смс возможна через \(remainingTime) сек.", type: .Failure)
+                                //completionHandler(success: false, result: "Повторная отправка смс возможна через \(remainingTime) сек.")
                             }
                             else {
                                 registerViewController?.hudManager.hideHUD(hud!)
-                                registerViewController?.hudManager.showHUD("Упс", details: error, type: .Failure)
+                                registerViewController?.hudManager.showHUD("Ошибка", details: error, type: .Failure)
                             }
                     }
                 }
@@ -317,7 +315,14 @@ final class AuthenticationManager {
                     dispatch_async(dispatch_get_main_queue()) {
                         if error == "no such a user" {
                             completion(.UserNotFound(socialNetwork: method.socialNetwork, socialToken: socialToken, tokenSecret: tokenSecret))
-                        } else {
+                        }
+                        else if error == "not allowed to login" {
+                            completion(.NotAllowedToLogin(socialNetwork: method.socialNetwork, socialToken: socialToken, tokenSecret: tokenSecret))
+                        }
+                        else if error == "Login or password invalid!" {
+                            completion(.IncorrectLoginOrPassword)
+                        }
+                        else {
                             completion(.Failure(nil))
                         }
                     }
@@ -511,5 +516,7 @@ enum SocialNetwork {
 enum AuthenticationResult {
     case Success
     case UserNotFound(socialNetwork: SocialNetwork?, socialToken: String?, tokenSecret: String?)
+    case NotAllowedToLogin(socialNetwork: SocialNetwork?, socialToken: String?, tokenSecret: String?)
+    case IncorrectLoginOrPassword
     case Failure(NSError?)
 }

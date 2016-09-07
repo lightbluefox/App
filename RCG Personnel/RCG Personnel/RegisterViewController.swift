@@ -123,17 +123,6 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
         sender.validate()
         fieldsAreValid.updateValue(sender.isValid, forKey: sender)
 
-        /*if sender.text != "" {
-            sender.isValid = true
-            print(fieldsAreValid.indexForKey(sender))
-            print(fieldsAreValid.values)
-            fieldsAreValid.updateValue(sender.isValid, forKey: sender)
-        }
-        else {
-            sender.isValid = false
-            fieldsAreValid.updateValue(sender.isValid, forKey: sender)
-        }
-        sender.setRightImage()*/
     }
     
     var fieldsAreValid = [UITextField : Bool]()

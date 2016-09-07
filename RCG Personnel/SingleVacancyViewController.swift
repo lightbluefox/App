@@ -34,17 +34,17 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     }
     @IBAction func vacShareVKButtonTouched(sender: AnyObject) {
  
-        shareManager.share(to: .Vkontakte(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImageVIew.image, url: NSURL(string: "http://www.rcg.agency")!, urlTitle: "Больше вакансий"))
+        shareManager.share(to: .Vkontakte(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImageVIew.image, url: NSURL(string: Constants.appStoreUrl)!, urlTitle: "Больше вакансий"))
     }
     
     @IBAction func vacShareTWButtonTouched(sender: AnyObject) {
         
-        shareManager.share(to: .Twitter(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImageVIew.image, url: NSURL(string: "http://www.rcg.agency")!))
+        shareManager.share(to: .Twitter(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImageVIew.image, url: NSURL(string: Constants.appStoreUrl)!))
     }
     
     @IBAction func vacShareFBButtonTouched(sender: AnyObject) {
         
-        shareManager.share(to: .Facebook(title: "Появилась новая вакансия - \(vacTitle.text ?? "")", description: "Ставка: \(vacMoney.text ?? ""). \n\(vacShortText.text ?? "")", url: NSURL(string: "http://www.rcg.agency")!, imageURL: NSURL(string: self.vacReceiver.singleVacancy.images[0])))
+        shareManager.share(to: .Facebook(title: "Появилась новая вакансия - \(vacTitle.text ?? "")", description: "Ставка: \(vacMoney.text ?? ""). \n\(vacShortText.text ?? "")", url: NSURL(string: Constants.appStoreUrl)!, imageURL: NSURL(string: self.vacReceiver.singleVacancy.images[0])))
     }
     
     func sharerDidCancel(sharer: FBSDKSharing!) {

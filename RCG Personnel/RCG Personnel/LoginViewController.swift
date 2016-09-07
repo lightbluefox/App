@@ -10,6 +10,12 @@ import Foundation
 
 class LoginViewController: BaseViewController, RegisterViewControllerDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
+    var previousScrollViewBottomConstraintValue : CGFloat = 0
+    
+    
     @IBOutlet weak var phone: RCGPhoneTextField!
     @IBOutlet weak var code: RCGTextFieldClass!
     
@@ -89,12 +95,88 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
+    }
+    
+    private func setupView() {
+        prepareScrollView()
+        
         code.secureTextEntry = true
         code.keyboardType = .NumberPad
         phone.keyboardType = .NumberPad
         phone.delegate = self
-        
     }
+    
+    private func prepareScrollView() {
+        //MARK: Скрывать, клавиатуру при тапе по скрол вью
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)));
+        tap.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(tap)
+        setScrollViewSqueezeOnKeyboardAppearаnce()
+    }
+    
+    func hideKeyboard(sender: AnyObject) {
+        scrollView.endEditing(true)
+    }
+    
+    private func setScrollViewSqueezeOnKeyboardAppearаnce() {
+        self.previousScrollViewBottomConstraintValue = self.scrollViewBottomConstraint.constant;
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillShowNotification(notification: NSNotification){
+        if let userInfo = notification.userInfo {
+            if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+                let frame = frameValue.CGRectValue()
+                self.scrollViewBottomConstraint.constant = self.previousScrollViewBottomConstraintValue + frame.size.height/2
+                
+                switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
+                case let (.Some(duration), .Some(curve)):
+                    
+                    let options = UIViewAnimationOptions(rawValue: curve.unsignedLongValue)
+                    
+                    UIView.animateWithDuration(
+                        NSTimeInterval(duration.doubleValue),
+                        delay: 0,
+                        options: options,
+                        animations: {
+                            UIApplication.sharedApplication().keyWindow?.layoutIfNeeded()
+                            return
+                        }, completion: { finished in
+                    })
+                default:
+                    
+                    break
+                }
+            }
+        }
+    }
+    
+    func keyboardWillHideNotification(notification: NSNotification){
+        self.scrollViewBottomConstraint.constant = self.previousScrollViewBottomConstraintValue
+        if let userInfo = notification.userInfo {
+            
+            switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
+            case let (.Some(duration), .Some(curve)):
+                
+                let options = UIViewAnimationOptions(rawValue: curve.unsignedLongValue)
+                
+                UIView.animateWithDuration(
+                    NSTimeInterval(duration.doubleValue),
+                    delay: 0,
+                    options: options,
+                    animations: {
+                        UIApplication.sharedApplication().keyWindow?.layoutIfNeeded()
+                        return
+                    }, completion: { finished in
+                })
+            default:
+                break
+            }
+        }
+    }
+
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField == phone {
@@ -212,16 +294,41 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
             dismissViewControllerAnimated(true, completion: nil)
             
         case .UserNotFound(let socialNetwork, let socialToken, let tokenSecret):
-            guard let registrationViewController = storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
+            if socialNetwork != nil {
+                guard let registrationViewController = storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
                 return assertionFailure("RegisterViewController not found")
+                }
+            
+                registrationViewController.delegate = self
+                registrationViewController.socialNetwork = socialNetwork
+                registrationViewController.socialToken = socialToken
+                registrationViewController.tokenSecret = tokenSecret
+            
+                presentViewController(registrationViewController, animated: true, completion: nil)
+            }
+            else {
+                hudManger.showHUD("Ошибка", details: "Неверный логин или пароль!", type: .Failure)
             }
             
-            registrationViewController.delegate = self
-            registrationViewController.socialNetwork = socialNetwork
-            registrationViewController.socialToken = socialToken
-            registrationViewController.tokenSecret = tokenSecret
+        case .NotAllowedToLogin(let socialNetwork, let socialToken, let tokenSecret):
+            if socialNetwork != nil {
+                guard let registrationViewController = storyboard?.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController else {
+                    return assertionFailure("RegisterViewController not found")
+                }
+                
+                registrationViewController.delegate = self
+                registrationViewController.socialNetwork = socialNetwork
+                registrationViewController.socialToken = socialToken
+                registrationViewController.tokenSecret = tokenSecret
+                
+                presentViewController(registrationViewController, animated: true, completion: nil)
+            }
+            else {
+                hudManger.showHUD("Ошибка", details: "Неверный логин или пароль!", type: .Failure)
+            }
             
-            presentViewController(registrationViewController, animated: true, completion: nil)
+        case .IncorrectLoginOrPassword:
+            hudManger.showHUD("Ошибка", details: "Неверный логин или пароль!", type: .Failure)
             
         case .Failure(let error):
             hudManger.showHUD("Ошибка", details: error?.localizedDescription ?? "Неизвестная ошибка", type: .Failure)

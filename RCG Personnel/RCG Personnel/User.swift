@@ -56,6 +56,7 @@ class User {
         }
         set(newToken) {
             NSUserDefaults.standardUserDefaults().setObject(newToken, forKey: NSUserDefaultsKeys.tokenKey)
+            
         }
     }
     

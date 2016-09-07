@@ -19,9 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var deviceTokenString = ""
-    var deviceTokenSent = false
-    
     var appVersionOnServer = ""
     var versionChecked = false
     
@@ -33,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var reachability : Reachability!
     
     let user = User.sharedUser
+    let device = Device.sharedDevice
     let userReceiver = UserReceiver()
     let authenticationManager = AuthenticationManager()
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -63,23 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKLoginManager.renewSystemCredentials { (result:ACAccountCredentialRenewResult, error:NSError!) -> Void in }
         
         
-        /*if user.isAuthenticated {*/
             if let tabBarController = self.window?.rootViewController as? UITabBarController {
                 pushManager = PushManager(handlers: [SingleNewsPushHandler(tabBar: tabBarController), SingleVacancyPushHandler(tabBar: tabBarController)])
             }
-            //registerForPushNotifications()
-            
+        
             if let pushNotificationInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as! NSDictionary! {
                 handlePushWithPayload(pushNotificationInfo, mode: .Background)
             }
-        /*}
-        else {
-            let rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-            self.window?.makeKeyAndVisible()
-            self.window?.rootViewController?.presentViewController(rootViewController, animated: true, completion: nil)
-        }*/
-        
-        
         
         return true
     }
@@ -113,11 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             if !UIApplication.sharedApplication().isRegisteredForRemoteNotifications() {
                 registerForPushNotifications()
-            }
-            if !deviceTokenSent {
-                if deviceTokenString != "" {
-                    sendToken(deviceTokenString)
-                }
             }
             if !user.isTokenChecked {
                 if user.token != nil {
@@ -205,10 +188,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let characterSet: NSCharacterSet = NSCharacterSet(charactersInString: "<>")
         
-        self.deviceTokenString = ( deviceToken.description as NSString )
+        device.token = ( deviceToken.description as NSString )
             .stringByTrimmingCharactersInSet( characterSet )
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
-        NSLog("%@", "Registration for Remote Notifications succeed: " + deviceTokenString)
+        NSLog("%@", "Registration for Remote Notifications succeed: \(device.token ?? "")")
+        
+        if !device.tokenSent {
+            if device.token != nil {
+                if device.token! != "" {
+                    sendToken(device.token!) {
+                        (let success, let result) in
+                        if success {
+                            self.device.tokenSent = true
+                        }
+                        else {
+                            self.device.tokenSent = false
+                        }
+                        NSLog("%@", result ?? "")
+                    }
+                }
+            }
+        }
+        
         
     }
     
@@ -231,7 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func sendToken(deviceTokenString: String) {
+    func sendToken(deviceTokenString: String, completion: (success: Bool, result: String?) -> Void ) {
         
         let request = HTTPTask();
         let requestUrl = Constants.apiUrl + "api/v01/devices"
@@ -239,19 +240,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
             if let err = response.error {
-                NSLog("error: " + err.localizedDescription)
+                completion(success: false, result: "Error on token sending: \(err.localizedDescription)")
             }
             else if let resp: AnyObject = response.responseObject {
                 let responseData = NSString(data: resp as! NSData, encoding: NSUTF8StringEncoding)
-                let requestedDataUnwrapped = responseData!;
-                let jsonString = requestedDataUnwrapped;
-                let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
-                    
-                let json = JSON(jsonObject);
-                    
-                NSLog("%@", "Token successfully sent to the server with response: " + responseData!.description)
-                self.deviceTokenSent = true
+                
+                completion(success: true, result: "Token successfully sent to the server with response: \(responseData!.description)")
             }
         })
     }

@@ -27,12 +27,12 @@ final class FBShareManager: BaseShareManager, FBSDKSharingDelegate {
         shareDialog.fromViewController = parentViewController
         shareDialog.delegate = self
         
-        shareDialog.mode = .Native
-        
+        shareDialog.mode = .FeedBrowser
+        /*
         if !shareDialog.canShow() {
             shareDialog.mode = .FeedBrowser
         }
-        
+        */
         shareDialog.show()
     }
     

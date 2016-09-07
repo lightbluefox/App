@@ -518,11 +518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "registerForPushNotifications()"
             landmarkType = "5">
          </BreakpointContent>
@@ -646,11 +646,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "setApplicationFontsAndColors()"
             landmarkType = "5">
          </BreakpointContent>
@@ -662,11 +662,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "getAppVersionFromServerAndShowAlertIfItDiffers()"
             landmarkType = "5">
          </BreakpointContent>
@@ -678,12 +678,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "sendToken(_:)"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "sendToken(_:completion:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -694,27 +694,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
-            landmarkName = "sendToken(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "checkForReachability(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -742,11 +726,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "AppDelegate"
             landmarkType = "3">
          </BreakpointContent>
@@ -758,11 +742,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "checkForReachability(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -774,11 +758,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "checkForReachability(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -790,11 +774,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -806,11 +790,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -854,11 +838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "application(_:didReceiveRemoteNotification:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -870,11 +854,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "application(_:openURL:sourceApplication:annotation:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -886,11 +870,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "application(_:didReceiveRemoteNotification:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -902,11 +886,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RCG Personnel/AppDelegate.swift"
-            timestampString = "490375503.577901"
+            timestampString = "494958001.344579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "5">
          </BreakpointContent>

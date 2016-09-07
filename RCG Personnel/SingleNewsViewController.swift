@@ -271,14 +271,14 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
             cell?.newsFullText.text = self.newsReceiver.singleNews.fullText
             
             cell?.fbTapAction = {
-                self.shareManager.fbShareManager.share(cell?.newsTitle.text ?? "", description: cell?.newsFullText.text ?? "", url: NSURL(string: "http://www.rcg.agency")!, imageURL: (NSURL(string: self.newsReceiver.singleNews.images[0])))
+                self.shareManager.fbShareManager.share(cell?.newsTitle.text ?? "", description: cell?.newsFullText.text ?? "", url: NSURL(string: Constants.appStoreUrl)!, imageURL: (NSURL(string: self.newsReceiver.singleNews.images[0])))
             }
             cell?.vkTapAction = {
-                self.shareManager.vkShareManager.share(cell?.newsTitle.text ?? "", image: cell?.newsImageView.image, url: NSURL(string: "http://www.rcg.agency")!, urlTitle: "Больше новостей")
+                self.shareManager.vkShareManager.share(cell?.newsTitle.text ?? "", image: cell?.newsImageView.image, url: NSURL(string: Constants.appStoreUrl)!, urlTitle: "Больше новостей")
             }
             
             cell?.twTapAction = {
-                self.shareManager.twShareManager.share(cell?.newsTitle.text ?? "", image: cell?.newsImageView.image, url: NSURL(string: "http://www.rcg.agency")!)
+                self.shareManager.twShareManager.share(cell?.newsTitle.text ?? "", image: cell?.newsImageView.image, url: NSURL(string: Constants.appStoreUrl)!)
             }
             
             

@@ -48,8 +48,13 @@ class BaseTableViewController: UITableViewController {
             if let photoUrl = NSURL(string: photoUrlString) {
                 if UIApplication.sharedApplication().canOpenURL(photoUrl) {
                     let imageview = UIImageView()
-                    imageview.sd_setImageWithPreviousCachedImageWithURL(photoUrl, andPlaceholderImage: user.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
-                    profileButton.setImage(imageview.image, forState: .Normal)
+                    //imageview.sd_setImageWithURL(photoUrl, completed: nil)
+                    //imageview.sd_setImageWithPreviousCachedImageWithURL(photoUrl, andPlaceholderImage: user.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
+                    imageview.sd_setImageWithURL(photoUrl, placeholderImage: user.noPhotoImage, options: [.ProgressiveDownload, .HighPriority, .RetryFailed, .ContinueInBackground, .AvoidAutoSetImage]) {
+                        (let image, let error, let isFromCache, let imageUrl) in
+                        profileButton.setImage(image, forState: .Normal)
+                    }
+                    //profileButton.setImage(imageview.image, forState: .Normal)
                 }
                 else
                 {
@@ -65,6 +70,7 @@ class BaseTableViewController: UITableViewController {
         let negativeSeparator = UIBarButtonItem.init(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         negativeSeparator.width = -5
         self.navigationItem.setRightBarButtonItems([negativeSeparator, button], animated: false)
+        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

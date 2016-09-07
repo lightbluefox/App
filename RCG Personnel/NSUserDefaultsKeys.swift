@@ -10,4 +10,6 @@ import Foundation
 
 class NSUserDefaultsKeys {
     static let tokenKey = "token"
+    static let deviceTokenKey = "deviceToken"
+    static let deviceTokenSentKey = "deviceTokenSent"
 }

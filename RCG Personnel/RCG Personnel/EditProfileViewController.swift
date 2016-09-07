@@ -415,9 +415,13 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            userPhoto.image = image
-            self.photoDidChange = true
+        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let imagedata = UIImageJPEGRepresentation(originalImage, 1.0)
+            if imagedata != nil {
+                let image = UIImage(data: imagedata!)
+                userPhoto.image = image
+                self.photoDidChange = true
+            }
         }
         dismissViewControllerAnimated(true, completion: nil)
     }

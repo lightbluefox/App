@@ -22,6 +22,7 @@
 		841F89F31CC28B1400A66930 /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F21CC28B1400A66930 /* PushHandler.swift */; };
 		841F89F51CC28F8400A66930 /* SingleNewsPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */; };
 		8420008C1CF0C34400992576 /* NSUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */; };
+		842495151D80712700AB832A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842495141D80712700AB832A /* Device.swift */; };
 		842CD19D1D624FB7007459F1 /* VKShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD19C1D624FB7007459F1 /* VKShareManager.swift */; };
 		842CD19F1D625537007459F1 /* BaseShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD19E1D625537007459F1 /* BaseShareManager.swift */; };
 		842CD1A11D63BB6C007459F1 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD1A01D63BB6C007459F1 /* ShareManager.swift */; };
@@ -246,6 +247,7 @@
 		841F89F21CC28B1400A66930 /* PushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		841F89F41CC28F8400A66930 /* SingleNewsPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsPushHandler.swift; sourceTree = "<group>"; };
 		8420008B1CF0C34400992576 /* NSUserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsKeys.swift; sourceTree = "<group>"; };
+		842495141D80712700AB832A /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		842CD19C1D624FB7007459F1 /* VKShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKShareManager.swift; sourceTree = "<group>"; };
 		842CD19E1D625537007459F1 /* BaseShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseShareManager.swift; sourceTree = "<group>"; };
 		842CD1A01D63BB6C007459F1 /* ShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				84C3223B1CCC0B5000A70641 /* User.swift */,
+				842495141D80712700AB832A /* Device.swift */,
 				843380B91D3A86C100FDF411 /* UserReceiver.swift */,
 				84C3223D1CCD855B00A70641 /* ProfileViewController.swift */,
 				8411A3011CD948E700313D11 /* EditProfileViewController.swift */,
@@ -1055,6 +1058,7 @@
 				84BEFFC01D09E204005BDF71 /* ValidatePhoneViewController.swift in Sources */,
 				84D060301C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				F2C0AA8B1D64F8DE003492E7 /* TwitterAuthenticationService.swift in Sources */,
+				842495151D80712700AB832A /* Device.swift in Sources */,
 				846AA0021CC00C2000205142 /* PushManager.swift in Sources */,
 				84D060131C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
 				84D05F6C1C766F38002CEB6B /* NewsCell.swift in Sources */,
