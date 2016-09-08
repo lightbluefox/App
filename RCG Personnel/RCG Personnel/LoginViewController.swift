@@ -268,7 +268,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             performNativeAuthentication(withLogin: login, password: password)
         case .SocialSuccess(let socialNetwork, let token, let tokenSecret):
             weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            authenticationManager.authenticate(socialNetwork, token: token ?? "", tokenSecret: tokenSecret) { [weak self] result in
+            authenticationManager.authenticate(socialNetwork, token: token, tokenSecret: tokenSecret) { [weak self] result in
                 hud?.hide(true)
                 self?.handleAuthenticationResult(result)
             }
