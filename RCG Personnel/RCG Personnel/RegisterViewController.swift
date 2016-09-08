@@ -9,11 +9,18 @@
 import Foundation
 import PhoneNumberKit
 
+enum RegistrationResult {
+    case NativeSuccess(login: String, password: String)
+    case SocialSuccess(network: SocialNetwork, token: String, tokenSecret: String?)
+}
+
 final class RegisterViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidatePhoneViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     var socialNetwork: SocialNetwork?
     var socialToken: String?
     var tokenSecret: String?
+    
+    var onFinish: ((RegistrationResult) -> ())?
     
     @IBAction func closeButtonTouched(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -132,7 +139,6 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
     var genderPickerData = [String]()
     let validatePhoneViewController = ValidatePhoneViewController()
     var authenticationManager = AuthenticationManager()
-    weak var delegate : RegisterViewControllerDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -251,12 +257,16 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
     
     //MARK: ValidatePhoneDelegate
     func didFinishValidating(sender: ValidatePhoneViewController) {
-        validationCode = sender.code.text
+        
+        if let socialNetwork = socialNetwork {
+            onFinish?(.SocialSuccess(network: socialNetwork, token: socialToken ?? "", tokenSecret: tokenSecret))
+        } else {
+            onFinish?(.NativeSuccess(login: phoneNumber.unmaskText() ?? "", password: sender.code.text ?? ""))
+        }
+        
+        // TODO: это тоже должен делать родительский контроллер в onFinish
         dismissViewControllerAnimated(false, completion: nil)
-        delegate?.didFinishRegistering(self)
     }
-    
-    
     
     //MARK: UIPickerViewDelegate
     // The number of columns of data

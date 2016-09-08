@@ -206,7 +206,6 @@
 		84D0603E1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
 		84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */; };
 		84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */; };
-		84FD9DA21D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */; };
 		98F0FB423AA2408230FD2C24 /* Pods_RCG_Personnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D2CE24D6DA1823D9C05DF3 /* Pods_RCG_Personnel.framework */; };
 		F2C0AA8B1D64F8DE003492E7 /* TwitterAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C0AA8A1D64F8DE003492E7 /* TwitterAuthenticationService.swift */; };
 /* End PBXBuildFile section */
@@ -362,7 +361,6 @@
 		84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCGTextFieldClass.swift; sourceTree = "<group>"; };
 		84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleVacancyPushHandler.swift; sourceTree = "<group>"; };
 		84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePhoneViewDelegate.swift; sourceTree = "<group>"; };
-		84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewControllerDelegate.swift; sourceTree = "<group>"; };
 		B6D2CE24D6DA1823D9C05DF3 /* Pods_RCG_Personnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_Personnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCC52349DED7CF626C09F5D8 /* Pods_RCG_PersonnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.release.xcconfig"; sourceTree = "<group>"; };
@@ -486,7 +484,6 @@
 				F2C0AA8A1D64F8DE003492E7 /* TwitterAuthenticationService.swift */,
 				849D62371CC942BB00C90229 /* LoginViewController.swift */,
 				840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */,
-				84FD9DA11D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift */,
 				84C322321CCA48A100A70641 /* AuthenticationManager.swift */,
 				84BEFFBF1D09E204005BDF71 /* ValidatePhoneViewController.swift */,
 				84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */,
@@ -1092,7 +1089,6 @@
 				84D05FFB1C77D890002CEB6B /* SDWebImageDownloaderOperation.m in Sources */,
 				84D060221C7BAD3C002CEB6B /* VacancyCell.swift in Sources */,
 				84C412201D09A1A000DFDC68 /* HUDManager.swift in Sources */,
-				84FD9DA21D16F3B300A95BA8 /* RegisterViewControllerDelegate.swift in Sources */,
 				84D05F7D1C77977E002CEB6B /* Vacancies.swift in Sources */,
 				84D0601E1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */,
 				84D05F791C779646002CEB6B /* NewsReceiver.swift in Sources */,

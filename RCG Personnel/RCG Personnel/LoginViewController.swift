@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LoginViewController: BaseViewController, RegisterViewControllerDelegate, UITextFieldDelegate {
+class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -56,7 +56,7 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
         code.validate()
         
         if phone.isValid && code.isValid {
-            performNativeAuthentication()
+            performNativeAuthentication(withLogin: phone.unmaskText() ?? "", password: code.text ?? "")
         } else {
             hudManger.showHUD("Ошибка", details: "Введите номер телефона и код", type: .Failure)
         }
@@ -66,7 +66,9 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let registerViewController = storyboard.instantiateViewControllerWithIdentifier("Register") as? RegisterViewController {
             registerViewController.modalPresentationStyle = .OverFullScreen
-            registerViewController.delegate = self
+            registerViewController.onFinish = { [weak self] result in
+                self?.handleRegistrationResult(result)
+            }
             self.showDetailViewController(registerViewController, sender: self)
         }
     }
@@ -260,23 +262,21 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
         return s.componentsSeparatedByCharactersInSet(invalidCharactersSet).joinWithSeparator("")
     }
     
-    func didFinishRegistering(sender: RegisterViewController) {
-        if let socialNetwork = sender.socialNetwork {
+    private func handleRegistrationResult(result: RegistrationResult) {
+        switch result {
+        case .NativeSuccess(let login, let password):
+            performNativeAuthentication(withLogin: login, password: password)
+        case .SocialSuccess(let socialNetwork, let token, let tokenSecret):
             weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            authenticationManager.authenticate(socialNetwork, token: sender.socialToken ?? "", tokenSecret: sender.tokenSecret) { [weak self] result in
+            authenticationManager.authenticate(socialNetwork, token: token ?? "", tokenSecret: tokenSecret) { [weak self] result in
                 hud?.hide(true)
                 self?.handleAuthenticationResult(result)
             }
-        } else {
-            performNativeAuthentication()
         }
     }
     
-    private func performNativeAuthentication() {
-        performAuthentication(.Native(
-            login: self.phone.unmaskText() ?? "",
-            password: self.code.text ?? ""
-        ))
+    private func performNativeAuthentication(withLogin login: String, password: String) {
+        performAuthentication(.Native(login: login, password: password))
     }
     
     private func performAuthentication(method: AuthenticationMethod) {
@@ -299,10 +299,12 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
                 return assertionFailure("RegisterViewController not found")
                 }
             
-                registrationViewController.delegate = self
                 registrationViewController.socialNetwork = socialNetwork
                 registrationViewController.socialToken = socialToken
                 registrationViewController.tokenSecret = tokenSecret
+                registrationViewController.onFinish = { [weak self] result in
+                    self?.handleRegistrationResult(result)
+                }
             
                 presentViewController(registrationViewController, animated: true, completion: nil)
             }
@@ -316,10 +318,12 @@ class LoginViewController: BaseViewController, RegisterViewControllerDelegate, U
                     return assertionFailure("RegisterViewController not found")
                 }
                 
-                registrationViewController.delegate = self
                 registrationViewController.socialNetwork = socialNetwork
                 registrationViewController.socialToken = socialToken
                 registrationViewController.tokenSecret = tokenSecret
+                registrationViewController.onFinish = { [weak self] result in
+                    self?.handleRegistrationResult(result)
+                }
                 
                 presentViewController(registrationViewController, animated: true, completion: nil)
             }
