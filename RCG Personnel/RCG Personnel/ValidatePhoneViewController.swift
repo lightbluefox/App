@@ -88,9 +88,36 @@ class ValidatePhoneViewController: BaseViewController, UITextFieldDelegate {
             .responseString { response in
                 switch response.result {
                 case .Success:
-                    self.hudManager.hideHUD(hud)
-                    self.dismissViewControllerAnimated(false, completion: nil)
-                    self.delegate?.didFinishValidating(self)
+                    if let responseData = response.data {
+                        var jsonError: NSError?
+                        let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                        if let error = json["error"].string {
+                            if error == "wrong SMS" {
+                                print("Error: \(error)")
+                                self.hudManager.hideHUD(hud)
+                                self.hudManager.showHUD("Ошибка", details: "Неверный код подтверждения.", type: .Failure)
+                            }
+                            else if error == "already confirmed" {
+                                print("Error: \(error)")
+                                self.hudManager.hideHUD(hud)
+                                self.hudManager.showHUD("Ошибка", details: "Пользователь уже подтвержден.", type: .Failure)
+                            }
+                            else
+                            {
+                                print("Error: \(error)")
+                                self.hudManager.hideHUD(hud)
+                                self.hudManager.showHUD("Ошибка", details: error, type: .Failure)
+                            }
+                        }
+                        else {
+                            self.hudManager.hideHUD(hud)
+                            self.dismissViewControllerAnimated(false, completion: nil)
+                            self.delegate?.didFinishValidating(self)
+
+                        }
+                        
+                    }
+                    
                 case .Failure(let error):
                     print("Error: \(error)")
                     self.hudManager.hideHUD(hud)
