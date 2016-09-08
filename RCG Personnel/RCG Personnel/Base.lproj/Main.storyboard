@@ -1235,11 +1235,11 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKP-PG-DVP">
-                                                    <rect key="frame" x="16" y="148" width="48" height="32"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKP-PG-DVP">
+                                                    <rect key="frame" x="16" y="148" width="50" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="OB1-Nj-KGJ"/>
-                                                        <constraint firstAttribute="width" constant="48" id="dVN-H2-O1Y"/>
+                                                        <constraint firstAttribute="width" constant="50" id="dVN-H2-O1Y"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                                                     <color key="textColor" red="0.90980392160000001" green="0.29803921570000003" blue="0.23921568630000001" alpha="1" colorSpace="deviceRGB"/>
@@ -1332,7 +1332,7 @@
                                                 <constraint firstItem="cKP-PG-DVP" firstAttribute="leading" secondItem="ZiJ-Zn-Oyy" secondAttribute="leadingMargin" constant="8" id="VUy-PY-uIE"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Xq3-p3-asb" secondAttribute="bottom" constant="120" id="XAx-cR-Cox"/>
                                                 <constraint firstItem="0PR-4v-hHG" firstAttribute="leading" secondItem="ZiJ-Zn-Oyy" secondAttribute="leadingMargin" constant="8" id="akt-yE-lZE"/>
-                                                <constraint firstItem="Xq3-p3-asb" firstAttribute="leading" secondItem="cKP-PG-DVP" secondAttribute="trailing" constant="8" id="ayv-Bb-cjL"/>
+                                                <constraint firstItem="Xq3-p3-asb" firstAttribute="leading" secondItem="cKP-PG-DVP" secondAttribute="trailing" constant="6" id="ayv-Bb-cjL"/>
                                                 <constraint firstItem="7db-tH-uPc" firstAttribute="leading" secondItem="ZiJ-Zn-Oyy" secondAttribute="leadingMargin" id="eEe-eS-gpp"/>
                                                 <constraint firstItem="2e5-Cn-rfo" firstAttribute="top" secondItem="Xq3-p3-asb" secondAttribute="bottom" constant="20" id="fow-KP-5bt"/>
                                                 <constraint firstItem="YlI-BL-le3" firstAttribute="centerX" secondItem="ZiJ-Zn-Oyy" secondAttribute="centerX" id="gJR-5m-ohr"/>
@@ -1348,7 +1348,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="W6L-m3-8QH" secondAttribute="trailing" constant="18" id="w8N-EA-9rx"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="7db-tH-uPc" secondAttribute="bottom" constant="40" id="wef-Q8-1b3"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="W6L-m3-8QH" secondAttribute="trailing" constant="18" id="y3W-1Q-UaP"/>
-                                                <constraint firstItem="W6L-m3-8QH" firstAttribute="leading" secondItem="cKP-PG-DVP" secondAttribute="trailing" constant="8" id="yRv-BQ-Jkx"/>
+                                                <constraint firstItem="W6L-m3-8QH" firstAttribute="leading" secondItem="cKP-PG-DVP" secondAttribute="trailing" constant="6" id="yRv-BQ-Jkx"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
