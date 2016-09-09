@@ -10,8 +10,8 @@ import Foundation
 
 struct Constants {
     
-    //static let apiUrl = "http://staffapp.rcg.agency/"
-    static let apiUrl = "http://rcg.northeurope.cloudapp.azure.com/"
+    static let apiUrl = "http://staffapp.rcg.agency/"
+    //static let apiUrl = "http://rcg.northeurope.cloudapp.azure.com/"
     
     
     static let vacancyCount = "1000"

@@ -459,7 +459,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
             endingLineNumber = "136"
-            landmarkName = "setupVacancyFields()"
+            landmarkName = "setupButtonBack()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -987,8 +987,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
             endingLineNumber = "110"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
+            landmarkName = "SingleVacancyViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

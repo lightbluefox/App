@@ -20,6 +20,7 @@ final class FBShareManager: BaseShareManager, FBSDKSharingDelegate {
         content.contentTitle = title
         content.contentDescription = description
         content.contentURL = url
+        
         if imageURL != nil {
             content.imageURL = imageURL
         }

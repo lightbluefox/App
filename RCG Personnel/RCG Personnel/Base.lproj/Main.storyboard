@@ -1278,22 +1278,22 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICl-cM-dfp">
-                                                    <rect key="frame" x="159" y="219" width="81" height="68"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICl-cM-dfp">
+                                                    <rect key="frame" x="159" y="219" width="60" height="50"/>
                                                     <state key="normal" image="fb"/>
                                                     <connections>
                                                         <action selector="fbShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="xQm-Lc-tu5"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEv-qq-UqU">
-                                                    <rect key="frame" x="361" y="219" width="81" height="68"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEv-qq-UqU">
+                                                    <rect key="frame" x="361" y="219" width="60" height="50"/>
                                                     <state key="normal" image="tw"/>
                                                     <connections>
                                                         <action selector="twShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="qcu-rA-KK7"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-BL-le3">
-                                                    <rect key="frame" x="260" y="219" width="81" height="68"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-BL-le3">
+                                                    <rect key="frame" x="260" y="219" width="60" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="PCg-m8-1Qw"/>
                                                     </constraints>

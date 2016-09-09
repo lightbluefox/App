@@ -257,12 +257,18 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
             cell?.backgroundColor = UIColor(colorLiteralRed: 15/255, green: 15/255, blue: 15/255, alpha: 0)
             
             //MARK: получаем только первую фотку из массива, т.к. отображение нескольких пока не закладывалось
+            var imageUrl : NSURL?
+            var image : UIImage?
             if self.newsReceiver.singleNews.images.isEmpty
             {
                 cell?.newsImageView.image = UIImage(named: "noimage")
             }
             else {
-                cell?.newsImageView.sd_setImageWithURL(NSURL(string: self.newsReceiver.singleNews.images[0]))
+                imageUrl = NSURL(string: self.newsReceiver.singleNews.images[0])
+                cell?.newsImageView.sd_setImageWithURL(imageUrl) {
+                    (result) in
+                        image = result.0
+                }
             }
             cell?.newsImageView.clipsToBounds = true
             cell?.newsDateDay.text = self.newsReceiver.singleNews.addedDate.dayFromDdMmYyyy
@@ -271,17 +277,16 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
             cell?.newsFullText.text = self.newsReceiver.singleNews.fullText
             
             cell?.fbTapAction = {
-                self.shareManager.fbShareManager.share(cell?.newsTitle.text ?? "", description: cell?.newsFullText.text ?? "", url: NSURL(string: Constants.appStoreUrl)!, imageURL: (NSURL(string: self.newsReceiver.singleNews.images[0])))
+                self.shareManager.fbShareManager.share(cell?.newsTitle.text ?? "", description: cell?.newsFullText.text ?? "", url: NSURL(string: Constants.appStoreUrl)!, imageURL: imageUrl)
             }
             cell?.vkTapAction = {
-                self.shareManager.vkShareManager.share(cell?.newsTitle.text ?? "", image: cell?.newsImageView.image, url: NSURL(string: Constants.appStoreUrl)!, urlTitle: "Больше новостей")
+                self.shareManager.vkShareManager.share(cell?.newsTitle.text ?? "", image: image, url: NSURL(string: Constants.appStoreUrl)!, urlTitle: "Больше новостей")
             }
             
             cell?.twTapAction = {
-                self.shareManager.twShareManager.share(cell?.newsTitle.text ?? "", image: cell?.newsImageView.image, url: NSURL(string: Constants.appStoreUrl)!)
+                self.shareManager.twShareManager.share(cell?.newsTitle.text ?? "", image: image, url: NSURL(string: Constants.appStoreUrl)!)
             }
-            
-            
+    
             return cell!
         }
         else if indexPath.section == 2 { //Область под комментариями, с кнопкой "Загрузить еще"

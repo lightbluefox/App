@@ -15,6 +15,7 @@ import Alamofire
 class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     
     @IBOutlet weak var vacImageVIew: UIImageView!
+    var vacImage: UIImage? //сюда пишется фотография, после загрузки через URL, чтобы использовать ее потом наверняка для шаринга
     @IBOutlet weak var vacancyFemaleImage: UIImageView!
     @IBOutlet weak var vacancyTopBackgroundImage: UIImageView!
     @IBOutlet weak var vacancyMaleImage: UIImageView!
@@ -34,17 +35,20 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     }
     @IBAction func vacShareVKButtonTouched(sender: AnyObject) {
  
-        shareManager.share(to: .Vkontakte(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImageVIew.image, url: NSURL(string: Constants.appStoreUrl)!, urlTitle: "Больше вакансий"))
+        shareManager.share(to: .Vkontakte(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImage, url: NSURL(string: Constants.appStoreUrl)!, urlTitle: "Больше вакансий"))
     }
     
     @IBAction func vacShareTWButtonTouched(sender: AnyObject) {
         
-        shareManager.share(to: .Twitter(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImageVIew.image, url: NSURL(string: Constants.appStoreUrl)!))
+        shareManager.share(to: .Twitter(text: "Появилась новая вакансия: \(vacTitle.text ?? "")\n\n\(vacShortText.text ?? "")\nСтавка: \(vacMoney.text ?? "")", image: vacImage, url: NSURL(string: Constants.appStoreUrl)!))
     }
     
     @IBAction func vacShareFBButtonTouched(sender: AnyObject) {
-        
-        shareManager.share(to: .Facebook(title: "Появилась новая вакансия - \(vacTitle.text ?? "")", description: "Ставка: \(vacMoney.text ?? ""). \n\(vacShortText.text ?? "")", url: NSURL(string: Constants.appStoreUrl)!, imageURL: NSURL(string: self.vacReceiver.singleVacancy.images[0])))
+        var imageUrl : NSURL?
+        if !self.vacReceiver.singleVacancy.images.isEmpty {
+            imageUrl = NSURL(string: self.vacReceiver.singleVacancy.images[0])
+        }
+        shareManager.share(to: .Facebook(title: "Появилась новая вакансия - \(vacTitle.text ?? "")", description: "Ставка: \(vacMoney.text ?? ""). \n\(vacShortText.text ?? "")", url: NSURL(string: Constants.appStoreUrl)!, imageURL: imageUrl))
     }
     
     func sharerDidCancel(sharer: FBSDKSharing!) {
@@ -139,7 +143,10 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
             self.vacImageVIew.image = UIImage(named: "noimage")
         }
         else {
-            self.vacImageVIew.sd_setImageWithURL(NSURL(string: self.vacReceiver.singleVacancy.images[0]))
+            self.vacImageVIew.sd_setImageWithURL(NSURL(string: self.vacReceiver.singleVacancy.images[0])){
+                (result) in
+                self.vacImage = result.0
+            }
         }
         
         self.vacDateDay.text = self.vacReceiver.singleVacancy.validTillDate.formatedDateDDMMYY.dayFromDdMmYyyy

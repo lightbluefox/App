@@ -793,7 +793,7 @@
 				TargetAttributes = {
 					84D05F271C763612002CEB6B = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 54TXH98KB5;
+						DevelopmentTeam = ZR53XJ4986;
 					};
 					84D05F3B1C763613002CEB6B = {
 						CreatedOnToolsVersion = 7.2;
@@ -1333,7 +1333,7 @@
 				INFOPLIST_FILE = "RCG Personnel/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.lightbluefox.RCG-Personnel";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rcg.mypromo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1395,7 +1395,7 @@
 					"\"VK_ios_sdk\"",
 				);
 				OTHER_SWIFT_FLAGS = "-DREALEASE_VERSION $(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.lightbluefox.RCG-Personnel";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rcg.mypromo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
