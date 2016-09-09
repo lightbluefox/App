@@ -1278,23 +1278,33 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICl-cM-dfp">
-                                                    <rect key="frame" x="159" y="219" width="60" height="50"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICl-cM-dfp">
+                                                    <rect key="frame" x="220" y="219" width="40" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="03B-Ng-YEf"/>
+                                                        <constraint firstAttribute="width" constant="40" id="jV0-Ld-DCi"/>
+                                                    </constraints>
                                                     <state key="normal" image="fb"/>
                                                     <connections>
                                                         <action selector="fbShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="xQm-Lc-tu5"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEv-qq-UqU">
-                                                    <rect key="frame" x="361" y="219" width="60" height="50"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEv-qq-UqU">
+                                                    <rect key="frame" x="340" y="219" width="40" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="BM7-8M-sh2"/>
+                                                        <constraint firstAttribute="width" constant="40" id="Dqf-BR-4PT"/>
+                                                    </constraints>
                                                     <state key="normal" image="tw"/>
                                                     <connections>
                                                         <action selector="twShareTouchUpInside:" destination="l8F-eh-Xee" eventType="touchUpInside" id="qcu-rA-KK7"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-BL-le3">
-                                                    <rect key="frame" x="260" y="219" width="60" height="50"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-BL-le3">
+                                                    <rect key="frame" x="280" y="219" width="40" height="34"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="40T-CC-bCS"/>
+                                                        <constraint firstAttribute="width" constant="40" id="DRc-pG-d01"/>
                                                         <constraint firstAttribute="width" constant="110" id="PCg-m8-1Qw"/>
                                                     </constraints>
                                                     <state key="normal" image="vk"/>
