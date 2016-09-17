@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import VK_ios_sdk
+import MBProgressHUD
 import FBSDKShareKit
 import Social
 import Alamofire
@@ -117,12 +117,12 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
         }
     }
     
-    private func showLoadingNotification() -> AnyObject {
+    private func showLoadingNotification() -> MBProgressHUD {
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.Indeterminate
+        loadingNotification.mode = .Indeterminate
         loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        loadingNotification.labelText = "Загрузка"
+        loadingNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+        loadingNotification.label.text = "Загрузка"
         
         return loadingNotification
     }

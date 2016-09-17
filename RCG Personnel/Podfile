@@ -2,22 +2,21 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'RCG Personnel' do
-pod 'VK-ios-sdk'
-pod 'Alamofire', '~> 3.4'
-#pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
-source 'https://github.com/CocoaPods/Specs.git'
-pod 'PhoneNumberKit', '~> 0.8'
-pod 'Fabric'
-pod 'TwitterKit'
-
+    pod 'VK-ios-sdk'
+    pod 'Alamofire', '~> 3.5.0'
+    #pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
+    pod 'PhoneNumberKit', '~> 0.8'
+    pod 'Fabric'
+    pod 'TwitterKit'
+    pod 'SwiftHTTP'
+    pod 'SDWebImage'
+    pod 'MBProgressHUD'
 end
 
 target 'RCG PersonnelTests' do
-
 end
 
 target 'RCG PersonnelUITests' do
-
 end
 
 

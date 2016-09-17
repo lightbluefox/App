@@ -25,7 +25,8 @@ class RCGButton: UIButton {
     override func drawRect(rect: CGRect) {
         // Drawing code
         
-        let context = UIGraphicsGetCurrentContext();
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        
         let color = UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1.0);
         self.tintColor = UIColor.whiteColor()
         self.setTitleColor(UIColor.whiteColor(), forState: .Normal) //в сториборде сд

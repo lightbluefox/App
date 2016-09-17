@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -105,12 +106,12 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
         self.newsTableView.reloadData()
     }
     
-    private func setLoadingNotification() -> AnyObject {
+    private func setLoadingNotification() -> MBProgressHUD {
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.Indeterminate
-        loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        loadingNotification.labelText = "Загрузка"
+        loadingNotification.mode = .Indeterminate
+        loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
+        loadingNotification.label.font = UIFont(name: "Roboto Regular", size: 12) ?? UIFont.systemFontOfSize(12)
+        loadingNotification.label.text = "Загрузка"
         
         return loadingNotification
     }
@@ -178,13 +179,15 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
     }
     
     private func showFailureNotification(result: String) {
-        let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-        failureNotification.mode = MBProgressHUDMode.Text
+        guard let view = navigationController?.view else { return }
+        
+        let failureNotification = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        failureNotification.mode = .Text
         failureNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-        failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        failureNotification.labelText = "Ошибка"
-        failureNotification.detailsLabelText = result
-        failureNotification.hide(true, afterDelay: 3)
+        failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+        failureNotification.label.text = "Ошибка"
+        failureNotification.detailsLabel.text = result
+        failureNotification.hideAnimated(true, afterDelay: 3)
     }
     
     func leftNavButtonClick(sender: UIButton!)

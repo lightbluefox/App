@@ -9,8 +9,8 @@
 import UIKit
 
 extension UIImage {
-    var rounded: UIImage {
-        let imageView = UIImageView(image: self);
+    var rounded: UIImage? {
+        let imageView = UIImageView(image: self)
         imageView.layer.cornerRadius = size.height < size.width  ? size.height/30 : size.width/30
         imageView.layer.masksToBounds = true
         UIGraphicsBeginImageContext(imageView.bounds.size)
@@ -19,7 +19,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return result
     }
-    func makeImageWithColorAndSize(color: UIColor, size: CGSize) -> UIImage {
+    func makeImageWithColorAndSize(color: UIColor, size: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         UIRectFill(CGRectMake(0, 0, size.width, size.height))
@@ -149,11 +149,11 @@ extension UIApplication {
     }
 }
 extension UIButton {
-    private func imageWithColor(color: UIColor) -> UIImage {
+    private func imageWithColor(color: UIColor) -> UIImage? {
         
         let rect = CGRectMake(0.0, 0.0, self.frame.width, self.frame.height)
         UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
         
         CGContextSetFillColorWithColor(context, color.CGColor)
         CGContextFillRect(context, rect)

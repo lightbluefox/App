@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class VacancyResponseViewController : BaseViewController {
     var vacancyId: String?

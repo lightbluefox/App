@@ -52,10 +52,9 @@ class VKAuthenticationHandler : BaseAuthenticationHandler, VKSdkDelegate, VKSdkU
     
     func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
         if let usertoken = result.token {
-            
             //print(result.user.id)
             print(VKSdk.isLoggedIn())//Okay
-            print(result.token.accessToken)
+            print(usertoken.accessToken)
         }
         else if let error = result.error {
             if (error.vkError.errorCode == -102) {

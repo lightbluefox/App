@@ -7,7 +7,8 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import MBProgressHUD
 
 enum HUDType {
     case Processing

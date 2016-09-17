@@ -197,7 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if device.token != nil {
                 if device.token! != "" {
                     sendToken(device.token!) {
-                        (let success, let result) in
+                        (success, result) in
                         if success {
                             self.device.tokenSent = true
                         }
@@ -222,7 +222,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navBarFont = UIFont(name: "Roboto-Regular", size: 17.0) ?? UIFont.systemFontOfSize(17.0)
         
         let navBar = UINavigationBar.appearance()
-        let tabBar = UITabBar.appearance()
         navBar.barTintColor = UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1.0)
         
         navBar.tintColor = UIColor.whiteColor()
@@ -232,7 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func sendToken(deviceTokenString: String, completion: (success: Bool, result: String?) -> Void ) {
+    func sendToken(deviceTokenString: String, completion: (success: Bool, result: String?) -> ()) {
         
         let request = HTTPTask();
         let requestUrl = Constants.apiUrl + "api/v01/devices"

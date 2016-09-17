@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class NewsViewController: BaseTableViewController {
 
@@ -48,18 +49,19 @@ class NewsViewController: BaseTableViewController {
     }
     
     func refresh(sender:AnyObject) {
-        self.newsReceiver.getAllNews({(success: Bool, result: String) in
-            if !success
-            {
-                let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        self.newsReceiver.getAllNews { [weak self] success, result in
+            if !success {
+                guard let view = self?.navigationController?.view else { return }
+                
+                let failureNotification = MBProgressHUD.showHUDAddedTo(view, animated: true)
                 failureNotification.mode = MBProgressHUDMode.Text
                 failureNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-                failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-                failureNotification.labelText = "Ошибка"
-                failureNotification.detailsLabelText = result
-                failureNotification.hide(true, afterDelay: 3)
+                failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+                failureNotification.label.text = "Ошибка"
+                failureNotification.detailsLabel.text = result
+                failureNotification.hideAnimated(true, afterDelay: 3)
             }
-        })
+        }
         newsTableViewController.reloadData();
         self.refreshControl?.endRefreshing();
     }
@@ -71,19 +73,18 @@ class NewsViewController: BaseTableViewController {
         loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
         loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
         loadingNotification.labelText = "Загрузка"
-        self.newsReceiver.getAllNews({(success: Bool, result: String) in
-            if success {
-                loadingNotification.hide(true)
-            }
-            else if !success
-            {
+        
+        self.newsReceiver.getAllNews { success, result in
+            loadingNotification.hide(true)
+            
+            if !success {
                 loadingNotification.hide(true)
                 
                 let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
-                failureNotification.mode = MBProgressHUDMode.Text
+                failureNotification.mode = .Text
                 failureNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-                failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-                failureNotification.labelText = "Ошибка"
+                failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+                failureNotification.label.text = "Ошибка"
                 failureNotification.detailsLabelText = result
                 failureNotification.hide(true, afterDelay: 3)
             }
