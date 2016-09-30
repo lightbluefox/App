@@ -26,10 +26,13 @@ class RCGTabBarController : UITabBarController {
         tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState:.Normal)
         
         //Делаем цвет иконок белым
-        self.tabBar.tintColor = UIColor.whiteColor();
+        self.tabBar.tintColor = UIColor.whiteColor()
         
         //Делаем всегда выделение текущего таба
-        self.tabBar.selectionIndicatorImage = UIImage().makeImageWithColorAndSize(UIColor(red: 0, green: 0, blue: 0, alpha: 0.1), size: CGSizeMake(tabBar.frame.width/3, tabBar.frame.height))
+        self.tabBar.selectionIndicatorImage = .image(
+            withColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
+            size: CGSize(width: tabBar.frame.width / 3, height: tabBar.frame.height)
+        )
         
         //Задаем цвет бэкграунда
         self.tabBar.barTintColor = UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1.0)

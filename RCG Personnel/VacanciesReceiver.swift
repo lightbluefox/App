@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftHTTP
 
 class VacanciesReceiver {
     var vacsStack = [Vacancies]()

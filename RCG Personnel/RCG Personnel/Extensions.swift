@@ -17,20 +17,15 @@ extension UIImage {
         imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return result
+        return result ?? self
     }
-    func makeImageWithColorAndSize(color: UIColor, size: CGSize) -> UIImage {
+    static func image(withColor color: UIColor, size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         UIRectFill(CGRectMake(0, 0, size.width, size.height))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        if image != nil {
-            return image
-        }
-        else {
-            return UIImage()
-        }
+        return image ?? UIImage()
     }
     func encodeToBase64() -> String? {
         let imageData = UIImagePNGRepresentation(self)
@@ -149,23 +144,8 @@ extension UIApplication {
     }
 }
 extension UIButton {
-    private func imageWithColor(color: UIColor) -> UIImage {
-        
-        let rect = CGRectMake(0.0, 0.0, self.frame.width, self.frame.height)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-    
     func setBackgroundColor(color: UIColor, forUIControlState state: UIControlState) {
-        self.setBackgroundImage(imageWithColor(color), forState: state)
+        self.setBackgroundImage(UIImage.image(withColor: color, size: bounds.size), forState: state)
     }
 }
 

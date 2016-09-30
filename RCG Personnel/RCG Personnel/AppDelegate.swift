@@ -13,6 +13,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import Fabric
 import TwitterKit
+import SwiftHTTP
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -75,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         VKSdk.processOpenURL(url, fromApplication: sourceApplication)
         
-        let isFacebookURL = url.scheme.hasPrefix("fb\(FBSDKSettings.appID())") && url.host == "authorize"
+        let isFacebookURL = url.scheme?.hasPrefix("fb\(FBSDKSettings.appID())") == true && url.host == "authorize"
         if isFacebookURL {
             return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
         }
@@ -234,20 +235,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func sendToken(deviceTokenString: String, completion: (success: Bool, result: String?) -> Void ) {
         
-        let request = HTTPTask();
         let requestUrl = Constants.apiUrl + "api/v01/devices"
         let params: Dictionary<String,AnyObject> = ["token":deviceTokenString]
         
-        request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
+        let opt = try? HTTP.POST(requestUrl, parameters: params)
+        opt?.start { response in
             if let err = response.error {
                 completion(success: false, result: "Error on token sending: \(err.localizedDescription)")
+            } else {
+                completion(success: true, result: "Token successfully sent to the server with response: \(response.data.description)")
             }
-            else if let resp: AnyObject = response.responseObject {
-                let responseData = NSString(data: resp as! NSData, encoding: NSUTF8StringEncoding)
-                
-                completion(success: true, result: "Token successfully sent to the server with response: \(responseData!.description)")
-            }
-        })
+        }
     }
     
     func getAppVersionFromServerAndShowAlertIfItDiffers() {

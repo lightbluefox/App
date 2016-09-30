@@ -23,9 +23,8 @@ class RCGButton: UIButton {
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
-        // Drawing code
+        guard let context = UIGraphicsGetCurrentContext() else { return }
         
-        let context = UIGraphicsGetCurrentContext();
         let color = UIColor(red: 232/255, green: 76/255, blue: 61/255, alpha: 1.0);
         self.tintColor = UIColor.whiteColor()
         self.setTitleColor(UIColor.whiteColor(), forState: .Normal) //в сториборде сд
@@ -37,11 +36,7 @@ class RCGButton: UIButton {
             self.setTitle(newTitleText.uppercaseString, forState: .Normal)
         }
         
-        
         CGContextSetFillColorWithColor(context, color.CGColor)
-        
         CGContextFillRect(context, self.bounds)
-        
     }
-    
 }

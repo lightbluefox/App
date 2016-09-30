@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.4.1)
+  - Alamofire (3.5.0)
   - Fabric (1.6.8)
   - PhoneNumberKit (0.8.5):
     - PhoneNumberKit/PhoneNumberKitCore (= 0.8.5)
@@ -7,6 +7,7 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (0.8.5)
   - PhoneNumberKit/UIKit (0.8.5):
     - PhoneNumberKit/PhoneNumberKitCore
+  - SwiftHTTP (1.0.6)
   - TwitterCore (2.3.0):
     - Fabric
   - TwitterKit (2.3.0):
@@ -14,20 +15,22 @@ PODS:
   - VK-ios-sdk (1.4.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.4)
+  - Alamofire (~> 3.5)
   - Fabric
   - PhoneNumberKit (~> 0.8)
+  - SwiftHTTP (~> 1.0)
   - TwitterKit
   - VK-ios-sdk
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   PhoneNumberKit: 5668a7af19d2e566d92831a632ee80f5047eff75
+  SwiftHTTP: e9124c24b3cff5138d0fb6c5481192ee198a4c0b
   TwitterCore: 817eae3e291fa4125b47789e26a4f6f024115c1f
   TwitterKit: 8a383da8d9c21b0423716381ea8bbfce20622d91
   VK-ios-sdk: 296c3be1bb45faf4d9f9a2ca69dcf6ec71d9d4df
 
-PODFILE CHECKSUM: 5094b41a244edc16faf432ba4ab3ae04eb9a7cff
+PODFILE CHECKSUM: 0047aec7430517e196551ad99fe34ea33f06c17a
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

@@ -105,24 +105,6 @@
 		84D05F9F1C779976002CEB6B /* SidebarMenuArea.cs in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F8F1C779976002CEB6B /* SidebarMenuArea.cs */; };
 		84D05FA01C779976002CEB6B /* SidebarMenuArea.cs in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F8F1C779976002CEB6B /* SidebarMenuArea.cs */; };
 		84D05FA11C779976002CEB6B /* SidebarMenuArea.cs in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F8F1C779976002CEB6B /* SidebarMenuArea.cs */; };
-		84D05FA91C77C823002CEB6B /* HTTPRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA31C77C823002CEB6B /* HTTPRequestSerializer.swift */; };
-		84D05FAA1C77C823002CEB6B /* HTTPRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA31C77C823002CEB6B /* HTTPRequestSerializer.swift */; };
-		84D05FAB1C77C823002CEB6B /* HTTPRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA31C77C823002CEB6B /* HTTPRequestSerializer.swift */; };
-		84D05FAC1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA41C77C823002CEB6B /* HTTPResponseSerializer.swift */; };
-		84D05FAD1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA41C77C823002CEB6B /* HTTPResponseSerializer.swift */; };
-		84D05FAE1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA41C77C823002CEB6B /* HTTPResponseSerializer.swift */; };
-		84D05FAF1C77C823002CEB6B /* HTTPSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA51C77C823002CEB6B /* HTTPSecurity.swift */; };
-		84D05FB01C77C823002CEB6B /* HTTPSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA51C77C823002CEB6B /* HTTPSecurity.swift */; };
-		84D05FB11C77C823002CEB6B /* HTTPSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA51C77C823002CEB6B /* HTTPSecurity.swift */; };
-		84D05FB21C77C823002CEB6B /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA61C77C823002CEB6B /* HTTPStatusCode.swift */; };
-		84D05FB31C77C823002CEB6B /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA61C77C823002CEB6B /* HTTPStatusCode.swift */; };
-		84D05FB41C77C823002CEB6B /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA61C77C823002CEB6B /* HTTPStatusCode.swift */; };
-		84D05FB51C77C823002CEB6B /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA71C77C823002CEB6B /* HTTPTask.swift */; };
-		84D05FB61C77C823002CEB6B /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA71C77C823002CEB6B /* HTTPTask.swift */; };
-		84D05FB71C77C823002CEB6B /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA71C77C823002CEB6B /* HTTPTask.swift */; };
-		84D05FB81C77C823002CEB6B /* HTTPUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA81C77C823002CEB6B /* HTTPUpload.swift */; };
-		84D05FB91C77C823002CEB6B /* HTTPUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA81C77C823002CEB6B /* HTTPUpload.swift */; };
-		84D05FBA1C77C823002CEB6B /* HTTPUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FA81C77C823002CEB6B /* HTTPUpload.swift */; };
 		84D05FC01C77CABF002CEB6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FBF1C77CABF002CEB6B /* SwiftyJSON.swift */; };
 		84D05FC11C77CABF002CEB6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FBF1C77CABF002CEB6B /* SwiftyJSON.swift */; };
 		84D05FC21C77CABF002CEB6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FBF1C77CABF002CEB6B /* SwiftyJSON.swift */; };
@@ -307,12 +289,6 @@
 		84D05F8D1C779976002CEB6B /* SidebarContentArea.cs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SidebarContentArea.cs; sourceTree = "<group>"; };
 		84D05F8E1C779976002CEB6B /* SidebarController.cs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SidebarController.cs; sourceTree = "<group>"; };
 		84D05F8F1C779976002CEB6B /* SidebarMenuArea.cs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SidebarMenuArea.cs; sourceTree = "<group>"; };
-		84D05FA31C77C823002CEB6B /* HTTPRequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestSerializer.swift; sourceTree = "<group>"; };
-		84D05FA41C77C823002CEB6B /* HTTPResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPResponseSerializer.swift; sourceTree = "<group>"; };
-		84D05FA51C77C823002CEB6B /* HTTPSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPSecurity.swift; sourceTree = "<group>"; };
-		84D05FA61C77C823002CEB6B /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
-		84D05FA71C77C823002CEB6B /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
-		84D05FA81C77C823002CEB6B /* HTTPUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPUpload.swift; sourceTree = "<group>"; };
 		84D05FBC1C77C8F8002CEB6B /* RCGPersonnel-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCGPersonnel-Bridging-Header.h"; path = "../RCGPersonnel-Bridging-Header.h"; sourceTree = "<group>"; };
 		84D05FBE1C77CABF002CEB6B /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		84D05FBF1C77CABF002CEB6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -584,7 +560,6 @@
 				840A0F451CF8833900BD6DF1 /* Reachability.swift */,
 				84D05FC71C77D890002CEB6B /* SDWebImage */,
 				84D05FBD1C77CAA3002CEB6B /* JSON */,
-				84D05FA21C77C823002CEB6B /* SwiftHTTP */,
 				84D05F881C779976002CEB6B /* MBProgressHUD */,
 				84D05F5B1C763BC4002CEB6B /* roboto-light.ttf */,
 				84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */,
@@ -624,19 +599,6 @@
 				84D05F8F1C779976002CEB6B /* SidebarMenuArea.cs */,
 			);
 			path = MBProgressHUD;
-			sourceTree = "<group>";
-		};
-		84D05FA21C77C823002CEB6B /* SwiftHTTP */ = {
-			isa = PBXGroup;
-			children = (
-				84D05FA31C77C823002CEB6B /* HTTPRequestSerializer.swift */,
-				84D05FA41C77C823002CEB6B /* HTTPResponseSerializer.swift */,
-				84D05FA51C77C823002CEB6B /* HTTPSecurity.swift */,
-				84D05FA61C77C823002CEB6B /* HTTPStatusCode.swift */,
-				84D05FA71C77C823002CEB6B /* HTTPTask.swift */,
-				84D05FA81C77C823002CEB6B /* HTTPUpload.swift */,
-			);
-			path = SwiftHTTP;
 			sourceTree = "<group>";
 		};
 		84D05FBD1C77CAA3002CEB6B /* JSON */ = {
@@ -770,6 +732,7 @@
 				84D05F441C763613002CEB6B /* Frameworks */,
 				84D05F451C763613002CEB6B /* Resources */,
 				7B132E407F44482FD645771F /* [CP] Copy Pods Resources */,
+				155188C512D1EF0E725E512A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -876,6 +839,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		155188C512D1EF0E725E512A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RCG PersonnelUITests/Pods-RCG PersonnelUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		37444B5800986E20539B7BC8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -918,7 +896,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6BC10DA1CF4B43195FAF08FE /* [CP] Check Pods Manifest.lock */ = {
@@ -933,7 +911,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		70C011FE8778511F5FAA43D0 /* [CP] Check Pods Manifest.lock */ = {
@@ -948,7 +926,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7B132E407F44482FD645771F /* [CP] Copy Pods Resources */ = {
@@ -1022,7 +1000,6 @@
 				84D05FF81C77D890002CEB6B /* SDWebImageDownloader.m in Sources */,
 				849D62361CC92D9300C90229 /* BaseTableViewController.swift in Sources */,
 				842CD1A71D64D4C3007459F1 /* FBAuthenticationService.swift in Sources */,
-				84D05FB51C77C823002CEB6B /* HTTPTask.swift in Sources */,
 				842EBD5D1D01DEE50084F376 /* SingelNewsCommentsHeaderCell.swift in Sources */,
 				849D62341CC9275E00C90229 /* BaseViewController.swift in Sources */,
 				8420008C1CF0C34400992576 /* NSUserDefaultsKeys.swift in Sources */,
@@ -1035,7 +1012,6 @@
 				8411A3021CD948E700313D11 /* EditProfileViewController.swift in Sources */,
 				84C3223C1CCC0B5000A70641 /* User.swift in Sources */,
 				84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
-				84D05FB81C77C823002CEB6B /* HTTPUpload.swift in Sources */,
 				84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */,
 				84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */,
 				84D060341C809A8A002CEB6B /* MenuViewController.swift in Sources */,
@@ -1050,7 +1026,6 @@
 				84D0600A1C77D890002CEB6B /* UIImage+MultiFormat.m in Sources */,
 				84D0600D1C77D890002CEB6B /* UIImage+WebP.m in Sources */,
 				841F89F11CC2889700A66930 /* BasePushHandler.swift in Sources */,
-				84D05FAF1C77C823002CEB6B /* HTTPSecurity.swift in Sources */,
 				84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84BEFFC01D09E204005BDF71 /* ValidatePhoneViewController.swift in Sources */,
 				84D060301C8018C9002CEB6B /* RCGButton.swift in Sources */,
@@ -1066,17 +1041,14 @@
 				842CD1AA1D64D606007459F1 /* TWShareManager.swift in Sources */,
 				842CD19F1D625537007459F1 /* BaseShareManager.swift in Sources */,
 				84D05F901C779976002CEB6B /* MBProgressHUD.m in Sources */,
-				84D05FB21C77C823002CEB6B /* HTTPStatusCode.swift in Sources */,
 				840A0F481CFC9DE800BD6DF1 /* RegisterViewController.swift in Sources */,
 				842CD19D1D624FB7007459F1 /* VKShareManager.swift in Sources */,
 				84D05F811C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
-				84D05FAC1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */,
 				84D05FC01C77CABF002CEB6B /* SwiftyJSON.swift in Sources */,
 				844DDB431D048FDC003238A2 /* SingleNewsCommentsFooterCell.swift in Sources */,
 				84D05FEC1C77D890002CEB6B /* NSData+ImageContentType.m in Sources */,
 				842CD1A11D63BB6C007459F1 /* ShareManager.swift in Sources */,
 				84D05F711C779298002CEB6B /* Constants.swift in Sources */,
-				84D05FA91C77C823002CEB6B /* HTTPRequestSerializer.swift in Sources */,
 				84D0603C1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */,
 				842CD1A81D64D4C3007459F1 /* VKAuthenticationService.swift in Sources */,
 				84D05FFE1C77D890002CEB6B /* SDWebImageManager.m in Sources */,
@@ -1110,30 +1082,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D05FF91C77D890002CEB6B /* SDWebImageDownloader.m in Sources */,
-				84D05FB61C77C823002CEB6B /* HTTPTask.swift in Sources */,
 				84D05FC51C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060021C77D890002CEB6B /* SDWebImagePrefetcher.m in Sources */,
 				84D060171C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */,
 				84D0601B1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
-				84D05FB91C77C823002CEB6B /* HTTPUpload.swift in Sources */,
 				84D060351C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84D05F411C763613002CEB6B /* RCG_PersonnelTests.swift in Sources */,
 				84D0600B1C77D890002CEB6B /* UIImage+MultiFormat.m in Sources */,
 				84D0600E1C77D890002CEB6B /* UIImage+WebP.m in Sources */,
-				84D05FB01C77C823002CEB6B /* HTTPSecurity.swift in Sources */,
 				84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84D060311C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				84D060141C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
 				84D05F6D1C766F38002CEB6B /* NewsCell.swift in Sources */,
 				84D05F761C779388002CEB6B /* News.swift in Sources */,
 				84D05F911C779976002CEB6B /* MBProgressHUD.m in Sources */,
-				84D05FB31C77C823002CEB6B /* HTTPStatusCode.swift in Sources */,
 				84D05F821C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
-				84D05FAD1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */,
 				84D05FC11C77CABF002CEB6B /* SwiftyJSON.swift in Sources */,
 				84D05FED1C77D890002CEB6B /* NSData+ImageContentType.m in Sources */,
 				84D05F721C779298002CEB6B /* Constants.swift in Sources */,
-				84D05FAA1C77C823002CEB6B /* HTTPRequestSerializer.swift in Sources */,
 				84D0603D1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */,
 				84D05FFF1C77D890002CEB6B /* SDWebImageManager.m in Sources */,
 				84D060271C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */,
@@ -1158,30 +1124,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D05FFA1C77D890002CEB6B /* SDWebImageDownloader.m in Sources */,
-				84D05FB71C77C823002CEB6B /* HTTPTask.swift in Sources */,
 				84D05FC61C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060031C77D890002CEB6B /* SDWebImagePrefetcher.m in Sources */,
 				84D060181C77D890002CEB6B /* UIView+WebCacheOperation.m in Sources */,
 				84D0601C1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
-				84D05FBA1C77C823002CEB6B /* HTTPUpload.swift in Sources */,
 				84D060361C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84D05F4C1C763613002CEB6B /* RCG_PersonnelUITests.swift in Sources */,
 				84D0600C1C77D890002CEB6B /* UIImage+MultiFormat.m in Sources */,
 				84D0600F1C77D890002CEB6B /* UIImage+WebP.m in Sources */,
-				84D05FB11C77C823002CEB6B /* HTTPSecurity.swift in Sources */,
 				84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84D060321C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				84D060151C77D890002CEB6B /* UIImageView+WebCache.m in Sources */,
 				84D05F6E1C766F38002CEB6B /* NewsCell.swift in Sources */,
 				84D05F771C779388002CEB6B /* News.swift in Sources */,
 				84D05F921C779976002CEB6B /* MBProgressHUD.m in Sources */,
-				84D05FB41C77C823002CEB6B /* HTTPStatusCode.swift in Sources */,
 				84D05F831C779881002CEB6B /* VacanciesReceiver.swift in Sources */,
-				84D05FAE1C77C823002CEB6B /* HTTPResponseSerializer.swift in Sources */,
 				84D05FC21C77CABF002CEB6B /* SwiftyJSON.swift in Sources */,
 				84D05FEE1C77D890002CEB6B /* NSData+ImageContentType.m in Sources */,
 				84D05F731C779298002CEB6B /* Constants.swift in Sources */,
-				84D05FAB1C77C823002CEB6B /* HTTPRequestSerializer.swift in Sources */,
 				84D0603E1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */,
 				84D060001C77D890002CEB6B /* SDWebImageManager.m in Sources */,
 				84D060281C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */,
@@ -1278,6 +1238,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "RCGPersonnel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -1315,6 +1276,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "RCGPersonnel-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
