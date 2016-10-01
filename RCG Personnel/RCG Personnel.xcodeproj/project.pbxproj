@@ -67,8 +67,6 @@
 		84D05F611C763BC4002CEB6B /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */; };
 		84D05F621C763BC4002CEB6B /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84D05F5C1C763BC4002CEB6B /* roboto-regular.ttf */; };
 		84D05F681C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
-		84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
-		84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F671C763FFF002CEB6B /* NewsViewController.swift */; };
 		84D05F6C1C766F38002CEB6B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCell.swift */; };
 		84D05F6D1C766F38002CEB6B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCell.swift */; };
 		84D05F6E1C766F38002CEB6B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05F6B1C766F38002CEB6B /* NewsCell.swift */; };
@@ -116,6 +114,7 @@
 		84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDB18E1CC3D79200ECF905 /* SingleVacancyPushHandler.swift */; };
 		84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD9D9F1D16EA2900A95BA8 /* ValidatePhoneViewDelegate.swift */; };
 		98F0FB423AA2408230FD2C24 /* Pods_RCG_Personnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D2CE24D6DA1823D9C05DF3 /* Pods_RCG_Personnel.framework */; };
+		F2AF72831D9FB38500CF529C /* MBProgressHUDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AF72821D9FB38500CF529C /* MBProgressHUDExtensions.swift */; };
 		F2C0AA8B1D64F8DE003492E7 /* TwitterAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C0AA8A1D64F8DE003492E7 /* TwitterAuthenticationService.swift */; };
 /* End PBXBuildFile section */
 
@@ -226,6 +225,7 @@
 		CCC52349DED7CF626C09F5D8 /* Pods_RCG_PersonnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCG_PersonnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG Personnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG Personnel/Pods-RCG Personnel.release.xcconfig"; sourceTree = "<group>"; };
 		E8D1B197310724F55B7F47F3 /* Pods-RCG PersonnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F2AF72821D9FB38500CF529C /* MBProgressHUDExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBProgressHUDExtensions.swift; sourceTree = "<group>"; };
 		F2C0AA8A1D64F8DE003492E7 /* TwitterAuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAuthenticationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -408,6 +408,7 @@
 				840772061CBA6AA100E58260 /* News */,
 				840772071CBA6AB100E58260 /* Vacancies */,
 				84D05F591C763AE4002CEB6B /* Supporting Files */,
+				F2AF72821D9FB38500CF529C /* MBProgressHUDExtensions.swift */,
 			);
 			path = "RCG Personnel";
 			sourceTree = "<group>";
@@ -812,6 +813,7 @@
 				8458FC6B1D3276D200284875 /* RCGPhoneTextFieldClass.swift in Sources */,
 				8411A3021CD948E700313D11 /* EditProfileViewController.swift in Sources */,
 				84C3223C1CCC0B5000A70641 /* User.swift in Sources */,
+				F2AF72831D9FB38500CF529C /* MBProgressHUDExtensions.swift in Sources */,
 				84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
 				84FD9DA01D16EA2A00A95BA8 /* ValidatePhoneViewDelegate.swift in Sources */,
 				84DDB18F1CC3D79200ECF905 /* SingleVacancyPushHandler.swift in Sources */,
@@ -870,7 +872,6 @@
 				84D05FC51C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060351C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84D05F411C763613002CEB6B /* RCG_PersonnelTests.swift in Sources */,
-				84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84D060311C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				84D05F6D1C766F38002CEB6B /* NewsCell.swift in Sources */,
 				84D05F761C779388002CEB6B /* News.swift in Sources */,
@@ -892,7 +893,6 @@
 				84D05FC61C77CB01002CEB6B /* Extensions.swift in Sources */,
 				84D060361C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84D05F4C1C763613002CEB6B /* RCG_PersonnelUITests.swift in Sources */,
-				84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */,
 				84D060321C8018C9002CEB6B /* RCGButton.swift in Sources */,
 				84D05F6E1C766F38002CEB6B /* NewsCell.swift in Sources */,
 				84D05F771C779388002CEB6B /* News.swift in Sources */,

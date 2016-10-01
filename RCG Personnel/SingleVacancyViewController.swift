@@ -120,11 +120,11 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     }
     
     private func showLoadingNotification() -> MBProgressHUD {
-        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        let loadingNotification = MBProgressHUD.showHud(in: navigationController)!
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
         loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        loadingNotification.labelText = "Загрузка"
+        loadingNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+        loadingNotification.label.text = "Загрузка"
         
         return loadingNotification
     }
@@ -256,13 +256,13 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     }
     
     private func showFailureNotification(result:String){
-        let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        let failureNotification = MBProgressHUD.showHud(in: navigationController)!
         failureNotification.mode = MBProgressHUDMode.Text
         failureNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-        failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        failureNotification.labelText = "Ошибка"
-        failureNotification.detailsLabelText = result
-        failureNotification.hide(true, afterDelay: 3)
+        failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+        failureNotification.label.text = "Ошибка"
+        failureNotification.detailsLabel.text = result
+        failureNotification.hideAnimated(true, afterDelay: 3)
     }
     
     private func addBluredGrayBackground() {

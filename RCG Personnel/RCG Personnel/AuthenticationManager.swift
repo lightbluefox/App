@@ -9,6 +9,7 @@
 import UIKit
 import VK_ios_sdk
 import Alamofire
+import SwiftyJSON
 
 final class AuthenticationManager {
 

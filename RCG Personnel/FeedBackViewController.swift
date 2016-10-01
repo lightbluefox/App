@@ -179,23 +179,23 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
     @IBAction func submitButtonClick(sender: UIButton) {
         if messageTextView.textColor == UIColor(red: 199/255, green: 199/255, blue: 205/255, alpha: 1) || nameTextField.text == "" || emailTextField.text == "" || themeTextField.text == ""
         {
-            let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+            let failureNotification = MBProgressHUD.showHud(in: navigationController)!
             failureNotification.mode = MBProgressHUDMode.CustomView
             failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3);
             //failureNotification.color = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 0.8);
-            failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-            failureNotification.labelText = "Ошибка"
-            failureNotification.detailsLabelText = "Все поля обязательны для заполнения"
-            failureNotification.hide(true, afterDelay: 3)
+            failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+            failureNotification.label.text = "Ошибка"
+            failureNotification.detailsLabel.text = "Все поля обязательны для заполнения"
+            failureNotification.hideAnimated(true, afterDelay: 3)
         }
         else
         {
-            let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+            let loadingNotification = MBProgressHUD.showHud(in: navigationController)!
             loadingNotification.mode = MBProgressHUDMode.Indeterminate
             loadingNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
             //loadingNotification.color = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 0.8);
-            loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-            loadingNotification.labelText = "Отправляем..."
+            loadingNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+            loadingNotification.label.text = "Отправляем..."
             
             let request = HTTPTask();
             let requestUrl = Constants.apiUrl + "api/v01/feedback"
@@ -207,14 +207,14 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
                     dispatch_async(dispatch_get_main_queue()) {
                         loadingNotification.hide(true)
                         
-                        let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+                        let failureNotification = MBProgressHUD.showHud(in: navigationController)!
                         failureNotification.mode = MBProgressHUDMode.CustomView
                         failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
                         //failureNotification.color = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 0.8);
-                        failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-                        failureNotification.labelText = "Ошибка"
-                        failureNotification.detailsLabelText = err.localizedDescription
-                        failureNotification.hide(true, afterDelay: 3)
+                        failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+                        failureNotification.label.text = "Ошибка"
+                        failureNotification.detailsLabel.text = err.localizedDescription
+                        failureNotification.hideAnimated(true, afterDelay: 3)
                     }
                     print("error: " + err.localizedDescription)
                 }
@@ -224,7 +224,7 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
                     dispatch_async(dispatch_get_main_queue()) {
                         loadingNotification.hide(true)
                         
-                        let successNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+                        let successNotification = MBProgressHUD.showHud(in: navigationController)!
                         successNotification.mode = MBProgressHUDMode.CustomView
                         successNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
                         let imageView = UIImageView();
@@ -233,7 +233,7 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
                         imageView.contentMode = UIViewContentMode.Center;
                         successNotification.customView = imageView
                         
-                        successNotification.hide(true, afterDelay: 3)
+                        successNotification.hideAnimated(true, afterDelay: 3)
                         self.clearView()
                     }
                 }

@@ -44,13 +44,13 @@ class VacanciesViewController : BaseTableViewController {
         self.vacanciesReceiver.getAllVacs { (success: Bool, result: String) in
             if !success
             {
-                let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+                let failureNotification = MBProgressHUD.showHud(in: self.navigationController)!
                 failureNotification.mode = MBProgressHUDMode.Text
                 failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-                failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-                failureNotification.labelText = "Ошибка"
-                failureNotification.detailsLabelText = result
-                failureNotification.hide(true, afterDelay: 3)
+                failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+                failureNotification.label.text = "Ошибка"
+                failureNotification.detailsLabel.text = result
+                failureNotification.hideAnimated(true, afterDelay: 3)
             }
             
             self.refreshControl?.endRefreshing();
@@ -78,23 +78,23 @@ class VacanciesViewController : BaseTableViewController {
     }
     
     private func showLoadingNotification() -> AnyObject {
-        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        let loadingNotification = MBProgressHUD.showHud(in: navigationController)!
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
         loadingNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        loadingNotification.labelText = "Загрузка"
+        loadingNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+        loadingNotification.label.text = "Загрузка"
         
         return loadingNotification
     }
     private func showFailureNotification(result: String) {
         
-        let failureNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        let failureNotification = MBProgressHUD.showHud(in: navigationController)!
         failureNotification.mode = MBProgressHUDMode.Text
         failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-        failureNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        failureNotification.labelText = "Ошибка"
-        failureNotification.detailsLabelText = result
-        failureNotification.hide(true, afterDelay: 3)
+        failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+        failureNotification.label.text = "Ошибка"
+        failureNotification.detailsLabel.text = result
+        failureNotification.hideAnimated(true, afterDelay: 3)
     }
     
     override func viewWillAppear(animated: Bool) {
