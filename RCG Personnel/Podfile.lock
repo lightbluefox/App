@@ -12,7 +12,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SwiftHTTP (1.0.6)
-  - SwiftyJSON (3.1.0)
+  - SwiftyJSON (2.4.0)
   - TwitterCore (2.3.0):
     - Fabric
   - TwitterKit (2.3.0):
@@ -26,7 +26,7 @@ DEPENDENCIES:
   - PhoneNumberKit (~> 0.8)
   - SDWebImage
   - SwiftHTTP (~> 1.0)
-  - SwiftyJSON
+  - SwiftyJSON (~> 2.4)
   - TwitterKit
   - VK-ios-sdk
 
@@ -37,11 +37,11 @@ SPEC CHECKSUMS:
   PhoneNumberKit: 5668a7af19d2e566d92831a632ee80f5047eff75
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftHTTP: e9124c24b3cff5138d0fb6c5481192ee198a4c0b
-  SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
+  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
   TwitterCore: 817eae3e291fa4125b47789e26a4f6f024115c1f
   TwitterKit: 8a383da8d9c21b0423716381ea8bbfce20622d91
   VK-ios-sdk: 296c3be1bb45faf4d9f9a2ca69dcf6ec71d9d4df
 
-PODFILE CHECKSUM: f9e5002b6384c4dc59ac8f31b3c161d1d3f1c93f
+PODFILE CHECKSUM: 49866d539a653f2cef5d9eab69644b2e0b0218e6
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

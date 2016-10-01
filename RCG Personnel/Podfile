@@ -12,7 +12,7 @@ target 'RCG Personnel' do
     pod 'TwitterKit'
     pod 'SDWebImage'
     pod 'MBProgressHUD'
-    pod 'SwiftyJSON'
+    pod 'SwiftyJSON', '~> 2.4'
 end
 
 target 'RCG PersonnelTests' do
