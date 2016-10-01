@@ -20,15 +20,7 @@ class Device {
         }
     }
     
-    var tokenSent : Bool {
-        get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(NSUserDefaultsKeys.deviceTokenSentKey)
-        }
-        set(newToken) {
-            NSUserDefaults.standardUserDefaults().setObject(newToken, forKey: NSUserDefaultsKeys.deviceTokenSentKey)
-            
-        }
-    }
+    var tokenSent = false
     
     static let sharedDevice = Device()
     

@@ -195,24 +195,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         NSLog("%@", "Registration for Remote Notifications succeed: \(device.token ?? "")")
         
-        if !device.tokenSent {
-            if device.token != nil {
-                if device.token! != "" {
-                    sendToken(device.token!) {
-                        (let success, let result) in
-                        if success {
-                            self.device.tokenSent = true
-                        }
-                        else {
-                            self.device.tokenSent = false
-                        }
-                        NSLog("%@", result ?? "")
-                    }
-                }
+        if !device.tokenSent, let token = device.token where !token.isEmpty {
+            sendToken(device.token!)
+            {
+                (let success, let result) in
+                self.device.tokenSent = success
+                NSLog("%@", result ?? "")
             }
         }
-        
-        
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
