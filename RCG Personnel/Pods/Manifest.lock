@@ -1,13 +1,18 @@
 PODS:
   - Alamofire (3.5.0)
   - Fabric (1.6.8)
+  - MBProgressHUD (1.0.0)
   - PhoneNumberKit (0.8.5):
     - PhoneNumberKit/PhoneNumberKitCore (= 0.8.5)
     - PhoneNumberKit/UIKit (= 0.8.5)
   - PhoneNumberKit/PhoneNumberKitCore (0.8.5)
   - PhoneNumberKit/UIKit (0.8.5):
     - PhoneNumberKit/PhoneNumberKitCore
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - SwiftHTTP (1.0.6)
+  - SwiftyJSON (3.1.0)
   - TwitterCore (2.3.0):
     - Fabric
   - TwitterKit (2.3.0):
@@ -17,20 +22,26 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.5)
   - Fabric
+  - MBProgressHUD
   - PhoneNumberKit (~> 0.8)
+  - SDWebImage
   - SwiftHTTP (~> 1.0)
+  - SwiftyJSON
   - TwitterKit
   - VK-ios-sdk
 
 SPEC CHECKSUMS:
   Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   PhoneNumberKit: 5668a7af19d2e566d92831a632ee80f5047eff75
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftHTTP: e9124c24b3cff5138d0fb6c5481192ee198a4c0b
+  SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
   TwitterCore: 817eae3e291fa4125b47789e26a4f6f024115c1f
   TwitterKit: 8a383da8d9c21b0423716381ea8bbfce20622d91
   VK-ios-sdk: 296c3be1bb45faf4d9f9a2ca69dcf6ec71d9d4df
 
-PODFILE CHECKSUM: 0047aec7430517e196551ad99fe34ea33f06c17a
+PODFILE CHECKSUM: f9e5002b6384c4dc59ac8f31b3c161d1d3f1c93f
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.0.1

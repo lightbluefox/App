@@ -10,6 +10,9 @@ target 'RCG Personnel' do
     pod 'PhoneNumberKit', '~> 0.8'
     pod 'Fabric'
     pod 'TwitterKit'
+    pod 'SDWebImage'
+    pod 'MBProgressHUD'
+    pod 'SwiftyJSON'
 end
 
 target 'RCG PersonnelTests' do
