@@ -6,7 +6,7 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
+import UIKit
 enum PushNotificationMode {
     case Foreground //Уведолмение пришло, когда приложение было открыто
     case Background //Уведолмение пришло, когда приложение работало в фоновом режиме или было закрыто

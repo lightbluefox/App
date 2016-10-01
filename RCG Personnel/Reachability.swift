@@ -28,7 +28,7 @@ POSSIBILITY OF SUCH DAMAGE.
 // Reachability.swift version 2.2beta2
 
 import SystemConfiguration
-import Foundation
+import UIKit
 
 public enum ReachabilityError: ErrorType {
     case FailedToCreateWithAddress(sockaddr_in)

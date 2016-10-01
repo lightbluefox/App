@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -105,12 +106,12 @@ class SingleNewsViewController : BaseViewController, UITableViewDataSource, UITa
         self.newsTableView.reloadData()
     }
     
-    private func setLoadingNotification() -> AnyObject {
+    private func setLoadingNotification() -> MBProgressHUD {
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
         loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);
-        loadingNotification.labelFont = UIFont(name: "Roboto Regular", size: 12)
-        loadingNotification.labelText = "Загрузка"
+        loadingNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
+        loadingNotification.label.text = "Загрузка"
         
         return loadingNotification
     }

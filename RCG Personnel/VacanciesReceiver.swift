@@ -6,9 +6,10 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 import SwiftHTTP
+import SwiftyJSON
 
 class VacanciesReceiver {
     var vacsStack = [Vacancies]()

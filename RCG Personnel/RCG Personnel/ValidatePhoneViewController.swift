@@ -7,8 +7,9 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ValidatePhoneViewController: BaseViewController, UITextFieldDelegate {
     

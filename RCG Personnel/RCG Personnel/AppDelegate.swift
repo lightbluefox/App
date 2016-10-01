@@ -14,6 +14,7 @@ import FBSDKCoreKit
 import Fabric
 import TwitterKit
 import SwiftHTTP
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

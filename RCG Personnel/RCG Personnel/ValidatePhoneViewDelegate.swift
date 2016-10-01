@@ -6,7 +6,7 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol ValidatePhoneViewDelegate : class {
     func didFinishValidating(sender: ValidatePhoneViewController)

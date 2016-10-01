@@ -11,6 +11,8 @@ import UIKit
 import FBSDKShareKit
 import Social
 import Alamofire
+import MBProgressHUD
+import SwiftyJSON
 
 class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     
@@ -117,7 +119,7 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
         }
     }
     
-    private func showLoadingNotification() -> AnyObject {
+    private func showLoadingNotification() -> MBProgressHUD {
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
         loadingNotification.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4);

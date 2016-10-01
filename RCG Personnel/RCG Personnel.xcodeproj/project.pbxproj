@@ -91,8 +91,6 @@
 		84D05FC51C77CB01002CEB6B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FC31C77CB01002CEB6B /* Extensions.swift */; };
 		84D05FC61C77CB01002CEB6B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D05FC31C77CB01002CEB6B /* Extensions.swift */; };
 		84D0601A1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */; };
-		84D0601B1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */; };
-		84D0601C1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060191C78BFA2002CEB6B /* SingleNewsViewController.swift */; };
 		84D0601E1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */; };
 		84D0601F1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */; };
 		84D060201C7B5999002CEB6B /* VacanciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */; };
@@ -112,8 +110,6 @@
 		84D060351C809A8A002CEB6B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060331C809A8A002CEB6B /* MenuViewController.swift */; };
 		84D060361C809A8A002CEB6B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060331C809A8A002CEB6B /* MenuViewController.swift */; };
 		84D060381C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */; };
-		84D060391C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */; };
-		84D0603A1C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D060371C80ABA3002CEB6B /* FeedBackViewController.swift */; };
 		84D0603C1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
 		84D0603D1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
 		84D0603E1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D0603B1C80AD73002CEB6B /* RCGTextFieldClass.swift */; };
@@ -872,7 +868,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D05FC51C77CB01002CEB6B /* Extensions.swift in Sources */,
-				84D0601B1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
 				84D060351C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84D05F411C763613002CEB6B /* RCG_PersonnelTests.swift in Sources */,
 				84D05F691C763FFF002CEB6B /* NewsViewController.swift in Sources */,
@@ -883,7 +878,6 @@
 				84D05F721C779298002CEB6B /* Constants.swift in Sources */,
 				84D0603D1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */,
 				84D060271C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */,
-				84D060391C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */,
 				84D060231C7BAD3C002CEB6B /* VacancyCell.swift in Sources */,
 				84D05F7E1C77977E002CEB6B /* Vacancies.swift in Sources */,
 				84D0601F1C7B5999002CEB6B /* VacanciesViewController.swift in Sources */,
@@ -896,7 +890,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D05FC61C77CB01002CEB6B /* Extensions.swift in Sources */,
-				84D0601C1C78BFA3002CEB6B /* SingleNewsViewController.swift in Sources */,
 				84D060361C809A8A002CEB6B /* MenuViewController.swift in Sources */,
 				84D05F4C1C763613002CEB6B /* RCG_PersonnelUITests.swift in Sources */,
 				84D05F6A1C763FFF002CEB6B /* NewsViewController.swift in Sources */,
@@ -907,7 +900,6 @@
 				84D05F731C779298002CEB6B /* Constants.swift in Sources */,
 				84D0603E1C80AD73002CEB6B /* RCGTextFieldClass.swift in Sources */,
 				84D060281C7CFD7C002CEB6B /* SingleVacancyViewController.swift in Sources */,
-				84D0603A1C80ABA3002CEB6B /* FeedBackViewController.swift in Sources */,
 				84D060241C7BAD3C002CEB6B /* VacancyCell.swift in Sources */,
 				84D05F7F1C77977E002CEB6B /* Vacancies.swift in Sources */,
 				84D060201C7B5999002CEB6B /* VacanciesViewController.swift in Sources */,

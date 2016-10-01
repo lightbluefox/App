@@ -6,7 +6,8 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import SDWebImage
 
 class BaseTableViewController: UITableViewController {
     

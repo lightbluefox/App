@@ -6,7 +6,7 @@
 //  Copyright © 2016 LightBlueFox. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import VK_ios_sdk
 
 final class VKShareManager: BaseShareManager, VKSdkDelegate {
