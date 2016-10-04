@@ -18,48 +18,51 @@ class NewsReceiver {
     func getAllNews(completionHandlerNews: (success: Bool, result: String) -> Void) {
 
         let requestUrl = Constants.apiUrl + "api/v01/news?count=" + Constants.newsCount
-        let request = HTTPTask()
-        request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
-            if let err = response.error {
+        
+        Alamofire.request(.GET, requestUrl).responseData { response in
+            switch response.result {
+            case .Failure(let err):
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandlerNews(success: false, result: err.localizedDescription)
                 }
-                return
-            }
-            else if let data = response.responseObject as? NSData {
-                let requestedData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                let requestedDataUnwrapped = requestedData!;
-                let jsonString = requestedDataUnwrapped;
-                let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
-                let json = JSON(jsonObject)
-
-                self.newsStack.removeAll(keepCapacity: false)
-
-                for i in 0 ..< json["data"].count
-                {
-                    let guid = json["data"][i]["guid"] != nil ? json["data"][i]["guid"].string! : ""
-                    let topic =  json["data"][i]["topic"] != nil ? json["data"][i]["topic"].string! : "";
-                    let shortText = json["data"][i]["shortText"] != nil ? json["data"][i]["shortText"].string! : "";
-                    let fullText = json["data"][i]["fullText"] != nil ? json["data"][i]["fullText"].string! : "";
-                    let addedDate = json["data"][i]["addedDate"] != nil ? json["data"][i]["addedDate"].string!.formatedDate : "";
+            case .Success:
+                if let responseData = response.data {
+                    var jsonError: NSError?
+                    let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
                     
-                    var icons = [String]()
-                    for u in 0 ..< json["data"][i]["icon"].count
-                    {
-                        icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
+                    if let error = json["error"].string {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            completionHandlerNews(success: false, result: error)
+                        }
                     }
-                    
-                    self.newsStack.append(News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: "", images: [String]()))
-                
+                    else {
+                        self.newsStack.removeAll(keepCapacity: false)
+                        
+                        for i in 0 ..< json["data"].count
+                        {
+                            let guid = json["data"][i]["guid"] != nil ? json["data"][i]["guid"].string! : ""
+                            let topic =  json["data"][i]["topic"] != nil ? json["data"][i]["topic"].string! : "";
+                            let shortText = json["data"][i]["shortText"] != nil ? json["data"][i]["shortText"].string! : "";
+                            let fullText = json["data"][i]["fullText"] != nil ? json["data"][i]["fullText"].string! : "";
+                            let addedDate = json["data"][i]["addedDate"] != nil ? json["data"][i]["addedDate"].string!.formatedDate : "";
+                            
+                            var icons = [String]()
+                            for u in 0 ..< json["data"][i]["icon"].count
+                            {
+                                icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
+                            }
+                            
+                            self.newsStack.append(News(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: "", images: [String]()))
+                            
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            completionHandlerNews(success: true, result: "Новости загружены")
+                        }
+                    }
                 }
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerNews(success: true, result: "Новости загружены")
-                }
-                
             }
-        })
+        }
     }
     
     func getSingleNews(guid: String, completionHandlerNews: (success: Bool, result: String) -> Void){

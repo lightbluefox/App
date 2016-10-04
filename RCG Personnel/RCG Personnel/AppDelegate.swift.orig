@@ -240,30 +240,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func getAppVersionFromServerAndShowAlertIfItDiffers() {
+        let request = HTTPTask();
         let requestUrl = Constants.apiUrl + "api/v01/config"
-        Alamofire.request(.GET, requestUrl).responseString
-            {response in
-                switch response.result {
-                case .Failure(let err):
-                    NSLog("%@", "Failed to get application version from server: " + err.localizedDescription)
-                case .Success:
-                    if let responseData = response.data {
-                        var jsonError: NSError?
-                        let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
-                        self.appVersionOnServer = json["versions"]["iPhone"]["num"] != nil ? json["versions"]["iPhone"]["num"].string! : ""
-                        NSLog("%@", "Got application version from server: " + self.appVersionOnServer)
-                        if self.appVersionOnServer != UIApplication.appVersion() {
-                            NSLog("%@", "Application version is " + UIApplication.appVersion() + " and it differs from the version at server. (" + self.appVersionOnServer + ")")
-                            self.showNewVersionAvailableAlert()
-                        }
-                        else {
-                            NSLog("%@", "Application version is " + UIApplication.appVersion() + ". The same as version at server.")
-                        }
-                        
-                        self.versionChecked = true
-                    }
+        request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
+            if let err = response.error {
+                NSLog("%@", "Failed to get application version from server: " + err.localizedDescription)
+            }
+            else if let resp = response.responseObject as? NSData {
+                let requestedData = NSString(data: resp, encoding: NSUTF8StringEncoding)
+                let requestedDataUnwrapped = requestedData!;
+                let jsonString = requestedDataUnwrapped;
+                let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+                let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
+                
+                let json = JSON(jsonObject);
+                self.appVersionOnServer = json["versions"]["iPhone"]["num"] != nil ? json["versions"]["iPhone"]["num"].string! : ""
+                NSLog("%@", "Got application version from server: " + self.appVersionOnServer)
+                if self.appVersionOnServer != UIApplication.appVersion() {
+                    NSLog("%@", "Application version is " + UIApplication.appVersion() + " and it differs from the version at server. (" + self.appVersionOnServer + ")")
+                    self.showNewVersionAvailableAlert()
                 }
-        }
+                else {
+                    NSLog("%@", "Application version is " + UIApplication.appVersion() + ". The same as version at server.")
+                }
+                
+                self.versionChecked = true
+            }
+        })
     }
     
     func applicationWillResignActive(application: UIApplication) {

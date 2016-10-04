@@ -20,50 +20,58 @@ class VacanciesReceiver {
         vacsStack.removeAll(keepCapacity: false);
         
         let currentDate = String(NSDate().gmc0.timeIntervalSince1970*1000)
-        let requestUrl = Constants.apiUrl + "api/v01/vacancies?limit=" + Constants.vacancyCount + "&where=validTillDate>=" + currentDate
-        let request = HTTPTask()
-        request.GET(requestUrl, parameters: nil, completionHandler: {(response: HTTPResponse) in
-            if let err = response.error {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerVacs(success: false, result: err.localizedDescription)
-                }
-                return
-            }
-            else if let data = response.responseObject as? NSData {
-                let requestedData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                let requestedDataUnwrapped = requestedData!;
-                let jsonString = requestedDataUnwrapped;
-                let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
-                
-                let json = JSON(jsonObject);
-                for i in 0 ..< json["data"].count
-                {
-                    let guid = json["data"][i]["guid"] != nil ? json["data"][i]["guid"].string! : ""
-                    let topic =  json["data"][i]["topic"] != nil ? json["data"][i]["topic"].string! : "";
-                    let shortText = json["data"][i]["shortText"] != nil ? json["data"][i]["shortText"].string! : "";
-                    let fullText = json["data"][i]["fullText"] != nil ? json["data"][i]["fullText"].string! : "";
-                    let addedDate = json["data"][i]["addedDate"] != nil ? json["data"][i]["addedDate"].string! : "";
-                    let sex =  json["data"][i]["sex"] != nil ? json["data"][i]["sex"].string! : "";
-                    let money =  json["data"][i]["money"] != nil ? json["data"][i]["money"].string! : "";
-                    let validTillDate = json["data"][i]["validTillDate"] != nil ? json["data"][i]["validTillDate"].string! : "";
-                    
-                    var icons = [String]()
-                    for u in 0 ..< json["data"][i]["icon"].count
-                    {
-                        icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
+        let requestUrl = Constants.apiUrl + "api/v01/vacancies?limit=" + Constants.vacancyCount + "&where=validTillDate%3E=" + currentDate
+        
+        do {
+            let opt = try HTTP.GET(requestUrl)
+            opt.start() {
+                response in
+                    if let err = response.error {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            completionHandlerVacs(success: false, result: err.localizedDescription)
+                        }
+                        return
                     }
-                    
-                    self.vacsStack.append(Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, sex: sex, money: money, timeTable: "", images: [String](), userReplied: nil))
-                    
+                    else if let data = response.data as? NSData {
+                        let requestedData = NSString(data: data, encoding: NSUTF8StringEncoding)
+                        let requestedDataUnwrapped = requestedData!;
+                        let jsonString = requestedDataUnwrapped;
+                        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+                        let jsonObject: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0))
+                        
+                        let json = JSON(jsonObject);
+                        for i in 0 ..< json["data"].count
+                        {
+                            let guid = json["data"][i]["guid"] != nil ? json["data"][i]["guid"].string! : ""
+                            let topic =  json["data"][i]["topic"] != nil ? json["data"][i]["topic"].string! : "";
+                            let shortText = json["data"][i]["shortText"] != nil ? json["data"][i]["shortText"].string! : "";
+                            let fullText = json["data"][i]["fullText"] != nil ? json["data"][i]["fullText"].string! : "";
+                            let addedDate = json["data"][i]["addedDate"] != nil ? json["data"][i]["addedDate"].string! : "";
+                            let sex =  json["data"][i]["sex"] != nil ? json["data"][i]["sex"].string! : "";
+                            let money =  json["data"][i]["money"] != nil ? json["data"][i]["money"].string! : "";
+                            let validTillDate = json["data"][i]["validTillDate"] != nil ? json["data"][i]["validTillDate"].string! : "";
+                            
+                            var icons = [String]()
+                            for u in 0 ..< json["data"][i]["icon"].count
+                            {
+                                icons.append(json["data"][i]["icon"][u]["url"] != nil ? json["data"][i]["icon"][u]["url"].string! : "")
+                            }
+                            
+                            self.vacsStack.append(Vacancies(guid: guid, status: "", topic: topic, shortText: shortText, fullText: fullText, icons: icons, addedDate: addedDate, postponedPublishingDate: "", validTillDate: validTillDate, sex: sex, money: money, timeTable: "", images: [String](), userReplied: nil))
+                            
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            completionHandlerVacs(success: true, result: "Вакансии загружены")
+                        }
                 }
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    completionHandlerVacs(success: true, result: "Вакансии загружены")
-                }
-                
             }
-        })
+        }
+        catch let error {
+            dispatch_async(dispatch_get_main_queue()) {
+                completionHandlerVacs(success: false, result: "\(error)")
+            }
+        }
     }
     
     func getSingleVac(guid: String, completionHandlerVacs: (success: Bool, result: String) -> Void){

@@ -199,9 +199,6 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
         }
         
         
-        //MARK: Make it gray and blured
-        //self.addBluredGrayBackground()
-        
         
         //self.vacReplyButton.backgroundColor = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 1.0)
         //self.vacReplyButton.setTitleColor(UIColor.whiteColor(), forState: .Normal) //в сториборде сд
@@ -265,39 +262,6 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
         failureNotification.hideAnimated(true, afterDelay: 3)
     }
     
-    private func addBluredGrayBackground() {
-        //MARK: Make it gray
-        let image = self.vacImageVIew.image!
-        let imageRect = CGRectMake(0,0,CGFloat(CGImageGetWidth(image.CGImage)),CGFloat(CGImageGetHeight(image.CGImage)))
-        let colorSpace = CGColorSpaceCreateDeviceGray()
-        let context = CGBitmapContextCreate(nil, CGImageGetWidth(image.CGImage), CGImageGetHeight(image.CGImage), 8, 0, colorSpace, CGBitmapInfo.ByteOrderDefault.rawValue)
-        CGContextDrawImage(context, imageRect, image.CGImage)
-        
-        let imageRef = CGBitmapContextCreateImage(context)
-        
-        let backgroundImage = UIImage(CGImage: imageRef!, scale: CGFloat(CGImageGetWidth(image.CGImage))/image.size.width, orientation: UIImageOrientation.Up)
-        
-        
-        //MARK: Create blur effect view
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        view.addSubview(blurEffectView)
-        
-        //MARK: Create background view
-        let width = UIScreen.mainScreen().bounds.size.width
-        let height = UIScreen.mainScreen().bounds.size.height
-        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
-        imageViewBackground.image = backgroundImage
-        
-        // you can change the content mode:
-        imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFill
-        view.addSubview(imageViewBackground);
-        view.sendSubviewToBack(blurEffectView);
-        view.sendSubviewToBack(imageViewBackground);
-    }
-    
     func leftNavButtonClick(sender: UIButton!)
     {
         self.navigationController?.popViewControllerAnimated(true)
@@ -311,7 +275,7 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Get the new view controller using segue.destinationViewController.
         let vacancyResponseViewController = segue.destinationViewController as! VacancyResponseViewController
@@ -322,6 +286,6 @@ class SingleVacancyViewController: BaseViewController, FBSDKSharingDelegate {
         let backButtonItem = UIBarButtonItem()
         backButtonItem.title = ""
         navigationItem.backBarButtonItem = backButtonItem
-    }
+    }*/
 
 }

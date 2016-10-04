@@ -45,7 +45,6 @@
 		849D62341CC9275E00C90229 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849D62331CC9275E00C90229 /* BaseViewController.swift */; };
 		849D62361CC92D9300C90229 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849D62351CC92D9300C90229 /* BaseTableViewController.swift */; };
 		849D62381CC942BB00C90229 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849D62371CC942BB00C90229 /* LoginViewController.swift */; };
-		84A7D9341C80D2D500E2602A /* VacancyResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */; };
 		84BEFFC01D09E204005BDF71 /* ValidatePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BEFFBF1D09E204005BDF71 /* ValidatePhoneViewController.swift */; };
 		84C322331CCA48A100A70641 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322321CCA48A100A70641 /* AuthenticationManager.swift */; };
 		84C322361CCA9F7800A70641 /* VKAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */; };
@@ -143,6 +142,7 @@
 		7C13E4474054216A3C8CC4F7 /* Pods-RCG PersonnelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCG PersonnelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RCG PersonnelTests/Pods-RCG PersonnelTests.release.xcconfig"; sourceTree = "<group>"; };
 		840A0F451CF8833900BD6DF1 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = SOURCE_ROOT; };
 		840A0F471CFC9DE800BD6DF1 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		840C9E0E1DA1A30100FA82B6 /* RCG Personnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RCG Personnel.entitlements"; sourceTree = "<group>"; };
 		84116B3C1CEB87C5001E5F02 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		84116B3D1CEB87C5001E5F02 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		84116B3E1CEB87C5001E5F02 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -178,7 +178,6 @@
 		849D62331CC9275E00C90229 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		849D62351CC92D9300C90229 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		849D62371CC942BB00C90229 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacancyResponseViewController.swift; sourceTree = "<group>"; };
 		84BEFFBF1D09E204005BDF71 /* ValidatePhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePhoneViewController.swift; sourceTree = "<group>"; };
 		84C322321CCA48A100A70641 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		84C322351CCA9F7800A70641 /* VKAuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthenticationHandler.swift; sourceTree = "<group>"; };
@@ -289,7 +288,6 @@
 				84D0601D1C7B5999002CEB6B /* VacanciesViewController.swift */,
 				84D060211C7BAD3C002CEB6B /* VacancyCell.swift */,
 				84D060251C7CFD7B002CEB6B /* SingleVacancyViewController.swift */,
-				84A7D9331C80D2D500E2602A /* VacancyResponseViewController.swift */,
 			);
 			name = Vacancies;
 			path = ..;
@@ -392,6 +390,7 @@
 		84D05F2A1C763612002CEB6B /* RCG Personnel */ = {
 			isa = PBXGroup;
 			children = (
+				840C9E0E1DA1A30100FA82B6 /* RCG Personnel.entitlements */,
 				84D05F2B1C763612002CEB6B /* AppDelegate.swift */,
 				841F89EE1CC2833400A66930 /* NavigationManager.swift */,
 				84D05F321C763612002CEB6B /* Assets.xcassets */,
@@ -577,6 +576,12 @@
 					84D05F271C763612002CEB6B = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = ZR53XJ4986;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					84D05F3B1C763613002CEB6B = {
 						CreatedOnToolsVersion = 7.2;
@@ -834,7 +839,6 @@
 				842495151D80712700AB832A /* Device.swift in Sources */,
 				846AA0021CC00C2000205142 /* PushManager.swift in Sources */,
 				84D05F6C1C766F38002CEB6B /* NewsCell.swift in Sources */,
-				84A7D9341C80D2D500E2602A /* VacancyResponseViewController.swift in Sources */,
 				849D62381CC942BB00C90229 /* LoginViewController.swift in Sources */,
 				84D05F751C779388002CEB6B /* News.swift in Sources */,
 				84C322361CCA9F7800A70641 /* VKAuthenticationHandler.swift in Sources */,
@@ -979,6 +983,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1018,6 +1023,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -1032,8 +1038,10 @@
 			baseConfigurationReference = 0988F38A20B5A24C3281AFAA /* Pods-RCG Personnel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "RCG Personnel/RCG Personnel.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZR53XJ4986;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1044,6 +1052,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rcg.mypromo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1052,8 +1061,10 @@
 			baseConfigurationReference = D7687D6F48FBA65384648EF6 /* Pods-RCG Personnel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "RCG Personnel/RCG Personnel.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZR53XJ4986;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1106,6 +1117,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rcg.mypromo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

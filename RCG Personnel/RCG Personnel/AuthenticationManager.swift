@@ -291,50 +291,46 @@ final class AuthenticationManager {
         tokenSecret: String?,
         completion: AuthenticationResult -> ())
     {
-        let request = HTTPTask()
         let requestUrl = Constants.apiUrl + "api/v01/token"
         let params = parametersForAuthenticationMethod(method, socialToken: socialToken, tokenSecret: tokenSecret)
-        
-        request.PUT(requestUrl, parameters: params) { [weak self] response in
-            if let error = response.error {
-                debugPrint("error: " + error.localizedDescription)
+        Alamofire.request(.PUT, requestUrl, parameters: params).responseString {
+            response in
+            switch response.result {
+            case .Failure(let err):
+                debugPrint("error: " + err.localizedDescription)
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(.Failure(error))
+                    completion(.Failure(err))
                 }
-            } else {
-                let data = response.responseObject as? NSData
-                let jsonObject = data.flatMap {
-                    try? NSJSONSerialization.JSONObjectWithData($0, options: NSJSONReadingOptions(rawValue: 0))
-                }
+            case .Success:
+                if let responseData = response.data {
+                    var jsonError: NSError?
+                    let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
                 
-                guard let json = jsonObject.flatMap({ JSON($0) }) else {
-                    return completion(.Failure(nil))
-                }
-                
-                if let error = json["error"].string {
-                    print("error: " + error)
-                    dispatch_async(dispatch_get_main_queue()) {
-                        if error == "no such a user" {
-                            completion(.UserNotFound(socialNetwork: method.socialNetwork, socialToken: socialToken, tokenSecret: tokenSecret))
+                    if let error = json["error"].string {
+                        print("error: " + error)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            if error == "no such a user" {
+                                completion(.UserNotFound(socialNetwork: method.socialNetwork, socialToken: socialToken, tokenSecret: tokenSecret))
+                            }
+                            else if error == "not allowed to login" {
+                                completion(.NotAllowedToLogin(socialNetwork: method.socialNetwork, socialToken: socialToken, tokenSecret: tokenSecret))
+                            }
+                            else if error == "Login or password invalid!" {
+                                completion(.IncorrectLoginOrPassword)
+                            }
+                            else {
+                                completion(.Failure(nil))
+                            }
                         }
-                        else if error == "not allowed to login" {
-                            completion(.NotAllowedToLogin(socialNetwork: method.socialNetwork, socialToken: socialToken, tokenSecret: tokenSecret))
+                    } else if let userToken = json["token"].string {
+                        self.user.token = userToken
+                        self.user.isAuthenticated = true
+                        self.user.isTokenChecked = true
+                        print("Native authentication completed, user token: \(userToken)")
+                        self.userReceiver.getCurrentUser()
+                        dispatch_async(dispatch_get_main_queue()) {
+                            completion(.Success)
                         }
-                        else if error == "Login or password invalid!" {
-                            completion(.IncorrectLoginOrPassword)
-                        }
-                        else {
-                            completion(.Failure(nil))
-                        }
-                    }
-                } else if let userToken = json["token"].string {
-                    self?.user.token = userToken
-                    self?.user.isAuthenticated = true
-                    self?.user.isTokenChecked = true
-                    print("Native authentication completed, user token: \(userToken)")
-                    self?.userReceiver.getCurrentUser()
-                    dispatch_async(dispatch_get_main_queue()) {
-                        completion(.Success)
                     }
                 }
             }

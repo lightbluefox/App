@@ -8,6 +8,8 @@
 
 import UIKit
 import MBProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var themeTextField: RCGTextFieldClass!
@@ -21,11 +23,13 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
     var scrollViewBottomMarginConstant : CGFloat = 0
     
     var pickerData = [String]()
-    
+    let hudManager = HUDManager()
     
     @IBOutlet weak var scrollViewBottomMargin: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hudManager.parentViewController = self
         
         self.navigationItem.title = "ОБРАТНАЯ СВЯЗЬ";
         self.navigationController?.navigationBar.translucent = false;
@@ -179,65 +183,38 @@ class FeedBackViewController : BaseViewController, UITextViewDelegate, UIPickerV
     @IBAction func submitButtonClick(sender: UIButton) {
         if messageTextView.textColor == UIColor(red: 199/255, green: 199/255, blue: 205/255, alpha: 1) || nameTextField.text == "" || emailTextField.text == "" || themeTextField.text == ""
         {
-            let failureNotification = MBProgressHUD.showHud(in: navigationController)!
-            failureNotification.mode = MBProgressHUDMode.CustomView
-            failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3);
-            //failureNotification.color = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 0.8);
-            failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
-            failureNotification.label.text = "Ошибка"
-            failureNotification.detailsLabel.text = "Все поля обязательны для заполнения"
-            failureNotification.hideAnimated(true, afterDelay: 3)
+            hudManager.showHUD("Ошибка", details: "Все поля обязательны для заполнения", type: .Failure)
         }
         else
         {
-            let loadingNotification = MBProgressHUD.showHud(in: navigationController)!
-            loadingNotification.mode = MBProgressHUDMode.Indeterminate
-            loadingNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            //loadingNotification.color = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 0.8);
-            loadingNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
-            loadingNotification.label.text = "Отправляем..."
+            let hud = hudManager.showHUD("Отправляем...", details: nil, type: .Processing)
             
-            let request = HTTPTask();
             let requestUrl = Constants.apiUrl + "api/v01/feedback"
             let params: Dictionary<String,AnyObject> = ["name":nameTextField.text!, "email":emailTextField.text!, "text":messageTextView.text, "topic":themeTextField.text!];
             
-            request.POST(requestUrl, parameters: params, completionHandler: {(response: HTTPResponse) in
-                if let err = response.error {
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        loadingNotification.hide(true)
-                        
-                        let failureNotification = MBProgressHUD.showHud(in: navigationController)!
-                        failureNotification.mode = MBProgressHUDMode.CustomView
-                        failureNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-                        //failureNotification.color = UIColor(red: 194/255, green: 0, blue: 18/255, alpha: 0.8);
-                        failureNotification.label.font = UIFont(name: "Roboto Regular", size: 12)
-                        failureNotification.label.text = "Ошибка"
-                        failureNotification.detailsLabel.text = err.localizedDescription
-                        failureNotification.hideAnimated(true, afterDelay: 3)
-                    }
-                    print("error: " + err.localizedDescription)
-                }
-                else if let resp: AnyObject = response.responseObject {
-                    _ = NSString(data: resp as! NSData, encoding: NSUTF8StringEncoding)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        loadingNotification.hide(true)
-                        
-                        let successNotification = MBProgressHUD.showHud(in: navigationController)!
-                        successNotification.mode = MBProgressHUDMode.CustomView
-                        successNotification.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-                        let imageView = UIImageView();
-                        imageView.image = UIImage(named: "checkmark");
-                        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50);
-                        imageView.contentMode = UIViewContentMode.Center;
-                        successNotification.customView = imageView
-                        
-                        successNotification.hideAnimated(true, afterDelay: 3)
-                        self.clearView()
+            Alamofire.request(.POST, requestUrl, parameters: params).responseString { response in
+                
+                self.hudManager.hideHUD(hud)
+                switch response.result {
+                case .Failure(let err):
+                    self.hudManager.showHUD("Ошибка", details: err.localizedDescription, type: .Failure)
+                    NSLog("Error sending feedback: \(err.localizedDescription)")
+
+                case .Success:
+                    if let responseData = response.data {
+                        var jsonError: NSError?
+                        let json = JSON(data: responseData, options: .AllowFragments, error: &jsonError)
+                        if let error = json["error"].string {
+                            self.hudManager.showHUD("Ошибка", details: error, type: .Failure)
+                            NSLog("Error sending feedback: \(error)")
+                        }
+                        else {
+                            self.hudManager.showHUD(nil, details: nil, type: .Success)
+                            self.clearView()
+                        }
                     }
                 }
-            })
+            }
         }
     }
     
