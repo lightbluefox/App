@@ -71,8 +71,6 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
     @IBOutlet weak var medicalCardNumber: RCGTextFieldClass!
     @IBOutlet weak var subwayStationTopMarginFromMedicalCardUISwitch: NSLayoutConstraint!
     @IBOutlet weak var subwayStation: RCGTextFieldClass!
-    @IBOutlet weak var passport: RCGTextFieldClass!
-    
     @IBOutlet weak var vkButton: UIButton!
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var twButton: UIButton!
@@ -107,8 +105,7 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
             birthDate : birthDate.isValid,
             height : height.isValid,
             clothesSize : clothesSize.isValid,
-            subwayStation : subwayStation.isValid,
-            passport : passport.isValid
+            subwayStation : subwayStation.isValid
         ]
         addGenderPickerViewOnTap(forTextField: sex)
         addDatePickerViewOnTap(forTextField: birthDate)
@@ -135,7 +132,7 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
         
         if socialId?.isEmpty == false {    // соцсеть привязана
             authenticationManager.unbindSocialNetwork(socialNetwork) { [weak self] error in
-                hud?.hide(true)
+                hud?.hideAnimated(true)
                 if let error = error {
                     self?.hudManager.showHUD("Ошибка", details: error.localizedDescription, type: .Failure)
                 } else {
@@ -144,7 +141,7 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
             }
         } else {    // соцсеть не привязана
             authenticationManager.bindSocialNetwork(socialNetwork) { [weak self] error in
-                hud?.hide(true)
+                hud?.hideAnimated(true)
                 if let error = error {
                     self?.hudManager.showHUD("Ошибка", details: error.localizedDescription, type: .Failure)
                 } else {
@@ -242,9 +239,6 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
             self.medicalCardNumber.text = user.medicalBookNumber
             self.medicalCardNumber.validate()
         }
-        self.passport.text = user.passportData
-        self.passport.validate()
-        
         vkButton.setTitleColor(user.vkToken?.isEmpty == false ? .blueColor() : .grayColor(), forState: .Normal)
         fbButton.setTitleColor(user.fbToken?.isEmpty == false ? .blueColor() : .grayColor(), forState: .Normal)
         twButton.setTitleColor(user.twToken?.isEmpty == false ? .blueColor() : .grayColor(), forState: .Normal)
@@ -380,7 +374,6 @@ final class EditProfileViewController: BaseViewController, UIImagePickerControll
             birthDate: birthDate.text ?? "",
             medicalBookNumber: medicalCardNumber.text ?? "",
             metroStation: subwayStation.text ?? "",
-            passportData: passport.text ?? "",
             height: Int(height.text ?? "") ?? 0,
             size: Int(clothesSize.text ?? "") ?? 0,
             hasMedicalBook: hasMedicalCard.on,

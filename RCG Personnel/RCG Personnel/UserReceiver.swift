@@ -75,7 +75,6 @@ class UserReceiver {
                         self.user.hasMedicalBook = json["usersdata"]["hasMedicalCard"].boolValue
                         self.user.medicalBookNumber = json["usersdata"]["medicalCardNumber"].stringValue
                         self.user.metroStation = json["usersdata"]["subWayStation"].stringValue
-                        self.user.passportData = json["usersdata"]["passportData"].stringValue
                         self.user.vkToken = json["vkid"].stringValue
                         self.user.fbToken = json["fbid"].stringValue
                         self.user.twToken = json["twid"].stringValue
@@ -91,7 +90,7 @@ class UserReceiver {
     }
     
     ///Updates current user properties on server
-    func updateCurrentUserWithValues(photoUrl: String, firstName: String, middleName: String, lastName: String, email: String, birthDate: String, medicalBookNumber: String, metroStation: String, passportData: String, height: Int, size: Int, hasMedicalBook: Bool, gender: Gender, vkToken: String?, fbToken: String?, twToken: String?, completionHandler: (success: Bool, result: String) -> Void) {
+    func updateCurrentUserWithValues(photoUrl: String, firstName: String, middleName: String, lastName: String, email: String, birthDate: String, medicalBookNumber: String, metroStation: String, height: Int, size: Int, hasMedicalBook: Bool, gender: Gender, vkToken: String?, fbToken: String?, twToken: String?, completionHandler: (success: Bool, result: String) -> Void) {
         
         NSLog("UpdatingUserByToken. Started")
         let headers = ["Authorization" : "Bearer " + user.token ?? ""]
@@ -117,9 +116,6 @@ class UserReceiver {
             }
             if metroStation != "" {
                 params.updateValue(metroStation, forKey: "subWayStation")
-            }
-            if passportData != "" {
-                params.updateValue(passportData, forKey: "passportData")
             }
             if height != 0 {
                 params.updateValue(height, forKey: "height")
@@ -167,7 +163,6 @@ class UserReceiver {
                     self.user.hasMedicalBook = json["usersdata"]["hasMedicalCard"].boolValue
                     self.user.medicalBookNumber = json["usersdata"]["medicalCardNumber"].stringValue
                     self.user.metroStation = json["usersdata"]["subWayStation"].stringValue
-                    self.user.passportData = json["usersdata"]["passportData"].stringValue
                     
                     NSLog("UpdatingUserByToken. Done with success.")
                     NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationCenterKeys.notifyThatUserHaveBeenUpdated, object: self)

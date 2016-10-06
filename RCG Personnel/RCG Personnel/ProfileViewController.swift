@@ -26,8 +26,6 @@ class ProfileViewController : BaseViewController {
     
     @IBOutlet weak var metroLabel: UILabel!
     
-    @IBOutlet weak var passportLabel: UILabel!
-    
     @IBOutlet weak var userPhotoImageView: UIImageView!
     
     @IBOutlet weak var maleImageView: UIImageView!
@@ -74,10 +72,9 @@ class ProfileViewController : BaseViewController {
         sizeLabel.text = "Размер одежды: " + String(user.size ?? 0)
         medicalBookNumber.text = "Мед. книжка: " + user.medicalBookNumber!
         metroLabel.text = "Метро: " + (user.metroStation ?? "")
-        passportLabel.text = "Паспорт: " + (user.passportData ?? "")
         if let photoUrl = NSURL(string: user.photoUrl ?? "") {
             if UIApplication.sharedApplication().canOpenURL(photoUrl) {
-                userPhotoImageView.sd_setImageWithPreviousCachedImageWithURL(NSURL(string: user.photoUrl ?? ""), andPlaceholderImage: user.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
+                userPhotoImageView.sd_setImageWithPreviousCachedImageWithURL(NSURL(string: user.photoUrl ?? ""), placeholderImage: user.noPhotoImage, options: .RetryFailed, progress: nil, completed: nil)
             }
             else
             {

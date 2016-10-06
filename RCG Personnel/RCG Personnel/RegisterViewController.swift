@@ -77,7 +77,6 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
     @IBOutlet weak var medicalCardNumber: RCGTextFieldClass!
     @IBOutlet weak var subwayStationTopMarginFromMedicalCardUISwitch: NSLayoutConstraint!
     @IBOutlet weak var SubwayStation: RCGTextFieldClass!
-    @IBOutlet weak var passport: RCGTextFieldClass!
     @IBAction func registerButtonTouched(sender: AnyObject) {
         if fieldsAreValid.values.contains(false) {
             hudManager.showHUD("Ошибка", details: "Все поля обязательны для заполнения", type: .Failure)
@@ -110,7 +109,6 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
                 hasMedicalBook: hasMedicalCard.on,
                 medicalBookNumber: medicalCardNumber.text ?? "",
                 metroStation: SubwayStation.text ?? "",
-                passportData: passport.text ?? "",
                 gender: gender
             )
             
@@ -122,7 +120,7 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
                 tokenSecret: tokenSecret
             )
             
-            //authenticationManager.registerNewUser(self, user: User(photo: "https://lh5.googleusercontent.com/-MlnvEdpKY2w/AAAAAAAAAAI/AAAAAAAAAFw/x6wHNLJmtQ0/s0-c-k-no-ns/photo.jpg", firstName: "Иван", middleName: "Петрович", lastName: "Путинов", phone: self.phoneNumber.text ?? "", email: "mail@mail.ru", birthDate: "22.07.1912", height: 180, size: 42, hasMedicalBook: true, medicalBookNumber: "1231231", metroStation: "Севастопольская", passportData: "1231 312312", gender: .Male))
+            //authenticationManager.registerNewUser(self, user: User(photo: "https://lh5.googleusercontent.com/-MlnvEdpKY2w/AAAAAAAAAAI/AAAAAAAAAFw/x6wHNLJmtQ0/s0-c-k-no-ns/photo.jpg", firstName: "Иван", middleName: "Петрович", lastName: "Путинов", phone: self.phoneNumber.text ?? "", email: "mail@mail.ru", birthDate: "22.07.1912", height: 180, size: 42, hasMedicalBook: true, medicalBookNumber: "1231231", metroStation: "Севастопольская", gender: .Male))
         }
     }
     
@@ -157,8 +155,7 @@ final class RegisterViewController: BaseViewController, UIImagePickerControllerD
             birthDate : birthDate.isValid,
             height : height.isValid,
             clothesSize : clothesSize.isValid,
-            SubwayStation : SubwayStation.isValid,
-            passport : passport.isValid
+            SubwayStation : SubwayStation.isValid
         ]
         
         setupView()

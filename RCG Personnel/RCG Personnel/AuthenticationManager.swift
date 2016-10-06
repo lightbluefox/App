@@ -114,7 +114,6 @@ final class AuthenticationManager {
         User.sharedUser.medicalBookNumber = ""
         User.sharedUser.metroStation = ""
         User.sharedUser.middleName = ""
-        User.sharedUser.passportData = ""
         User.sharedUser.phone = ""
         User.sharedUser.photoUrl = ""
         User.sharedUser.size = 0
@@ -141,6 +140,9 @@ final class AuthenticationManager {
                         }
                         else if error == "user unconfirmed" {
                             completionHandler(success: false, result: "Пользователь не подтвержден. Пройдите повторную регистрацию.")
+                        }
+                        else if error == "no such user" {
+                            completionHandler(success: false, result: "Нет пользователя с таким телефоном.")
                         }
                         else
                         {
@@ -188,7 +190,6 @@ final class AuthenticationManager {
         params.updateValue(user.medicalBookNumber ?? "", forKey: "medicalCardNumber")
         params.updateValue(user.gender == .Male ? true : false, forKey: "ifMale")
         params.updateValue(user.metroStation ?? "", forKey: "subWayStation")
-        params.updateValue(user.passportData ?? "", forKey: "passportData")
         params.updateValue(user.height ?? 0, forKey: "height")
         params.updateValue(user.size ?? 0, forKey: "clothesSize")
         params.updateValue(user.birthDate ?? "", forKey: "birthDate")

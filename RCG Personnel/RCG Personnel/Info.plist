@@ -37,7 +37,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>16</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -102,7 +102,7 @@
 		</dict>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>For setting profile picture</string>
+	<string>Для выбора фотографии профиля</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>roboto-light.ttf</string>

@@ -270,7 +270,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         case .SocialSuccess(let socialNetwork, let token, let tokenSecret):
             weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             authenticationManager.authenticate(socialNetwork, token: token, tokenSecret: tokenSecret) { [weak self] result in
-                hud?.hide(true)
+                hud?.hideAnimated(true)
                 self?.handleAuthenticationResult(result)
             }
         }
@@ -283,7 +283,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     private func performAuthentication(method: AuthenticationMethod) {
         weak var hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         authenticationManager.authenticate(method) { [weak self] result in
-            hud?.hide(true)
+            hud?.hideAnimated(true)
             self?.handleAuthenticationResult(result)
         }
     }

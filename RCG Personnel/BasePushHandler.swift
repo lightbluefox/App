@@ -25,18 +25,23 @@ class BasePushHandler: PushHandler {
     }
     
     func handleNotification(notification: PushNotification) -> Bool {
-        let featureName = notification.payload["feature"] as! String
-        let supportedFeatureName = self.supportedFeatureName()
-        NSLog("%@", "Trying to handle notification. Supported feature name: " + supportedFeatureName + ". Actual feature name: " + featureName + ".")
-        
-        if featureName == supportedFeatureName {
-            NSLog("%@", "Wotking on it.")
-            self.doHandleNotification(notification)
-            return false
-        }
+        if let featureName = notification.payload["feature"] as? String {
+            let supportedFeatureName = self.supportedFeatureName()
+            NSLog("%@", "Trying to handle notification. Supported feature name: " + supportedFeatureName + ". Actual feature name: " + featureName + ".")
             
+            if featureName == supportedFeatureName {
+                NSLog("%@", "Wotking on it.")
+                self.doHandleNotification(notification)
+                return false
+            }
+                
+            else {
+                NSLog("%@", "Skipped.")
+                return true
+            }
+        }
         else {
-            NSLog("%@", "Skipped.")
+            NSLog("Failed to read featureName from payload. Skipped.")
             return true
         }
     }

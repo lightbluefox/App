@@ -46,7 +46,6 @@ class User {
         }
     }
     var metroStation: String?
-    var passportData: String?
     
     var isTokenChecked = false
     var isAuthenticated = false
@@ -120,7 +119,7 @@ class User {
         
     }
     
-    init(photo: String, firstName: String, middleName: String, lastName: String, phone: String, email: String, birthDate: String, height: Int, size: Int, hasMedicalBook: Bool, medicalBookNumber: String, metroStation: String, passportData: String, gender: Gender) {
+    init(photo: String, firstName: String, middleName: String, lastName: String, phone: String, email: String, birthDate: String, height: Int, size: Int, hasMedicalBook: Bool, medicalBookNumber: String, metroStation: String, gender: Gender) {
         self.photoUrl = photo
         self.firstName = firstName
         self.lastName = lastName
@@ -133,7 +132,6 @@ class User {
         self.hasMedicalBook = hasMedicalBook
         self.medicalBookNumber = medicalBookNumber
         self.metroStation = metroStation
-        self.passportData = passportData
         self.gender = gender
     }
 }
